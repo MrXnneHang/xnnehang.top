@@ -1,7 +1,7 @@
 import { type CollectionEntry, getCollection } from 'astro:content'
 import I18nKey from '@i18n/i18nKey'
 import { i18n } from '@i18n/translation'
-import { getCategoryUrl } from '@utils/url-utils.ts'
+import { getCategoryUrl, getSeriesUrl } from '@utils/url-utils.ts'
 
 // // Retrieve posts and sort them by publication date
 async function getRawSortedPosts() {
@@ -78,6 +78,11 @@ export type Category = {
   url: string
 }
 
+export type Series = {
+  name: string
+  posts: PostForList[]
+}
+
 export async function getCategoryList(): Promise<Category[]> {
   const allBlogPosts = await getCollection<'posts'>('posts', ({ data }) => {
     return import.meta.env.PROD ? data.draft !== true : true
@@ -111,4 +116,63 @@ export async function getCategoryList(): Promise<Category[]> {
     })
   }
   return ret
+}
+
+export async function getSeriesList(): Promise<Series[]> {
+  const allBlogPosts = await getCollection<'posts'>('posts', ({ data }) => {
+    return import.meta.env.PROD ? data.draft !== true : true
+  })
+
+  const seriesMap: Map<string, PostForList[]> = new Map()
+  allBlogPosts.forEach((post) => {
+    const names = post.data.series || []
+    names.forEach((name) => {
+      if (!seriesMap.has(name)) seriesMap.set(name, [])
+      seriesMap.get(name)!.push({
+        slug: post.id,
+        data: post.data,
+      })
+    })
+  })
+
+  // Sort posts within each series by published date (ascending)
+  for (const [, posts] of seriesMap) {
+    posts.sort((a, b) => {
+      return new Date(a.data.published).getTime() - new Date(b.data.published).getTime()
+    })
+  }
+
+  // Sort series by their newest post date
+  const sorted = Array.from(seriesMap.entries())
+    .map(([name, posts]) => ({ name, posts }))
+    .sort((a, b) => {
+      const aDate = new Date(a.posts[a.posts.length - 1]?.data.published ?? 0).getTime()
+      const bDate = new Date(b.posts[b.posts.length - 1]?.data.published ?? 0).getTime()
+      return bDate - aDate
+    })
+
+  return sorted
+}
+
+export function getRelatedPosts(
+  currentPost: PostForList,
+  allPosts: PostForList[],
+  limit = 5,
+): PostForList[] {
+  const currentTags = new Set(currentPost.data.tags || [])
+
+  const scored = allPosts
+    .filter((p) => p.slug !== currentPost.slug)
+    .map((p) => {
+      const postTags = new Set(p.data.tags || [])
+      const intersection = new Set([...currentTags].filter((t) => postTags.has(t)))
+      const union = new Set([...currentTags, ...postTags])
+      const score = union.size === 0 ? 0 : intersection.size / union.size
+      return { post: p, score }
+    })
+    .filter((s) => s.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+
+  return scored.map((s) => s.post)
 }

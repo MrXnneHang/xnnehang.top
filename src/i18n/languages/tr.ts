@@ -36,4 +36,8 @@ export const tr: Translation = {
   [Key.author]: 'Yazar',
   [Key.publishedAt]: 'Yayınlanma:',
   [Key.license]: 'Lisans',
+
+  [Key.series]: 'Seri',
+  [Key.seriesIndex]: 'Seri İndeksi',
+  [Key.relatedPosts]: 'İlgili Yazılar',
 }

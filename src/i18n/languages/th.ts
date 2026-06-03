@@ -36,4 +36,8 @@ export const th: Translation = {
   [Key.author]: 'ผู้เขียน',
   [Key.publishedAt]: 'เผยแพร่เมื่อ',
   [Key.license]: 'สัญญาอนุญาต',
+
+  [Key.series]: 'ซีรีส์',
+  [Key.seriesIndex]: 'ดัชนีซีรีส์',
+  [Key.relatedPosts]: 'บทความที่เกี่ยวข้อง',
 }
