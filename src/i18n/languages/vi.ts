@@ -40,4 +40,9 @@ export const vi: Translation = {
   [Key.series]: 'Loạt bài',
   [Key.seriesIndex]: 'Mục lục loạt bài',
   [Key.relatedPosts]: 'Bài viết liên quan',
+
+  [Key.seriesPostCount]: '{0} bài',
+  [Key.seriesCollapsedPrev]: '{0} bài đã thu gọn phía trên',
+  [Key.seriesCollapsedNext]: '{0} bài đã thu gọn phía dưới',
+  [Key.seriesCurrentLabel]: 'hiện tại',
 }

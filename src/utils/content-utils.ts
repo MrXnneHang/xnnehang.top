@@ -1,7 +1,7 @@
 import { type CollectionEntry, getCollection } from 'astro:content'
 import I18nKey from '@i18n/i18nKey'
 import { i18n } from '@i18n/translation'
-import { getCategoryUrl, getSeriesUrl } from '@utils/url-utils.ts'
+import { getCategoryUrl } from '@utils/url-utils.ts'
 
 // // Retrieve posts and sort them by publication date
 async function getRawSortedPosts() {
@@ -152,27 +152,4 @@ export async function getSeriesList(): Promise<Series[]> {
     })
 
   return sorted
-}
-
-export function getRelatedPosts(
-  currentPost: PostForList,
-  allPosts: PostForList[],
-  limit = 5,
-): PostForList[] {
-  const currentTags = new Set(currentPost.data.tags || [])
-
-  const scored = allPosts
-    .filter((p) => p.slug !== currentPost.slug)
-    .map((p) => {
-      const postTags = new Set(p.data.tags || [])
-      const intersection = new Set([...currentTags].filter((t) => postTags.has(t)))
-      const union = new Set([...currentTags, ...postTags])
-      const score = union.size === 0 ? 0 : intersection.size / union.size
-      return { post: p, score }
-    })
-    .filter((s) => s.score > 0)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, limit)
-
-  return scored.map((s) => s.post)
 }

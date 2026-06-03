@@ -37,6 +37,11 @@ enum I18nKey {
   series = 'series',
   seriesIndex = 'seriesIndex',
   relatedPosts = 'relatedPosts',
+
+  seriesPostCount = 'seriesPostCount',
+  seriesCollapsedPrev = 'seriesCollapsedPrev',
+  seriesCollapsedNext = 'seriesCollapsedNext',
+  seriesCurrentLabel = 'seriesCurrentLabel',
 }
 
 export default I18nKey

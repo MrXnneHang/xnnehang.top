@@ -40,4 +40,9 @@ export const tr: Translation = {
   [Key.series]: 'Seri',
   [Key.seriesIndex]: 'Seri İndeksi',
   [Key.relatedPosts]: 'İlgili Yazılar',
+
+  [Key.seriesPostCount]: '{0} gönderi',
+  [Key.seriesCollapsedPrev]: 'üstte {0} daraltıldı',
+  [Key.seriesCollapsedNext]: 'altta {0} daraltıldı',
+  [Key.seriesCurrentLabel]: 'mevcut',
 }

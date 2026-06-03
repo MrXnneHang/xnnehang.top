@@ -40,4 +40,9 @@ export const th: Translation = {
   [Key.series]: 'ซีรีส์',
   [Key.seriesIndex]: 'ดัชนีซีรีส์',
   [Key.relatedPosts]: 'บทความที่เกี่ยวข้อง',
+
+  [Key.seriesPostCount]: '{0} โพสต์',
+  [Key.seriesCollapsedPrev]: '{0} รายการถูกซ่อนด้านบน',
+  [Key.seriesCollapsedNext]: '{0} รายการถูกซ่อนด้านล่าง',
+  [Key.seriesCurrentLabel]: 'ปัจจุบัน',
 }

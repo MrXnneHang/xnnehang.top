@@ -40,4 +40,9 @@ export const zh_CN: Translation = {
   [Key.series]: '系列',
   [Key.seriesIndex]: '系列目录',
   [Key.relatedPosts]: '相关文章',
+
+  [Key.seriesPostCount]: '{0} 篇',
+  [Key.seriesCollapsedPrev]: '前 {0} 篇已折叠',
+  [Key.seriesCollapsedNext]: '后 {0} 篇已折叠',
+  [Key.seriesCurrentLabel]: '当前',
 }

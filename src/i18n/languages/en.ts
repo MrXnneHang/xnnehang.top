@@ -40,4 +40,9 @@ export const en: Translation = {
   [Key.series]: 'Series',
   [Key.seriesIndex]: 'Series Index',
   [Key.relatedPosts]: 'Related Posts',
+
+  [Key.seriesPostCount]: '{0} posts',
+  [Key.seriesCollapsedPrev]: '{0} collapsed above',
+  [Key.seriesCollapsedNext]: '{0} collapsed below',
+  [Key.seriesCurrentLabel]: 'current',
 }

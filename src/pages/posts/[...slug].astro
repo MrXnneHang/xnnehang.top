@@ -194,12 +194,12 @@ const jsonLd = {
                   >
                     {seriesName}
                   </a>
-                  <span class="text-50 text-xs">{total} 篇</span>
+                  <span class="text-50 text-xs">{i18n(I18nKey.seriesPostCount).replace('{0}', String(total))}</span>
                 </div>
                 <ol class="mt-3 flex flex-col gap-1.5">
                   {start > 0 && (
                     <li class="text-center text-xs text-neutral-400">
-                      <a href={getSeriesUrl(seriesName)} class="hover:text-[var(--primary)]">前 {start} 篇已折叠</a>
+                      <a href={getSeriesUrl(seriesName)} class="hover:text-[var(--primary)]">{i18n(I18nKey.seriesCollapsedPrev).replace('{0}', String(start))}</a>
                     </li>
                   )}
                   {visiblePosts.map((p: { slug: string; data: { title: string } }, i: number) => {
@@ -220,14 +220,14 @@ const jsonLd = {
                             {realIndex + 1}
                           </span>
                           <span class="truncate">{p.data.title}</span>
-                          {isCurrent && <span class="ml-auto text-xs opacity-60">· 当前</span>}
+                          {isCurrent && <span class="ml-auto text-xs opacity-60">· {i18n(I18nKey.seriesCurrentLabel)}</span>}
                         </a>
                       </li>
                     )
                   })}
                   {end < total && (
                     <li class="text-center text-xs text-neutral-400">
-                      <a href={getSeriesUrl(seriesName)} class="hover:text-[var(--primary)]">后 {total - end} 篇已折叠</a>
+                      <a href={getSeriesUrl(seriesName)} class="hover:text-[var(--primary)]">{i18n(I18nKey.seriesCollapsedNext).replace('{0}', String(total - end))}</a>
                     </li>
                   )}
                 </ol>
