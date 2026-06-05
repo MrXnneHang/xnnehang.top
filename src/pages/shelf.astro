@@ -29,7 +29,7 @@ async function resolveImage(src: string, postId: string): Promise<string> {
   const loader = allImageFiles[normalized]
   if (loader) {
     const meta = await loader()
-    const optimized = await getImage({ src: meta, width: 300 })
+    const optimized = await getImage({ src: meta, width: 900 })
     return optimized.src
   }
   return ''
@@ -41,7 +41,7 @@ const shelfPosts = allPosts.filter(p => p.data.shelf)
 const items = await Promise.all(
   shelfPosts.map(async (post) => {
     const { remarkPluginFrontmatter } = await render(post)
-    const rawCover = post.data.image || remarkPluginFrontmatter.firstImage || ''
+    const rawCover = post.data.shelfCover || post.data.image || remarkPluginFrontmatter.firstImage || ''
     const cover = await resolveImage(rawCover, post.id)
     return {
       id: post.id,
