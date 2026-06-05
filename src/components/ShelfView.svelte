@@ -5,8 +5,7 @@ interface ShelfItem {
   id: string
   title: string
   shelf: string
-  subCategory: string
-  tags: string[]
+  subCategory: string[]
   blurb: string
   cover: string
   url: string
@@ -46,14 +45,16 @@ let categoryItems = $derived(
 let availableSubCategories = $derived(() => {
   const subs = new Set<string>()
   for (const item of categoryItems) {
-    if (item.subCategory) subs.add(item.subCategory)
+    for (const sub of item.subCategory) {
+      subs.add(sub)
+    }
   }
   return Array.from(subs).sort()
 })
 
 let filteredItems = $derived(
   activeSubCategory
-    ? categoryItems.filter(item => item.subCategory === activeSubCategory)
+    ? categoryItems.filter(item => item.subCategory.includes(activeSubCategory))
     : categoryItems
 )
 
@@ -136,8 +137,8 @@ function selectSubCategory(sub: string) {
                   </a>
                 </div>
                 <div class="flex flex-wrap gap-1.5 pl-7">
-                  {#each item.tags as tag}
-                    <span class="rounded bg-black/5 px-1.5 py-0.5 text-xs text-black/50 dark:bg-white/5 dark:text-white/50">{tag}</span>
+                  {#each item.subCategory as sub}
+                    <span class="rounded bg-black/5 px-1.5 py-0.5 text-xs text-black/50 dark:bg-white/5 dark:text-white/50">{sub}</span>
                   {/each}
                 </div>
                 {#if item.blurb}

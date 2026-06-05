@@ -16,7 +16,7 @@ const postsCollection = defineCollection({
     series: z.array(z.string()).optional().default([]),
     lang: z.string().optional().default(''),
     shelf: z.enum(['电影', '电视剧', '动漫', '书籍', '漫画', '游戏', '论文']).optional(),
-    subCategory: z.string().optional().default(''),
+    subCategory: z.array(z.string()).optional().default([]),
     blurb: z.string().optional().default(''),
     arxiv: z.string().optional().default(''),
 
