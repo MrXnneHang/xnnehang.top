@@ -42,7 +42,7 @@ let categoryItems = $derived(
 )
 
 // Collect unique subCategories for current category
-let availableSubCategories = $derived(() => {
+let availableSubCategories = $derived.by(() => {
   const subs = new Set<string>()
   for (const item of categoryItems) {
     for (const sub of item.subCategory) {
@@ -97,7 +97,7 @@ function selectSubCategory(sub: string) {
     </div>
 
     <!-- Sub-category filters -->
-    {#if availableSubCategories().length > 0}
+    {#if availableSubCategories.length > 0}
       <div class="mb-5 flex flex-wrap gap-2">
         <button
           class="rounded-full px-3 py-1 text-xs font-medium transition
@@ -108,7 +108,7 @@ function selectSubCategory(sub: string) {
         >
           全部
         </button>
-        {#each availableSubCategories() as sub}
+        {#each availableSubCategories as sub}
           <button
             class="rounded-full px-3 py-1 text-xs font-medium transition
               {activeSubCategory === sub
