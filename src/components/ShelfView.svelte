@@ -5,6 +5,7 @@ interface ShelfItem {
   id: string
   title: string
   shelf: string
+  subCategory: string
   tags: string[]
   blurb: string
   cover: string
@@ -21,7 +22,7 @@ let { items = [] }: Props = $props()
 
 // --- State ---
 let activeCategory: string = $state('')
-let activeTag: string = $state('')
+let activeSubCategory: string = $state('')
 
 // --- Derived ---
 const categories = ['电影', '电视剧', '动漫', '书籍', '漫画', '游戏', '论文']
@@ -41,30 +42,28 @@ let categoryItems = $derived(
   items.filter(item => item.shelf === activeCategory)
 )
 
-// Collect all unique tags for current category
-let availableTags = $derived(() => {
-  const tagSet = new Set<string>()
+// Collect unique subCategories for current category
+let availableSubCategories = $derived(() => {
+  const subs = new Set<string>()
   for (const item of categoryItems) {
-    for (const tag of item.tags) {
-      tagSet.add(tag)
-    }
+    if (item.subCategory) subs.add(item.subCategory)
   }
-  return Array.from(tagSet).sort()
+  return Array.from(subs).sort()
 })
 
 let filteredItems = $derived(
-  activeTag
-    ? categoryItems.filter(item => item.tags.includes(activeTag))
+  activeSubCategory
+    ? categoryItems.filter(item => item.subCategory === activeSubCategory)
     : categoryItems
 )
 
 function selectCategory(cat: string) {
   activeCategory = cat
-  activeTag = ''
+  activeSubCategory = ''
 }
 
-function selectTag(tag: string) {
-  activeTag = activeTag === tag ? '' : tag
+function selectSubCategory(sub: string) {
+  activeSubCategory = activeSubCategory === sub ? '' : sub
 }
 </script>
 
@@ -96,27 +95,27 @@ function selectTag(tag: string) {
       <p class="mt-1 text-sm text-black/50 dark:text-white/50">{categoryItems.length} 部作品</p>
     </div>
 
-    <!-- Tag filters -->
-    {#if availableTags().length > 0}
+    <!-- Sub-category filters -->
+    {#if availableSubCategories().length > 0}
       <div class="mb-5 flex flex-wrap gap-2">
         <button
           class="rounded-full px-3 py-1 text-xs font-medium transition
-            {activeTag === ''
+            {activeSubCategory === ''
               ? 'bg-[oklch(0.55_0.16_55)] text-white dark:bg-[oklch(0.65_0.18_55)]'
               : 'bg-black/5 text-black/60 hover:bg-black/10 dark:bg-white/5 dark:text-white/60 dark:hover:bg-white/10'}"
-          onclick={() => activeTag = ''}
+          onclick={() => activeSubCategory = ''}
         >
           全部
         </button>
-        {#each availableTags() as tag}
+        {#each availableSubCategories() as sub}
           <button
             class="rounded-full px-3 py-1 text-xs font-medium transition
-              {activeTag === tag
+              {activeSubCategory === sub
                 ? 'bg-[oklch(0.55_0.16_55)] text-white dark:bg-[oklch(0.65_0.18_55)]'
                 : 'bg-black/5 text-black/60 hover:bg-black/10 dark:bg-white/5 dark:text-white/60 dark:hover:bg-white/10'}"
-            onclick={() => selectTag(tag)}
+            onclick={() => selectSubCategory(sub)}
           >
-            {tag}
+            {sub}
           </button>
         {/each}
       </div>
