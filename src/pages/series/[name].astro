@@ -18,7 +18,7 @@ export const getStaticPaths = (async () => {
 const { series } = Astro.props
 ---
 
-<MainGridLayout title={`${i18n(I18nKey.series)}: ${series.name}`}>
+<MainGridLayout title={`${i18n(I18nKey.series)}: ${series.name}`} hideSidebar={true}>
   <div class="mb-4">
     <a
       href="/series/"

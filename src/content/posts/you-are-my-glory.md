@@ -1,7 +1,7 @@
 ---
 title: 你是我的荣耀
 published: 2025-01-15
-shelf: '影视'
+shelf: '电视剧'
 category: 观后
 tags:
   - 影评

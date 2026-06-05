@@ -82,6 +82,7 @@ const jsonLd = {
   lang={entry.data.lang}
   setOGTypeArticle={true}
   headings={headings}
+  hideSidebar={true}
 >
   <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <div class="relative mb-4 flex w-full overflow-hidden rounded-[var(--radius-large)]">
