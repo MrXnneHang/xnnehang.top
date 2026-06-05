@@ -50,4 +50,6 @@ export const th: Translation = {
 
   [Key.graph]: 'กราฟ',
   [Key.noWikiLinks]: 'ไม่มีลิงก์วิกิ',
+
+  [Key.shelf]: 'ชั้นหนังสือ',
 }

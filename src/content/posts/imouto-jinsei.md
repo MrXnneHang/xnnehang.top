@@ -1,6 +1,7 @@
 ---
 title: 妹妹人生
 published: 2024-10-18
+shelf: '书籍'
 category: 观后
 tags:
   - 读书

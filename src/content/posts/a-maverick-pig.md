@@ -1,6 +1,7 @@
 ---
 title: 一只特立独行的猪
 published: 2024-10-12
+shelf: '书籍'
 category: 观后
 tags:
   - 读书

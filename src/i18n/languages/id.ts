@@ -50,4 +50,6 @@ export const id: Translation = {
 
   [Key.graph]: 'Grafik',
   [Key.noWikiLinks]: 'Tidak ada tautan wiki',
+
+  [Key.shelf]: 'Rak',
 }

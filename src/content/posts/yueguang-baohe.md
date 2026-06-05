@@ -1,6 +1,7 @@
 ---
 title: 月光宝盒后
 published: 2024-08-29
+shelf: '影视'
 category: 观后
 tags:
   - 电影

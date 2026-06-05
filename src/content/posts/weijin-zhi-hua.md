@@ -1,6 +1,7 @@
 ---
 title: 未尽之花
 published: 2024-06-25
+shelf: '书籍'
 category: 观后
 tags:
   - 读书

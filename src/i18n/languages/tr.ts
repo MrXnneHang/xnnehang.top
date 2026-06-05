@@ -50,4 +50,6 @@ export const tr: Translation = {
 
   [Key.graph]: 'Grafik',
   [Key.noWikiLinks]: 'Wiki bağlantısı yok',
+
+  [Key.shelf]: 'Raf',
 }

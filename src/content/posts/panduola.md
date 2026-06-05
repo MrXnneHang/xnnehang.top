@@ -1,6 +1,7 @@
 ---
 title: 潘多拉的盒子
 published: 2024-08-04
+shelf: '书籍'
 category: 观后
 tags:
   - 读书

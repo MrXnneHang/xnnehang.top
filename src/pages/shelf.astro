@@ -1,0 +1,108 @@
+---
+import path from 'node:path'
+import I18nKey from '@i18n/i18nKey'
+import { i18n } from '@i18n/translation'
+import MainGridLayout from '@layouts/MainGridLayout.astro'
+import { getSortedPosts } from '@utils/content-utils'
+import { getPostUrlBySlug, getDir } from '@utils/url-utils'
+import { formatDateToYYYYMMDD } from '@utils/date-utils'
+import ImageWrapper from '@components/misc/ImageWrapper.astro'
+import { render } from 'astro:content'
+
+const allPosts = await getSortedPosts()
+
+// Filter posts that have a shelf field
+const shelfPosts = allPosts.filter(p => p.data.shelf)
+
+// Group by shelf category
+const sections: { name: string; posts: typeof shelfPosts }[] = []
+const order = ['影视', '书籍', '游戏'] as const
+
+for (const shelfName of order) {
+  const posts = shelfPosts.filter(p => p.data.shelf === shelfName)
+  if (posts.length > 0) {
+    sections.push({ name: shelfName, posts })
+  }
+}
+
+// Get cover images for all shelf posts
+const postsWithCovers = await Promise.all(
+  shelfPosts.map(async (post) => {
+    const { remarkPluginFrontmatter } = await render(post)
+    return {
+      ...post,
+      coverImage: post.data.image || remarkPluginFrontmatter.firstImage || '',
+    }
+  })
+)
+
+const coverMap = new Map(postsWithCovers.map(p => [p.id, p.coverImage]))
+
+// Stats
+const stats = sections.map(s => `${s.name} ${s.posts.length}`).join(' · ')
+---
+
+<MainGridLayout title={i18n(I18nKey.shelf)} description="书架">
+  <div class="flex w-full flex-col gap-8">
+    <!-- Header -->
+    <div class="card-base flex flex-col items-center gap-2 rounded-[var(--radius-large)] py-8">
+      <h1 class="text-3xl font-bold">{i18n(I18nKey.shelf)}</h1>
+      <p class="text-50 text-sm tracking-wide uppercase">shelf</p>
+      <p class="text-50 mt-1 text-sm">{stats}</p>
+    </div>
+
+    <!-- Sections -->
+    {sections.map((section, idx) => (
+      <div class="flex flex-col gap-4">
+        <!-- Section header -->
+        <div class="flex items-baseline gap-3 px-2">
+          <span class="text-30 text-xs font-medium tracking-wider uppercase">Collection · {String(idx + 1).padStart(2, '0')}</span>
+          <h2 class="text-xl font-bold">{section.name}</h2>
+          <span class="text-30 text-sm">{section.posts.length} 部作品</span>
+        </div>
+
+        <!-- Cards -->
+        <div class="flex flex-col gap-3">
+          {section.posts.map((post) => {
+            const cover = coverMap.get(post.id) || ''
+            const blurb = post.data.blurb || post.data.description || ''
+            return (
+              <a
+                href={getPostUrlBySlug(post.id)}
+                class="card-base group flex items-stretch gap-4 overflow-hidden rounded-xl p-3 transition hover:shadow-md active:scale-[0.99]"
+              >
+                {/* Cover */}
+                {cover && (
+                  <div class="h-[100px] w-[75px] shrink-0 overflow-hidden rounded-lg bg-black/5 dark:bg-white/5">
+                    <ImageWrapper
+                      src={cover}
+                      basePath={path.join('content/posts/', getDir(post.id))}
+                      alt=""
+                      class="h-full w-full object-cover"
+                    />
+                  </div>
+                )}
+                {!cover && (
+                  <div class="flex h-[100px] w-[75px] shrink-0 items-center justify-center overflow-hidden rounded-lg bg-black/5 text-2xl dark:bg-white/5">
+                    📖
+                  </div>
+                )}
+
+                {/* Content */}
+                <div class="flex min-w-0 flex-1 flex-col justify-center gap-1.5">
+                  <div class="flex items-baseline gap-2">
+                    <span class="truncate text-base font-semibold transition group-hover:text-[var(--primary)]">{post.data.title}</span>
+                  </div>
+                  {blurb && (
+                    <p class="text-50 line-clamp-2 text-sm leading-relaxed">{blurb}</p>
+                  )}
+                  <span class="text-30 text-xs">{formatDateToYYYYMMDD(post.data.published)}</span>
+                </div>
+              </a>
+            )
+          })}
+        </div>
+      </div>
+    ))}
+  </div>
+</MainGridLayout>

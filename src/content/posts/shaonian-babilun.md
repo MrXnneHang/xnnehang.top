@@ -1,6 +1,7 @@
 ---
 title: 少年巴比伦后
 published: 2024-07-15
+shelf: '书籍'
 category: 观后
 tags:
   - 读书

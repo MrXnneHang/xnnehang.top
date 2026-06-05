@@ -1,6 +1,7 @@
 ---
 title: 距离春天二十公分的雪兔与肖申克的救赎
 published: 2025-02-16
+shelf: '影视'
 category: 观后
 tags:
   - 读书

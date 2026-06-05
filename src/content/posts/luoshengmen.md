@@ -1,6 +1,7 @@
 ---
 title: 《罗生门》阅读手记
 published: 2024-09-26
+shelf: '书籍'
 category: 观后
 tags:
   - 读书
