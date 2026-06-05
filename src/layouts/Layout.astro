@@ -490,6 +490,32 @@ function disableAnimation() {
     document.addEventListener('swup:enable', setup)
   }
 
+  // Sidebar visibility: show only on homepage
+  function updateSidebarVisibility() {
+    const path = window.location.pathname
+    const isHome = path === '/' || /^\/\d+\/$/.test(path)
+    const sidebar = document.getElementById('sidebar')
+    const mainGrid = document.getElementById('main-grid')
+    if (sidebar) {
+      sidebar.style.display = isHome ? '' : 'none'
+    }
+    if (mainGrid) {
+      if (isHome) {
+        mainGrid.style.gridTemplateColumns = '17.5rem auto'
+      } else {
+        mainGrid.style.gridTemplateColumns = 'auto'
+      }
+    }
+  }
+  updateSidebarVisibility()
+  if (window?.swup?.hooks) {
+    window.swup.hooks.on('content:replace', updateSidebarVisibility)
+  } else {
+    document.addEventListener('swup:enable', () => {
+      window.swup.hooks.on('content:replace', updateSidebarVisibility)
+    })
+  }
+
   let backToTopBtn = document.getElementById('back-to-top-btn')
   let toc = document.getElementById('toc-wrapper')
   let navbar = document.getElementById('navbar-wrapper')

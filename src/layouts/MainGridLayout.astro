@@ -78,10 +78,8 @@ const mainPanelTop = siteConfig.banner.enable
     <div class="pointer-events-auto relative mx-auto max-w-[var(--page-width)]">
       <div
         id="main-grid"
-        class:list={[
-          'right-0 left-0 mx-auto grid w-full grid-rows-[auto_1fr_auto] gap-4 px-0 transition duration-700 md:px-4 lg:grid-rows-[auto]',
-          hideSidebar ? 'grid-cols-[auto]' : 'grid-cols-[17.5rem_auto]',
-        ]}
+        class="right-0 left-0 mx-auto grid w-full grid-rows-[auto_1fr_auto] gap-4 px-0 transition duration-700 md:px-4 lg:grid-rows-[auto]"
+        style={hideSidebar ? 'grid-template-columns: auto' : 'grid-template-columns: 17.5rem auto'}
       >
         <!-- Banner image credit -->
         {
@@ -114,12 +112,10 @@ const mainPanelTop = siteConfig.banner.enable
           )
         }
 
-        {!hideSidebar && (
-          <SideBar
-            class="onload-animation col-span-2 row-start-2 row-end-3 mb-4 lg:col-span-1 lg:row-start-1 lg:row-end-2 lg:max-w-[17.5rem]"
-            headings={headings}
-          />
-        )}
+        <SideBar
+          class="onload-animation col-span-2 row-start-2 row-end-3 mb-4 lg:col-span-1 lg:row-start-1 lg:row-end-2 lg:max-w-[17.5rem]"
+          headings={headings}
+        />
 
         <main
           id="swup-container"
