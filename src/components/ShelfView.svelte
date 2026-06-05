@@ -10,6 +10,7 @@ interface ShelfItem {
   cover: string
   url: string
   published: string
+  arxiv: string
 }
 
 interface Props {
@@ -121,42 +122,85 @@ function selectTag(tag: string) {
       </div>
     {/if}
 
-    <!-- Grid of items -->
-    <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4">
-      {#each filteredItems as item}
-        <a
-          href={item.url}
-          class="group flex flex-col gap-2 overflow-hidden rounded-xl transition active:scale-[0.97]"
-        >
-          <!-- Cover -->
-          <div class="aspect-[3/4] w-full overflow-hidden rounded-xl bg-neutral-100 shadow-sm transition group-hover:shadow-md dark:bg-neutral-800">
-            {#if item.cover}
-              <img
-                src={item.cover}
-                alt={item.title}
-                class="h-full w-full object-cover transition group-hover:scale-105"
-                loading="lazy"
-              />
-            {:else}
-              <div class="flex h-full w-full items-center justify-center p-4">
-                <span class="text-center text-base font-bold leading-snug text-black/60 dark:text-white/70">
-                  {item.title}
-                </span>
+    <!-- Items -->
+    {#if activeCategory === '论文'}
+      <!-- Papers: list layout -->
+      <div class="flex flex-col gap-3">
+        {#each filteredItems as item, idx}
+          <div class="card-base flex flex-col gap-2 rounded-xl p-4">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex min-w-0 flex-1 flex-col gap-1">
+                <div class="flex items-center gap-2">
+                  <span class="shrink-0 text-xs font-medium text-black/30 dark:text-white/30">[{String(idx + 1).padStart(2, '0')}]</span>
+                  <a href={item.url} class="font-semibold leading-snug text-black/85 transition hover:text-[oklch(0.55_0.16_55)] dark:text-white/85 dark:hover:text-[oklch(0.7_0.16_55)]">
+                    {item.title}
+                  </a>
+                </div>
+                <div class="flex flex-wrap gap-1.5 pl-7">
+                  {#each item.tags as tag}
+                    <span class="rounded bg-black/5 px-1.5 py-0.5 text-xs text-black/50 dark:bg-white/5 dark:text-white/50">{tag}</span>
+                  {/each}
+                </div>
+                {#if item.blurb}
+                  <p class="pl-7 text-sm leading-relaxed text-black/60 dark:text-white/60">{item.blurb}</p>
+                {/if}
               </div>
-            {/if}
+              {#if item.arxiv}
+                <a
+                  href={item.arxiv}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="shrink-0 rounded-lg px-2.5 py-1.5 text-xs font-medium text-black/50 transition hover:bg-black/5 hover:text-black/80 dark:text-white/50 dark:hover:bg-white/5 dark:hover:text-white/80"
+                >
+                  arXiv ↗
+                </a>
+              {/if}
+            </div>
+            <div class="flex items-center gap-3 pl-7">
+              <span class="text-xs text-black/30 dark:text-white/30">{item.published}</span>
+              <a href={item.url} class="text-xs text-black/40 transition hover:text-[oklch(0.55_0.16_55)] dark:text-white/40 dark:hover:text-[oklch(0.7_0.16_55)]">阅读笔记 →</a>
+            </div>
           </div>
-          <!-- Title & blurb -->
-          <div class="flex flex-col gap-0.5 px-1">
-            <span class="line-clamp-2 text-sm font-semibold leading-tight text-black/80 transition group-hover:text-[oklch(0.55_0.16_55)] dark:text-white/85 dark:group-hover:text-[oklch(0.7_0.16_55)]">
-              {item.title}
-            </span>
-            {#if item.blurb}
-              <span class="text-50 line-clamp-2 text-xs leading-snug">{item.blurb}</span>
-            {/if}
-          </div>
-        </a>
-      {/each}
-    </div>
+        {/each}
+      </div>
+    {:else}
+      <!-- Other categories: grid layout -->
+      <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4">
+        {#each filteredItems as item}
+          <a
+            href={item.url}
+            class="group flex flex-col gap-2 overflow-hidden rounded-xl transition active:scale-[0.97]"
+          >
+            <!-- Cover -->
+            <div class="aspect-[3/4] w-full overflow-hidden rounded-xl bg-neutral-100 shadow-sm transition group-hover:shadow-md dark:bg-neutral-800">
+              {#if item.cover}
+                <img
+                  src={item.cover}
+                  alt={item.title}
+                  class="h-full w-full object-cover transition group-hover:scale-105"
+                  loading="lazy"
+                />
+              {:else}
+                <div class="flex h-full w-full items-center justify-center p-4">
+                  <span class="text-center text-base font-bold leading-snug text-black/60 dark:text-white/70">
+                    {item.title}
+                  </span>
+                </div>
+              {/if}
+            </div>
+            <!-- Title & blurb -->
+            <div class="flex flex-col gap-0.5 px-1">
+              <span class="line-clamp-2 text-sm font-semibold leading-tight text-black/80 transition group-hover:text-[oklch(0.55_0.16_55)] dark:text-white/85 dark:group-hover:text-[oklch(0.7_0.16_55)]">
+                {item.title}
+              </span>
+              {#if item.blurb}
+                <span class="text-50 line-clamp-2 text-xs leading-snug">{item.blurb}</span>
+              {/if}
+            </div>
+          </a>
+        {/each}
+      </div>
+    {/if}
 
     {#if filteredItems.length === 0}
       <div class="flex h-40 items-center justify-center text-sm text-black/30 dark:text-white/30">
