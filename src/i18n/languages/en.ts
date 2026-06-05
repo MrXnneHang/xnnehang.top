@@ -52,4 +52,6 @@ export const en: Translation = {
   [Key.noWikiLinks]: 'No wiki links',
 
   [Key.shelf]: 'Shelf',
+
+  [Key.seriesNav]: 'Series',
 }

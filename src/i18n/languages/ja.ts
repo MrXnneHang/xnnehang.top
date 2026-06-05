@@ -52,4 +52,6 @@ export const ja: Translation = {
   [Key.noWikiLinks]: 'リンクなし',
 
   [Key.shelf]: '本棚',
+
+  [Key.seriesNav]: 'シリーズ',
 }

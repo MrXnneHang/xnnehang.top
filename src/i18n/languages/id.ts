@@ -52,4 +52,6 @@ export const id: Translation = {
   [Key.noWikiLinks]: 'Tidak ada tautan wiki',
 
   [Key.shelf]: 'Rak',
+
+  [Key.seriesNav]: 'Seri',
 }

@@ -52,4 +52,6 @@ export const vi: Translation = {
   [Key.noWikiLinks]: 'Không có liên kết wiki',
 
   [Key.shelf]: 'Giá sách',
+
+  [Key.seriesNav]: 'Loạt bài',
 }

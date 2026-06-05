@@ -52,4 +52,6 @@ export const tr: Translation = {
   [Key.noWikiLinks]: 'Wiki bağlantısı yok',
 
   [Key.shelf]: 'Raf',
+
+  [Key.seriesNav]: 'Seriler',
 }

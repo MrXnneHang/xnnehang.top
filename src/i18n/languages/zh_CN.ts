@@ -52,4 +52,6 @@ export const zh_CN: Translation = {
   [Key.noWikiLinks]: '暂无引用关系',
 
   [Key.shelf]: '书架',
+
+  [Key.seriesNav]: '系列',
 }

@@ -49,6 +49,7 @@ enum I18nKey {
   noWikiLinks = 'noWikiLinks',
 
   shelf = 'shelf',
+  seriesNav = 'seriesNav',
 }
 
 export default I18nKey

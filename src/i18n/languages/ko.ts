@@ -52,4 +52,6 @@ export const ko: Translation = {
   [Key.noWikiLinks]: '위키 링크 없음',
 
   [Key.shelf]: '서재',
+
+  [Key.seriesNav]: '시리즈',
 }

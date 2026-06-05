@@ -52,4 +52,6 @@ export const th: Translation = {
   [Key.noWikiLinks]: 'ไม่มีลิงก์วิกิ',
 
   [Key.shelf]: 'ชั้นหนังสือ',
+
+  [Key.seriesNav]: 'ซีรีส์',
 }
