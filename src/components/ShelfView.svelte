@@ -138,8 +138,8 @@ function selectTag(tag: string) {
                 loading="lazy"
               />
             {:else}
-              <div class="flex h-full w-full items-center justify-center p-3">
-                <span class="text-center text-sm font-bold leading-snug text-black/40 dark:text-white/40">
+              <div class="flex h-full w-full items-center justify-center p-4">
+                <span class="text-center text-base font-bold leading-snug text-black/60 dark:text-white/70">
                   {item.title}
                 </span>
               </div>
