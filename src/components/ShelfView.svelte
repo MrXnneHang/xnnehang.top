@@ -75,7 +75,7 @@ function selectTag(tag: string) {
         <button
           class="rounded-lg px-4 py-2 text-left text-sm font-medium whitespace-nowrap transition
             {activeCategory === cat
-              ? 'bg-[oklch(0.55_0.16_55)] text-white shadow-sm'
+              ? 'bg-[oklch(0.55_0.16_55)] text-white shadow-sm dark:bg-[oklch(0.65_0.18_55)]'
               : 'hover:bg-black/5 dark:hover:bg-white/5 text-black/70 dark:text-white/70'}"
           onclick={() => selectCategory(cat)}
         >
@@ -101,7 +101,7 @@ function selectTag(tag: string) {
         <button
           class="rounded-full px-3 py-1 text-xs font-medium transition
             {activeTag === ''
-              ? 'bg-[oklch(0.55_0.16_55)] text-white'
+              ? 'bg-[oklch(0.55_0.16_55)] text-white dark:bg-[oklch(0.65_0.18_55)]'
               : 'bg-black/5 text-black/60 hover:bg-black/10 dark:bg-white/5 dark:text-white/60 dark:hover:bg-white/10'}"
           onclick={() => activeTag = ''}
         >
@@ -111,7 +111,7 @@ function selectTag(tag: string) {
           <button
             class="rounded-full px-3 py-1 text-xs font-medium transition
               {activeTag === tag
-                ? 'bg-[oklch(0.55_0.16_55)] text-white'
+                ? 'bg-[oklch(0.55_0.16_55)] text-white dark:bg-[oklch(0.65_0.18_55)]'
                 : 'bg-black/5 text-black/60 hover:bg-black/10 dark:bg-white/5 dark:text-white/60 dark:hover:bg-white/10'}"
             onclick={() => selectTag(tag)}
           >
@@ -147,7 +147,7 @@ function selectTag(tag: string) {
           </div>
           <!-- Title & blurb -->
           <div class="flex flex-col gap-0.5 px-1">
-            <span class="line-clamp-2 text-sm font-semibold leading-tight transition group-hover:text-[oklch(0.55_0.16_55)]">
+            <span class="line-clamp-2 text-sm font-semibold leading-tight text-black/80 transition group-hover:text-[oklch(0.55_0.16_55)] dark:text-white/85 dark:group-hover:text-[oklch(0.7_0.16_55)]">
               {item.title}
             </span>
             {#if item.blurb}
