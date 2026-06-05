@@ -90,9 +90,9 @@ function selectTag(tag: string) {
   <div class="min-w-0 flex-1">
     <!-- Category header -->
     <div class="mb-4">
-      <p class="text-30 mb-1 text-xs font-medium tracking-wider uppercase">Collection</p>
-      <h2 class="text-2xl font-bold">{activeCategory}</h2>
-      <p class="text-50 mt-1 text-sm">{categoryItems.length} 部作品</p>
+      <p class="mb-1 text-xs font-medium tracking-wider uppercase text-black/30 dark:text-white/30">Collection</p>
+      <h2 class="text-2xl font-bold text-black/90 dark:text-white/90">{activeCategory}</h2>
+      <p class="mt-1 text-sm text-black/50 dark:text-white/50">{categoryItems.length} 部作品</p>
     </div>
 
     <!-- Tag filters -->
