@@ -74,7 +74,7 @@ const mainPanelTop = showBanner
   }
 
   <!-- Main content -->
-  <div class="pointer-events-none absolute z-30 w-full" style={`top: ${mainPanelTop}`}>
+  <div id="main-content-panel" class="pointer-events-none absolute z-30 w-full" style={`top: ${mainPanelTop}`}>
     <!-- The pointer-events-none here prevent blocking the click event of the TOC -->
     <div class="pointer-events-auto relative mx-auto max-w-[var(--page-width)]">
       <div

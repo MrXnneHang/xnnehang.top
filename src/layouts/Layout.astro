@@ -496,22 +496,19 @@ function disableAnimation() {
     const sidebar = document.getElementById('sidebar')
     const mainGrid = document.getElementById('main-grid')
     const bannerWrapper = document.getElementById('banner-wrapper')
-    const topRow = document.getElementById('top-row')
+    const mainContentPanel = document.getElementById('main-content-panel')
 
     if (sidebar) {
       sidebar.style.display = isHome ? '' : 'none'
     }
     if (mainGrid) {
       mainGrid.style.gridTemplateColumns = isHome ? '17.5rem auto' : 'auto'
-      mainGrid.style.marginTop = isHome ? '' : '0'
     }
     if (bannerWrapper) {
       bannerWrapper.style.display = isHome ? '' : 'none'
     }
-    // Adjust main content top position
-    const mainPanel = document.querySelector('.main-panel-top')
-    if (mainPanel) {
-      (mainPanel as HTMLElement).style.marginTop = isHome ? '' : '0'
+    if (mainContentPanel) {
+      mainContentPanel.style.top = isHome ? '' : '5.5rem'
     }
   }
   updatePageLayout()
