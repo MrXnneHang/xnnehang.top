@@ -129,7 +129,7 @@ function selectTag(tag: string) {
           class="group flex flex-col gap-2 overflow-hidden rounded-xl transition active:scale-[0.97]"
         >
           <!-- Cover -->
-          <div class="aspect-[3/4] w-full overflow-hidden rounded-xl bg-black/5 shadow-sm transition group-hover:shadow-md dark:bg-white/5">
+          <div class="aspect-[3/4] w-full overflow-hidden rounded-xl bg-neutral-100 shadow-sm transition group-hover:shadow-md dark:bg-neutral-800">
             {#if item.cover}
               <img
                 src={item.cover}
@@ -138,8 +138,10 @@ function selectTag(tag: string) {
                 loading="lazy"
               />
             {:else}
-              <div class="flex h-full w-full items-center justify-center text-3xl opacity-30">
-                📖
+              <div class="flex h-full w-full items-center justify-center p-3">
+                <span class="text-center text-sm font-bold leading-snug text-black/40 dark:text-white/40">
+                  {item.title}
+                </span>
               </div>
             {/if}
           </div>
