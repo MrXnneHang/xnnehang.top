@@ -36,8 +36,6 @@ export async function getStaticPaths() {
 
   return Promise.all(blogEntries.map(async (entry) => {
     const relatedPosts = getRelatedByTfidf(entry.id, tfidfIndex, 5)
-    const wikiNode = wikiGraph.get(entry.id)
-    const inboundLinks = wikiNode?.inbound || []
     const miniGraphData = getMiniGraph(serializedGraph, entry.id)
 
     // Enrich related posts with firstImage from rendered body
@@ -50,12 +48,12 @@ export async function getStaticPaths() {
 
     return {
       params: { slug: entry.id },
-      props: { entry, allPosts, relatedPosts: relatedWithImg, inboundLinks, miniGraphData },
+      props: { entry, allPosts, relatedPosts: relatedWithImg, miniGraphData },
     }
   }))
 }
 
-const { entry, allPosts, relatedPosts, inboundLinks, miniGraphData } = Astro.props
+const { entry, allPosts, relatedPosts, miniGraphData } = Astro.props
 const { Content, headings, remarkPluginFrontmatter } = await render(entry)
 
 const jsonLd = {
