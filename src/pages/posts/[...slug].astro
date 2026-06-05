@@ -259,7 +259,7 @@ const jsonLd = {
       {
         relatedPosts.length > 0 && (
           <section class="related-posts onload-animation mb-4">
-            <h2 class="mb-3 text-lg font-bold">{i18n(I18nKey.relatedPosts)}</h2>
+            <h2 class="mb-3 text-lg font-bold text-black/90 dark:text-white/90">{i18n(I18nKey.relatedPosts)}</h2>
             <div class="flex flex-col gap-3">
               {relatedPosts.map((p: RelatedPost) => {
                 const img = p.firstImage || p.data.image || ''
@@ -292,7 +292,7 @@ const jsonLd = {
 
       <!-- wiki link graph -->
       <section class="wiki-graph onload-animation mb-4">
-        <h2 class="mb-3 text-lg font-bold">{i18n(I18nKey.graph)}</h2>
+        <h2 class="mb-3 text-lg font-bold text-black/90 dark:text-white/90">{i18n(I18nKey.graph)}</h2>
         <div class="card-base overflow-hidden rounded-xl">
           <GraphView
             mode="mini"
