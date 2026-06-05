@@ -489,29 +489,37 @@ function disableAnimation() {
     document.addEventListener('swup:enable', setup)
   }
 
-  // Sidebar visibility: show only on homepage
-  function updateSidebarVisibility() {
+  // Sidebar and banner visibility: show only on homepage
+  function updatePageLayout() {
     const path = window.location.pathname
     const isHome = path === '/' || /^\/\d+\/$/.test(path)
     const sidebar = document.getElementById('sidebar')
     const mainGrid = document.getElementById('main-grid')
+    const bannerWrapper = document.getElementById('banner-wrapper')
+    const topRow = document.getElementById('top-row')
+
     if (sidebar) {
       sidebar.style.display = isHome ? '' : 'none'
     }
     if (mainGrid) {
-      if (isHome) {
-        mainGrid.style.gridTemplateColumns = '17.5rem auto'
-      } else {
-        mainGrid.style.gridTemplateColumns = 'auto'
-      }
+      mainGrid.style.gridTemplateColumns = isHome ? '17.5rem auto' : 'auto'
+      mainGrid.style.marginTop = isHome ? '' : '0'
+    }
+    if (bannerWrapper) {
+      bannerWrapper.style.display = isHome ? '' : 'none'
+    }
+    // Adjust main content top position
+    const mainPanel = document.querySelector('.main-panel-top')
+    if (mainPanel) {
+      (mainPanel as HTMLElement).style.marginTop = isHome ? '' : '0'
     }
   }
-  updateSidebarVisibility()
+  updatePageLayout()
   if (window?.swup?.hooks) {
-    window.swup.hooks.on('content:replace', updateSidebarVisibility)
+    window.swup.hooks.on('content:replace', updatePageLayout)
   } else {
     document.addEventListener('swup:enable', () => {
-      window.swup.hooks.on('content:replace', updateSidebarVisibility)
+      window.swup.hooks.on('content:replace', updatePageLayout)
     })
   }
 
