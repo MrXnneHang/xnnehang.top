@@ -521,7 +521,7 @@ function disableAnimation() {
       bannerWrapper.style.display = isHome ? '' : 'none'
     }
     if (mainContentPanel) {
-      mainContentPanel.style.top = isHome ? '' : '5.5rem'
+      mainContentPanel.style.top = isHome ? 'calc(100vh + 2rem)' : '5.5rem'
     }
     if (isHome) {
       const banner = document.getElementById('banner')
