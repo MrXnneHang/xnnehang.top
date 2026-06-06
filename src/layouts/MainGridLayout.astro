@@ -69,6 +69,15 @@ const mainPanelTop = showBanner
           src={siteConfig.banner.src}
           position={siteConfig.banner.position}
         />
+        <!-- Wave transition -->
+        <div class="absolute bottom-0 z-20 w-full">
+          <svg class="wave-back absolute bottom-0 w-[calc(100%+4rem)] -left-8" viewBox="0 0 1440 100" preserveAspectRatio="none" style="height: 80px;">
+            <path d="M0,60 C360,100 720,20 1080,60 C1260,80 1380,90 1440,70 L1440,100 L0,100 Z" fill="var(--page-bg)" opacity="0.5"/>
+          </svg>
+          <svg class="wave-front absolute bottom-0 w-full" viewBox="0 0 1440 100" preserveAspectRatio="none" style="height: 60px;">
+            <path d="M0,40 C240,80 480,10 720,50 C960,90 1200,30 1440,60 L1440,100 L0,100 Z" fill="var(--page-bg)"/>
+          </svg>
+        </div>
       </div>
     )
   }
