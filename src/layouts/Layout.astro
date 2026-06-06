@@ -221,9 +221,6 @@ const bannerOffset = bannerOffsetByPosition[siteConfig.banner.position || 'cente
     .enable-banner.is-home #sidebar-sticky {
       @apply top-[calc(1rem_-_var(--banner-height-extend))];
     }
-    .navbar-hidden {
-      @apply -translate-y-16 opacity-0;
-    }
     #navbar-wrapper.navbar-transparent .navbar-inner {
       background: transparent;
       box-shadow: none;
@@ -438,19 +435,6 @@ function disableAnimation() {
     window.swup.hooks.on('link:click', () => {
       // Remove the delay for the first time page load
       document.documentElement.style.setProperty('--content-delay', '0ms')
-
-      // prevent elements from overlapping the navbar
-      if (!bannerEnabled) {
-        return
-      }
-      let threshold = window.innerHeight * (BANNER_HEIGHT / 100) - 72 - 16
-      let navbar = document.getElementById('navbar-wrapper')
-      if (!navbar || !document.body.classList.contains('lg:is-home')) {
-        return
-      }
-      if (document.body.scrollTop >= threshold || document.documentElement.scrollTop >= threshold) {
-        navbar.classList.add('navbar-hidden')
-      }
     })
     window.swup.hooks.on('content:replace', initCustomScrollbar)
     window.swup.hooks.on('visit:start', (visit: { to: { url: string } }) => {
