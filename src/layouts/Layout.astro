@@ -538,7 +538,15 @@ function disableAnimation() {
     }
     updateNavbarState()
     const navbarWrapper = document.getElementById('navbar-wrapper')
-    if (navbarWrapper) navbarWrapper.classList.remove('navbar-hidden')
+    if (navbarWrapper) {
+      const isPost = path.startsWith('/posts/')
+      const currentScrollY = document.body.scrollTop || document.documentElement.scrollTop
+      if (isPost && currentScrollY > NAVBAR_HIDE_THRESHOLD) {
+        navbarWrapper.classList.add('navbar-hidden')
+      } else {
+        navbarWrapper.classList.remove('navbar-hidden')
+      }
+    }
   }
   updatePageLayout()
   if (window?.swup?.hooks) {
