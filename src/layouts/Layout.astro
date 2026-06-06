@@ -486,6 +486,24 @@ function disableAnimation() {
     document.addEventListener('swup:enable', setup)
   }
 
+  // Shared: update navbar transparent/opaque state based on page and scroll
+  function updateNavbarState() {
+    const navbarEl = document.getElementById('navbar-wrapper')
+    if (!navbarEl) return
+    const path = window.location.pathname
+    const isHome = path === '/' || /^\/\d+\/$/.test(path)
+    const scrollY = document.body.scrollTop || document.documentElement.scrollTop
+    const bannerMidpoint = window.innerHeight * (BANNER_HEIGHT / 100) / 2
+
+    if (isHome && scrollY <= bannerMidpoint) {
+      navbarEl.classList.add('navbar-transparent')
+      navbarEl.classList.remove('navbar-opaque')
+    } else {
+      navbarEl.classList.remove('navbar-transparent')
+      navbarEl.classList.add('navbar-opaque')
+    }
+  }
+
   // Sidebar and banner visibility: show only on homepage
   function updatePageLayout() {
     const path = window.location.pathname
@@ -513,24 +531,7 @@ function disableAnimation() {
         banner.classList.remove('opacity-0', 'scale-105')
       }
     }
-    // Set initial navbar state
-    const navbarEl = document.getElementById('navbar-wrapper')
-    if (navbarEl) {
-      if (isHome) {
-        let scrollY = document.body.scrollTop || document.documentElement.scrollTop
-        let bannerMid = window.innerHeight * (BANNER_HEIGHT / 100) / 2
-        if (scrollY <= bannerMid) {
-          navbarEl.classList.add('navbar-transparent')
-          navbarEl.classList.remove('navbar-opaque')
-        } else {
-          navbarEl.classList.remove('navbar-transparent')
-          navbarEl.classList.add('navbar-opaque')
-        }
-      } else {
-        navbarEl.classList.remove('navbar-transparent')
-        navbarEl.classList.add('navbar-opaque')
-      }
-    }
+    updateNavbarState()
   }
   updatePageLayout()
   if (window?.swup?.hooks) {
@@ -570,25 +571,7 @@ function disableAnimation() {
     }
 
     if (!bannerEnabled) return
-    if (navbar) {
-      const path = window.location.pathname
-      const isHome = path === '/' || /^\/\d+\/$/.test(path)
-
-      if (isHome) {
-        let bannerMidpoint = window.innerHeight * (BANNER_HEIGHT / 100) / 2
-        let scrollY = document.body.scrollTop || document.documentElement.scrollTop
-        if (scrollY > bannerMidpoint) {
-          navbar.classList.remove('navbar-transparent')
-          navbar.classList.add('navbar-opaque')
-        } else {
-          navbar.classList.add('navbar-transparent')
-          navbar.classList.remove('navbar-opaque')
-        }
-      } else {
-        navbar.classList.remove('navbar-transparent')
-        navbar.classList.add('navbar-opaque')
-      }
-    }
+    updateNavbarState()
   }
   window.onscroll = scrollFunction
 
