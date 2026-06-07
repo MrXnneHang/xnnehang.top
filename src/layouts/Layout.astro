@@ -574,6 +574,7 @@ function disableAnimation() {
   let backToTopBtn = document.getElementById('back-to-top-btn')
   let toc = document.getElementById('toc-wrapper')
   let navbar = document.getElementById('navbar-wrapper')
+  const NAVBAR_HIDE_THRESHOLD = 30
   function scrollFunction() {
     let bannerHeight = window.innerHeight * (BANNER_HEIGHT / 100)
     const currentScrollY = document.querySelector('[data-overlayscrollbars-viewport]')?.scrollTop || document.documentElement.scrollTop || 0
