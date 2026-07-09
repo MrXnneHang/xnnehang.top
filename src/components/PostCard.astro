@@ -43,6 +43,16 @@ const isPinned = entry.data.pin
   ]}
   style={style}
 >
+  {
+    isPinned && (
+      <div class="absolute top-0 left-0 z-30 flex h-6 w-6 items-center justify-center rounded-br-lg bg-[var(--primary)]">
+        <Icon
+          name="material-symbols:keep-rounded"
+          class="-rotate-45 text-sm text-white dark:text-[var(--deep-text)]"
+        />
+      </div>
+    )
+  }
   <div
     class:list={[
       'relative pt-6 pr-6 pb-6 pl-6 md:pt-7 md:pr-2 md:pl-9',
