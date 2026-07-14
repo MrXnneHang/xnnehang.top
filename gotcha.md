@@ -43,6 +43,10 @@ Do **not** delete the template structure or write a freeform PR body. The commen
 
 The template is only in the `xnnehang.top` repo (`.github/PULL_REQUEST_TEMPLATE.md`); fetch it with `gh api` if you cannot read it locally.
 
+## Only Sync Explicitly Requested Articles
+
+When working on blog posts: only touch the files that the user explicitly asks to sync or create. Do not "improve", "fix", "normalize", or "sync" any other files in `src/content/posts/` — even if you notice missing fields, format inconsistencies, or other issues in unrelated articles. If the user says "only do X and Y", do exactly X and Y; anything else is a bug.
+
 ## Git-Derived Metadata Needs a Full Clone in CI
 
 Post pages read "last modified" and "revision count" from `git log` at build time (`src/utils/git-utils.ts`). `actions/checkout` defaults to a shallow clone (`fetch-depth: 1`), which silently truncates history: every post then builds with revision count 1 and today's date — no error, just wrong values. Any workflow that runs `astro build` (or anything else touching git history) MUST set `fetch-depth: 0` on its checkout step. Locally the same applies to shallow clones (`git clone --depth`).
