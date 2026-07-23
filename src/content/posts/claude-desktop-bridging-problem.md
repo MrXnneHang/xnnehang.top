@@ -1,5 +1,5 @@
 ---
-title: 以"屎"为鉴：Claude Desktop 五套定时系统反映出来的 cowork 和 code 分离架构的弊端
+title: 以坏架构为鉴：Claude Desktop 五套定时系统反映出来的 cowork 和 code 分离架构的弊端
 published: 2026-07-23
 description: 拆解 Claude Desktop 的五套定时系统，剖析混乱背后的及架构本质，为什么花 N+ 倍精力维护一个项目。以及一个坏的架构能让我们看到什么?
 tags:
@@ -16,16 +16,18 @@ featured: true
 :::[note]
 我这个人有点怪癖，碰到让我困惑的东西就喜欢去 figure out，至少 figure 到解惑的程度。
 
-而这次 claude desktop 那复杂的定时系统就把我吸引住了，但经过我的拆解，我发现它是一个充斥着大量历史遗留问题、不断迭代加塞代码的屎山。具体为何看我解说。
+而这次 claude desktop 那复杂的定时系统就把我吸引住了，但经过我的拆解，我发现它是一个充斥着大量历史遗留问题、不断迭代加塞代码的架构"屎山"。具体为何看我解说。
 
-为什么我中途发现它屎山坚持把它看完，因为并不是只有好的架构才值得学习，反而好的架构更难理解它好在哪里。但坏的架构不一样，你是一眼就能看出来，古人以史为鉴，我们以“屎”为鉴。
+以及为什么我中途发现它"屎山"坚持把它看完，因为并不是只有好的架构才值得学习，反而好的架构更难理解它好在哪里。但坏的架构不一样，你是一眼就能看出来，古人以史为鉴，我们以“屎”为鉴。
 
-值得避雷，但至少坑人家替我们踩了，我后续是千万不会去为了适配不同场景而把底层 `agent` 系统做分化，不然就会面临这种维护多套系统的情况。这相当于要花费 N 倍精力来维护一个项目。大不了我把它开成一个新项目也坚决不塞在一个项目里。
+值得避雷这种架构，坑人家替我们踩了，我后续是千万不会去为了适配不同场景而把底层 `agent` 系统做分化，不然就会面临这种维护多套系统的情况。这相当于要花费 N 倍精力来维护一个项目。大不了我把它开成一个新项目也坚决不塞在一个项目里。
 :::
 
-## 为什么说它是屎山 | 吐槽
+## 为什么说它是架构"屎山"
 
-为什么说它是屎山？先看看 Claude Desktop 的三种状态：`chat`、`cowork`、`code`。
+先看看 Claude Desktop 的三种状态：`chat`、`cowork`、`code`。
+
+其实这次讨论的主要是它架构上的冗余感，而不是代码的优雅度，毕竟人家不开源。
 
 分开来用，`cowork` 和 `code` 都是极好的，并且我也都曾深度用过。
 
@@ -43,7 +45,7 @@ featured: true
 
 同时由于它既要又要，它支持本地又支持云端，所以至少有四套。而且在 code 模式里还有一个叫做 `/loop` 的模式，它可以创建 session 内部的定时任务，随 session 死亡而死亡。
 
-所以说，一个 `cladue desktop` 其实严格来讲有五套定时系统，并且它还存在以下问题，`cowork` 和 `code` 之间的定时系统无法沟通，各建各的，`code` 那边叫 `Routine`，`cowork` 这边叫 `Scheduled Task`。另外 `code` 这边默认创建 local Routine， cowork 那边默认创建 `Cloud Scheduled`。并且两个创建时用的都是 `create_schedule_task` Tool，命名一致，但是不同效果。
+所以说，一个 `claude desktop` 其实严格来讲有五套定时系统，并且它还存在以下问题，`cowork` 和 `code` 之间的定时系统无法沟通，各建各的，`code` 那边叫 `Routine`，`cowork` 这边叫 `Scheduled Task`。另外 `code` 这边默认创建 local Routine， cowork 那边默认创建 `Cloud Scheduled`。并且两个创建时用的都是 `create_schedule_task` Tool，命名一致，但是不同效果。
 
 以及 code 这边还有一个 `/schedule` 支持用户自己配置 local 还是 cloud Routine，但是 cowork 这边没有 `/Schedule`，通过对话无法创建 `Local Scheduled Task`，只能通过 GUI 把 Cloud 调成 `Run on your computer`。
 
@@ -73,7 +75,7 @@ featured: true
 
 需要额外注意的一点是，由 claude desktop 对话使用内置 `create_schedule_task` 创建的 task，在 code mode 下默认是 local routine，但是 local routine 会自动绑定创建时的工作目录为它的 `cwd`，当该目录被删除后，它将会失去工作时自动激活的目录而异常。
 
-在 cowork mode 下，`create_schedule_task` 创建的 task，默认是 cloud scheduled task，可以手动把它 `run on your computer`，这样可以变成本地的定时任务，但是这个操作难以在对话中复现，或者说被 cowork 明确拒绝：**即便我再创建十个定时任务它也依然运行在云端**，并没有任何 tool 允许它手动创建一个本地的 scheduled task，它甚至建议我们可以用 cron (Mac/Linux)，即便 winodws 它也可以帮我们写。这个 `run on your computer` only-access in GUI。只能手动配置，它是 Beta，应该是新推出的功能没有进 Tool。
+在 cowork mode 下，`create_schedule_task` 创建的 task，默认是 cloud scheduled task，可以手动把它 `run on your computer`，这样可以变成本地的定时任务，但是这个操作难以在对话中复现，或者说被 cowork 明确拒绝：**即便我再创建十个定时任务它也依然运行在云端**，并没有任何 tool 允许它手动创建一个本地的 scheduled task，它甚至建议我们可以用 cron (Mac/Linux)，即便 windows 它也可以帮我们写。这个 `run on your computer` only-access in GUI。只能手动配置，它是 Beta，应该是新推出的功能没有进 Tool。
 
 另外这里要指出**官方文档的一个缺口**：[routines 文档](https://code.claude.com/docs/en/routines)把 Routines 定义为只跑在 Anthropic cloud 的定时系统，[desktop-scheduled-tasks 文档](https://code.claude.com/docs/en/desktop-scheduled-tasks)把本地那种叫 Desktop scheduled task——可后者自己描述的 UI 流程就是 "click **New routine** and choose **Local**"，这在 desktop UI 里的命名时错位的。文档存在一定程度的未对齐和命名偏移，且在 desktop 中，两种任务都可以通过 UI 手动地去调整 local 和 cloud，但是两套系统似乎都没有比较完整的内置系统来稳定通过对话来触发定时任务的云端本地迁移。
 
