@@ -14,6 +14,7 @@ featured: true
 series:
   - LLM
 ---
+
 ![](../../assets/img/covers/18409210202869120.jpg)
 
 ## 前言
@@ -38,13 +39,11 @@ series:
 
 ## 讨论的主题
 
-
 ### chat_completion 和 responses 的差异与迁移价值
 
 我们这里探讨一下为什么 codex-cli 这么做。可能从 codex 官方仓库的 issue 入手。
 
 以及分辨一下这两个主要区别，以及迁移价值，会给我们的 XnneHangLab 带来哪些好处？
-
 
 ### Anthropic Messages 和 OpenAI 的流式 Tool 回复的差异
 
@@ -104,18 +103,17 @@ codex 本身开源，这个问题不仅需要围绕协议本身差异，而且�
 
 我需要了解整个过程的起始到终止，为什么做出这个决策？是独断决策还是社区决策？社区支持率如何？
 
-
 :::note[Opus]
 **结论：这是一次有公告、有弃用期、有硬删除 PR 的协议下线，独断执行，社区零支持率。表面理由是维护成本，真实原因是 codex 新功能的原语只有 Responses 装得下。你说的 ">0.95" 精确到不能再精确——就是 `rust-v0.95.0`。**
 
 ### 时间线
 
-| 时间 | 事件 |
-| --- | --- |
-| 2025-12-09 | 官方发弃用公告 [codex#7782](https://github.com/openai/codex/discussions/7782)（`etraut-openai`） |
-| 2025-12-11 | 给 `wire_api = "chat"` 加运行时警告 [codex#7897](https://github.com/openai/codex/pull/7897) |
+| 时间       | 事件                                                                                                                           |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| 2025-12-09 | 官方发弃用公告 [codex#7782](https://github.com/openai/codex/discussions/7782)（`etraut-openai`）                               |
+| 2025-12-11 | 给 `wire_api = "chat"` 加运行时警告 [codex#7897](https://github.com/openai/codex/pull/7897)                                    |
 | 2026-02-03 | 硬删除 PR **`chore: nuke chat/completions API`** [codex#10157](https://github.com/openai/codex/pull/10157)，49 文件 +268/−2931 |
-| 2026-02-04 | 第一个含该 commit 的 release：**`rust-v0.95.0`** |
+| 2026-02-04 | 第一个含该 commit 的 release：**`rust-v0.95.0`**                                                                               |
 
 用 compare API 验过：`d2394a24...rust-v0.95.0` 是 `ahead`，`...rust-v0.94.0` 是 `diverged`。**0.94 还能用 chat，0.95 开始不能。**
 
@@ -151,12 +149,12 @@ codex 本身开源，这个问题不仅需要围绕协议本身差异，而且�
 
 （先排噪声：new-api 里那堆 `[codex]` 前缀 PR 是维护者**用 Codex 写的**，不是兼容性工作。）
 
-| 类别 | 证据 |
-| --- | --- |
-| **缓存透传崩了** | [#3389](https://github.com/QuantumNous/new-api/issues/3389) 实测直连 vs 中转：未缓存输入 **11.74x**，缓存输入只剩 **9.16%**，输出反而只有 43.87%；[#3309](https://github.com/QuantumNous/new-api/issues/3309) 识别不了非标准位置的缓存字段 |
-| **加密 reasoning 的新错误** | [#3240](https://github.com/QuantumNous/new-api/issues/3240) `invalid_encrypted_content`，按 `prompt_cache_key` 做渠道亲和救不了，要 litellm 的 `encrypted_content_affinity`。**至今 open** |
-| **降级通道有损** | [#5209](https://github.com/QuantumNous/new-api/pull/5209) 是你印象里"五月才支持"的那个；但它丢 MCP 工具（[#5938](https://github.com/QuantumNous/new-api/issues/5938)）、丢 `reasoning_content`（[#6396](https://github.com/QuantumNous/new-api/issues/6396)）、丢 reasoning summary（[#6449](https://github.com/QuantumNous/new-api/pull/6449)）、漏 `include_usage`（[#6149](https://github.com/QuantumNous/new-api/issues/6149)） |
-| **工程碎屑** | SSE 无 `Content-Type`（[#6075](https://github.com/QuantumNous/new-api/issues/6075)）、zstd 解压（[#6313](https://github.com/QuantumNous/new-api/issues/6313)）、OOM（[#5698](https://github.com/QuantumNous/new-api/issues/5698)）、渠道亲和挡 failover（[#4541](https://github.com/QuantumNous/new-api/issues/4541)）、追私有端点 `/v1/alpha/search`（[#6114](https://github.com/QuantumNous/new-api/issues/6114)） |
+| 类别                        | 证据                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **缓存透传崩了**            | [#3389](https://github.com/QuantumNous/new-api/issues/3389) 实测直连 vs 中转：未缓存输入 **11.74x**，缓存输入只剩 **9.16%**，输出反而只有 43.87%；[#3309](https://github.com/QuantumNous/new-api/issues/3309) 识别不了非标准位置的缓存字段                                                                                                                                                                                          |
+| **加密 reasoning 的新错误** | [#3240](https://github.com/QuantumNous/new-api/issues/3240) `invalid_encrypted_content`，按 `prompt_cache_key` 做渠道亲和救不了，要 litellm 的 `encrypted_content_affinity`。**至今 open**                                                                                                                                                                                                                                          |
+| **降级通道有损**            | [#5209](https://github.com/QuantumNous/new-api/pull/5209) 是你印象里"五月才支持"的那个；但它丢 MCP 工具（[#5938](https://github.com/QuantumNous/new-api/issues/5938)）、丢 `reasoning_content`（[#6396](https://github.com/QuantumNous/new-api/issues/6396)）、丢 reasoning summary（[#6449](https://github.com/QuantumNous/new-api/pull/6449)）、漏 `include_usage`（[#6149](https://github.com/QuantumNous/new-api/issues/6149)） |
+| **工程碎屑**                | SSE 无 `Content-Type`（[#6075](https://github.com/QuantumNous/new-api/issues/6075)）、zstd 解压（[#6313](https://github.com/QuantumNous/new-api/issues/6313)）、OOM（[#5698](https://github.com/QuantumNous/new-api/issues/5698)）、渠道亲和挡 failover（[#4541](https://github.com/QuantumNous/new-api/issues/4541)）、追私有端点 `/v1/alpha/search`（[#6114](https://github.com/QuantumNous/new-api/issues/6114)）                |
 
 两个要点。第一，**加密 reasoning 让负载均衡不再无状态**——上下文里出现了一段有归属、不可搬运的 blob，这在 chat 时代不存在。第二，也是对你最重要的：
 
@@ -168,7 +166,6 @@ codex 本身开源，这个问题不仅需要围绕协议本身差异，而且�
 
 **官方说"legacy 拖慢开发"，代码说"新功能只有 Responses 装得下"，商业上说"受影响的都不付钱"——三句话同一个动作，所以不可逆；对 XnneHangLab 来说这不是要不要迁移，是网关已经替你迁了一半，而它翻译途中丢掉的恰好是你最想研究的那部分信息。**
 :::
-
 
 ### 总结和吐槽一下 openai
 
@@ -209,22 +206,22 @@ openai 只是自己不想继续在 codex 里面维护两套逻辑 (`chat_complet
 
 ### 一张表看完
 
-| 维度        | Chat Completions                            | Responses                                                                                    |
-| --------- | ------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| 端点        | `/v1/chat/completions`                      | `/v1/responses`                                                                              |
-| 输入        | `messages` 数组                               | `input`（字符串或 Item 数组）+ 顶层 `instructions`                                                     |
-| 输出        | `choices[0].message.content`                | **`output`：带 `type` 的有序 Item 数组**，每个有独立 `id`                                                 |
-| 工具定义      | `{type:"function", function:{name,...}}` 嵌套 | `{type:"function", name:...}` 扁平                                                             |
-| 工具结果      | 塞回 `messages`                               | 独立 Item，用 `call_id` 关联                                                                       |
-| strict    | 默认关                                         | **默认开**（不兼容再退回 `strict:false`）                                                               |
-| 结构化输出     | `response_format`                           | `text.format`                                                                                |
-| 内置工具      | 无                                           | `web_search` / `file_search` / `tool_search` / `code_interpreter` / **remote MCP**           |
-| 多轮        | 每轮手动重发全量 `messages`                         | `previous_response_id` 或 `conversation` 对象                                                   |
-| 状态        | 无                                           | `store`（默认存 30 天，可关）                                                                         |
-| reasoning | 丢弃                                          | **原生 `reasoning` Item，支持 `encrypted_content`**                                               |
-| 流式        | 不透明的 `delta` chunk                          | **语义事件**：`response.output_item.added` / `response.output_text.delta` / `response.completed`… |
-| 异步        | 无                                           | `background: true` + 轮询                                                                      |
-| 断流续传      | 无                                           | `starting_after` 游标（SDK 支持 "coming soon"）                                                    |
+| 维度       | Chat Completions                              | Responses                                                                                         |
+| ---------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| 端点       | `/v1/chat/completions`                        | `/v1/responses`                                                                                   |
+| 输入       | `messages` 数组                               | `input`（字符串或 Item 数组）+ 顶层 `instructions`                                                |
+| 输出       | `choices[0].message.content`                  | **`output`：带 `type` 的有序 Item 数组**，每个有独立 `id`                                         |
+| 工具定义   | `{type:"function", function:{name,...}}` 嵌套 | `{type:"function", name:...}` 扁平                                                                |
+| 工具结果   | 塞回 `messages`                               | 独立 Item，用 `call_id` 关联                                                                      |
+| strict     | 默认关                                        | **默认开**（不兼容再退回 `strict:false`）                                                         |
+| 结构化输出 | `response_format`                             | `text.format`                                                                                     |
+| 内置工具   | 无                                            | `web_search` / `file_search` / `tool_search` / `code_interpreter` / **remote MCP**                |
+| 多轮       | 每轮手动重发全量 `messages`                   | `previous_response_id` 或 `conversation` 对象                                                     |
+| 状态       | 无                                            | `store`（默认存 30 天，可关）                                                                     |
+| reasoning  | 丢弃                                          | **原生 `reasoning` Item，支持 `encrypted_content`**                                               |
+| 流式       | 不透明的 `delta` chunk                        | **语义事件**：`response.output_item.added` / `response.output_text.delta` / `response.completed`… |
+| 异步       | 无                                            | `background: true` + 轮询                                                                         |
+| 断流续传   | 无                                            | `starting_after` 游标（SDK 支持 "coming soon"）                                                   |
 
 ### 真正重要的只有四条
 
@@ -303,15 +300,15 @@ chat completions 的 assistant message 是 `content`（**一个字符串**）+ `
 
 ### 你的实现（我读了仓库，确认如下）
 
-| 疑问                   | 答案                                                                                                                                                                               |
-| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 注入在哪                 | `type = "policy"`，`injection_position = "before_tools"`，`priority = 10`。走 `PolicyPlugin.get_prompt_segments()` → `SystemPromptBuilder.build()`，**注入进 system prompt，在 tool 定义之前** |
-| 什么时候注入               | `AgentFactory.create_core_with_profile()`，**建 agent 时一次性注入**，不是每轮 hook                                                                                                           |
-| 预告时有没有完整 tool schema | **有。** 提示词在 system prompt 里，tools 通过 `stream_with_tools(tools=tools_schema)` 完整传给 API——同一次请求                                                                                     |
-| 在第几次 LLM call 预告     | **就是决定调用 tool 的那一次，不是额外一次。** 预告 token 和 tool_call token 来自同一个 completion                                                                                                         |
-| 预告在 tool token 前还是后  | **前。** `core.py` 的循环里 `delta.content` 先到、累进 `text_buf` 并直接 `yield` 给用户；`delta.tool_calls` 后到、累进 `tool_calls_buf`                                                                 |
-| 能预告几次                | **一轮一次**（只有一个 `content`）。但 `max_rounds = 6`，每轮一次 → **最多 6 段**                                                                                                                    |
-| 长链分段预告               | **支持，粒度是"每轮一段"**，不是"一轮内多段"                                                                                                                                                       |
+| 疑问                         | 答案                                                                                                                                                                                           |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 注入在哪                     | `type = "policy"`，`injection_position = "before_tools"`，`priority = 10`。走 `PolicyPlugin.get_prompt_segments()` → `SystemPromptBuilder.build()`，**注入进 system prompt，在 tool 定义之前** |
+| 什么时候注入                 | `AgentFactory.create_core_with_profile()`，**建 agent 时一次性注入**，不是每轮 hook                                                                                                            |
+| 预告时有没有完整 tool schema | **有。** 提示词在 system prompt 里，tools 通过 `stream_with_tools(tools=tools_schema)` 完整传给 API——同一次请求                                                                                |
+| 在第几次 LLM call 预告       | **就是决定调用 tool 的那一次，不是额外一次。** 预告 token 和 tool_call token 来自同一个 completion                                                                                             |
+| 预告在 tool token 前还是后   | **前。** `core.py` 的循环里 `delta.content` 先到、累进 `text_buf` 并直接 `yield` 给用户；`delta.tool_calls` 后到、累进 `tool_calls_buf`                                                        |
+| 能预告几次                   | **一轮一次**（只有一个 `content`）。但 `max_rounds = 6`，每轮一次 → **最多 6 段**                                                                                                              |
+| 长链分段预告                 | **支持，粒度是"每轮一段"**，不是"一轮内多段"                                                                                                                                                   |
 
 关键那段组装代码，正是"一个 message 同时带预告和 tool_calls"：
 
@@ -327,12 +324,12 @@ assistant_payload = {
 
 ### 那"OpenAI 不行"错在哪、对在哪
 
-| | Anthropic Messages | OpenAI Chat Completions |
-| --- | --- | --- |
-| 一轮内说一次再做 | ✅ 原生默认 | ✅ 可以，但要提示词诱导 |
-| 一轮内多段交替 | ✅（server tool 可到 index 17） | ❌ 只有一个 `content` |
-| 顺序结构性保留 | ✅ `index` | ❌ 两个平级字段 |
-| 跨轮分段预告 | ✅ | ✅（你的 6 轮） |
+|                  | Anthropic Messages              | OpenAI Chat Completions |
+| ---------------- | ------------------------------- | ----------------------- |
+| 一轮内说一次再做 | ✅ 原生默认                     | ✅ 可以，但要提示词诱导 |
+| 一轮内多段交替   | ✅（server tool 可到 index 17） | ❌ 只有一个 `content`   |
+| 顺序结构性保留   | ✅ `index`                      | ❌ 两个平级字段         |
+| 跨轮分段预告     | ✅                              | ✅（你的 6 轮）         |
 
 **对的部分**：Anthropic 是原生行为 + 支持一轮内多段交替，OpenAI 两条都不占。
 **错的部分**："OpenAI 只能先全部执行 Tool 然后回复"——不对，它一轮内说一次是协议允许的，你自己的插件就是证据。
@@ -400,10 +397,10 @@ b. 为什么 OpenAI 协议不支持交替？是模型输出的限制吗？大多
 
 所以准确的说法是：**两家都是 `[文本 token 段][工具 token 段]` 顺序拼接，区别只在能拼几段。**
 
-| | 能拼的形状 |
-| --- | --- |
-| Anthropic | `[文本][工具][文本][工具]…`（server tool 例子里到 `index:17`） |
-| OpenAI chat | `[文本][工具]` —— 就这一组 |
+|             | 能拼的形状                                                     |
+| ----------- | -------------------------------------------------------------- |
+| Anthropic   | `[文本][工具][文本][工具]…`（server tool 例子里到 `index:17`） |
+| OpenAI chat | `[文本][工具]` —— 就这一组                                     |
 
 **"交替"应该改叫"分段"。** 你原来的疑问"tool token 和 chat token 交替"想问的其实是分段能力，不是 token 混流——后者两家都没有，也不该有（客户端没法渲染半句话里插一个工具调用）。
 
@@ -477,7 +474,6 @@ round 3: {content: "我发现…"}
 是这样的吗？
 
 也就是说我只要改善提示词，并加上一些护栏就可以了。不用搞很复杂的实现？
-
 
 :::note[Opus]
 **大方向对，但先别急着高兴——有三处必须校准，其中第二处是我的责任。**
@@ -590,12 +586,12 @@ message_stop                                  ← 从头到尾，一次 HTTP
 
 所以正确的分界线是：
 
-| | 一次请求内多段 | 需要客户端循环 |
-| --- | --- | --- |
-| Anthropic server tool | ✅ 真 | ❌ |
-| **OpenAI Responses server tool** | ✅ 真 | ❌ |
-| Anthropic client tool | ❌ 假 | ✅ |
-| OpenAI chat completions（只有 client tool） | ❌ 假 | ✅ |
+|                                             | 一次请求内多段 | 需要客户端循环 |
+| ------------------------------------------- | -------------- | -------------- |
+| Anthropic server tool                       | ✅ 真          | ❌             |
+| **OpenAI Responses server tool**            | ✅ 真          | ❌             |
+| Anthropic client tool                       | ❌ 假          | ✅             |
+| OpenAI chat completions（只有 client tool） | ❌ 假          | ✅             |
 
 **注意第二行。** Responses 也有 server tool（`web_search` / `code_interpreter` / remote MCP），也能做到真的。所以这从来不是"Claude 更强"，是 **chat completions 是四格里唯一连门都没有的那个**。
 
