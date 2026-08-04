@@ -58,7 +58,7 @@ Fuwari 提供了一套开箱即用的 Astro 博客主题，nyakku.moe 在此基�
 
 ## 首页 Banner
 
-![首页 Banner](../../assets/img/covers/blog-rebuild-banner.jpg)
+![首页 Banner](../../assets/img/blog-rebuild-inspirations/blog-rebuild-banner.jpg)
 
 首页首图铺满视口，实际内容下沉，背景图与内容区之间用透明波浪形做过渡。首图区域内顶部导航栏透明，滚轮下滑后才显形。除阅读文章外，导航栏始终跟随。
 
@@ -70,7 +70,7 @@ NBlog 也是 Xnne 在云服务器时代部署的第一个博客系统。它的�
 
 ## 阅读时导航栏隐藏
 
-![阅读时隐藏导航栏](../../assets/img/covers/blog-rebuild-navbar-hidden.jpg)
+![阅读时隐藏导航栏](../../assets/img/blog-rebuild-inspirations/blog-rebuild-navbar-hidden.jpg)
 
 阅读文章时，顶部导航栏隐藏，把视觉空间完全留给内容。这个细节来自：
 
@@ -80,7 +80,7 @@ NBlog 也是 Xnne 在云服务器时代部署的第一个博客系统。它的�
 
 ## 书架
 
-![书架](../../assets/img/covers/blog-rebuild-bookshelf.jpg)
+![书架](../../assets/img/blog-rebuild-inspirations/blog-rebuild-bookshelf.jpg)
 
 书架页面用于展示看过的书、动漫、电影、游戏等，以封面卡片的形式呈现。
 
@@ -92,7 +92,7 @@ Xnne 很喜欢这种把阅读/观影记录视觉化的方式。比起纯列表�
 
 ## 关联图谱
 
-![关联图谱](../../assets/img/covers/blog-rebuild-graph.jpg)
+![关联图谱](../../assets/img/blog-rebuild-inspirations/blog-rebuild-graph.jpg)
 
 文章之间的关联以知识图谱的形式可视化，展示文章之间的引用与主题关联。
 
@@ -118,7 +118,7 @@ GitHub Pages 默认的 404 页面只有一段 `File not found`，既没有本站
 
 Astro 构建时会生成根目录下的 `404.html`。当 GitHub Pages 找不到请求的静态文件时，会返回这个页面，同时保留正确的 HTTP 404 状态。这样即使访客走错了路，也仍然留在这片知识星球里。
 
-![自定义 404 页面](<../../assets/img/covers/Pasted image 20260804223135.png>)
+![自定义 404 页面](<../../assets/img/blog-rebuild-inspirations/Pasted image 20260804223135.png>)
 
 ---
 

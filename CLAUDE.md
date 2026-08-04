@@ -23,10 +23,11 @@ nyakku.moe/
 ## 图片处理规则
 
 - 图片存放于 `src/assets/img/`，这是一个 **git submodule**（指向 `image-hosting` 仓库）
-- 封面图统一放在 `src/assets/img/covers/` 下
-- 文章中引用图片使用相对路径：`../../assets/img/covers/filename.jpg`
+- 封面图统一放在 `src/assets/img/covers/` 下；正文图片放在以文章 slug 命名的目录 `src/assets/img/<article-slug>/` 下
+- `covers/` 仅用于文章封面或与正文无直接对应关系的兜底配图，不用于存放正文截图
+- 文章中引用正文图片使用相对路径：`../../assets/img/<article-slug>/filename.jpg`
 - 新增图片或修改 submodule 内文件时：
-  1. 将图片移动到 submodule 内的目标目录，文章图片和封面图通常放在 `src/assets/img/covers/`
+  1. 将图片移动到 submodule 内的目标目录：正文图片放入 `src/assets/img/<article-slug>/`，只有文章封面或兜底配图放入 `src/assets/img/covers/`
   2. 进入 submodule 目录，`git status` 确认有实际改动后 commit + push
   3. 更新文章中的图片引用
   4. 在主仓库提交文章变更与 submodule 指针，再 commit + push
