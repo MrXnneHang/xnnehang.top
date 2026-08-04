@@ -39,15 +39,17 @@ Do **not** delete the template structure or write a freeform PR body. The commen
 
 The template is only in the `xnnehang.top` repo (`.github/PULL_REQUEST_TEMPLATE.md`); fetch it with `gh api` if you cannot read it locally.
 
-## Submodule: Pull Instead of Copy + Push
+## Submodule Image Commit Order
 
-The image submodule (`src/assets/img`) is shared between the Obsidian source repo (`obsidan/xnnehang.top.factory`) and the blog project (`nyakku.moe`). **Never** copy files into the submodule manually and commit there — the user handles image uploads from the Obsidian side. If new images are needed, simply run:
+The image submodule (`src/assets/img`) is managed from this repository. When the user adds an image to the main-repository root or asks to publish an image:
 
-```
-git submodule update --init --recursive
-```
+1. Move the requested file into the appropriate submodule directory, normally `src/assets/img/covers/` for article and cover images. Preserve filenames unless the user asks for a rename.
+2. Run `git -C src/assets/img status` and confirm there is an actual image change before committing. Never create an empty or unrelated submodule commit.
+3. Commit and push the image inside the submodule first.
+4. Update the article to use the relative `../../assets/img/...` path. Filenames containing spaces require Markdown angle-bracket syntax as described in [Astro Markdown Images](#astro-markdown-images).
+5. In the parent repository, commit the article change together with the updated `src/assets/img` submodule pointer, then push or open the requested PR.
 
-to pull the latest state from the remote. An unnecessary submodule commit will cause a push conflict with the other repo.
+The ordering matters: if the parent pointer is pushed before the corresponding image commit exists on the submodule remote, CI and fresh clones cannot check out the referenced asset revision.
 
 ## Proxy Not Inherited from System Settings
 

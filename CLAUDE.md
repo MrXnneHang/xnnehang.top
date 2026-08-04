@@ -26,10 +26,10 @@ nyakku.moe/
 - 封面图统一放在 `src/assets/img/covers/` 下
 - 文章中引用图片使用相对路径：`../../assets/img/covers/filename.jpg`
 - 新增图片或修改 submodule 内文件时：
-  1. 操作 submodule 内的文件
-  2. 先进入 submodule 目录，`git status` 确认有实际改动再 commit + push
-  3. 在主仓库 stage submodule 变更，commit + push
-- 注意：`nyakku.moe` 和 `obsidan/xnnehang.top.factory` 挂载的是同一个 image-hosting 仓库，submodule 的改动只需在一方提交推送即可，另一方下次 `git submodule update` 后自动同步
+  1. 将图片移动到 submodule 内的目标目录，文章图片和封面图通常放在 `src/assets/img/covers/`
+  2. 进入 submodule 目录，`git status` 确认有实际改动后 commit + push
+  3. 更新文章中的图片引用
+  4. 在主仓库提交文章变更与 submodule 指针，再 commit + push
 - **Astro 本地图片 HTML 标签限制与解决方法**：
   Astro 的 markdown 编译器无法解析 HTML `<img>` 标签中的本地相对路径。如需居中或限制图片宽度，**禁止使用 HTML `<img>` 标签**，应通过如下方式包裹标准 Markdown 图片（在前后各保留一个空行）：
 
