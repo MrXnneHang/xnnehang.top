@@ -51,6 +51,12 @@ The image submodule (`src/assets/img`) is managed from this repository. When the
 
 The ordering matters: if the parent pointer is pushed before the corresponding image commit exists on the submodule remote, CI and fresh clones cannot check out the referenced asset revision.
 
+## Preserve the First Body Image as the Derived Cover
+
+When an article already starts with an intended cover image, keep that image as the first content in the Markdown body. Do **not** move it into `covers/`, remove it from the body, add an unnecessary frontmatter `image:` field, or manually change its format. The theme derives the cover from the first body image, and Astro handles build-time image optimization.
+
+This differs from adding a separate cover selected from the external `cover/` directory: that workflow may use `src/assets/img/covers/` and frontmatter `image:`. Preserve the author's existing image role and order unless they explicitly ask to change it.
+
 ## Proxy Not Inherited from System Settings
 
 Windows system proxy is NOT automatically inherited by the CLI environment. `$env:HTTP_PROXY` and `$env:HTTPS_PROXY` are empty by default even when the system proxy (e.g., `127.0.0.1:3067`) is enabled. Before any `git fetch`, `git push`, or `curl` to remote, explicitly set:

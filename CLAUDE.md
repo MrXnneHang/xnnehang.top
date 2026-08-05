@@ -26,6 +26,8 @@ nyakku.moe/
 - 封面图统一放在 `src/assets/img/covers/` 下；正文图片放在以文章 slug 命名的目录 `src/assets/img/<article-slug>/` 下
 - `covers/` 仅用于文章封面或与正文无直接对应关系的兜底配图，不用于存放正文截图
 - 文章中引用正文图片使用相对路径：`../../assets/img/<article-slug>/filename.jpg`
+- 如果文章正文已经以作者选定的首图开头，**必须保留它作为正文第一张图**：主题会自动将首图解析为封面，Astro 构建时也会自动优化格式。不要擅自把它移到 `covers/`、从正文删除、改写为 frontmatter `image:`，或手动转换格式
+- 只有从外部 `cover/` 目录另选封面，或文章没有首图且明确需要独立封面时，才使用 `src/assets/img/covers/` 和 frontmatter `image:`
 - 新增图片或修改 submodule 内文件时：
   1. 将图片移动到 submodule 内的目标目录：正文图片放入 `src/assets/img/<article-slug>/`，只有文章封面或兜底配图放入 `src/assets/img/covers/`
   2. 进入 submodule 目录，`git status` 确认有实际改动后 commit + push
@@ -46,7 +48,7 @@ nyakku.moe/
 
 1. **整理博客**：将 Obsidian 源文件整理后放入 `src/content/posts/`
 2. **格式优化**：根据需要添加次级标题、admonition、加粗点缀、GitHub 仓库卡片、video 外链等
-3. **封面图**：从 `cover/` 目录选取图片放入 submodule，并在文章 frontmatter 中添加 `image:` 字段
+3. **封面图**：如果正文已有作者选定的首图，保留首图并让主题自动解析为封面；只有另选独立封面时，才从 `cover/` 目录选取图片放入 submodule，并在文章 frontmatter 中添加 `image:` 字段
 4. **Commit & Push**：
    - 不涉及代码改动 → 直接 push 到 `master`
    - 涉及代码改动 → 创建新分支，等待用户提 PR
