@@ -16,12 +16,12 @@ featured: true
 
 ## gh stack 是什么？
 
-
 它有点像 gh 的一个 cli extension，可以让 PR 们可以用一种和谐的状态关联到一起，而不再各自独立，只能 mention 彼此相互称兄道弟。
 
-它让所有的 PR 不再只指向  main branch，而是可以在 feature branch 上进行堆叠。
+它让所有的 PR 不再只指向 main branch，而是可以在 feature branch 上进行堆叠。
 
 ![Stacked PRs 关系概览](../../assets/img/github-stacked-prs/stack-overview.jpg)
+
 ### 它带来什么？
 
 这是我之前写的：
@@ -37,7 +37,6 @@ gh stack 可以兼顾两者的优点，而且协作也会更原子化。
 不废话直接开始。
 
 ### 它怎么创建？
-
 
 具体怎么创建可以看 : [Creating stacked pull requests](https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-stacked-pull-requests)
 
@@ -62,7 +61,6 @@ gh stack 可以兼顾两者的优点，而且协作也会更原子化。
 这里可以看到， bottom 的 PR 支持一个一个合入。
 
 但是在上方的 PR 每次合入的时候都会把下方几个一起合入，当我的指针在第三层的时候，一次会合入三个 PR。
-
 
 ## 在 Contributer 视角里的 Stacked PRs
 
