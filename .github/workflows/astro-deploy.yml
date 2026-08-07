@@ -3,6 +3,8 @@ name: Deploy
 on:
   push:
     branches: [master]
+  schedule:
+    - cron: '17 */6 * * *'
   workflow_dispatch:
 
 jobs:
@@ -29,6 +31,12 @@ jobs:
         env:
           PUBLIC_GA4_MEASUREMENT_ID: ${{ vars.PUBLIC_GA4_MEASUREMENT_ID }}
         run: vp run build
+
+      - name: Generate statistics
+        env:
+          GA4_PROPERTY_ID: ${{ vars.GA4_PROPERTY_ID }}
+          GA4_SERVICE_ACCOUNT_JSON: ${{ secrets.GA4_SERVICE_ACCOUNT_JSON }}
+        run: vp run stats:fetch
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
