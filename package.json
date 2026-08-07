@@ -9,6 +9,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "type-check": "tsc --noEmit --isolatedDeclarations",
+    "stats:fetch": "node scripts/fetch-ga4-statistics.mjs",
+    "stats:test": "node --test scripts/statistics-lib.test.mjs",
     "preinstall": "npx only-allow pnpm",
     "img:upload": "bash scripts/upload-img.sh",
     "case-police": "case-police . --fix",
@@ -31,6 +33,7 @@
     "@expressive-code/plugin-line-numbers": "^0.44.0",
     "@fontsource-variable/jetbrains-mono": "^5.2.8",
     "@fontsource/roboto": "^5.2.8",
+    "@google-analytics/data": "^7.0.0",
     "@iconify-json/fa6-brands": "^1.2.6",
     "@iconify-json/fa6-regular": "^1.2.4",
     "@iconify-json/fa6-solid": "^1.2.4",
@@ -71,6 +74,6 @@
     "case-police": "^2.2.1",
     "postcss-import": "^16.1.1",
     "postcss-nesting": "^14.0.1",
-    "vite-plus": "latest"
+    "vite-plus": "0.2.7"
   }
 }

@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "generatedAt": null,
+  "status": "empty",
+  "source": "ga4",
+  "site": {
+    "activeUsers": 0,
+    "screenPageViews": 0,
+    "engagementSeconds": 0,
+    "engagementSecondsPerUser": 0
+  },
+  "content": {
+    "postCount": 0,
+    "totalWords": 0,
+    "publications": []
+  },
+  "ranges": {
+    "7d": [],
+    "30d": [],
+    "90d": [],
+    "all": []
+  }
+}
