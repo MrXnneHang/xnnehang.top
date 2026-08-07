@@ -65,13 +65,13 @@ featured: true
 
 对照 [scheduled-tasks](https://code.claude.com/docs/en/scheduled-tasks) / [desktop-scheduled-tasks](https://code.claude.com/docs/en/desktop-scheduled-tasks) / [routines](https://code.claude.com/docs/en/routines) / [Cowork support](https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork) 四份文档：
 
-| 系统                                                                                                                   | 在哪建                                    | 跑在哪                            | 能碰本地文件            | 能读全部 session log |
-| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------- | ------------------------------ | ----------------- | ---------------- |
-| 云端 routine（UI: New routine→cloud）                                                                                    | CLI、Desktop、claude.ai 网页               | Anthropic cloud，每次 fresh clone | 否                 | 否                |
-| 本地 routine（UI: New routine→Local；Code mode 运行工具: create_scheduled_task）                                              | 仅 Desktop：Routines 页选 Local、Code 会话内工具 | 本机，app 开着才跑                    | 是                 | 是                |
-| session-scoped tasks                                                                                                 | CLI `/loop`                            | 本机，随会话                         | 是                 | 是，但随会话死          |
-| Cloud Cowork scheduled tasks （UI: Home->Scheduled->new task；cowork mode 运行工具: create_scheduled_task）                 | Cowork 会话 / Home 页面的 Scheduled         | Anthropic cloud sandbox        | 条件式（仅 app 在线时经桥接） | 不可靠              |
-| local Cowork scheduled tasks （UI: Home->Scheduled->new task->`run on your computer` / 不能由 create_scheduled_task 复现创建 | Cowork 会话 / Home 页面的 Scheduled         | 本机，app 开着才跑                    | 是                 | 是                |
+| 系统                                                                                                                         | 在哪建                                           | 跑在哪                            | 能碰本地文件                  | 能读全部 session log |
+| ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ | --------------------------------- | ----------------------------- | -------------------- |
+| 云端 routine（UI: New routine→cloud）                                                                                        | CLI、Desktop、claude.ai 网页                     | Anthropic cloud，每次 fresh clone | 否                            | 否                   |
+| 本地 routine（UI: New routine→Local；Code mode 运行工具: create_scheduled_task）                                             | 仅 Desktop：Routines 页选 Local、Code 会话内工具 | 本机，app 开着才跑                | 是                            | 是                   |
+| session-scoped tasks                                                                                                         | CLI `/loop`                                      | 本机，随会话                      | 是                            | 是，但随会话死       |
+| Cloud Cowork scheduled tasks （UI: Home->Scheduled->new task；cowork mode 运行工具: create_scheduled_task）                  | Cowork 会话 / Home 页面的 Scheduled              | Anthropic cloud sandbox           | 条件式（仅 app 在线时经桥接） | 不可靠               |
+| local Cowork scheduled tasks （UI: Home->Scheduled->new task->`run on your computer` / 不能由 create_scheduled_task 复现创建 | Cowork 会话 / Home 页面的 Scheduled              | 本机，app 开着才跑                | 是                            | 是                   |
 
 需要额外注意的一点是，由 claude desktop 对话使用内置 `create_schedule_task` 创建的 task，在 code mode 下默认是 local routine，但是 local routine 会自动绑定创建时的工作目录为它的 `cwd`，当该目录被删除后，它将会失去工作时自动激活的目录而异常。
 
