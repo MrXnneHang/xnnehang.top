@@ -122,7 +122,7 @@ Astro 构建时会生成根目录下的 `404.html`。当 GitHub Pages 找不到�
 
 ## 公开统计页
 
-本站的[统计页](/statistics/)展示总字数、访客数、访问量、阅读参与时长、文章阅读排行与发布节奏。它的灵感来自 [多辣加香菜的本站统计数据](https://thiscute.world/statistics/)：把原本只在站长后台可见的数字整理成公开页面，让读者也能看到博客如何被阅读、内容又是怎样慢慢积累起来的。
+本站的[统计页](/statistics/)展示总字数、访客数、访问量、阅读参与时长、文章阅读排行与发布节奏。它的灵感来自 [this cute world](https://thiscute.world/statistics/)：把原本只在站长后台可见的数字整理成公开页面，让读者也能看到博客如何被阅读、内容又是怎样慢慢积累起来的。
 
 参考站使用 GitHub Actions 定时从 Google Analytics 获取数据。本站沿用了这条适合静态博客的思路，并补上了自己的实现：访客浏览器向 GA4 发送页面访问与参与事件，GitHub Actions 每六小时调用 GA4 Data API，把聚合结果与 Astro 构建期统计的文章字数、预计阅读时间和发布日期合并，再生成静态的 `statistics.json` 交给页面展示。
 
