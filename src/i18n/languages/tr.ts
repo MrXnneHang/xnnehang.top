@@ -8,6 +8,8 @@ export const tr: Translation = {
   [Key.search]: 'Ara',
   [Key.friends]: 'Arkadaşlar',
   [Key.privacy]: 'Gizlilik',
+  [Key.statistics]: 'İstatistikler',
+  [Key.statisticsDescription]: 'Bu sitenin okuma ve yayın istatistikleri',
 
   [Key.tags]: 'Taglar',
   [Key.categories]: 'Katagoriler',

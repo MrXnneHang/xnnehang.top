@@ -8,6 +8,8 @@ export const vi: Translation = {
   [Key.search]: 'Tìm kiếm',
   [Key.friends]: 'Bạn',
   [Key.privacy]: 'Quyền riêng tư',
+  [Key.statistics]: 'Thống kê',
+  [Key.statisticsDescription]: 'Thống kê lượt đọc và xuất bản của trang',
 
   [Key.tags]: 'Thẻ',
   [Key.categories]: 'Danh mục',

@@ -35,4 +35,8 @@ export const LinkPresets: { [key in LinkPreset]: NavBarLink } = {
     name: i18n(I18nKey.memo),
     url: '/memo/',
   },
+  [LinkPreset.Statistics]: {
+    name: i18n(I18nKey.statistics),
+    url: '/statistics/',
+  },
 }
