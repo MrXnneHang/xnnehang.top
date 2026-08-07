@@ -26,6 +26,8 @@ jobs:
         run: vp install --frozen-lockfile
 
       - name: Build
+        env:
+          PUBLIC_GA4_MEASUREMENT_ID: ${{ vars.PUBLIC_GA4_MEASUREMENT_ID }}
         run: vp run build
 
       - name: Deploy to GitHub Pages

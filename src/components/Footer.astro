@@ -1,4 +1,6 @@
 ---
+import I18nKey from '@i18n/i18nKey'
+import { i18n } from '@i18n/translation'
 import { url } from '../utils/url-utils'
 
 const currentYear = new Date().getFullYear()
@@ -12,6 +14,10 @@ const currentYear = new Date().getFullYear()
   <div class="text-50 text-center text-sm transition">
     &copy; <span id="copyright-year">{currentYear}</span>
     XnneHang. All Rights Reserved. /
+    <a
+      class="link font-medium text-[var(--primary)] transition"
+      href={url('privacy/')}>{i18n(I18nKey.privacy)}</a
+    > /
     <a
       class="link font-medium text-[var(--primary)] transition"
       target="_blank"

@@ -1,0 +1,52 @@
+---
+const measurementId = import.meta.env.PUBLIC_GA4_MEASUREMENT_ID
+const enabled = import.meta.env.PROD && Boolean(measurementId)
+---
+
+{
+  enabled && (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
+      <script is:inline define:vars={{ measurementId }}>
+        if (!window.__ga4Initialized) {
+          window.__ga4Initialized = true
+          window.dataLayer = window.dataLayer || []
+          window.gtag = function () {
+            window.dataLayer.push(arguments)
+          }
+
+          window.gtag('js', new Date())
+          window.gtag('config', measurementId, { send_page_view: false })
+
+          const trackPageView = () => {
+            if (window.location.hostname !== 'xnnehang.top') return
+
+            window.gtag('event', 'page_view', {
+              page_title: document.title,
+              page_location: window.location.href,
+              page_path: window.location.pathname,
+            })
+          }
+
+          trackPageView()
+
+          const setupSwupTracking = () => {
+            if (window.__ga4SwupTracking) return
+            window.__ga4SwupTracking = true
+            window.swup.hooks.on('page:view', trackPageView)
+          }
+
+          if (window.swup?.hooks) {
+            setupSwupTracking()
+          } else {
+            const timer = window.setInterval(() => {
+              if (!window.swup?.hooks) return
+              window.clearInterval(timer)
+              setupSwupTracking()
+            }, 50)
+          }
+        }
+      </script>
+    </>
+  )
+}
