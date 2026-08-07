@@ -8,6 +8,8 @@ export const es: Translation = {
   [Key.search]: 'Buscar',
   [Key.friends]: 'Amigos',
   [Key.privacy]: 'Privacidad',
+  [Key.statistics]: 'Estadísticas',
+  [Key.statisticsDescription]: 'Estadísticas de lectura y publicación del sitio',
 
   [Key.tags]: 'Etiquetas',
   [Key.categories]: 'Categorías',

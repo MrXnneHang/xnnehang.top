@@ -10,9 +10,86 @@
     "engagementSecondsPerUser": 0
   },
   "content": {
-    "postCount": 0,
-    "totalWords": 0,
-    "publications": []
+    "postCount": 62,
+    "totalWords": 128340,
+    "publications": [
+      {
+        "month": "2022-10",
+        "count": 1
+      },
+      {
+        "month": "2024-01",
+        "count": 1
+      },
+      {
+        "month": "2024-06",
+        "count": 4
+      },
+      {
+        "month": "2024-07",
+        "count": 8
+      },
+      {
+        "month": "2024-08",
+        "count": 6
+      },
+      {
+        "month": "2024-09",
+        "count": 5
+      },
+      {
+        "month": "2024-10",
+        "count": 4
+      },
+      {
+        "month": "2025-01",
+        "count": 1
+      },
+      {
+        "month": "2025-02",
+        "count": 3
+      },
+      {
+        "month": "2025-03",
+        "count": 1
+      },
+      {
+        "month": "2025-05",
+        "count": 1
+      },
+      {
+        "month": "2025-06",
+        "count": 1
+      },
+      {
+        "month": "2025-07",
+        "count": 1
+      },
+      {
+        "month": "2025-11",
+        "count": 1
+      },
+      {
+        "month": "2025-12",
+        "count": 1
+      },
+      {
+        "month": "2026-02",
+        "count": 1
+      },
+      {
+        "month": "2026-06",
+        "count": 11
+      },
+      {
+        "month": "2026-07",
+        "count": 10
+      },
+      {
+        "month": "2026-08",
+        "count": 1
+      }
+    ]
   },
   "ranges": {
     "7d": [],
