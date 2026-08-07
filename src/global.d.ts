@@ -4,6 +4,10 @@ declare global {
   interface Window {
     // type from '@swup/astro' is incorrect
     swup: AstroIntegration
+    dataLayer: IArguments[]
+    gtag: (...args: unknown[]) => void
+    __ga4Initialized?: boolean
+    __ga4SwupTracking?: boolean
     pagefind: {
       search: (query: string) => Promise<{
         results: Array<{
