@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte'
   import Icon from '@iconify/svelte'
+  import WritingTrail from '@/components/statistics/WritingTrail.svelte'
   import type {
     StatisticsData,
     StatisticsPost,
@@ -65,10 +66,6 @@
   $: posts = data
     ? [...data.ranges[range]].sort((a, b) => rankingValue(b, sortKey) - rankingValue(a, sortKey))
     : []
-  $: maxPublications = data
-    ? Math.max(1, ...data.content.publications.map((item) => item.count))
-    : 1
-  $: latestPublications = data?.content.publications.slice(-24) ?? []
   $: statusLabel = data?.status === 'fallback'
     ? '使用上一份可用数据'
     : data?.status === 'empty'
@@ -113,14 +110,16 @@
   </section>
 {:else}
   <div class="flex flex-col gap-4">
+    <WritingTrail content={data.content} />
+
     <section class="card-base relative overflow-hidden p-6 md:p-8">
       <div class="absolute -top-20 -right-14 h-52 w-52 rounded-full bg-[var(--primary)] opacity-[0.08] blur-2xl"></div>
       <div class="relative flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div>
           <p class="mb-2 text-xs font-semibold tracking-[0.18em] text-[var(--primary)] uppercase">Reading pulse</p>
-          <h1 class="text-3xl font-bold tracking-tight text-black/90 md:text-4xl dark:text-white/90">这里的文字，正在被怎样读过</h1>
+          <h1 class="text-3xl font-bold tracking-tight text-black/90 md:text-4xl dark:text-white/90">这些文字发布之后，又怎样被读过</h1>
           <p class="mt-3 max-w-2xl text-sm leading-6 text-black/50 dark:text-white/50">
-            从发布节奏到真实参与时长，这是一份会随阅读缓慢生长的站点切片。
+            从真实访问到参与时长，这是作品离开创作桌之后收到的回声。
           </p>
         </div>
         <div class="flex shrink-0 items-center gap-2 rounded-xl bg-black/[0.035] px-3 py-2 text-xs text-black/50 dark:bg-white/[0.06] dark:text-white/50">
@@ -140,9 +139,8 @@
       {/each}
     </section>
 
-    <div class="flex flex-col gap-4 xl:grid xl:grid-cols-[minmax(0,1fr)_20rem]">
-      <section class="card-base p-4 md:p-6">
-        <div class="mb-5 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+    <section class="card-base p-4 md:p-6">
+      <div class="mb-5 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p class="text-lg font-semibold text-black/85 dark:text-white/85">文章阅读排行</p>
             <p class="mt-1 text-xs text-black/45 dark:text-white/45">同一时间范围内的访客、访问与参与时长</p>
@@ -214,51 +212,12 @@
             </table>
           </div>
         {/if}
-      </section>
-
-      <aside class="card-base p-5 md:p-6">
-        <div class="mb-5">
-          <p class="text-lg font-semibold text-black/85 dark:text-white/85">发布脉冲</p>
-          <p class="mt-1 text-xs text-black/45 dark:text-white/45">最近 24 个有文章发布的月份</p>
-        </div>
-
-        {#if latestPublications.length > 0}
-          <div class="publication-chart" role="img" aria-label="每月发布文章数量柱状图">
-            {#each latestPublications as item}
-              <button
-                type="button"
-                class="bar-hit-area"
-                title={`${item.month}：${item.count} 篇`}
-                aria-label={`${item.month} 发布 ${item.count} 篇文章`}
-              >
-                <span class="bar" style={`height: ${Math.max(8, item.count / maxPublications * 100)}%`}></span>
-              </button>
-            {/each}
-          </div>
-          <div class="mt-3 flex justify-between text-[0.65rem] text-black/35 dark:text-white/35">
-            <span>{latestPublications[0]?.month}</span>
-            <span>{latestPublications.at(-1)?.month}</span>
-          </div>
-          <details class="mt-5 border-t border-black/[0.06] pt-4 dark:border-white/[0.08]">
-            <summary class="cursor-pointer text-xs font-medium text-black/50 dark:text-white/50">查看数据表</summary>
-            <div class="mt-3 max-h-52 overflow-y-auto text-xs">
-              {#each [...latestPublications].reverse() as item}
-                <div class="flex justify-between border-b border-black/[0.04] py-2 last:border-0 dark:border-white/[0.05]">
-                  <span class="text-black/45 dark:text-white/45">{item.month}</span>
-                  <span class="tabular-nums text-black/70 dark:text-white/70">{item.count} 篇</span>
-                </div>
-              {/each}
-            </div>
-          </details>
-        {/if}
-
-        <div class="mt-6 rounded-xl bg-black/[0.025] p-4 text-xs leading-5 text-black/45 dark:bg-white/[0.045] dark:text-white/45">
-          <p class="font-medium text-black/65 dark:text-white/65">数据如何理解</p>
-          <p class="mt-2">阅读时长是 GA4 记录的参与时长，不代表访客始终在认真阅读。预计阅读时间则由文章字数计算。</p>
-          <a href="/privacy/" class="link mt-3 inline-block text-[var(--primary)]">隐私与统计说明 →</a>
-        </div>
-      </aside>
-    </div>
+      <div class="mt-5 rounded-xl bg-black/[0.025] p-4 text-xs leading-5 text-black/45 dark:bg-white/[0.045] dark:text-white/45">
+        <p class="font-medium text-black/65 dark:text-white/65">数据如何理解</p>
+        <p class="mt-2">阅读时长是 GA4 记录的参与时长，不代表访客始终在认真阅读。预计阅读时间则由文章字数计算。</p>
+        <a href="/privacy/" class="link mt-3 inline-block text-[var(--primary)]">隐私与统计说明 →</a>
+      </div>
+    </section>
   </div>
 {/if}
 
@@ -284,56 +243,10 @@
     font-weight: 600;
   }
 
-  .publication-chart {
-    display: flex;
-    align-items: end;
-    gap: 2px;
-    height: 11rem;
-    border-bottom: 1px solid color-mix(in oklab, currentColor 10%, transparent);
-  }
-
-  .bar-hit-area {
-    display: flex;
-    flex: 1;
-    align-items: end;
-    justify-content: center;
-    height: 100%;
-    min-width: 8px;
-    padding: 0 1px;
-  }
-
-  .bar {
-    width: min(100%, 24px);
-    min-height: 8px;
-    border-radius: 4px 4px 0 0;
-    background: color-mix(in oklab, var(--primary) 72%, white 28%);
-    transition: filter 150ms ease, transform 150ms ease;
-  }
-
-  .bar-hit-area:hover .bar,
-  .bar-hit-area:focus-visible .bar {
-    filter: saturate(1.2) brightness(1.05);
-    transform: translateY(-2px);
-  }
-
-  .bar-hit-area:focus-visible {
-    outline: 2px solid var(--primary);
-    outline-offset: 2px;
-    border-radius: 4px;
-  }
-
   @media (prefers-reduced-motion: reduce) {
-    .bar,
     .range-button,
     .sort-button {
       transition: none;
-    }
-  }
-
-  @media (forced-colors: active) {
-    .bar {
-      background: CanvasText;
-      background-image: repeating-linear-gradient(45deg, transparent 0 3px, Canvas 3px 5px);
     }
   }
 </style>

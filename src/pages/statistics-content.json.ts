@@ -1,9 +1,7 @@
 import { getCollection, render, type CollectionEntry } from 'astro:content'
-import type {
-  StatisticsContentCatalog,
-  StatisticsContentPost,
-  StatisticsPublicationMonth,
-} from '@/types/statistics'
+import type { StatisticsContentCatalog, StatisticsContentPost } from '@/types/statistics'
+import { getGitFileInfo } from '@utils/git-utils'
+import { buildContentTotals } from '../../scripts/statistics-lib.mjs'
 
 export async function GET(): Promise<Response> {
   const entries = await getCollection('posts', ({ data }: CollectionEntry<'posts'>) => {
@@ -13,6 +11,7 @@ export async function GET(): Promise<Response> {
   const posts: StatisticsContentPost[] = await Promise.all(
     entries.map(async (entry) => {
       const { remarkPluginFrontmatter } = await render(entry)
+      const gitInfo = getGitFileInfo(entry.filePath)
 
       return {
         title: entry.data.title,
@@ -20,29 +19,19 @@ export async function GET(): Promise<Response> {
         published: entry.data.published.toISOString().slice(0, 10),
         words: Number(remarkPluginFrontmatter.words) || 0,
         estimatedMinutes: Number(remarkPluginFrontmatter.minutes) || 0,
+        category: entry.data.category?.trim() || '未分类',
+        series: entry.data.series.map((name) => name.trim()).filter(Boolean),
+        editCount: gitInfo.editCount,
+        lastModified: gitInfo.lastModified?.toISOString() ?? null,
       }
     })
   )
 
-  posts.sort((a, b) => b.published.localeCompare(a.published))
-
-  const publicationMap = new Map<string, number>()
-  for (const post of posts) {
-    const month = post.published.slice(0, 7)
-    publicationMap.set(month, (publicationMap.get(month) ?? 0) + 1)
-  }
-
-  const publications: StatisticsPublicationMonth[] = [...publicationMap]
-    .sort(([a], [b]) => a.localeCompare(b))
-    .map(([month, count]) => ({ month, count }))
+  posts.sort((a, b) => b.published.localeCompare(a.published) || a.path.localeCompare(b.path))
 
   const catalog: StatisticsContentCatalog = {
     posts,
-    totals: {
-      postCount: posts.length,
-      totalWords: posts.reduce((sum, post) => sum + post.words, 0),
-      publications,
-    },
+    totals: buildContentTotals(posts),
   }
 
   return new Response(JSON.stringify(catalog), {
