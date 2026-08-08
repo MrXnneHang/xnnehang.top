@@ -4,10 +4,10 @@ published: 2025-09-07
 featured: true
 category: 观后
 shelf: '书籍'
-blurb: 在返校路上的焦虑里，借由其他生物的视角重新看待自己与人类。
+blurb: 在返校路上的焦虑里，动物的视角给了我一场好梦。
 ---
 
-![我能有什么坏心思呢](../../assets/img/我能有什么坏心思呢/PixPin_2026-08-08_23-04-37.jpg)
+![我能有什么坏心思呢](../../assets/img/wo-neng-you-shenme-huai-xinsi-ne/PixPin_2026-08-08_23-04-37.jpg)
 
 在返校的动车上心烦意乱时看的，开学让我焦虑，但我没法解释具体是什么让我焦虑。
 
