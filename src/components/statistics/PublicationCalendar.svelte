@@ -75,7 +75,8 @@
   function pageCalendar(direction: -1 | 1) {
     const maxScrollLeft = calendarScrollWidth - calendarClientWidth
     const nextScrollLeft = Math.min(maxScrollLeft, Math.max(0, calendarScrollLeft + direction * calendarClientWidth))
-    calendarScroll.scrollLeft = nextScrollLeft
+    const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+    calendarScroll.scrollTo({ left: nextScrollLeft, behavior })
     calendarScrollLeft = nextScrollLeft
   }
 
