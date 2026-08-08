@@ -1,19 +1,27 @@
 <script lang="ts">
   import Icon from '@iconify/svelte'
+  import { onMount, tick } from 'svelte'
   import type { StatisticsPublicationDay } from '@/types/statistics'
   import { formatDate, postDetails } from './writing-trail-utils'
 
   export let days: StatisticsPublicationDay[] = undefined!
 
   let activeDate = ''
+  let selectedYear = 0
+  let calendarScroll: HTMLDivElement
+  let calendarScrollLeft = 0
+  let calendarScrollWidth = 0
+  let calendarClientWidth = 0
   $: years = [...new Set(days.map((day) => Number(day.date.slice(0, 4))))].sort((a, b) => a - b)
-  $: selectedYear = activeDate ? Number(activeDate.slice(0, 4)) : (years.at(-1) ?? new Date().getFullYear())
-  $: yearDays = days.filter((day) => day.date.startsWith(`${selectedYear}-`))
+  $: calendarYear = selectedYear || (years.at(-1) ?? new Date().getFullYear())
+  $: yearDays = days.filter((day) => day.date.startsWith(`${calendarYear}-`))
   $: dayMap = new Map(yearDays.map((day) => [day.date, day]))
   $: maxCount = Math.max(1, ...yearDays.map((day) => day.count))
-  $: calendar = buildCalendar(selectedYear)
+  $: calendar = buildCalendar(calendarYear)
   $: monthMarkers = buildMonthMarkers(calendar)
   $: activeDay = activeDate ? dayMap.get(activeDate) : undefined
+  $: canPageCalendarBack = calendarScrollLeft > 0
+  $: canPageCalendarForward = calendarScrollLeft < calendarScrollWidth - calendarClientWidth - 1
 
   function buildCalendar(year: number) {
     const start = new Date(Date.UTC(year, 0, 1))
@@ -46,9 +54,38 @@
     return markers
   }
 
-  function selectYear(year: number) {
-    activeDate = `${year}-01-01`
+  async function selectYear(year: number) {
+    selectedYear = year
+    activeDate = ''
+    await tick()
+    resetCalendarViewport()
   }
+
+  function updateCalendarViewport() {
+    calendarScrollLeft = calendarScroll.scrollLeft
+    calendarScrollWidth = calendarScroll.scrollWidth
+    calendarClientWidth = calendarScroll.clientWidth
+  }
+
+  function resetCalendarViewport() {
+    calendarScroll.scrollLeft = 0
+    updateCalendarViewport()
+  }
+
+  function pageCalendar(direction: -1 | 1) {
+    const maxScrollLeft = calendarScrollWidth - calendarClientWidth
+    const nextScrollLeft = Math.min(maxScrollLeft, Math.max(0, calendarScrollLeft + direction * calendarClientWidth))
+    const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+    calendarScroll.scrollTo({ left: nextScrollLeft, behavior })
+    calendarScrollLeft = nextScrollLeft
+  }
+
+  onMount(() => {
+    updateCalendarViewport()
+    const observer = new ResizeObserver(updateCalendarViewport)
+    observer.observe(calendarScroll)
+    return () => observer.disconnect()
+  })
 
   function level(count: number) {
     if (count === 0) return 0
@@ -62,48 +99,54 @@
       <h3 id="publication-calendar-title" class="text-lg font-semibold text-black/85 dark:text-white/85">发布日历</h3>
       <p class="mt-1 text-xs text-black/45 dark:text-white/45">记录作品发布的日期，不等同于实际写作日</p>
     </div>
-    {#if years.length > 1}
-      <div class="flex items-center gap-1" aria-label="日历年份">
-        <button class="year-button" type="button" disabled={selectedYear <= years[0]} aria-label="上一年" onclick={() => selectYear(years[years.indexOf(selectedYear) - 1] ?? selectedYear)}>
-          <Icon icon="material-symbols:chevron-left-rounded" />
-        </button>
-        <span class="min-w-16 text-center text-sm font-semibold text-black/70 tabular-nums dark:text-white/70">{selectedYear}</span>
-        <button class="year-button" type="button" disabled={selectedYear >= years.at(-1)!} aria-label="下一年" onclick={() => selectYear(years[years.indexOf(selectedYear) + 1] ?? selectedYear)}>
-          <Icon icon="material-symbols:chevron-right-rounded" />
-        </button>
-      </div>
-    {/if}
+    <div class="calendar-controls" aria-label="日历视图">
+      <button class="year-button" type="button" disabled={!canPageCalendarBack} aria-label="查看更早月份" onclick={() => pageCalendar(-1)}>
+        <Icon icon="material-symbols:chevron-left-rounded" />
+      </button>
+      <button class="year-button" type="button" disabled={!canPageCalendarForward} aria-label="查看更晚月份" onclick={() => pageCalendar(1)}>
+        <Icon icon="material-symbols:chevron-right-rounded" />
+      </button>
+    </div>
   </div>
 
-  <div class="calendar-scroll">
-    <div class="calendar-shell" style={`--week-count: ${calendar.length / 7}`}>
-      <div class="month-spacer"></div>
-      <div class="month-labels" aria-hidden="true">
-        {#each monthMarkers as marker}<span style={`grid-column: ${marker.week + 1}`}>{marker.label}</span>{/each}
-      </div>
-      <div class="weekday-labels" aria-hidden="true">
-        <span>一</span><span></span><span>三</span><span></span><span>五</span><span></span><span>日</span>
-      </div>
-      <div class="calendar-grid" role="grid" aria-label={`${selectedYear} 年发布日历`}>
-        {#each calendar as cell}
-          {@const day = dayMap.get(cell.date)}
-          {#if cell.inYear && day}
-            <button
-              type="button"
-              class="calendar-hit"
-              class:selected={activeDate === cell.date}
-              aria-label={`${formatDate(day.date)}发布 ${day.count} 篇：${postDetails(day.posts)}`}
-              title={`${formatDate(day.date)} · ${day.count} 篇\n${postDetails(day.posts)}`}
-              onmouseenter={() => activeDate = day.date}
-              onfocus={() => activeDate = day.date}
-              onclick={() => activeDate = day.date}
-            ><span class="calendar-mark" data-level={level(day.count)}></span></button>
-          {:else}
-            <span class="calendar-hit" aria-hidden="true"><span class="calendar-mark" class:outside={!cell.inYear}></span></span>
-          {/if}
-        {/each}
+  <div class="calendar-layout">
+    <div class="calendar-scroll" bind:this={calendarScroll} onscroll={updateCalendarViewport}>
+      <div class="calendar-shell" style={`--week-count: ${calendar.length / 7}`}>
+        <div class="month-spacer"></div>
+        <div class="month-labels" aria-hidden="true">
+          {#each monthMarkers as marker}<span style={`grid-column: ${marker.week + 1}`}>{marker.label}</span>{/each}
+        </div>
+        <div class="weekday-labels" aria-hidden="true">
+          <span>一</span><span></span><span>三</span><span></span><span>五</span><span></span><span>日</span>
+        </div>
+        <div class="calendar-grid" role="grid" aria-label={`${calendarYear} 年发布日历`}>
+          {#each calendar as cell}
+            {@const day = dayMap.get(cell.date)}
+            {#if cell.inYear && day}
+              <button
+                type="button"
+                class="calendar-hit"
+                class:selected={activeDate === cell.date}
+                aria-label={`${formatDate(day.date)}发布 ${day.count} 篇：${postDetails(day.posts)}`}
+                title={`${formatDate(day.date)} · ${day.count} 篇\n${postDetails(day.posts)}`}
+                onmouseenter={() => activeDate = day.date}
+                onfocus={() => activeDate = day.date}
+                onclick={() => activeDate = day.date}
+              ><span class="calendar-mark" data-level={level(day.count)}></span></button>
+            {:else}
+              <span class="calendar-hit" aria-hidden="true"><span class="calendar-mark" class:outside={!cell.inYear}></span></span>
+            {/if}
+          {/each}
+        </div>
       </div>
     </div>
+    {#if years.length > 1}
+      <div class="year-tabs" aria-label="日历年份">
+        {#each years as year}
+          <button type="button" aria-pressed={calendarYear === year} class:active={calendarYear === year} onclick={() => selectYear(year)}>{year}</button>
+        {/each}
+      </div>
+    {/if}
   </div>
 
   <div class="mt-3 flex items-center justify-end gap-2 text-[0.65rem] text-black/35 dark:text-white/35" aria-label="发布数量色阶">
@@ -129,7 +172,15 @@
   :global(.dark) .year-button { color: color-mix(in oklab, white 55%, transparent); }
   .year-button:hover:not(:disabled) { background: var(--btn-plain-bg-hover); color: var(--primary); }
   .year-button:disabled { opacity: .25; }
-  .calendar-scroll { overflow-x: auto; padding-bottom: .35rem; }
+  .calendar-controls { display: flex; gap: .125rem; }
+  .calendar-layout { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .75rem; align-items: start; }
+  .calendar-scroll { min-width: 0; overflow-x: auto; scrollbar-width: none; }
+  .calendar-scroll::-webkit-scrollbar { display: none; }
+  .year-tabs { display: flex; flex-direction: column; gap: .25rem; align-items: stretch; }
+  .year-tabs button { min-width: 3.5rem; border-radius: .65rem; padding: .45rem .65rem; color: color-mix(in oklab, black 55%, transparent); font-size: .75rem; font-variant-numeric: tabular-nums; transition: 150ms ease; }
+  :global(.dark) .year-tabs button { color: color-mix(in oklab, white 55%, transparent); }
+  .year-tabs button:hover { background: var(--btn-plain-bg-hover); color: var(--primary); }
+  .year-tabs button.active { background: color-mix(in oklab, var(--primary) 13%, transparent); color: var(--primary); font-weight: 600; }
   .calendar-shell { display: grid; grid-template-columns: 1rem max-content; grid-template-rows: 1.2rem auto; gap: .25rem .55rem; min-width: max-content; }
   .month-labels { display: grid; grid-template-columns: repeat(var(--week-count), 24px); gap: 2px; color: color-mix(in oklab, black 38%, transparent); font-size: .625rem; }
   :global(.dark) .month-labels { color: color-mix(in oklab, white 38%, transparent); }
