@@ -93,7 +93,7 @@ async function main() {
 
     try {
       statistics = await fetchFallback()
-      statistics.content = content.totals
+      statistics.content = createEmptyStatistics(content).content
       console.log('Reused the last published statistics snapshot')
     } catch (fallbackError) {
       console.warn(`Published fallback unavailable: ${fallbackError.message}`)

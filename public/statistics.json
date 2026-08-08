@@ -11,7 +11,7 @@
   },
   "content": {
     "postCount": 62,
-    "totalWords": 128340,
+    "totalWords": 128634,
     "publications": [
       {
         "month": "2022-10",
@@ -89,7 +89,2892 @@
         "month": "2026-08",
         "count": 1
       }
-    ]
+    ],
+    "dailyPublications": [
+      {
+        "date": "2022-10-17",
+        "count": 1,
+        "posts": [
+          {
+            "title": "风信，是个好名字。",
+            "path": "/posts/fengxin-lou/",
+            "published": "2022-10-17",
+            "words": 467
+          }
+        ]
+      },
+      {
+        "date": "2024-01-30",
+        "count": 1,
+        "posts": [
+          {
+            "title": "OBS和VTube Studio的联合使用：Be a Vtuber",
+            "path": "/posts/obs-vtube-studio-vtuber-guide/",
+            "published": "2024-01-30",
+            "words": 163
+          }
+        ]
+      },
+      {
+        "date": "2024-06-20",
+        "count": 1,
+        "posts": [
+          {
+            "title": "存在主义阅读手记",
+            "path": "/posts/cunzai-zhuyi/",
+            "published": "2024-06-20",
+            "words": 2118
+          }
+        ]
+      },
+      {
+        "date": "2024-06-25",
+        "count": 2,
+        "posts": [
+          {
+            "title": "没有明天的我们，在昨天相恋",
+            "path": "/posts/meiyou-mingtian/",
+            "published": "2024-06-25",
+            "words": 1878
+          },
+          {
+            "title": "未尽之花",
+            "path": "/posts/weijin-zhi-hua/",
+            "published": "2024-06-25",
+            "words": 418
+          }
+        ]
+      },
+      {
+        "date": "2024-06-29",
+        "count": 1,
+        "posts": [
+          {
+            "title": "存在之近，存在之远",
+            "path": "/posts/cunzai-zhijin/",
+            "published": "2024-06-29",
+            "words": 1538
+          }
+        ]
+      },
+      {
+        "date": "2024-07-01",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Fuwari 博客主题使用指南",
+            "path": "/posts/fuwari-guide/",
+            "published": "2024-07-01",
+            "words": 495
+          }
+        ]
+      },
+      {
+        "date": "2024-07-08",
+        "count": 3,
+        "posts": [
+          {
+            "title": "春娇与志明",
+            "path": "/posts/chunjiao-yu-zhiming/",
+            "published": "2024-07-08",
+            "words": 1526
+          },
+          {
+            "title": "青春同人志",
+            "path": "/posts/qingchun-tongrenzhi/",
+            "published": "2024-07-08",
+            "words": 823
+          },
+          {
+            "title": "《以一年一萬元的價格》后",
+            "path": "/posts/yi-nian-yiwan-yuan/",
+            "published": "2024-07-08",
+            "words": 1357
+          }
+        ]
+      },
+      {
+        "date": "2024-07-10",
+        "count": 1,
+        "posts": [
+          {
+            "title": "最后期限",
+            "path": "/posts/zuihou-qixian/",
+            "published": "2024-07-10",
+            "words": 3401
+          }
+        ]
+      },
+      {
+        "date": "2024-07-15",
+        "count": 2,
+        "posts": [
+          {
+            "title": "少年巴比伦后",
+            "path": "/posts/shaonian-babilun/",
+            "published": "2024-07-15",
+            "words": 580
+          },
+          {
+            "title": "《汤岛之恋》",
+            "path": "/posts/tangdao-zhi-lian/",
+            "published": "2024-07-15",
+            "words": 753
+          }
+        ]
+      },
+      {
+        "date": "2024-07-17",
+        "count": 1,
+        "posts": [
+          {
+            "title": "虞美人草后",
+            "path": "/posts/yumei-cao/",
+            "published": "2024-07-17",
+            "words": 2460
+          }
+        ]
+      },
+      {
+        "date": "2024-08-04",
+        "count": 1,
+        "posts": [
+          {
+            "title": "潘多拉的盒子",
+            "path": "/posts/panduola/",
+            "published": "2024-08-04",
+            "words": 250
+          }
+        ]
+      },
+      {
+        "date": "2024-08-13",
+        "count": 2,
+        "posts": [
+          {
+            "title": "《食神》后",
+            "path": "/posts/shishen/",
+            "published": "2024-08-13",
+            "words": 617
+          },
+          {
+            "title": "《走走停停》后",
+            "path": "/posts/zouzoutingting/",
+            "published": "2024-08-13",
+            "words": 1132
+          }
+        ]
+      },
+      {
+        "date": "2024-08-17",
+        "count": 1,
+        "posts": [
+          {
+            "title": "我一个人来，一个人走",
+            "path": "/posts/wo-yigerenlai/",
+            "published": "2024-08-17",
+            "words": 1534
+          }
+        ]
+      },
+      {
+        "date": "2024-08-20",
+        "count": 1,
+        "posts": [
+          {
+            "title": "逆鳞之后",
+            "path": "/posts/nilin/",
+            "published": "2024-08-20",
+            "words": 747
+          }
+        ]
+      },
+      {
+        "date": "2024-08-29",
+        "count": 1,
+        "posts": [
+          {
+            "title": "月光宝盒后",
+            "path": "/posts/yueguang-baohe/",
+            "published": "2024-08-29",
+            "words": 2109
+          }
+        ]
+      },
+      {
+        "date": "2024-09-01",
+        "count": 2,
+        "posts": [
+          {
+            "title": "大圣娶亲后",
+            "path": "/posts/dasheng-quqin/",
+            "published": "2024-09-01",
+            "words": 2373
+          },
+          {
+            "title": "Vampires' Melody 吸血鬼的旋律 后",
+            "path": "/posts/vampires-melody/",
+            "published": "2024-09-01",
+            "words": 866
+          }
+        ]
+      },
+      {
+        "date": "2024-09-07",
+        "count": 1,
+        "posts": [
+          {
+            "title": "《大内密探零零发》后",
+            "path": "/posts/daneimitan-00fa/",
+            "published": "2024-09-07",
+            "words": 968
+          }
+        ]
+      },
+      {
+        "date": "2024-09-09",
+        "count": 1,
+        "posts": [
+          {
+            "title": "从《葬送的芙莉莲》到心理强迫",
+            "path": "/posts/frieren-ocd/",
+            "published": "2024-09-09",
+            "words": 591
+          }
+        ]
+      },
+      {
+        "date": "2024-09-26",
+        "count": 1,
+        "posts": [
+          {
+            "title": "《罗生门》阅读手记",
+            "path": "/posts/luoshengmen/",
+            "published": "2024-09-26",
+            "words": 2518
+          }
+        ]
+      },
+      {
+        "date": "2024-10-10",
+        "count": 1,
+        "posts": [
+          {
+            "title": "《撒哈拉的故事》阅读手记",
+            "path": "/posts/sahara-stories/",
+            "published": "2024-10-10",
+            "words": 1356
+          }
+        ]
+      },
+      {
+        "date": "2024-10-12",
+        "count": 1,
+        "posts": [
+          {
+            "title": "一只特立独行的猪",
+            "path": "/posts/a-maverick-pig/",
+            "published": "2024-10-12",
+            "words": 1122
+          }
+        ]
+      },
+      {
+        "date": "2024-10-15",
+        "count": 1,
+        "posts": [
+          {
+            "title": "《当我谈论跑步时，谈些什么》阅读手记",
+            "path": "/posts/talking-about-running/",
+            "published": "2024-10-15",
+            "words": 1908
+          }
+        ]
+      },
+      {
+        "date": "2024-10-18",
+        "count": 1,
+        "posts": [
+          {
+            "title": "妹妹人生",
+            "path": "/posts/imouto-jinsei/",
+            "published": "2024-10-18",
+            "words": 810
+          }
+        ]
+      },
+      {
+        "date": "2025-01-15",
+        "count": 1,
+        "posts": [
+          {
+            "title": "你是我的荣耀",
+            "path": "/posts/you-are-my-glory/",
+            "published": "2025-01-15",
+            "words": 870
+          }
+        ]
+      },
+      {
+        "date": "2025-02-16",
+        "count": 2,
+        "posts": [
+          {
+            "title": "长歌行：送君千里，终须一别",
+            "path": "/posts/changge-xing/",
+            "published": "2025-02-16",
+            "words": 1572
+          },
+          {
+            "title": "距离春天二十公分的雪兔与肖申克的救赎",
+            "path": "/posts/snow-rabbit-shawshank/",
+            "published": "2025-02-16",
+            "words": 1569
+          }
+        ]
+      },
+      {
+        "date": "2025-02-18",
+        "count": 1,
+        "posts": [
+          {
+            "title": "关于仙逆与凡人修仙传中的化凡",
+            "path": "/posts/xianni-huafan/",
+            "published": "2025-02-18",
+            "words": 2156
+          }
+        ]
+      },
+      {
+        "date": "2025-03-15",
+        "count": 1,
+        "posts": [
+          {
+            "title": "《画江湖之天罡》后——也许真正的完满并不存在",
+            "path": "/posts/huajianghu-tiangang/",
+            "published": "2025-03-15",
+            "words": 1081
+          }
+        ]
+      },
+      {
+        "date": "2025-05-15",
+        "count": 1,
+        "posts": [
+          {
+            "title": "从 NEKOPARA 的一篇评测开始",
+            "path": "/posts/nekopara-vol-1/",
+            "published": "2025-05-15",
+            "words": 2227
+          }
+        ]
+      },
+      {
+        "date": "2025-06-20",
+        "count": 1,
+        "posts": [
+          {
+            "title": "如花束般的恋爱",
+            "path": "/posts/ruhuashuban-de-lianai/",
+            "published": "2025-06-20",
+            "words": 1512
+          }
+        ]
+      },
+      {
+        "date": "2025-07-06",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Attention is Limited - Lost in the Middle",
+            "path": "/posts/attention-is-limited/",
+            "published": "2025-07-06",
+            "words": 1918
+          }
+        ]
+      },
+      {
+        "date": "2025-11-15",
+        "count": 1,
+        "posts": [
+          {
+            "title": "《放松时光：与你共享 lofi 故事》——给聪音接入 AI Chat",
+            "path": "/posts/cong-yin-ai-chat/",
+            "published": "2025-11-15",
+            "words": 622
+          }
+        ]
+      },
+      {
+        "date": "2025-12-29",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Termix —— 一个很酷的 Web-Based SSH 连接工具",
+            "path": "/posts/termix-web-ssh-guide/",
+            "published": "2025-12-29",
+            "words": 893
+          }
+        ]
+      },
+      {
+        "date": "2026-02-08",
+        "count": 1,
+        "posts": [
+          {
+            "title": "单图≠多图：多图理解时 VLM 为什么更容易\"胡说\"，以及一个两阶段解法",
+            "path": "/posts/multi-image-vlm/",
+            "published": "2026-02-08",
+            "words": 3508
+          }
+        ]
+      },
+      {
+        "date": "2026-06-01",
+        "count": 1,
+        "posts": [
+          {
+            "title": "云服务商跑路后：再次审视个人博客的形态与值得被记录的东西",
+            "path": "/posts/cloud-service-provider/",
+            "published": "2026-06-01",
+            "words": 2561
+          }
+        ]
+      },
+      {
+        "date": "2026-06-06",
+        "count": 1,
+        "posts": [
+          {
+            "title": "做过长期系统项目再看：RAG 怪兽是否适用于个人博客系统的图谱构建？",
+            "path": "/posts/rag-blog-graph/",
+            "published": "2026-06-06",
+            "words": 2480
+          }
+        ]
+      },
+      {
+        "date": "2026-06-07",
+        "count": 1,
+        "posts": [
+          {
+            "title": "重建博客：我的灵感来源都是哪里",
+            "path": "/posts/blog-rebuild-inspirations/",
+            "published": "2026-06-07",
+            "words": 1788
+          }
+        ]
+      },
+      {
+        "date": "2026-06-12",
+        "count": 1,
+        "posts": [
+          {
+            "title": "大模型时代：我的能力究竟是什么？",
+            "path": "/posts/what-is-my-ability-in-llm-era/",
+            "published": "2026-06-12",
+            "words": 2093
+          }
+        ]
+      },
+      {
+        "date": "2026-06-13",
+        "count": 1,
+        "posts": [
+          {
+            "title": "事如春夢了無痕，当时却只觉欢喜。",
+            "path": "/posts/chongfu-zhi-le/",
+            "published": "2026-06-13",
+            "words": 1030
+          }
+        ]
+      },
+      {
+        "date": "2026-06-14",
+        "count": 1,
+        "posts": [
+          {
+            "title": "我的找书渠道",
+            "path": "/posts/my-book-finding-channels/",
+            "published": "2026-06-14",
+            "words": 252
+          }
+        ]
+      },
+      {
+        "date": "2026-06-18",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Obsidian-YOLO 使用初体验",
+            "path": "/posts/obsidian-yolo/",
+            "published": "2026-06-18",
+            "words": 1384
+          }
+        ]
+      },
+      {
+        "date": "2026-06-23",
+        "count": 1,
+        "posts": [
+          {
+            "title": "当主流 Agent 框架无法适配需求时，我们造了什么",
+            "path": "/posts/agent-framework-exploration/",
+            "published": "2026-06-23",
+            "words": 5279
+          }
+        ]
+      },
+      {
+        "date": "2026-06-28",
+        "count": 1,
+        "posts": [
+          {
+            "title": "去做 Long-Term Memory！AI 本科毕业后的回顾与计划",
+            "path": "/posts/long-term-memory-graduation-review-and-plan/",
+            "published": "2026-06-28",
+            "words": 3751
+          }
+        ]
+      },
+      {
+        "date": "2026-06-29",
+        "count": 1,
+        "posts": [
+          {
+            "title": "memU 是啥？我们来拆开看看（长期更新）",
+            "path": "/posts/memu-source-code-breakdown/",
+            "published": "2026-06-29",
+            "words": 4657
+          }
+        ]
+      },
+      {
+        "date": "2026-06-30",
+        "count": 1,
+        "posts": [
+          {
+            "title": "和光同尘——从韩立说起",
+            "path": "/posts/heguang-tongchen/",
+            "published": "2026-06-30",
+            "words": 3798
+          }
+        ]
+      },
+      {
+        "date": "2026-07-02",
+        "count": 1,
+        "posts": [
+          {
+            "title": "站在 C 端开发者的角度看 memU 的架构转向",
+            "path": "/posts/memu-adr0007-ce-duan-perspective/",
+            "published": "2026-07-02",
+            "words": 2091
+          }
+        ]
+      },
+      {
+        "date": "2026-07-03",
+        "count": 1,
+        "posts": [
+          {
+            "title": "从 How We Use Skills 开始：什么是渐进式披露？什么是任务拆解？我想了解什么？",
+            "path": "/posts/progressive-disclosure-and-novel-agent/",
+            "published": "2026-07-03",
+            "words": 4220
+          }
+        ]
+      },
+      {
+        "date": "2026-07-07",
+        "count": 1,
+        "posts": [
+          {
+            "title": "gotcha.md：给 Agent 一本项目避坑手册",
+            "path": "/posts/gotcha-agent-rules/",
+            "published": "2026-07-07",
+            "words": 2303
+          }
+        ]
+      },
+      {
+        "date": "2026-07-12",
+        "count": 1,
+        "posts": [
+          {
+            "title": "关于毕业后再学 TF-IDF 这档事",
+            "path": "/posts/tf-idf-and-bm25/",
+            "published": "2026-07-12",
+            "words": 1738
+          }
+        ]
+      },
+      {
+        "date": "2026-07-14",
+        "count": 2,
+        "posts": [
+          {
+            "title": "Sparse vs Dense：从 BPE 到 Hybrid Search",
+            "path": "/posts/sparsing-and-densing-embeddings/",
+            "published": "2026-07-14",
+            "words": 4577
+          },
+          {
+            "title": "Travellin' Cats in Germany: 赛博猫控的乐园",
+            "path": "/posts/travellin-cats-in-germany/",
+            "published": "2026-07-14",
+            "words": 219
+          }
+        ]
+      },
+      {
+        "date": "2026-07-15",
+        "count": 1,
+        "posts": [
+          {
+            "title": "MoeChat：AI 角色如何记住你、感受情绪",
+            "path": "/posts/moechat_ltm/",
+            "published": "2026-07-15",
+            "words": 6363
+          }
+        ]
+      },
+      {
+        "date": "2026-07-21",
+        "count": 1,
+        "posts": [
+          {
+            "title": "了解 RRF 和 Hybrid Search：基于时间的检索应该以什么形态混合，以及它在项目场景和陪伴场景的适配性",
+            "path": "/posts/rrf-vs-hybrid-search/",
+            "published": "2026-07-21",
+            "words": 8472
+          }
+        ]
+      },
+      {
+        "date": "2026-07-23",
+        "count": 1,
+        "posts": [
+          {
+            "title": "以坏架构为鉴：Claude Desktop 五套定时系统反映出来的 cowork 和 code 分离架构的弊端",
+            "path": "/posts/claude-desktop-bridging-problem/",
+            "published": "2026-07-23",
+            "words": 2895
+          }
+        ]
+      },
+      {
+        "date": "2026-07-28",
+        "count": 1,
+        "posts": [
+          {
+            "title": "协议的形状决定能力：codex 为什么砍掉 chat_completion，以及桌宠的「边说边做」到底卡在哪",
+            "path": "/posts/resposne-vs-chat_completion/",
+            "published": "2026-07-28",
+            "words": 8857
+          }
+        ]
+      },
+      {
+        "date": "2026-08-05",
+        "count": 1,
+        "posts": [
+          {
+            "title": "GitHub Stacked PRs 使用初体验",
+            "path": "/posts/github-stacked-prs/",
+            "published": "2026-08-05",
+            "words": 3020
+          }
+        ]
+      }
+    ],
+    "monthlyOutput": [
+      {
+        "month": "2022-10",
+        "postCount": 1,
+        "words": 467,
+        "estimatedMinutes": 2
+      },
+      {
+        "month": "2022-11",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2022-12",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2023-01",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2023-02",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2023-03",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2023-04",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2023-05",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2023-06",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2023-07",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2023-08",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2023-09",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2023-10",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2023-11",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2023-12",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2024-01",
+        "postCount": 1,
+        "words": 163,
+        "estimatedMinutes": 1
+      },
+      {
+        "month": "2024-02",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2024-03",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2024-04",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2024-05",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2024-06",
+        "postCount": 4,
+        "words": 5952,
+        "estimatedMinutes": 30
+      },
+      {
+        "month": "2024-07",
+        "postCount": 8,
+        "words": 11395,
+        "estimatedMinutes": 57
+      },
+      {
+        "month": "2024-08",
+        "postCount": 6,
+        "words": 6389,
+        "estimatedMinutes": 33
+      },
+      {
+        "month": "2024-09",
+        "postCount": 5,
+        "words": 7316,
+        "estimatedMinutes": 37
+      },
+      {
+        "month": "2024-10",
+        "postCount": 4,
+        "words": 5196,
+        "estimatedMinutes": 27
+      },
+      {
+        "month": "2024-11",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2024-12",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2025-01",
+        "postCount": 1,
+        "words": 870,
+        "estimatedMinutes": 4
+      },
+      {
+        "month": "2025-02",
+        "postCount": 3,
+        "words": 5297,
+        "estimatedMinutes": 27
+      },
+      {
+        "month": "2025-03",
+        "postCount": 1,
+        "words": 1081,
+        "estimatedMinutes": 5
+      },
+      {
+        "month": "2025-04",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2025-05",
+        "postCount": 1,
+        "words": 2227,
+        "estimatedMinutes": 11
+      },
+      {
+        "month": "2025-06",
+        "postCount": 1,
+        "words": 1512,
+        "estimatedMinutes": 8
+      },
+      {
+        "month": "2025-07",
+        "postCount": 1,
+        "words": 1918,
+        "estimatedMinutes": 10
+      },
+      {
+        "month": "2025-08",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2025-09",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2025-10",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2025-11",
+        "postCount": 1,
+        "words": 622,
+        "estimatedMinutes": 3
+      },
+      {
+        "month": "2025-12",
+        "postCount": 1,
+        "words": 893,
+        "estimatedMinutes": 4
+      },
+      {
+        "month": "2026-01",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2026-02",
+        "postCount": 1,
+        "words": 3508,
+        "estimatedMinutes": 18
+      },
+      {
+        "month": "2026-03",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2026-04",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2026-05",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2026-06",
+        "postCount": 11,
+        "words": 29073,
+        "estimatedMinutes": 144
+      },
+      {
+        "month": "2026-07",
+        "postCount": 10,
+        "words": 41735,
+        "estimatedMinutes": 208
+      },
+      {
+        "month": "2026-08",
+        "postCount": 1,
+        "words": 3020,
+        "estimatedMinutes": 15
+      }
+    ],
+    "categoryEvolution": {
+      "categories": [
+        "观后",
+        "思考",
+        "边写边学",
+        "教程",
+        "资源"
+      ],
+      "months": [
+        {
+          "month": "2022-10",
+          "total": 1,
+          "values": [
+            {
+              "category": "观后",
+              "count": 1,
+              "share": 100
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2022-11",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2022-12",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2023-01",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2023-02",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2023-03",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2023-04",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2023-05",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2023-06",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2023-07",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2023-08",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2023-09",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2023-10",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2023-11",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2023-12",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2024-01",
+          "total": 1,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 1,
+              "share": 100
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2024-02",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2024-03",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2024-04",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2024-05",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2024-06",
+          "total": 4,
+          "values": [
+            {
+              "category": "观后",
+              "count": 2,
+              "share": 50
+            },
+            {
+              "category": "思考",
+              "count": 2,
+              "share": 50
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2024-07",
+          "total": 8,
+          "values": [
+            {
+              "category": "观后",
+              "count": 7,
+              "share": 87.5
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 1,
+              "share": 12.5
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2024-08",
+          "total": 6,
+          "values": [
+            {
+              "category": "观后",
+              "count": 6,
+              "share": 100
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2024-09",
+          "total": 5,
+          "values": [
+            {
+              "category": "观后",
+              "count": 4,
+              "share": 80
+            },
+            {
+              "category": "思考",
+              "count": 1,
+              "share": 20
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2024-10",
+          "total": 4,
+          "values": [
+            {
+              "category": "观后",
+              "count": 4,
+              "share": 100
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2024-11",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2024-12",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2025-01",
+          "total": 1,
+          "values": [
+            {
+              "category": "观后",
+              "count": 1,
+              "share": 100
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2025-02",
+          "total": 3,
+          "values": [
+            {
+              "category": "观后",
+              "count": 3,
+              "share": 100
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2025-03",
+          "total": 1,
+          "values": [
+            {
+              "category": "观后",
+              "count": 1,
+              "share": 100
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2025-04",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2025-05",
+          "total": 1,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 1,
+              "share": 100
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2025-06",
+          "total": 1,
+          "values": [
+            {
+              "category": "观后",
+              "count": 1,
+              "share": 100
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2025-07",
+          "total": 1,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 1,
+              "share": 100
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2025-08",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2025-09",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2025-10",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2025-11",
+          "total": 1,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 1,
+              "share": 100
+            }
+          ]
+        },
+        {
+          "month": "2025-12",
+          "total": 1,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 1,
+              "share": 100
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2026-01",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2026-02",
+          "total": 1,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 1,
+              "share": 100
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2026-03",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2026-04",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2026-05",
+          "total": 0,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2026-06",
+          "total": 11,
+          "values": [
+            {
+              "category": "观后",
+              "count": 1,
+              "share": 9.09
+            },
+            {
+              "category": "思考",
+              "count": 5,
+              "share": 45.45
+            },
+            {
+              "category": "边写边学",
+              "count": 3,
+              "share": 27.27
+            },
+            {
+              "category": "教程",
+              "count": 1,
+              "share": 9.09
+            },
+            {
+              "category": "资源",
+              "count": 1,
+              "share": 9.1
+            }
+          ]
+        },
+        {
+          "month": "2026-07",
+          "total": 10,
+          "values": [
+            {
+              "category": "观后",
+              "count": 1,
+              "share": 10
+            },
+            {
+              "category": "思考",
+              "count": 3,
+              "share": 30
+            },
+            {
+              "category": "边写边学",
+              "count": 6,
+              "share": 60
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2026-08",
+          "total": 1,
+          "values": [
+            {
+              "category": "观后",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "思考",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "边写边学",
+              "count": 1,
+              "share": 100
+            },
+            {
+              "category": "教程",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "资源",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        }
+      ]
+    },
+    "seriesLifelines": [
+      {
+        "name": "LLM",
+        "firstPublished": "2025-07-06",
+        "lastPublished": "2026-07-28",
+        "postCount": 6,
+        "totalWords": 19478,
+        "posts": [
+          {
+            "title": "Attention is Limited - Lost in the Middle",
+            "path": "/posts/attention-is-limited/",
+            "published": "2025-07-06",
+            "words": 1918
+          },
+          {
+            "title": "《放松时光：与你共享 lofi 故事》——给聪音接入 AI Chat",
+            "path": "/posts/cong-yin-ai-chat/",
+            "published": "2025-11-15",
+            "words": 622
+          },
+          {
+            "title": "单图≠多图：多图理解时 VLM 为什么更容易\"胡说\"，以及一个两阶段解法",
+            "path": "/posts/multi-image-vlm/",
+            "published": "2026-02-08",
+            "words": 3508
+          },
+          {
+            "title": "做过长期系统项目再看：RAG 怪兽是否适用于个人博客系统的图谱构建？",
+            "path": "/posts/rag-blog-graph/",
+            "published": "2026-06-06",
+            "words": 2480
+          },
+          {
+            "title": "大模型时代：我的能力究竟是什么？",
+            "path": "/posts/what-is-my-ability-in-llm-era/",
+            "published": "2026-06-12",
+            "words": 2093
+          },
+          {
+            "title": "协议的形状决定能力：codex 为什么砍掉 chat_completion，以及桌宠的「边说边做」到底卡在哪",
+            "path": "/posts/resposne-vs-chat_completion/",
+            "published": "2026-07-28",
+            "words": 8857
+          }
+        ]
+      },
+      {
+        "name": "Long-Term Memory",
+        "firstPublished": "2026-06-29",
+        "lastPublished": "2026-07-21",
+        "postCount": 5,
+        "totalWords": 23886,
+        "posts": [
+          {
+            "title": "memU 是啥？我们来拆开看看（长期更新）",
+            "path": "/posts/memu-source-code-breakdown/",
+            "published": "2026-06-29",
+            "words": 4657
+          },
+          {
+            "title": "站在 C 端开发者的角度看 memU 的架构转向",
+            "path": "/posts/memu-adr0007-ce-duan-perspective/",
+            "published": "2026-07-02",
+            "words": 2091
+          },
+          {
+            "title": "gotcha.md：给 Agent 一本项目避坑手册",
+            "path": "/posts/gotcha-agent-rules/",
+            "published": "2026-07-07",
+            "words": 2303
+          },
+          {
+            "title": "MoeChat：AI 角色如何记住你、感受情绪",
+            "path": "/posts/moechat_ltm/",
+            "published": "2026-07-15",
+            "words": 6363
+          },
+          {
+            "title": "了解 RRF 和 Hybrid Search：基于时间的检索应该以什么形态混合，以及它在项目场景和陪伴场景的适配性",
+            "path": "/posts/rrf-vs-hybrid-search/",
+            "published": "2026-07-21",
+            "words": 8472
+          }
+        ]
+      },
+      {
+        "name": "NLP",
+        "firstPublished": "2026-07-12",
+        "lastPublished": "2026-07-21",
+        "postCount": 3,
+        "totalWords": 14787,
+        "posts": [
+          {
+            "title": "关于毕业后再学 TF-IDF 这档事",
+            "path": "/posts/tf-idf-and-bm25/",
+            "published": "2026-07-12",
+            "words": 1738
+          },
+          {
+            "title": "Sparse vs Dense：从 BPE 到 Hybrid Search",
+            "path": "/posts/sparsing-and-densing-embeddings/",
+            "published": "2026-07-14",
+            "words": 4577
+          },
+          {
+            "title": "了解 RRF 和 Hybrid Search：基于时间的检索应该以什么形态混合，以及它在项目场景和陪伴场景的适配性",
+            "path": "/posts/rrf-vs-hybrid-search/",
+            "published": "2026-07-21",
+            "words": 8472
+          }
+        ]
+      },
+      {
+        "name": "观影",
+        "firstPublished": "2024-07-08",
+        "lastPublished": "2026-06-30",
+        "postCount": 17,
+        "totalWords": 24978,
+        "posts": [
+          {
+            "title": "春娇与志明",
+            "path": "/posts/chunjiao-yu-zhiming/",
+            "published": "2024-07-08",
+            "words": 1526
+          },
+          {
+            "title": "青春同人志",
+            "path": "/posts/qingchun-tongrenzhi/",
+            "published": "2024-07-08",
+            "words": 823
+          },
+          {
+            "title": "《食神》后",
+            "path": "/posts/shishen/",
+            "published": "2024-08-13",
+            "words": 617
+          },
+          {
+            "title": "《走走停停》后",
+            "path": "/posts/zouzoutingting/",
+            "published": "2024-08-13",
+            "words": 1132
+          },
+          {
+            "title": "我一个人来，一个人走",
+            "path": "/posts/wo-yigerenlai/",
+            "published": "2024-08-17",
+            "words": 1534
+          },
+          {
+            "title": "逆鳞之后",
+            "path": "/posts/nilin/",
+            "published": "2024-08-20",
+            "words": 747
+          },
+          {
+            "title": "月光宝盒后",
+            "path": "/posts/yueguang-baohe/",
+            "published": "2024-08-29",
+            "words": 2109
+          },
+          {
+            "title": "大圣娶亲后",
+            "path": "/posts/dasheng-quqin/",
+            "published": "2024-09-01",
+            "words": 2373
+          },
+          {
+            "title": "《大内密探零零发》后",
+            "path": "/posts/daneimitan-00fa/",
+            "published": "2024-09-07",
+            "words": 968
+          },
+          {
+            "title": "从《葬送的芙莉莲》到心理强迫",
+            "path": "/posts/frieren-ocd/",
+            "published": "2024-09-09",
+            "words": 591
+          },
+          {
+            "title": "你是我的荣耀",
+            "path": "/posts/you-are-my-glory/",
+            "published": "2025-01-15",
+            "words": 870
+          },
+          {
+            "title": "长歌行：送君千里，终须一别",
+            "path": "/posts/changge-xing/",
+            "published": "2025-02-16",
+            "words": 1572
+          },
+          {
+            "title": "距离春天二十公分的雪兔与肖申克的救赎",
+            "path": "/posts/snow-rabbit-shawshank/",
+            "published": "2025-02-16",
+            "words": 1569
+          },
+          {
+            "title": "关于仙逆与凡人修仙传中的化凡",
+            "path": "/posts/xianni-huafan/",
+            "published": "2025-02-18",
+            "words": 2156
+          },
+          {
+            "title": "《画江湖之天罡》后——也许真正的完满并不存在",
+            "path": "/posts/huajianghu-tiangang/",
+            "published": "2025-03-15",
+            "words": 1081
+          },
+          {
+            "title": "如花束般的恋爱",
+            "path": "/posts/ruhuashuban-de-lianai/",
+            "published": "2025-06-20",
+            "words": 1512
+          },
+          {
+            "title": "和光同尘——从韩立说起",
+            "path": "/posts/heguang-tongchen/",
+            "published": "2026-06-30",
+            "words": 3798
+          }
+        ]
+      },
+      {
+        "name": "博客",
+        "firstPublished": "2024-07-01",
+        "lastPublished": "2026-06-18",
+        "postCount": 5,
+        "totalWords": 8708,
+        "posts": [
+          {
+            "title": "Fuwari 博客主题使用指南",
+            "path": "/posts/fuwari-guide/",
+            "published": "2024-07-01",
+            "words": 495
+          },
+          {
+            "title": "云服务商跑路后：再次审视个人博客的形态与值得被记录的东西",
+            "path": "/posts/cloud-service-provider/",
+            "published": "2026-06-01",
+            "words": 2561
+          },
+          {
+            "title": "做过长期系统项目再看：RAG 怪兽是否适用于个人博客系统的图谱构建？",
+            "path": "/posts/rag-blog-graph/",
+            "published": "2026-06-06",
+            "words": 2480
+          },
+          {
+            "title": "重建博客：我的灵感来源都是哪里",
+            "path": "/posts/blog-rebuild-inspirations/",
+            "published": "2026-06-07",
+            "words": 1788
+          },
+          {
+            "title": "Obsidian-YOLO 使用初体验",
+            "path": "/posts/obsidian-yolo/",
+            "published": "2026-06-18",
+            "words": 1384
+          }
+        ]
+      },
+      {
+        "name": "游戏",
+        "firstPublished": "2022-10-17",
+        "lastPublished": "2025-11-15",
+        "postCount": 3,
+        "totalWords": 1955,
+        "posts": [
+          {
+            "title": "风信，是个好名字。",
+            "path": "/posts/fengxin-lou/",
+            "published": "2022-10-17",
+            "words": 467
+          },
+          {
+            "title": "Vampires' Melody 吸血鬼的旋律 后",
+            "path": "/posts/vampires-melody/",
+            "published": "2024-09-01",
+            "words": 866
+          },
+          {
+            "title": "《放松时光：与你共享 lofi 故事》——给聪音接入 AI Chat",
+            "path": "/posts/cong-yin-ai-chat/",
+            "published": "2025-11-15",
+            "words": 622
+          }
+        ]
+      },
+      {
+        "name": "阅读",
+        "firstPublished": "2024-06-20",
+        "lastPublished": "2025-02-16",
+        "postCount": 15,
+        "totalWords": 22498,
+        "posts": [
+          {
+            "title": "存在主义阅读手记",
+            "path": "/posts/cunzai-zhuyi/",
+            "published": "2024-06-20",
+            "words": 2118
+          },
+          {
+            "title": "没有明天的我们，在昨天相恋",
+            "path": "/posts/meiyou-mingtian/",
+            "published": "2024-06-25",
+            "words": 1878
+          },
+          {
+            "title": "未尽之花",
+            "path": "/posts/weijin-zhi-hua/",
+            "published": "2024-06-25",
+            "words": 418
+          },
+          {
+            "title": "《以一年一萬元的價格》后",
+            "path": "/posts/yi-nian-yiwan-yuan/",
+            "published": "2024-07-08",
+            "words": 1357
+          },
+          {
+            "title": "最后期限",
+            "path": "/posts/zuihou-qixian/",
+            "published": "2024-07-10",
+            "words": 3401
+          },
+          {
+            "title": "少年巴比伦后",
+            "path": "/posts/shaonian-babilun/",
+            "published": "2024-07-15",
+            "words": 580
+          },
+          {
+            "title": "《汤岛之恋》",
+            "path": "/posts/tangdao-zhi-lian/",
+            "published": "2024-07-15",
+            "words": 753
+          },
+          {
+            "title": "虞美人草后",
+            "path": "/posts/yumei-cao/",
+            "published": "2024-07-17",
+            "words": 2460
+          },
+          {
+            "title": "潘多拉的盒子",
+            "path": "/posts/panduola/",
+            "published": "2024-08-04",
+            "words": 250
+          },
+          {
+            "title": "《罗生门》阅读手记",
+            "path": "/posts/luoshengmen/",
+            "published": "2024-09-26",
+            "words": 2518
+          },
+          {
+            "title": "《撒哈拉的故事》阅读手记",
+            "path": "/posts/sahara-stories/",
+            "published": "2024-10-10",
+            "words": 1356
+          },
+          {
+            "title": "一只特立独行的猪",
+            "path": "/posts/a-maverick-pig/",
+            "published": "2024-10-12",
+            "words": 1122
+          },
+          {
+            "title": "《当我谈论跑步时，谈些什么》阅读手记",
+            "path": "/posts/talking-about-running/",
+            "published": "2024-10-15",
+            "words": 1908
+          },
+          {
+            "title": "妹妹人生",
+            "path": "/posts/imouto-jinsei/",
+            "published": "2024-10-18",
+            "words": 810
+          },
+          {
+            "title": "距离春天二十公分的雪兔与肖申克的救赎",
+            "path": "/posts/snow-rabbit-shawshank/",
+            "published": "2025-02-16",
+            "words": 1569
+          }
+        ]
+      },
+      {
+        "name": "哲学思考",
+        "firstPublished": "2024-06-20",
+        "lastPublished": "2024-08-17",
+        "postCount": 4,
+        "totalWords": 5440,
+        "posts": [
+          {
+            "title": "存在主义阅读手记",
+            "path": "/posts/cunzai-zhuyi/",
+            "published": "2024-06-20",
+            "words": 2118
+          },
+          {
+            "title": "存在之近，存在之远",
+            "path": "/posts/cunzai-zhijin/",
+            "published": "2024-06-29",
+            "words": 1538
+          },
+          {
+            "title": "潘多拉的盒子",
+            "path": "/posts/panduola/",
+            "published": "2024-08-04",
+            "words": 250
+          },
+          {
+            "title": "我一个人来，一个人走",
+            "path": "/posts/wo-yigerenlai/",
+            "published": "2024-08-17",
+            "words": 1534
+          }
+        ]
+      }
+    ],
+    "rhythm": {
+      "firstPublished": "2022-10-17",
+      "lastPublished": "2026-08-05",
+      "spanDays": 1389,
+      "publishingDays": 54,
+      "medianIntervalDays": 5,
+      "densest30Days": {
+        "start": "2024-06-20",
+        "end": "2024-07-19",
+        "count": 12
+      },
+      "longestGapDays": 470
+    }
   },
   "ranges": {
     "7d": [],
