@@ -4,7 +4,8 @@ published: 2025-09-07
 featured: true
 category: 观后
 shelf: '书籍'
-blurb: 在返校路上的焦虑里，动物的视角给了我一场好梦。
+description: 在返校路上的焦虑里，动物的视角给了我一场好梦。
+series: [阅读]
 ---
 
 ![我能有什么坏心思呢](../../assets/img/wo-neng-you-shenme-huai-xinsi-ne/PixPin_2026-08-08_23-04-37.jpg)

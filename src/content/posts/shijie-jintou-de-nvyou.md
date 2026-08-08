@@ -4,7 +4,8 @@ published: 2024-03-26
 featured: true
 category: 观后
 shelf: '书籍'
-blurb: 非常喜欢的风格，让我意识到中国二十一世纪文学除了伤痛文学和现实主义之外还有一些别的东西，比如物哀。
+description: 非常喜欢的风格，让我意识到中国二十一世纪文学除了伤痛文学和现实主义之外还有一些别的东西，比如物哀。
+series: [阅读]
 ---
 
 ![世界尽头的女友](../../assets/img/shijie-jintou-de-nvyou/PixPin_2026-08-08_23-30-49.jpg)

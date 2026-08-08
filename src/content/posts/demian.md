@@ -4,7 +4,8 @@ published: 2024-04-01
 featured: true
 category: 观后
 shelf: '书籍'
-blurb: 黑塞在夏娃太太里面谈到的契机，可以反复读。
+description: 黑塞在夏娃太太里面谈到的契机，可以反复读。
+series: [阅读]
 ---
 
 ![德米安](../../assets/img/demian/PixPin_2026-08-08_23-27-40.jpg)

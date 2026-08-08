@@ -4,7 +4,8 @@ published: 2026-08-08
 featured: true
 category: 观后
 shelf: '书籍'
-blurb: 长期地追求一样东西，即便它是一场不切实际的幻梦，也是一种不错的选择。
+description: 长期地追求一样东西，即便它是一场不切实际的幻梦，也是一种不错的选择。
+series: [阅读]
 ---
 
 ![长安的荔枝](../../assets/img/changan-de-lizhi/PixPin_2026-08-08_23-12-52.jpg)
