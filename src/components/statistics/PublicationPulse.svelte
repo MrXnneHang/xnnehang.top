@@ -10,8 +10,8 @@
     type TrailRange,
   } from './writing-trail-utils'
 
-  export let months: StatisticsMonthlyOutput[]
-  export let range: TrailRange
+  export let months: StatisticsMonthlyOutput[] = undefined!
+  export let range: TrailRange = undefined!
 
   type Metric = 'posts' | 'words' | 'minutes'
   const metrics: Array<{ value: Metric; label: string; unit: string }> = [

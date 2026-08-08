@@ -58,16 +58,31 @@ test('calculates rounded averages safely', () => {
 test('builds chronological buckets including zero months', () => {
   const totals = buildContentTotals([
     contentPost(),
-    contentPost({ title: 'Second', path: '/posts/second/', published: '2026-03-04', words: 800, estimatedMinutes: 3 }),
-    contentPost({ title: 'Third', path: '/posts/third/', published: '2025-12-31', words: 500, estimatedMinutes: 2 }),
+    contentPost({
+      title: 'Second',
+      path: '/posts/second/',
+      published: '2026-03-04',
+      words: 800,
+      estimatedMinutes: 3,
+    }),
+    contentPost({
+      title: 'Third',
+      path: '/posts/third/',
+      published: '2025-12-31',
+      words: 500,
+      estimatedMinutes: 2,
+    }),
   ])
 
-  assert.deepEqual(totals.monthlyOutput.map(({ month, postCount }) => ({ month, postCount })), [
-    { month: '2025-12', postCount: 1 },
-    { month: '2026-01', postCount: 1 },
-    { month: '2026-02', postCount: 0 },
-    { month: '2026-03', postCount: 1 },
-  ])
+  assert.deepEqual(
+    totals.monthlyOutput.map(({ month, postCount }) => ({ month, postCount })),
+    [
+      { month: '2025-12', postCount: 1 },
+      { month: '2026-01', postCount: 1 },
+      { month: '2026-02', postCount: 0 },
+      { month: '2026-03', postCount: 1 },
+    ]
+  )
   assert.equal(totals.dailyPublications[0].date, '2025-12-31')
   assert.equal(totals.totalWords, 2500)
 })
@@ -93,24 +108,40 @@ test('calculates publication rhythm by distinct publication days', () => {
 
 test('folds excess categories and preserves monthly count and share totals', () => {
   const categories = ['', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
-  const totals = buildContentTotals(categories.map((category, index) => contentPost({
-    title: `Post ${index}`,
-    path: `/posts/${index}/`,
-    category,
-  })))
+  const totals = buildContentTotals(
+    categories.map((category, index) =>
+      contentPost({
+        title: `Post ${index}`,
+        path: `/posts/${index}/`,
+        category,
+      })
+    )
+  )
   const month = totals.categoryEvolution.months[0]
 
   assert.equal(totals.categoryEvolution.categories.length, 8)
   assert.ok(totals.categoryEvolution.categories.includes('未分类'))
   assert.ok(totals.categoryEvolution.categories.includes('其他'))
-  assert.equal(month.values.reduce((sum, value) => sum + value.count, 0), 9)
-  assert.equal(month.values.reduce((sum, value) => sum + value.share, 0), 100)
+  assert.equal(
+    month.values.reduce((sum, value) => sum + value.count, 0),
+    9
+  )
+  assert.equal(
+    month.values.reduce((sum, value) => sum + value.share, 0),
+    100
+  )
 })
 
 test('adds posts to multiple series without double-counting site totals', () => {
   const totals = buildContentTotals([
     contentPost({ series: ['Alpha', 'Beta'] }),
-    contentPost({ title: 'Second', path: '/posts/second/', published: '2026-02-01', words: 300, series: ['Alpha'] }),
+    contentPost({
+      title: 'Second',
+      path: '/posts/second/',
+      published: '2026-02-01',
+      words: 300,
+      series: ['Alpha'],
+    }),
   ])
 
   assert.equal(totals.postCount, 2)

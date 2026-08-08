@@ -53,7 +53,11 @@ function monthRange(first, last) {
   const end = dateFromKey(`${last.slice(0, 7)}-01`)
   const months = []
 
-  for (let cursor = start; cursor <= end; cursor = new Date(Date.UTC(cursor.getUTCFullYear(), cursor.getUTCMonth() + 1, 1))) {
+  for (
+    let cursor = start;
+    cursor <= end;
+    cursor = new Date(Date.UTC(cursor.getUTCFullYear(), cursor.getUTCMonth() + 1, 1))
+  ) {
     months.push(dateKey(cursor).slice(0, 7))
   }
   return months
@@ -176,11 +180,14 @@ export function buildContentTotals(inputPosts = []) {
   const dailyPublications = [...dailyMap.values()]
   const monthlyOutput = [...monthlyMap.values()]
   const rankedCategories = [...categoryCounts]
-    .sort(([nameA, countA], [nameB, countB]) => countB - countA || nameA.localeCompare(nameB, 'zh-CN'))
+    .sort(
+      ([nameA, countA], [nameB, countB]) => countB - countA || nameA.localeCompare(nameB, 'zh-CN')
+    )
     .map(([name]) => name)
-  const categories = rankedCategories.length > 8
-    ? [...rankedCategories.slice(0, 7), OTHER_CATEGORY]
-    : rankedCategories
+  const categories =
+    rankedCategories.length > 8
+      ? [...rankedCategories.slice(0, 7), OTHER_CATEGORY]
+      : rankedCategories
   const visibleCategorySet = new Set(categories)
   const categoryMonths = months.map((month) => {
     const rawValues = categoryMonthMaps.get(month) ?? new Map()
@@ -195,9 +202,11 @@ export function buildContentTotals(inputPosts = []) {
       return { category, count, share: average(count * 100, total) }
     })
     if (total > 0 && values.length > 0) {
-      const remainder = Math.round((100 - values.reduce((sum, value) => sum + value.share, 0)) * 100) / 100
+      const remainder =
+        Math.round((100 - values.reduce((sum, value) => sum + value.share, 0)) * 100) / 100
       const lastNonEmpty = values.findLast((value) => value.count > 0)
-      if (lastNonEmpty) lastNonEmpty.share = Math.round((lastNonEmpty.share + remainder) * 100) / 100
+      if (lastNonEmpty)
+        lastNonEmpty.share = Math.round((lastNonEmpty.share + remainder) * 100) / 100
     }
     return { month, total, values }
   })
@@ -210,7 +219,10 @@ export function buildContentTotals(inputPosts = []) {
       totalWords: series.posts.reduce((sum, post) => sum + post.words, 0),
       posts: series.posts,
     }))
-    .sort((a, b) => b.lastPublished.localeCompare(a.lastPublished) || a.name.localeCompare(b.name, 'zh-CN'))
+    .sort(
+      (a, b) =>
+        b.lastPublished.localeCompare(a.lastPublished) || a.name.localeCompare(b.name, 'zh-CN')
+    )
 
   return {
     postCount: posts.length,

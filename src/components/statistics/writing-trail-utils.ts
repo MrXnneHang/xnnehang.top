@@ -38,7 +38,10 @@ export function postDetails(posts: StatisticsTrailPost[]): string {
   return posts.map((post) => post.title).join('、')
 }
 
-export function monthlyValue(item: StatisticsMonthlyOutput, metric: 'posts' | 'words' | 'minutes'): number {
+export function monthlyValue(
+  item: StatisticsMonthlyOutput,
+  metric: 'posts' | 'words' | 'minutes'
+): number {
   if (metric === 'words') return item.words
   if (metric === 'minutes') return item.estimatedMinutes
   return item.postCount
@@ -50,12 +53,18 @@ export function rangeStartMonth(months: StatisticsMonthlyOutput[], range: TrailR
   return months.at(-count)?.month ?? months[0]?.month ?? ''
 }
 
-export function filterMonths(months: StatisticsMonthlyOutput[], range: TrailRange): StatisticsMonthlyOutput[] {
+export function filterMonths(
+  months: StatisticsMonthlyOutput[],
+  range: TrailRange
+): StatisticsMonthlyOutput[] {
   const start = rangeStartMonth(months, range)
   return months.filter((item) => item.month >= start)
 }
 
-export function compressQuietMonths(months: StatisticsMonthlyOutput[], threshold = 3): MonthDisplayItem[] {
+export function compressQuietMonths(
+  months: StatisticsMonthlyOutput[],
+  threshold = 3
+): MonthDisplayItem[] {
   const result: MonthDisplayItem[] = []
   for (let index = 0; index < months.length;) {
     if (months[index].postCount > 0) {
@@ -69,7 +78,8 @@ export function compressQuietMonths(months: StatisticsMonthlyOutput[], threshold
     if (count >= threshold) {
       result.push({ kind: 'quiet', count, start: months[index].month, end: months[end - 1].month })
     } else {
-      for (let cursor = index; cursor < end; cursor += 1) result.push({ kind: 'month', item: months[cursor] })
+      for (let cursor = index; cursor < end; cursor += 1)
+        result.push({ kind: 'month', item: months[cursor] })
     }
     index = end
   }

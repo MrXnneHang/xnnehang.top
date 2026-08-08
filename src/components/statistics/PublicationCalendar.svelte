@@ -3,7 +3,7 @@
   import type { StatisticsPublicationDay } from '@/types/statistics'
   import { formatDate, postDetails } from './writing-trail-utils'
 
-  export let days: StatisticsPublicationDay[]
+  export let days: StatisticsPublicationDay[] = undefined!
 
   let activeDate = ''
   $: years = [...new Set(days.map((day) => Number(day.date.slice(0, 4))))].sort((a, b) => a - b)

@@ -7,7 +7,7 @@
   import SeriesLifelines from './SeriesLifelines.svelte'
   import { formatDate, formatNumber, rangeStartMonth, trailRanges, type TrailRange } from './writing-trail-utils'
 
-  export let content: StatisticsContentTotals
+  export let content: StatisticsContentTotals = undefined!
 
   let range: TrailRange = '12m'
   $: rangeStart = rangeStartMonth(content.monthlyOutput, range)

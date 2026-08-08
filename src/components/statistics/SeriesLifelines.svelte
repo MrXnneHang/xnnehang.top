@@ -2,9 +2,9 @@
   import type { StatisticsSeriesLifeline } from '@/types/statistics'
   import { formatDate, formatNumber, seriesUrl, type TrailRange } from './writing-trail-utils'
 
-  export let lifelines: StatisticsSeriesLifeline[]
-  export let range: TrailRange
-  export let rangeStart: string
+  export let lifelines: StatisticsSeriesLifeline[] = undefined!
+  export let range: TrailRange = undefined!
+  export let rangeStart: string = undefined!
 
   type Sort = 'recent' | 'duration' | 'activity'
   let sort: Sort = 'recent'

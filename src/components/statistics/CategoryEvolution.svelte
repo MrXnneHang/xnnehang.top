@@ -2,9 +2,9 @@
   import type { StatisticsCategoryEvolution, StatisticsMonthlyOutput } from '@/types/statistics'
   import { compressQuietMonths, filterMonths, formatMonth, type TrailRange } from './writing-trail-utils'
 
-  export let evolution: StatisticsCategoryEvolution
-  export let months: StatisticsMonthlyOutput[]
-  export let range: TrailRange
+  export let evolution: StatisticsCategoryEvolution = undefined!
+  export let months: StatisticsMonthlyOutput[] = undefined!
+  export let range: TrailRange = undefined!
 
   type Mode = 'count' | 'share'
   let mode: Mode = 'count'
