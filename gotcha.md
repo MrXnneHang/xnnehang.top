@@ -43,6 +43,8 @@ The template is only in the `xnnehang.top` repo (`.github/PULL_REQUEST_TEMPLATE.
 
 The image submodule (`src/assets/img`) is managed from this repository. When the user adds an image to the main-repository root or asks to publish an image:
 
+**Image-only changes in the `image-hosting` submodule are committed and pushed directly to its `main` branch. Do not create an asset branch or open an asset-repository PR. Any main-repository code, content, or submodule-pointer change follows the normal main-repository branch and PR workflow.**
+
 1. Move the requested file into the appropriate submodule directory. Article body images belong in `src/assets/img/<article-slug>/`; reserve `src/assets/img/covers/` for actual article covers or fallback artwork that does not directly illustrate the body content. Preserve filenames unless the user asks for a rename.
 2. Run `git -C src/assets/img status` and confirm there is an actual image change before committing. Never create an empty or unrelated submodule commit.
 3. Commit and push the image inside the submodule first.
