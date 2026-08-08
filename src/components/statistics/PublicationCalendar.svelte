@@ -129,7 +129,8 @@
   :global(.dark) .year-button { color: color-mix(in oklab, white 55%, transparent); }
   .year-button:hover:not(:disabled) { background: var(--btn-plain-bg-hover); color: var(--primary); }
   .year-button:disabled { opacity: .25; }
-  .calendar-scroll { overflow-x: auto; padding-bottom: .35rem; }
+  .calendar-scroll { overflow-x: auto; scrollbar-width: none; }
+  .calendar-scroll::-webkit-scrollbar { display: none; }
   .calendar-shell { display: grid; grid-template-columns: 1rem max-content; grid-template-rows: 1.2rem auto; gap: .25rem .55rem; min-width: max-content; }
   .month-labels { display: grid; grid-template-columns: repeat(var(--week-count), 24px); gap: 2px; color: color-mix(in oklab, black 38%, transparent); font-size: .625rem; }
   :global(.dark) .month-labels { color: color-mix(in oklab, white 38%, transparent); }
