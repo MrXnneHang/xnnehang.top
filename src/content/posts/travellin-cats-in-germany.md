@@ -6,7 +6,7 @@ shelf: 游戏
 tags:
   - 游戏
   - 猫
-category: 游戏
+category: 观后
 shelfCover: ../../assets/img/covers/travellin-cats-shelf.jpg
 ---
 
