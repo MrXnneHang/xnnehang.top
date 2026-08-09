@@ -1,0 +1,439 @@
+---
+import { Image, type ImageMetadata } from 'astro:assets'
+import { Icon } from 'astro-icon/components'
+
+interface Photo {
+  src: ImageMetadata
+  alt: string
+  caption: string
+  position?: string
+}
+
+interface Props {
+  photos: Photo[]
+}
+
+const { photos } = Astro.props
+---
+
+<about-photo-deck class="photo-deck" data-count={photos.length}>
+  <div
+    class="deck-stage"
+    role="group"
+    aria-roledescription="图片轮播"
+    aria-label={`阅读侧写，共 ${photos.length} 张`}
+    tabindex="0"
+  >
+    {
+      photos.map((photo, index) => (
+        <figure
+          class="deck-card"
+          data-card
+          data-index={index}
+          data-caption={photo.caption}
+          aria-hidden={index === 0 ? 'false' : 'true'}
+        >
+          <button
+            class="photo-button"
+            type="button"
+            data-next
+            aria-label={index === 0 ? '查看下一张阅读侧写' : undefined}
+            tabindex={index === 0 ? 0 : -1}
+          >
+            <Image
+              src={photo.src}
+              alt={photo.alt}
+              widths={[640, 960, 1280]}
+              sizes="(max-width: 767px) 100vw, 58vw"
+              loading={index === 0 ? 'eager' : 'lazy'}
+              class="deck-image"
+              style={`object-position: ${photo.position ?? 'center'}`}
+            />
+            <span class="photo-sheen" aria-hidden="true" />
+          </button>
+        </figure>
+      ))
+    }
+    <span class="shelf-index" aria-hidden="true">READING PORTRAIT</span>
+  </div>
+
+  <div class="deck-meta">
+    <p class="deck-caption" data-caption-output aria-live="polite">{photos[0]?.caption}</p>
+    <div class="deck-controls">
+      <button class="deck-arrow" type="button" data-prev aria-label="上一张阅读侧写">
+        <Icon name="material-symbols:arrow-back-rounded" />
+      </button>
+      <div class="deck-dots" role="group" aria-label="选择阅读侧写">
+        {
+          photos.map((photo, index) => (
+            <button
+              class="deck-dot"
+              type="button"
+              data-go={index}
+              aria-label={`查看第 ${index + 1} 张：${photo.caption}`}
+              aria-current={index === 0 ? 'true' : undefined}
+            >
+              <span />
+            </button>
+          ))
+        }
+      </div>
+      <span class="deck-count" aria-hidden="true"><b data-current>01</b> / {String(photos.length).padStart(2, '0')}</span>
+      <button class="deck-arrow" type="button" data-next-control aria-label="下一张阅读侧写">
+        <Icon name="material-symbols:arrow-forward-rounded" />
+      </button>
+    </div>
+  </div>
+</about-photo-deck>
+
+<script>
+  class AboutPhotoDeck extends HTMLElement {
+    private current = 0
+    private cards: HTMLElement[] = []
+    private dots: HTMLButtonElement[] = []
+    private caption?: HTMLElement
+    private currentOutput?: HTMLElement
+
+    connectedCallback() {
+      this.cards = Array.from(this.querySelectorAll<HTMLElement>('[data-card]'))
+      this.dots = Array.from(this.querySelectorAll<HTMLButtonElement>('[data-go]'))
+      this.caption = this.querySelector<HTMLElement>('[data-caption-output]') ?? undefined
+      this.currentOutput = this.querySelector<HTMLElement>('[data-current]') ?? undefined
+
+      this.querySelectorAll<HTMLElement>('[data-next]').forEach((button) => {
+        button.addEventListener('click', this.next)
+      })
+      this.querySelector<HTMLElement>('[data-next-control]')?.addEventListener('click', this.next)
+      this.querySelector<HTMLElement>('[data-prev]')?.addEventListener('click', this.previous)
+      this.dots.forEach((dot) => dot.addEventListener('click', this.goToFromControl))
+      this.querySelector<HTMLElement>('.deck-stage')?.addEventListener('keydown', this.onKeydown)
+      this.render()
+    }
+
+    disconnectedCallback() {
+      this.querySelectorAll<HTMLElement>('[data-next]').forEach((button) => {
+        button.removeEventListener('click', this.next)
+      })
+      this.querySelector<HTMLElement>('[data-next-control]')?.removeEventListener('click', this.next)
+      this.querySelector<HTMLElement>('[data-prev]')?.removeEventListener('click', this.previous)
+      this.dots.forEach((dot) => dot.removeEventListener('click', this.goToFromControl))
+      this.querySelector<HTMLElement>('.deck-stage')?.removeEventListener('keydown', this.onKeydown)
+    }
+
+    private next = () => this.goTo(this.current + 1)
+    private previous = () => this.goTo(this.current - 1)
+
+    private goToFromControl = (event: Event) => {
+      const index = Number((event.currentTarget as HTMLElement).dataset.go)
+      this.goTo(index)
+    }
+
+    private onKeydown = (event: KeyboardEvent) => {
+      if (event.key === 'ArrowRight') {
+        event.preventDefault()
+        this.next()
+      } else if (event.key === 'ArrowLeft') {
+        event.preventDefault()
+        this.previous()
+      }
+    }
+
+    private goTo(index: number) {
+      const count = this.cards.length
+      if (!count) return
+      this.current = (index + count) % count
+      this.render()
+    }
+
+    private render() {
+      const count = this.cards.length
+      this.cards.forEach((card, index) => {
+        const position = (index - this.current + count) % count
+        card.dataset.position = String(position)
+        card.style.setProperty('--deck-position', String(position))
+        card.setAttribute('aria-hidden', position === 0 ? 'false' : 'true')
+        const button = card.querySelector<HTMLButtonElement>('[data-next]')
+        if (button) {
+          button.tabIndex = position === 0 ? 0 : -1
+          button.setAttribute('aria-label', position === 0 ? '查看下一张阅读侧写' : '')
+        }
+      })
+
+      this.dots.forEach((dot, index) => {
+        if (index === this.current) dot.setAttribute('aria-current', 'true')
+        else dot.removeAttribute('aria-current')
+      })
+
+      const activeCard = this.cards[this.current]
+      if (this.caption && activeCard) this.caption.textContent = activeCard.dataset.caption ?? ''
+      if (this.currentOutput) this.currentOutput.textContent = String(this.current + 1).padStart(2, '0')
+    }
+  }
+
+  if (!customElements.get('about-photo-deck')) {
+    customElements.define('about-photo-deck', AboutPhotoDeck)
+  }
+</script>
+
+<style>
+  .photo-deck {
+    position: relative;
+    z-index: 1;
+    display: block;
+    align-self: center;
+    min-width: 0;
+    padding: 0.9rem 1.15rem 0 0.35rem;
+  }
+
+  .deck-stage {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    outline: none;
+    perspective: 75rem;
+  }
+
+  .deck-stage:focus-visible {
+    border-radius: 1.1rem;
+    outline: 3px solid color-mix(in oklch, var(--primary) 45%, transparent);
+    outline-offset: 5px;
+  }
+
+  .deck-card {
+    --deck-offset-x: calc(var(--deck-position) * 0.52rem);
+    --deck-offset-y: calc(var(--deck-position) * -0.42rem);
+    --deck-rotation: calc((var(--deck-position) - 1) * 0.8deg);
+    position: absolute;
+    inset: 0;
+    z-index: calc(10 - var(--deck-position));
+    margin: 0;
+    transform: translate(var(--deck-offset-x), var(--deck-offset-y)) rotate(var(--deck-rotation));
+    transform-origin: 55% 90%;
+    transition:
+      transform 380ms cubic-bezier(0.2, 0.75, 0.25, 1),
+      opacity 240ms ease,
+      filter 240ms ease;
+  }
+
+  .deck-card[data-position='0'] {
+    --deck-offset-x: 0rem;
+    --deck-offset-y: 0rem;
+    --deck-rotation: -0.7deg;
+  }
+
+  .deck-card[data-position='1'] {
+    filter: saturate(0.92) brightness(0.96);
+  }
+
+  .deck-card[data-position='2'] {
+    filter: saturate(0.82) brightness(0.91);
+  }
+
+  .photo-button {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border: 0.35rem solid color-mix(in oklch, var(--card-bg) 92%, var(--primary));
+    border-radius: 1.05rem;
+    background: var(--btn-regular-bg);
+    box-shadow:
+      0 1.4rem 3rem rgb(25 35 45 / 16%),
+      0 0 0 1px rgb(0 0 0 / 8%);
+    cursor: pointer;
+  }
+
+  .deck-card:not([data-position='0']) .photo-button {
+    pointer-events: none;
+  }
+
+  .photo-button:focus-visible {
+    outline: 3px solid color-mix(in oklch, var(--primary) 55%, white);
+    outline-offset: -0.55rem;
+  }
+
+  .deck-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .photo-sheen {
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgb(255 255 255 / 18%);
+    border-radius: 0.7rem;
+    box-shadow: inset 0 -3rem 4rem rgb(22 28 35 / 6%);
+    pointer-events: none;
+  }
+
+  .shelf-index {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    z-index: 20;
+    border-radius: 999px;
+    padding: 0.35rem 0.6rem;
+    background: rgb(18 25 34 / 72%);
+    color: rgb(255 255 255 / 88%);
+    font-family: 'JetBrains Mono Variable', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    pointer-events: none;
+    backdrop-filter: blur(8px);
+  }
+
+  .deck-meta {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.9rem;
+  }
+
+  .deck-caption {
+    min-width: 0;
+    margin: 0;
+    color: rgb(100 100 100);
+    font-size: 0.78rem;
+    letter-spacing: 0.01em;
+    line-height: 1.55;
+  }
+
+  :global(html.dark) .deck-caption {
+    color: rgb(175 175 175);
+  }
+
+  .deck-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .deck-arrow,
+  .deck-dot {
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    color: var(--btn-content);
+    transition: transform 160ms ease, background-color 160ms ease;
+  }
+
+  .deck-arrow {
+    width: 2rem;
+    height: 2rem;
+    background: var(--btn-regular-bg);
+  }
+
+  .deck-arrow:hover {
+    transform: translateY(-1px);
+    background: var(--btn-regular-bg-hover);
+  }
+
+  .deck-arrow:active {
+    transform: scale(0.94);
+  }
+
+  .deck-arrow :global(svg) {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .deck-dots {
+    display: flex;
+    align-items: center;
+    gap: 0.15rem;
+  }
+
+  .deck-dot {
+    width: 1.45rem;
+    height: 1.45rem;
+  }
+
+  .deck-dot span {
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 50%;
+    background: color-mix(in oklch, var(--btn-content) 45%, transparent);
+    transition: width 180ms ease, background-color 180ms ease;
+  }
+
+  .deck-dot[aria-current='true'] span {
+    width: 0.9rem;
+    border-radius: 999px;
+    background: var(--primary);
+  }
+
+  .deck-arrow:focus-visible,
+  .deck-dot:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  .deck-count {
+    min-width: 3.2rem;
+    color: rgb(115 115 115);
+    font-family: 'JetBrains Mono Variable', monospace;
+    font-size: 0.68rem;
+    text-align: center;
+  }
+
+  :global(html.dark) .deck-count {
+    color: rgb(163 163 163);
+  }
+
+  .deck-count b {
+    color: var(--primary);
+    font-weight: 750;
+  }
+
+  @media (max-width: 700px) {
+    .photo-deck {
+      grid-row: 2;
+      padding: 0.5rem 0.45rem 0 0.15rem;
+    }
+
+    .deck-card {
+      --deck-offset-x: calc(var(--deck-position) * 0.3rem);
+      --deck-offset-y: calc(var(--deck-position) * -0.25rem);
+    }
+
+    .photo-button {
+      border-width: 0.25rem;
+    }
+
+    .deck-meta {
+      grid-template-columns: 1fr;
+      gap: 0.65rem;
+      margin-top: 0.75rem;
+    }
+
+    .deck-controls {
+      justify-content: space-between;
+    }
+
+    .deck-caption {
+      min-height: 2.4em;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .deck-card,
+    .deck-arrow,
+    .deck-dot span {
+      transition-duration: 0.01ms !important;
+    }
+
+    .deck-card[data-position='0'] {
+      transform: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .photo-button,
+    .deck-arrow,
+    .deck-dot[aria-current='true'] span {
+      border: 1px solid CanvasText;
+    }
+  }
+</style>
