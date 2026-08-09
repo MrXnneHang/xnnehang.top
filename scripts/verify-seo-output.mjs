@@ -32,14 +32,20 @@ for (const childSitemapUrl of childSitemaps) {
 
   const childPath = resolve(dist, `.${childUrl.pathname}`)
   const relativeChildPath = childPath.slice(dist.length + 1)
-  assert(relativeChildPath && !relativeChildPath.startsWith('..'), `Invalid sitemap path: ${childSitemapUrl}`)
+  assert(
+    relativeChildPath && !relativeChildPath.startsWith('..'),
+    `Invalid sitemap path: ${childSitemapUrl}`
+  )
 
   const sitemap = await readFile(childPath, 'utf8')
   const pageUrls = getLocs(sitemap)
   assert(pageUrls.length > 0, `Sitemap has no URLs: ${childSitemapUrl}`)
 
   for (const pageUrl of pageUrls) {
-    assert(new URL(pageUrl).origin === sitemapOrigin, `Page URL must use ${sitemapOrigin}: ${pageUrl}`)
+    assert(
+      new URL(pageUrl).origin === sitemapOrigin,
+      `Page URL must use ${sitemapOrigin}: ${pageUrl}`
+    )
   }
 }
 
