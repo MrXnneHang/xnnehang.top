@@ -1,6 +1,11 @@
 export interface GraphNode {
   id: string
   title: string
+  description: string
+  published: string
+  category: string
+  tags: string[]
+  cover: string
   linkCount: number
 }
 

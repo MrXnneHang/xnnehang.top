@@ -1,47 +1,10 @@
 import { getCollection, type CollectionEntry } from 'astro:content'
+import { getPostCoverUrl } from '@utils/cover'
 
 type Post = CollectionEntry<'posts'>
 
 const SITE_URL = 'https://xnnehang.top'
 const MAX_POSTS = 3
-
-// src/assets/img/ is a git submodule pointing to MrXnneHang/image-hosting.
-// Raw content for that submodule must reference the submodule's own repo.
-const IMAGE_HOSTING_RAW_BASE = 'https://raw.githubusercontent.com/MrXnneHang/image-hosting/main'
-// All other src/ assets (if ever needed) live in the main blog repo.
-const BLOG_RAW_BASE = 'https://raw.githubusercontent.com/MrXnneHang/xnnehang.top/main'
-
-function resolveImageUrl(image: string | undefined): string | null {
-  if (!image) return null
-  let path = image.trim()
-  // Strip angle brackets `<...>` if present (used in markdown for paths with spaces)
-  if (path.startsWith('<') && path.endsWith('>')) {
-    path = path.slice(1, -1).trim()
-  }
-  if (path.startsWith('http://') || path.startsWith('https://')) return encodeURI(path)
-
-  // Strip leading "../" to get path relative to src/
-  // e.g. "../../assets/img/covers/foo.jpg" → "assets/img/covers/foo.jpg"
-  const stripped = path.replace(/^(\.\.\/)+/, '')
-
-  // src/assets/img/** lives in the image-hosting submodule
-  if (stripped.startsWith('assets/img/')) {
-    const subPath = stripped.slice('assets/img/'.length) // e.g. "covers/foo.jpg"
-    return encodeURI(`${IMAGE_HOSTING_RAW_BASE}/${subPath}`)
-  }
-
-  // Everything else: resolve against main blog repo
-  return encodeURI(`${BLOG_RAW_BASE}/src/${stripped}`)
-}
-
-// Extract the first markdown image from post body as a cover fallback.
-// Handles both "![alt](path)" and the Astro-specific "![alt](../../assets/...)" patterns.
-function extractFirstBodyImage(body: string | undefined): string | null {
-  if (!body) return null
-  const match = body.match(/!\[.*?\]\(([^)]+)\)/)
-  if (!match) return null
-  return resolveImageUrl(match[1].trim())
-}
 
 export async function GET() {
   const allPosts = await getCollection('posts', ({ data }: Post) => {
@@ -55,7 +18,7 @@ export async function GET() {
   )
 
   const posts = allPosts.slice(0, MAX_POSTS).map((post: Post) => {
-    const coverUrl = resolveImageUrl(post.data.image) ?? extractFirstBodyImage(post.body)
+    const coverUrl = getPostCoverUrl(post.data.image, post.body, post.id)
 
     return {
       title: post.data.title,

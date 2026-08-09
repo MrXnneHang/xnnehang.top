@@ -1,4 +1,6 @@
 import { getCollection } from 'astro:content'
+import { getPostCoverSource } from './cover'
+import { optimizePostCover } from './cover-optimize'
 import { WIKI_LINK_REGEX } from './wiki-regex'
 
 export type WikiLinkInfo = {
@@ -11,6 +13,15 @@ export type WikiGraph = Map<
   { outbound: WikiLinkInfo; inbound: { slug: string; title: string }[] }
 >
 
+export type WikiGraphMetadata = {
+  title: string
+  description: string
+  published: string
+  category: string
+  tags: string[]
+  cover: string
+}
+
 /**
  * Build the wiki link graph from all post bodies.
  * Runs at build time in getStaticPaths.
@@ -18,6 +29,7 @@ export type WikiGraph = Map<
 export type WikiGraphResult = {
   graph: WikiGraph
   slugToTitle: Map<string, string>
+  slugToMetadata: Map<string, WikiGraphMetadata>
 }
 
 /**
@@ -31,11 +43,23 @@ export async function buildWikiGraphWithTitles(): Promise<WikiGraphResult> {
 
   const titleToSlug = new Map<string, string>()
   const slugToTitle = new Map<string, string>()
+  const slugToMetadata = new Map<string, WikiGraphMetadata>()
   for (const post of allPosts) {
     const title = post.data.title.trim()
     if (title) {
       titleToSlug.set(title.toLowerCase(), post.id)
       slugToTitle.set(post.id, title)
+      slugToMetadata.set(post.id, {
+        title,
+        description: post.data.description,
+        published: post.data.published.toISOString().slice(0, 10),
+        category: post.data.category?.trim() || '未分类',
+        tags: post.data.tags,
+        cover: await optimizePostCover(
+          getPostCoverSource(post.data.image, post.body),
+          post.id
+        ),
+      })
     }
   }
 
@@ -79,5 +103,5 @@ export async function buildWikiGraphWithTitles(): Promise<WikiGraphResult> {
     }
   }
 
-  return { graph, slugToTitle }
+  return { graph, slugToTitle, slugToMetadata }
 }
