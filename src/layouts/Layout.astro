@@ -76,6 +76,7 @@ const bannerOffsetByPosition = {
   bottom: '0',
 }
 const bannerOffset = bannerOffsetByPosition[siteConfig.banner.position || 'center']
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href
 ---
 
 <!doctype html>
@@ -88,6 +89,7 @@ const bannerOffset = bannerOffsetByPosition[siteConfig.banner.position || 'cente
     <title>{pageTitle}</title>
 
     <meta charset="UTF-8" />
+    <link rel="canonical" href={canonicalUrl} />
     <meta name="description" content={description || pageTitle} />
     <meta name="author" content={profileConfig.name} />
 
