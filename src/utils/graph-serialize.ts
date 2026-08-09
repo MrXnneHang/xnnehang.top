@@ -1,4 +1,4 @@
-import type { WikiGraph } from './wikilinks'
+import type { WikiGraph, WikiGraphMetadata } from './wikilinks'
 import type { GraphLink, SerializedGraph } from '@/types/graph'
 
 /**
@@ -7,15 +7,22 @@ import type { GraphLink, SerializedGraph } from '@/types/graph'
  */
 export function serializeWikiGraphWithTitles(
   wikiGraph: WikiGraph,
-  slugToTitle: Map<string, string>
+  slugToTitle: Map<string, string>,
+  slugToMetadata: Map<string, WikiGraphMetadata> = new Map()
 ): SerializedGraph {
   const nodes: SerializedGraph['nodes'] = []
   const links: SerializedGraph['links'] = []
 
   for (const [slug, data] of wikiGraph) {
+    const metadata = slugToMetadata.get(slug)
     nodes.push({
       id: slug,
-      title: slugToTitle.get(slug) || slug,
+      title: metadata?.title || slugToTitle.get(slug) || slug,
+      description: metadata?.description || '',
+      published: metadata?.published || '',
+      category: metadata?.category || '未分类',
+      tags: metadata?.tags || [],
+      cover: metadata?.cover || '',
       linkCount: data.outbound.resolved.length + data.inbound.length,
     })
 

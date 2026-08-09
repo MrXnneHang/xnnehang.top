@@ -31,6 +31,9 @@ export default defineConfig({
   site: 'https://xnnehang.top/',
   base: '/',
   trailingSlash: 'always',
+  redirects: {
+    '/graph': '/statistics/?view=graph',
+  },
   integrations: [
     swup({
       theme: false,

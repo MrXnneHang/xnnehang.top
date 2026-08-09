@@ -28,8 +28,8 @@ type RelatedPost = { slug: string; data: CollectionEntry<'posts'>['data']; first
 export async function getStaticPaths() {
   const blogEntries = await getSortedPosts()
   const tfidfIndex = await buildTfidfIndex()
-  const { graph: wikiGraph, slugToTitle } = await buildWikiGraphWithTitles()
-  const serializedGraph = serializeWikiGraphWithTitles(wikiGraph, slugToTitle)
+  const { graph: wikiGraph, slugToTitle, slugToMetadata } = await buildWikiGraphWithTitles()
+  const serializedGraph = serializeWikiGraphWithTitles(wikiGraph, slugToTitle, slugToMetadata)
 
   const allPosts = blogEntries.map((post: CollectionEntry<'posts'>) => ({
     slug: post.id,
