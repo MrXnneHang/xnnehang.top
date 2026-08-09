@@ -11,7 +11,7 @@ description: 拆解 memU，专注拆分主线路，以及分析 ADR 架构文档
 series:
   - Long-Term Memory
 featured: true
-pin: true
+pin: false
 ---
 
 ![](../../assets/img/memu-source-code-breakdown/cover.jpeg)

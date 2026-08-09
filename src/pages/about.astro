@@ -1,9 +1,17 @@
 ---
 import { getEntry, render } from 'astro:content'
+import { Icon } from 'astro-icon/components'
+import AboutPhotoDeck from '@components/about/AboutPhotoDeck.astro'
+import ImageWrapper from '@components/misc/ImageWrapper.astro'
 import Markdown from '@components/misc/Markdown.astro'
+import bookshelf from '../assets/img/about/bookshelf.jpg'
+import changgeBookshelf from '../assets/img/about/changge-bookshelf.jpg'
+import mashiroLightNovels from '../assets/img/about/mashiro-light-novels.jpg'
+import { profileConfig } from '../config'
 import I18nKey from '../i18n/i18nKey'
 import { i18n } from '../i18n/translation'
 import MainGridLayout from '../layouts/MainGridLayout.astro'
+import { url } from '../utils/url-utils'
 
 const aboutPost = await getEntry('spec', 'about')
 
@@ -12,14 +20,621 @@ if (!aboutPost) {
 }
 
 const { Content } = await render(aboutPost)
+const githubLink = profileConfig.links.find((link) => link.name === 'GitHub')
+
+const photos = [
+  {
+    src: bookshelf,
+    alt: 'XnneHang 的常驻书架，摆放着文学、数学、创作、漫画与轻小说',
+    caption: '常驻书架，基本也是一份自述。',
+    position: '50% 70%',
+  },
+  {
+    src: changgeBookshelf,
+    alt: 'XnneHang 收藏的《长歌行》漫画与李长歌封面',
+    caption: '我心里永远向往自由的李长歌。',
+    position: '50% 52%',
+  },
+  {
+    src: mashiroLightNovels,
+    alt: 'XnneHang 收藏的《樱花庄的宠物女孩》轻小说与椎名真白封面',
+    caption: '青春猪头少年不会梦到三无椎名真白，带我入坑的日轻。',
+    position: '50% 52%',
+  },
+]
+
+const drives = [
+  {
+    icon: 'material-symbols:edit-note-rounded',
+    title: '记录',
+    description: '比起阅读和观影本身，我更喜欢记录结束后流过心底的声音。',
+  },
+  {
+    icon: 'material-symbols:account-tree-rounded',
+    title: '整理碎片',
+    description: '把无序的事物归并、排序，再慢慢欣赏和检索它们。',
+  },
+  {
+    icon: 'material-symbols:headphones-rounded',
+    title: '音乐',
+    description: '耳机是我的最爱。合适的音乐让我开始，也让我进入心流。',
+  },
+]
 ---
 
 <MainGridLayout title={i18n(I18nKey.about)} description={i18n(I18nKey.about)} hideSidebar={true}>
-  <div class="relative flex min-h-32 w-full overflow-hidden rounded-[var(--radius-large)]">
-    <div class="card-base relative z-10 w-full px-9 py-6">
-      <Markdown class="mt-2">
+  <div class="about-page">
+    <section class="about-hero card-base" aria-labelledby="about-title">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span>ABOUT / 关于我</div>
+
+        <div class="identity">
+          <ImageWrapper
+            src={profileConfig.avatar || ''}
+            alt={`${profileConfig.name} 的头像`}
+            class="avatar"
+          />
+          <div>
+            <div class="identity-name">{profileConfig.name}</div>
+            <div class="identity-bio">{profileConfig.bio}</div>
+          </div>
+        </div>
+
+        <h1 id="about-title">这里是 XnneHang。</h1>
+        <p class="hero-lede">
+          如果真能从一个人看过的书里认出这个人，那么这些照片，或许比自我介绍更接近我。
+        </p>
+
+        <div class="hero-actions">
+          {
+            githubLink && (
+              <a class="primary-action" href={githubLink.url} target="_blank" rel="me noopener noreferrer">
+                <Icon name={githubLink.icon} />
+                <span>GitHub</span>
+              </a>
+            )
+          }
+          <a class="secondary-action" href={url('/friends/')}>
+            <span>我的网络邻居</span>
+            <Icon name="material-symbols:arrow-forward-rounded" />
+          </a>
+        </div>
+      </div>
+
+      <AboutPhotoDeck photos={photos} />
+    </section>
+
+    <section class="drives-section" aria-labelledby="drives-title">
+      <header class="section-heading">
+        <div class="eyebrow"><span></span>THREE THINGS</div>
+        <h2 id="drives-title">驱动我的三件事</h2>
+      </header>
+      <div class="drives-grid">
+        {
+          drives.map((drive) => (
+            <article class="drive-card card-base">
+              <div class="drive-icon"><Icon name={drive.icon} /></div>
+              <div>
+                <h3>{drive.title}</h3>
+                <p>{drive.description}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="notes-card card-base" aria-labelledby="notes-title">
+      <header class="section-heading notes-heading">
+        <div class="eyebrow"><span></span>FIELD NOTES / 自述</div>
+        <h2 id="notes-title">再具体一点</h2>
+      </header>
+      <Markdown class="about-copy">
         <Content />
       </Markdown>
-    </div>
+    </section>
+
+    <a class="friends-card card-base" href={url('/friends/')}>
+      <div class="friends-mark" aria-hidden="true">
+        <Icon name="material-symbols:group-rounded" />
+      </div>
+      <div class="friends-copy">
+        <div class="eyebrow"><span></span>NEIGHBORS / 友链</div>
+        <h2>我的网络邻居</h2>
+        <p>一些持续写作、创造和分享的人。沿着链接，去别人的小世界坐坐。</p>
+      </div>
+      <div class="friends-arrow" aria-hidden="true">
+        <Icon name="material-symbols:arrow-forward-rounded" />
+      </div>
+    </a>
   </div>
 </MainGridLayout>
+
+<style>
+  .about-page {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: var(--deep-text);
+  }
+
+  :global(html.dark) .about-page {
+    color: rgb(245 245 245);
+  }
+
+  .about-hero {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(17rem, 0.78fr) minmax(0, 1.22fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    overflow: hidden;
+    padding: clamp(1.5rem, 4vw, 3.5rem);
+    background-color: var(--card-bg);
+    background-image: radial-gradient(
+      circle at 12% 12%,
+      color-mix(in oklch, var(--primary) 11%, transparent),
+      transparent 28rem
+    );
+  }
+
+  .about-hero::after {
+    position: absolute;
+    right: -2rem;
+    bottom: -4.75rem;
+    width: 15rem;
+    height: 10rem;
+    border: 1px solid color-mix(in oklch, var(--primary) 20%, transparent);
+    border-radius: 50%;
+    content: '';
+    pointer-events: none;
+  }
+
+  .hero-copy {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: color-mix(in oklch, var(--primary) 78%, var(--deep-text));
+    font-family: 'JetBrains Mono Variable', monospace;
+    font-size: 0.72rem;
+    font-weight: 650;
+    letter-spacing: 0.12em;
+  }
+
+  :global(html.dark) .eyebrow {
+    color: color-mix(in oklch, var(--primary) 80%, white);
+  }
+
+  .eyebrow span {
+    width: 1.8rem;
+    height: 1px;
+    background: currentColor;
+  }
+
+  .identity {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  .identity :global(.avatar) {
+    width: 3.75rem;
+    height: 3.75rem;
+    flex: none;
+    border: 3px solid color-mix(in oklch, var(--card-bg) 80%, transparent);
+    border-radius: 1.1rem;
+    box-shadow: 0 0 0 1px color-mix(in oklch, var(--primary) 25%, transparent);
+  }
+
+  .identity-name {
+    font-size: 1.1rem;
+    font-weight: 750;
+    line-height: 1.25;
+  }
+
+  .identity-bio {
+    margin-top: 0.2rem;
+    color: rgb(115 115 115);
+    font-size: 0.85rem;
+  }
+
+  :global(html.dark) .identity-bio {
+    color: rgb(163 163 163);
+  }
+
+  .hero-copy h1 {
+    margin-top: 1.6rem;
+    font-size: clamp(2rem, 4vw, 3.15rem);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 1.08;
+  }
+
+  .hero-lede {
+    max-width: 29rem;
+    margin-top: 1.15rem;
+    color: rgb(82 82 82);
+    font-size: clamp(1rem, 1.5vw, 1.08rem);
+    line-height: 1.85;
+  }
+
+  :global(html.dark) .hero-lede {
+    color: rgb(190 190 190);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 1.75rem;
+  }
+
+  .primary-action,
+  .secondary-action {
+    display: inline-flex;
+    height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    border-radius: 0.75rem;
+    padding: 0 1rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: transform 180ms ease, background-color 180ms ease, color 180ms ease;
+  }
+
+  .primary-action {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 0.45rem 1.25rem color-mix(in oklch, var(--primary) 24%, transparent);
+  }
+
+  .secondary-action {
+    background: var(--btn-regular-bg);
+    color: var(--btn-content);
+  }
+
+  .primary-action :global(svg),
+  .secondary-action :global(svg) {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  .primary-action:hover,
+  .secondary-action:hover {
+    transform: translateY(-2px);
+  }
+
+  .secondary-action:hover {
+    background: var(--btn-regular-bg-hover);
+  }
+
+  .primary-action:focus-visible,
+  .secondary-action:focus-visible,
+  .friends-card:focus-visible {
+    outline: 3px solid color-mix(in oklch, var(--primary) 45%, transparent);
+    outline-offset: 3px;
+  }
+
+  .drives-section {
+    padding: clamp(1rem, 2vw, 1.5rem) 0;
+  }
+
+  .section-heading {
+    margin: 0 0 1rem 0.4rem;
+  }
+
+  .section-heading h2 {
+    margin-top: 0.45rem;
+    font-size: clamp(1.35rem, 2vw, 1.65rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+  }
+
+  .drives-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .drive-card {
+    position: relative;
+    display: flex;
+    min-height: 10rem;
+    gap: 1rem;
+    overflow: hidden;
+    padding: 1.35rem;
+  }
+
+  .drive-card::after {
+    position: absolute;
+    right: -1.5rem;
+    bottom: -2.4rem;
+    width: 6rem;
+    height: 6rem;
+    border: 1px solid color-mix(in oklch, var(--primary) 13%, transparent);
+    border-radius: 50%;
+    content: '';
+  }
+
+  .drive-icon {
+    display: grid;
+    width: 2.7rem;
+    height: 2.7rem;
+    flex: none;
+    place-items: center;
+    border-radius: 0.8rem;
+    background: var(--btn-regular-bg);
+    color: var(--primary);
+  }
+
+  .drive-icon :global(svg) {
+    width: 1.45rem;
+    height: 1.45rem;
+  }
+
+  .drive-card h3 {
+    margin-top: 0.15rem;
+    font-size: 1.05rem;
+    font-weight: 800;
+  }
+
+  .drive-card p {
+    margin-top: 0.6rem;
+    color: rgb(100 100 100);
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+
+  :global(html.dark) .drive-card p {
+    color: rgb(175 175 175);
+  }
+
+  .notes-card {
+    padding: clamp(1.5rem, 4vw, 2.75rem);
+  }
+
+  .notes-heading {
+    margin-left: 0;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px dashed var(--line-divider);
+  }
+
+  .notes-card :global(.about-copy) {
+    margin-top: 0;
+  }
+
+  .notes-card :global(.about-copy h2) {
+    margin-top: 2rem;
+    font-size: 1.35rem;
+  }
+
+  .notes-card :global(.about-copy h2:first-child) {
+    margin-top: 1.5rem;
+  }
+
+  .notes-card :global(.about-copy h3) {
+    position: relative;
+    margin-top: 1.65rem;
+    padding-left: 1rem;
+    color: color-mix(in oklch, var(--primary) 72%, var(--deep-text));
+    font-size: 1rem;
+    font-weight: 760;
+    letter-spacing: -0.01em;
+  }
+
+  :global(html.dark) .notes-card :global(.about-copy h3) {
+    color: color-mix(in oklch, var(--primary) 82%, white);
+  }
+
+  .notes-card :global(.about-copy h3::before) {
+    position: absolute;
+    top: 0.45em;
+    left: 0;
+    width: 0.38rem;
+    height: 0.38rem;
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 0 0 0.25rem color-mix(in oklch, var(--primary) 13%, transparent);
+    content: '';
+  }
+
+  .notes-card :global(.about-copy h3 + p) {
+    margin-top: 0.55rem;
+  }
+
+  .notes-card :global(.about-copy blockquote:not(.admonition)) {
+    position: relative;
+    margin: 0.8rem 0 1.35rem;
+    border: 0;
+    border-left: 2px solid color-mix(in oklch, var(--primary) 58%, transparent);
+    border-radius: 0;
+    padding: 0.15rem 0 0.15rem 1rem;
+    background: transparent;
+    color: color-mix(in oklch, currentColor 82%, var(--primary));
+    font-size: 0.94rem;
+    font-style: italic;
+  }
+
+  .notes-card :global(.about-copy blockquote:not(.admonition) p) {
+    margin: 0;
+  }
+
+  .notes-card :global(.about-copy blockquote.admonition) {
+    margin: 1.15rem 0 1.5rem;
+    border: 1px solid var(--line-divider);
+    border-radius: 0.85rem;
+    padding: 0;
+    background: color-mix(in oklch, var(--btn-regular-bg) 38%, transparent);
+    box-shadow: none;
+  }
+
+  .notes-card :global(.about-copy blockquote.admonition::before) {
+    display: none;
+  }
+
+  .notes-card :global(.about-copy blockquote.admonition > .bdm-title) {
+    margin: 0;
+    border-bottom: 1px solid var(--line-divider);
+    padding: 0.8rem 1rem;
+    color: inherit;
+    font-family: 'JetBrains Mono Variable', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .notes-card :global(.about-copy blockquote.admonition > .bdm-title::before) {
+    display: none;
+  }
+
+  .notes-card :global(.about-copy blockquote.admonition details) {
+    margin: 0;
+    padding: 0.8rem 1rem 1rem;
+  }
+
+  .notes-card :global(.about-copy blockquote.admonition summary) {
+    color: var(--btn-content);
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .notes-card :global(.about-copy blockquote.admonition details::before) {
+    display: none;
+  }
+
+  .notes-card :global(.about-copy blockquote.admonition ul) {
+    margin-bottom: 0;
+  }
+
+  .friends-card {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.25rem;
+    padding: clamp(1.35rem, 3vw, 2rem);
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+
+  .friends-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.85rem 2rem rgb(20 35 48 / 9%);
+  }
+
+  .friends-mark,
+  .friends-arrow {
+    display: grid;
+    place-items: center;
+    color: var(--primary);
+  }
+
+  .friends-mark {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 1rem;
+    background: var(--btn-regular-bg);
+  }
+
+  .friends-mark :global(svg) {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  .friends-copy h2 {
+    margin-top: 0.35rem;
+    font-size: 1.2rem;
+    font-weight: 800;
+  }
+
+  .friends-copy p {
+    margin-top: 0.3rem;
+    color: rgb(115 115 115);
+    font-size: 0.88rem;
+  }
+
+  :global(html.dark) .friends-copy p {
+    color: rgb(163 163 163);
+  }
+
+  .friends-arrow {
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    background: var(--btn-regular-bg);
+    transition: transform 180ms ease;
+  }
+
+  .friends-card:hover .friends-arrow {
+    transform: translateX(4px);
+  }
+
+  .friends-arrow :global(svg) {
+    width: 1.35rem;
+    height: 1.35rem;
+  }
+
+  @media (max-width: 900px) {
+    .about-hero {
+      grid-template-columns: minmax(14rem, 0.85fr) minmax(0, 1.15fr);
+      gap: 1.5rem;
+    }
+
+    .drives-grid {
+      gap: 0.75rem;
+    }
+
+    .drive-card {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .about-hero {
+      grid-template-columns: 1fr;
+      padding: 1.25rem;
+    }
+
+    .hero-copy {
+      padding: 0.5rem 0.25rem 0;
+    }
+
+    .identity {
+      margin-top: 1.4rem;
+    }
+
+    .drives-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .drive-card {
+      min-height: 0;
+      flex-direction: row;
+    }
+
+    .friends-card {
+      grid-template-columns: auto 1fr;
+    }
+
+    .friends-arrow {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .about-hero *,
+    .drive-card *,
+    .friends-card * {
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
