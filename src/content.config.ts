@@ -1,6 +1,29 @@
 import { defineCollection } from 'astro:content'
-import { glob } from 'astro/loaders'
+import { file, glob } from 'astro/loaders'
 import { z } from 'astro/zod'
+
+const shelfCategories = ['电影', '电视剧', '动漫', '书籍', '漫画', '游戏', '论文'] as const
+
+const currentShelfCollection = defineCollection({
+  loader: file('src/content/current-shelf.json'),
+  schema: z.object({
+    title: z.string(),
+    shelf: z.enum(shelfCategories),
+    cover: z.string().optional().default(''),
+    progress: z
+      .object({
+        current: z.number().nonnegative(),
+        total: z.number().positive().optional(),
+        unit: z.string().optional().default(''),
+      })
+      .refine((value) => value.total === undefined || value.current <= value.total, {
+        message: 'Current shelf progress cannot exceed its total',
+      })
+      .optional(),
+    note: z.string().optional().default(''),
+    lastActivity: z.string().optional().default(''),
+  }),
+})
 
 const postsCollection = defineCollection({
   loader: glob({ base: './src/content/posts', pattern: '**/*.md' }),
@@ -17,7 +40,7 @@ const postsCollection = defineCollection({
     category: z.string().optional().nullable().default(''),
     series: z.array(z.string()).optional().default([]),
     lang: z.string().optional().default(''),
-    shelf: z.enum(['电影', '电视剧', '动漫', '书籍', '漫画', '游戏', '论文']).optional(),
+    shelf: z.enum(shelfCategories).optional(),
     subCategory: z.array(z.string()).optional().default([]),
     shelfCover: z.string().optional().default(''),
     blurb: z.string().optional().default(''),
@@ -45,6 +68,7 @@ const memoCollection = defineCollection({
 
 export const collections = {
   posts: postsCollection,
+  currentShelf: currentShelfCollection,
   spec: specCollection,
   memos: memoCollection,
 }
