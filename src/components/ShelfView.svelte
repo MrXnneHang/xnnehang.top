@@ -1,211 +1,457 @@
 <script lang="ts">
-import { onMount } from 'svelte'
+  import ContinueReading from './ContinueReading.svelte'
+  import type { CurrentShelfItem, ShelfItem } from '../types/shelf'
 
-interface ShelfItem {
-  id: string
-  title: string
-  shelf: string
-  subCategory: string[]
-  blurb: string
-  cover: string
-  url: string
-  published: string
-  arxiv: string
-}
-
-interface Props {
-  items: ShelfItem[]
-}
-
-let { items = [] }: Props = $props()
-
-// --- State ---
-let activeCategory: string = $state('')
-let activeSubCategory: string = $state('')
-
-// --- Derived ---
-const categories = ['书籍', '漫画', '游戏', '电影', '电视剧', '动漫', '论文']
-
-let availableCategories = $derived(
-  categories.filter(c => items.some(item => item.shelf === c))
-)
-
-// Set initial active category
-$effect(() => {
-  if (!activeCategory && availableCategories.length > 0) {
-    activeCategory = availableCategories[0]
+  interface Props {
+    items: ShelfItem[]
+    currentItems: CurrentShelfItem[]
   }
-})
 
-let categoryItems = $derived(
-  items.filter(item => item.shelf === activeCategory)
-)
+  const categoryOrder = ['书籍', '漫画', '游戏', '电影', '电视剧', '动漫', '论文']
 
-// Collect unique subCategories for current category
-let availableSubCategories = $derived.by(() => {
-  const subs = new Set<string>()
-  for (const item of categoryItems) {
-    for (const sub of item.subCategory) {
-      subs.add(sub)
+  let { items = [], currentItems = [] }: Props = $props()
+  let availableCategories = $derived(categoryOrder.filter(category => items.some(item => item.shelf === category)))
+  let activeCategory: string = $state(categoryOrder.find(category => items.some(item => item.shelf === category)) ?? '')
+  let activeSubCategory: string = $state('')
+  let categoryItems = $derived(items.filter(item => item.shelf === activeCategory))
+  let availableSubCategories = $derived.by(() => {
+    const subCategories = new Set<string>()
+    for (const item of categoryItems) {
+      for (const subCategory of item.subCategory) subCategories.add(subCategory)
+    }
+    return Array.from(subCategories).sort()
+  })
+  let filteredItems = $derived(
+    activeSubCategory
+      ? categoryItems.filter(item => item.subCategory.includes(activeSubCategory))
+      : categoryItems
+  )
+
+  function categoryId(category: string) {
+    return `shelf-category-${categoryOrder.indexOf(category)}`
+  }
+
+  function selectCategory(category: string) {
+    activeCategory = category
+    activeSubCategory = ''
+  }
+
+  function selectSubCategory(subCategory: string) {
+    activeSubCategory = activeSubCategory === subCategory ? '' : subCategory
+  }
+
+  function coverImageState(node: HTMLImageElement) {
+    const frame = node.parentElement
+    const reveal = () => {
+      node.classList.remove('loading')
+      frame?.classList.remove('loading')
+      frame?.classList.add('loaded')
+    }
+    const fail = () => {
+      node.classList.remove('loading')
+      node.classList.add('failed')
+      frame?.classList.remove('loading')
+      frame?.classList.add('failed')
+    }
+
+    if (node.complete) {
+      if (node.naturalWidth > 0) reveal()
+      else fail()
+    } else {
+      node.classList.add('loading')
+      frame?.classList.add('loading')
+      node.addEventListener('load', reveal)
+      node.addEventListener('error', fail)
+    }
+
+    return {
+      destroy() {
+        node.removeEventListener('load', reveal)
+        node.removeEventListener('error', fail)
+      },
     }
   }
-  return Array.from(subs).sort()
-})
 
-let filteredItems = $derived(
-  activeSubCategory
-    ? categoryItems.filter(item => item.subCategory.includes(activeSubCategory))
-    : categoryItems
-)
+  function onCategoryKeydown(event: KeyboardEvent, index: number) {
+    if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) return
+    event.preventDefault()
 
-function selectCategory(cat: string) {
-  activeCategory = cat
-  activeSubCategory = ''
-}
+    let nextIndex = index
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+      nextIndex = (index + 1) % availableCategories.length
+    }
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+      nextIndex = (index - 1 + availableCategories.length) % availableCategories.length
+    }
+    if (event.key === 'Home') nextIndex = 0
+    if (event.key === 'End') nextIndex = availableCategories.length - 1
 
-function selectSubCategory(sub: string) {
-  activeSubCategory = activeSubCategory === sub ? '' : sub
-}
+    const nextCategory = availableCategories[nextIndex]
+    selectCategory(nextCategory)
+    requestAnimationFrame(() => document.getElementById(categoryId(nextCategory))?.focus())
+  }
 </script>
 
-<div class="flex w-full flex-col gap-6 lg:flex-row lg:gap-8">
-  <!-- Left sidebar nav -->
-  <nav class="shrink-0 lg:w-[160px]">
-    <div class="flex flex-row gap-2 overflow-x-auto lg:flex-col lg:gap-1">
-      {#each availableCategories as cat}
-        <button
-          class="rounded-lg px-4 py-2 text-left text-sm font-medium whitespace-nowrap transition
-            {activeCategory === cat
-              ? 'bg-[oklch(0.55_0.16_55)] text-white shadow-sm dark:bg-[oklch(0.65_0.18_55)]'
-              : 'hover:bg-black/5 dark:hover:bg-white/5 text-black/70 dark:text-white/70'}"
-          onclick={() => selectCategory(cat)}
-        >
-          <span>{cat}</span>
-          <span class="ml-1 opacity-60">{items.filter(i => i.shelf === cat).length}</span>
-        </button>
-      {/each}
-    </div>
-  </nav>
+<div class="shelf-view">
+  {#if currentItems.length > 0}
+    <ContinueReading items={currentItems} />
+  {/if}
 
-  <!-- Main content -->
-  <div class="min-w-0 flex-1">
-    <!-- Category header -->
-    <div class="mb-4">
-      <p class="mb-1 text-xs font-medium tracking-wider uppercase text-black/30 dark:text-white/30">Collection</p>
-      <h2 class="text-2xl font-bold text-black/90 dark:text-white/90">{activeCategory}</h2>
-      <p class="mt-1 text-sm text-black/50 dark:text-white/50">{categoryItems.length} 部作品</p>
-    </div>
-
-    <!-- Sub-category filters -->
-    {#if availableSubCategories.length > 0}
-      <div class="mb-5 flex flex-wrap gap-2">
-        <button
-          class="rounded-full px-3 py-1 text-xs font-medium transition
-            {activeSubCategory === ''
-              ? 'bg-[oklch(0.55_0.16_55)] text-white dark:bg-[oklch(0.65_0.18_55)]'
-              : 'bg-black/5 text-black/60 hover:bg-black/10 dark:bg-white/5 dark:text-white/60 dark:hover:bg-white/10'}"
-          onclick={() => activeSubCategory = ''}
-        >
-          全部
-        </button>
-        {#each availableSubCategories as sub}
-          <button
-            class="rounded-full px-3 py-1 text-xs font-medium transition
-              {activeSubCategory === sub
-                ? 'bg-[oklch(0.55_0.16_55)] text-white dark:bg-[oklch(0.65_0.18_55)]'
-                : 'bg-black/5 text-black/60 hover:bg-black/10 dark:bg-white/5 dark:text-white/60 dark:hover:bg-white/10'}"
-            onclick={() => selectSubCategory(sub)}
-          >
-            {sub}
-          </button>
-        {/each}
+  <section class="library" aria-labelledby="library-title">
+    <header class="library-heading">
+      <div>
+        <p class="eyebrow">Library</p>
+        <h2 id="library-title">完整收藏</h2>
       </div>
-    {/if}
+      <p>{items.length} 部作品</p>
+    </header>
 
-    <!-- Items -->
-    {#if activeCategory === '论文'}
-      <!-- Papers: list layout -->
-      <div class="flex flex-col gap-3">
-        {#each filteredItems as item, idx}
-          <div class="card-base flex flex-col gap-2 rounded-xl p-4">
-            <div class="flex items-start justify-between gap-3">
-              <div class="flex min-w-0 flex-1 flex-col gap-1">
-                <div class="flex items-center gap-2">
-                  <span class="shrink-0 text-xs font-medium text-black/30 dark:text-white/30">[{String(idx + 1).padStart(2, '0')}]</span>
-                  <a href={item.url} class="font-semibold leading-snug text-black/85 transition hover:text-[oklch(0.55_0.16_55)] dark:text-white/85 dark:hover:text-[oklch(0.7_0.16_55)]">
-                    {item.title}
-                  </a>
-                </div>
-                <div class="flex flex-wrap gap-1.5 pl-7">
-                  {#each item.subCategory as sub}
-                    <span class="rounded bg-black/5 px-1.5 py-0.5 text-xs text-black/50 dark:bg-white/5 dark:text-white/50">{sub}</span>
-                  {/each}
-                </div>
-                {#if item.blurb}
-                  <p class="pl-7 text-sm leading-relaxed text-black/60 dark:text-white/60">{item.blurb}</p>
-                {/if}
-              </div>
-              {#if item.arxiv}
-                <a
-                  href={item.arxiv}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="shrink-0 rounded-lg px-2.5 py-1.5 text-xs font-medium text-black/50 transition hover:bg-black/5 hover:text-black/80 dark:text-white/50 dark:hover:bg-white/5 dark:hover:text-white/80"
-                >
-                  arXiv ↗
-                </a>
-              {/if}
-            </div>
-            <div class="flex items-center gap-3 pl-7">
-              <span class="text-xs text-black/30 dark:text-white/30">{item.published}</span>
-              <a href={item.url} class="text-xs text-black/40 transition hover:text-[oklch(0.55_0.16_55)] dark:text-white/40 dark:hover:text-[oklch(0.7_0.16_55)]">阅读笔记 →</a>
-            </div>
+    <div class="library-layout">
+      <nav class="category-nav" aria-label="收藏分类">
+        <div class="category-tabs hide-scrollbar" role="tablist" aria-label="收藏分类">
+          {#each availableCategories as category, index}
+            <button
+              id={categoryId(category)}
+              type="button"
+              role="tab"
+              aria-selected={activeCategory === category}
+              aria-controls="shelf-category-panel"
+              tabindex={activeCategory === category ? 0 : -1}
+              class:active={activeCategory === category}
+              onclick={() => selectCategory(category)}
+              onkeydown={(event) => onCategoryKeydown(event, index)}
+            >
+              <span>{category}</span>
+              <span class="category-count">{items.filter(item => item.shelf === category).length}</span>
+            </button>
+          {/each}
+        </div>
+      </nav>
+
+      <div
+        id="shelf-category-panel"
+        class="collection-panel"
+        role="tabpanel"
+        aria-labelledby={categoryId(activeCategory)}
+      >
+        <header class="collection-heading">
+          <div>
+            <h3>{activeCategory}</h3>
+            <p aria-live="polite">{filteredItems.length} 部作品</p>
           </div>
-        {/each}
-      </div>
-    {:else}
-      <!-- Other categories: grid layout -->
-      <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4">
-        {#each filteredItems as item}
-          <a
-            href={item.url}
-            class="group flex flex-col gap-2 overflow-hidden rounded-xl transition active:scale-[0.97]"
-          >
-            <!-- Cover -->
-            <div class="aspect-[3/4] w-full overflow-hidden rounded-xl bg-neutral-100 shadow-sm transition group-hover:shadow-md dark:bg-neutral-800">
-              {#if item.cover}
-                <img
-                  src={item.cover}
-                  alt={item.title}
-                  class="h-full w-full object-cover transition group-hover:scale-105"
-                  loading="lazy"
-                />
-              {:else}
-                <div class="flex h-full w-full items-center justify-center p-4">
-                  <span class="text-center text-base font-bold leading-snug text-black/60 dark:text-white/70">
-                    {item.title}
-                  </span>
-                </div>
-              {/if}
-            </div>
-            <!-- Title & blurb -->
-            <div class="flex flex-col gap-0.5 px-1">
-              <span class="line-clamp-2 text-sm font-semibold leading-tight text-black/80 transition group-hover:text-[oklch(0.55_0.16_55)] dark:text-white/85 dark:group-hover:text-[oklch(0.7_0.16_55)]">
-                {item.title}
-              </span>
-              {#if item.blurb}
-                <span class="text-50 line-clamp-2 text-xs leading-snug">{item.blurb}</span>
-              {/if}
-            </div>
-          </a>
-        {/each}
-      </div>
-    {/if}
 
-    {#if filteredItems.length === 0}
-      <div class="flex h-40 items-center justify-center text-sm text-black/30 dark:text-white/30">
-        暂无内容
+          {#if availableSubCategories.length > 0}
+            <div class="subcategory-filters" aria-label={`${activeCategory}二级分类`}>
+              <button
+                type="button"
+                aria-pressed={activeSubCategory === ''}
+                class:active={activeSubCategory === ''}
+                onclick={() => activeSubCategory = ''}
+              >全部</button>
+              {#each availableSubCategories as subCategory}
+                <button
+                  type="button"
+                  aria-pressed={activeSubCategory === subCategory}
+                  class:active={activeSubCategory === subCategory}
+                  onclick={() => selectSubCategory(subCategory)}
+                >{subCategory}</button>
+              {/each}
+            </div>
+          {/if}
+        </header>
+
+        {#if activeCategory === '论文'}
+          <div class="paper-list">
+            {#each filteredItems as item, index}
+              <article class="paper-row">
+                <div class="paper-main">
+                  <span class="paper-index">[{String(index + 1).padStart(2, '0')}]</span>
+                  <div class="paper-copy">
+                    <a class="paper-title" href={item.url}>{item.title}</a>
+                    {#if item.subCategory.length > 0}
+                      <div class="paper-tags">
+                        {#each item.subCategory as subCategory}<span>{subCategory}</span>{/each}
+                      </div>
+                    {/if}
+                    {#if item.blurb}<p>{item.blurb}</p>{/if}
+                  </div>
+                </div>
+                <div class="paper-footer">
+                  <time datetime={item.published}>{item.published}</time>
+                  <a href={item.url}>阅读笔记 <span aria-hidden="true">→</span></a>
+                  {#if item.arxiv}
+                    <a href={item.arxiv} target="_blank" rel="noopener noreferrer">arXiv <span aria-hidden="true">↗</span></a>
+                  {/if}
+                </div>
+              </article>
+            {/each}
+          </div>
+        {:else}
+          <div class="cover-grid">
+            {#each filteredItems as item (item.id)}
+              <a href={item.url} class="shelf-card">
+                <div class="cover-frame">
+                  <div class="cover-fallback" aria-hidden="true"><span>{item.title}</span></div>
+                  {#if item.cover}
+                    <img
+                      src={item.cover}
+                      alt=""
+                      loading="lazy"
+                      use:coverImageState
+                    />
+                  {:else}
+                    <span class="cover-missing" aria-hidden="true"></span>
+                  {/if}
+                </div>
+                <div class="shelf-card-copy">
+                  <span class="shelf-card-title">{item.title}</span>
+                  {#if item.blurb}<span class="shelf-card-blurb">{item.blurb}</span>{/if}
+                </div>
+              </a>
+            {/each}
+          </div>
+        {/if}
+
+        {#if filteredItems.length === 0}
+          <div class="empty-state">这个分类下还没有内容。</div>
+        {/if}
       </div>
-    {/if}
-  </div>
+    </div>
+  </section>
 </div>
+
+<style>
+  .shelf-view { display: flex; flex-direction: column; gap: 2rem; }
+  .library-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.4rem;
+  }
+  .eyebrow {
+    margin-bottom: .2rem;
+    color: var(--primary);
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+  .library-heading h2 {
+    color: rgba(0, 0, 0, .9);
+    font-size: 1.55rem;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -.02em;
+  }
+  :global(.dark) .library-heading h2 { color: rgba(255, 255, 255, .92); }
+  .library-heading > p { color: rgba(0, 0, 0, .4); font-size: .75rem; }
+  :global(.dark) .library-heading > p { color: rgba(255, 255, 255, .4); }
+  .library-layout { display: flex; width: 100%; flex-direction: column; gap: 1.5rem; }
+  .category-nav { min-width: 0; flex-shrink: 0; }
+  .category-tabs { display: flex; gap: .4rem; overflow-x: auto; padding: .15rem; }
+  .category-tabs button {
+    display: flex;
+    min-height: 2.65rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    gap: .65rem;
+    border-radius: .65rem;
+    padding: .55rem .75rem;
+    color: rgba(0, 0, 0, .58);
+    font-size: .82rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: 150ms ease;
+  }
+  :global(.dark) .category-tabs button { color: rgba(255, 255, 255, .62); }
+  .category-tabs button:hover { color: var(--primary); background: var(--btn-plain-bg-hover); }
+  .category-tabs button.active {
+    color: var(--primary);
+    background: color-mix(in oklab, var(--primary) 12%, transparent);
+    box-shadow: inset 3px 0 0 var(--primary);
+  }
+  .category-count {
+    min-width: 1.35rem;
+    border-radius: 999px;
+    padding: .05rem .35rem;
+    color: inherit;
+    background: color-mix(in oklab, currentColor 8%, transparent);
+    font-size: .65rem;
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+    opacity: .7;
+  }
+  .collection-panel { min-width: 0; flex: 1; }
+  .collection-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.15rem;
+  }
+  .collection-heading h3 {
+    color: rgba(0, 0, 0, .86);
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  :global(.dark) .collection-heading h3 { color: rgba(255, 255, 255, .88); }
+  .collection-heading p { margin-top: .25rem; color: rgba(0, 0, 0, .4); font-size: .72rem; }
+  :global(.dark) .collection-heading p { color: rgba(255, 255, 255, .4); }
+  .subcategory-filters { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .35rem; }
+  .subcategory-filters button {
+    min-height: 2rem;
+    border-radius: 999px;
+    padding: .35rem .7rem;
+    color: rgba(0, 0, 0, .53);
+    background: var(--btn-plain-bg-hover);
+    font-size: .68rem;
+    font-weight: 600;
+    transition: 150ms ease;
+  }
+  :global(.dark) .subcategory-filters button { color: rgba(255, 255, 255, .56); }
+  .subcategory-filters button:hover { color: var(--primary); }
+  .subcategory-filters button.active {
+    color: var(--primary);
+    background: color-mix(in oklab, var(--primary) 12%, transparent);
+  }
+  .cover-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .shelf-card { display: flex; min-width: 0; flex-direction: column; gap: .55rem; border-radius: .75rem; }
+  .cover-frame {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    width: 100%;
+    overflow: hidden;
+    border-radius: .72rem;
+    background: color-mix(in oklab, var(--primary) 9%, var(--card-bg));
+    box-shadow: 0 3px 12px rgba(10, 30, 45, .1);
+    transition: 180ms ease;
+  }
+  .cover-frame::after {
+    position: absolute;
+    inset: 0;
+    content: '';
+    background: linear-gradient(
+      105deg,
+      transparent 25%,
+      color-mix(in oklab, var(--primary) 10%, transparent) 45%,
+      transparent 65%
+    );
+    opacity: 0;
+    transform: translateX(-100%);
+    pointer-events: none;
+  }
+  .cover-frame.loading::after {
+    opacity: 1;
+    animation: cover-loading 1.35s ease-in-out infinite;
+  }
+  .cover-frame img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 1;
+    transition: opacity 160ms ease, transform 240ms ease;
+  }
+  .cover-frame img.loading { opacity: 0; }
+  .cover-frame img.failed { display: none; }
+  .cover-fallback {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    color: var(--primary);
+    font-size: .9rem;
+    font-weight: 700;
+    line-height: 1.4;
+    text-align: center;
+  }
+  .cover-fallback span { opacity: 0; transition: opacity 160ms ease; }
+  .cover-frame.failed .cover-fallback span, .cover-frame:has(.cover-missing) .cover-fallback span { opacity: 1; }
+  .cover-missing { display: none; }
+  @keyframes cover-loading { to { transform: translateX(100%); } }
+  .shelf-card:hover .cover-frame, .shelf-card:focus-visible .cover-frame { box-shadow: 0 8px 22px rgba(10, 30, 45, .18); }
+  .shelf-card:hover .cover-frame img, .shelf-card:focus-visible .cover-frame img { transform: scale(1.035); }
+  .shelf-card-copy { display: flex; min-width: 0; flex-direction: column; gap: .18rem; padding: 0 .2rem; }
+  .shelf-card-title {
+    display: -webkit-box;
+    overflow: hidden;
+    color: rgba(0, 0, 0, .8);
+    font-size: .82rem;
+    font-weight: 700;
+    line-height: 1.3;
+    transition: color 150ms ease;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  :global(.dark) .shelf-card-title { color: rgba(255, 255, 255, .84); }
+  .shelf-card:hover .shelf-card-title, .shelf-card:focus-visible .shelf-card-title { color: var(--primary); }
+  .shelf-card-blurb {
+    display: -webkit-box;
+    overflow: hidden;
+    color: rgba(0, 0, 0, .44);
+    font-size: .68rem;
+    line-height: 1.45;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  :global(.dark) .shelf-card-blurb { color: rgba(255, 255, 255, .44); }
+  .paper-list { display: flex; flex-direction: column; gap: .6rem; }
+  .paper-row {
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+    border: 1px solid var(--line-divider);
+    border-radius: .75rem;
+    padding: .9rem 1rem;
+    background: color-mix(in oklab, var(--card-bg) 94%, var(--primary));
+  }
+  .paper-main { display: flex; align-items: flex-start; gap: .6rem; }
+  .paper-index { flex-shrink: 0; padding-top: .1rem; color: rgba(0, 0, 0, .3); font-size: .68rem; font-weight: 600; }
+  :global(.dark) .paper-index { color: rgba(255, 255, 255, .3); }
+  .paper-copy { min-width: 0; }
+  .paper-title { color: rgba(0, 0, 0, .84); font-size: .88rem; font-weight: 700; line-height: 1.4; }
+  :global(.dark) .paper-title { color: rgba(255, 255, 255, .86); }
+  .paper-title:hover { color: var(--primary); }
+  .paper-tags { display: flex; flex-wrap: wrap; gap: .25rem; margin-top: .35rem; }
+  .paper-tags span { border-radius: .3rem; padding: .15rem .35rem; color: rgba(0, 0, 0, .43); background: var(--btn-plain-bg-hover); font-size: .62rem; }
+  :global(.dark) .paper-tags span { color: rgba(255, 255, 255, .46); }
+  .paper-copy p { margin-top: .5rem; color: rgba(0, 0, 0, .53); font-size: .75rem; line-height: 1.6; }
+  :global(.dark) .paper-copy p { color: rgba(255, 255, 255, .54); }
+  .paper-footer { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; padding-left: 2.15rem; font-size: .68rem; }
+  .paper-footer time { color: rgba(0, 0, 0, .32); }
+  :global(.dark) .paper-footer time { color: rgba(255, 255, 255, .32); }
+  .paper-footer a { color: rgba(0, 0, 0, .46); }
+  :global(.dark) .paper-footer a { color: rgba(255, 255, 255, .46); }
+  .paper-footer a:hover { color: var(--primary); }
+  .empty-state { display: grid; min-height: 10rem; place-items: center; color: rgba(0, 0, 0, .34); font-size: .78rem; }
+  :global(.dark) .empty-state { color: rgba(255, 255, 255, .34); }
+  button:focus-visible, a:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+
+  @media (min-width: 40rem) { .cover-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (min-width: 48rem) { .cover-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.1rem; } }
+  @media (min-width: 64rem) {
+    .library-layout { flex-direction: row; gap: 2rem; }
+    .category-nav { width: 10rem; }
+    .category-tabs { flex-direction: column; overflow: visible; }
+    .category-tabs button { width: 100%; }
+    .cover-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (min-width: 80rem) { .cover-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  @media (max-width: 47.999rem) {
+    .collection-heading { align-items: start; flex-direction: column; }
+    .subcategory-filters { justify-content: flex-start; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .category-tabs button, .subcategory-filters button, .cover-frame, .cover-frame img, .cover-fallback span, .shelf-card-title { transition: none; }
+    .cover-frame::after { animation: none; }
+    .shelf-card:hover .cover-frame img, .shelf-card:focus-visible .cover-frame img { transform: none; }
+  }
+  @media (forced-colors: active) {
+    .category-tabs button.active, .subcategory-filters button.active { border: 1px solid SelectedItem; }
+  }
+</style>
