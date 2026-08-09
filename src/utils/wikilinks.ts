@@ -55,10 +55,7 @@ export async function buildWikiGraphWithTitles(): Promise<WikiGraphResult> {
         published: post.data.published.toISOString().slice(0, 10),
         category: post.data.category?.trim() || '未分类',
         tags: post.data.tags,
-        cover: await optimizePostCover(
-          getPostCoverSource(post.data.image, post.body),
-          post.id
-        ),
+        cover: await optimizePostCover(getPostCoverSource(post.data.image, post.body), post.id),
       })
     }
   }

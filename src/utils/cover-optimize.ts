@@ -3,9 +3,12 @@ import { getImage } from 'astro:assets'
 import { getDir } from './url-utils'
 import { resolveCoverUrl } from './cover'
 
-const imageFiles = import.meta.glob<ImageMetadata>('../content/posts/**/*.{jpg,jpeg,png,webp,gif}', {
-  import: 'default',
-})
+const imageFiles = import.meta.glob<ImageMetadata>(
+  '../content/posts/**/*.{jpg,jpeg,png,webp,gif}',
+  {
+    import: 'default',
+  }
+)
 const assetFiles = import.meta.glob<ImageMetadata>('../assets/**/*.{jpg,jpeg,png,webp,gif}', {
   import: 'default',
 })

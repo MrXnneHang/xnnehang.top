@@ -18,9 +18,9 @@ describe('cover utilities', () => {
   })
 
   test('extracts angle-bracket markdown image paths', () => {
-    expect(getPostCoverSource(undefined, '![封面](<../../assets/img/covers/cover image.jpg>)')).toBe(
-      '../../assets/img/covers/cover image.jpg'
-    )
+    expect(
+      getPostCoverSource(undefined, '![封面](<../../assets/img/covers/cover image.jpg>)')
+    ).toBe('../../assets/img/covers/cover image.jpg')
     expect(extractFirstBodyImage('![封面](<../../assets/img/covers/cover image.jpg>)')).toBe(
       'https://raw.githubusercontent.com/MrXnneHang/image-hosting/main/covers/cover%20image.jpg'
     )
