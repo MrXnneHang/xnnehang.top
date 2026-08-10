@@ -195,7 +195,9 @@ const photoData = JSON.stringify(
 
     private goToFromControl = (event: Event) => {
       const index = Number((event.currentTarget as HTMLElement).dataset.go)
-      if (Number.isNaN(index)) return
+      if (Number.isNaN(index) || index === this.current) return
+      if (index === (this.current + 1) % this.photos.length) return this.next()
+      if (index === (this.current - 1 + this.photos.length) % this.photos.length) return this.previous()
       this.current = index
       this.renderInstantly()
     }
@@ -261,7 +263,10 @@ const photoData = JSON.stringify(
       })
 
       const activePhoto = this.photos[this.current]
-      if (this.caption && activePhoto) this.caption.textContent = activePhoto.caption
+      if (this.caption && activePhoto) {
+        this.caption.textContent = activePhoto.caption
+        this.caption.title = activePhoto.caption
+      }
       if (this.currentOutput) this.currentOutput.textContent = String(this.current + 1).padStart(2, '0')
     }
   }
@@ -392,12 +397,17 @@ const photoData = JSON.stringify(
   }
 
   .deck-caption {
+    display: -webkit-box;
     min-width: 0;
+    height: calc(1.55em * 2);
     margin: 0;
+    overflow: hidden;
     color: rgb(100 100 100);
     font-size: 0.78rem;
     letter-spacing: 0.01em;
     line-height: 1.55;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
   }
 
   :global(html.dark) .deck-caption {
@@ -512,12 +522,9 @@ const photoData = JSON.stringify(
       justify-content: space-between;
     }
 
-    .deck-dots {
-      display: none;
-    }
-
     .deck-caption {
-      min-height: 2.4em;
+      height: calc(1.55em * 3);
+      -webkit-line-clamp: 3;
     }
   }
 
