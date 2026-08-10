@@ -56,7 +56,8 @@ export const es: Translation = {
 
   [Key.shelf]: 'Estante',
 
-  [Key.memo]: 'Memo',
+  [Key.todo]: 'En curso',
+  [Key.todoDescription]: 'Transformando ideas dispersas en trabajo terminado',
 
   [Key.seriesNav]: 'Series',
 

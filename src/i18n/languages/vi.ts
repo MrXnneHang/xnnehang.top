@@ -56,7 +56,8 @@ export const vi: Translation = {
 
   [Key.shelf]: 'Giá sách',
 
-  [Key.memo]: 'Ghi chú',
+  [Key.todo]: 'Đang tiến hành',
+  [Key.todoDescription]: 'Biến những ý tưởng rời rạc thành công việc hoàn chỉnh',
 
   [Key.seriesNav]: 'Loạt bài',
 

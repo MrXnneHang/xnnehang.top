@@ -56,7 +56,8 @@ export const zh_TW: Translation = {
 
   [Key.shelf]: '書架',
 
-  [Key.memo]: '碎碎念',
+  [Key.todo]: '在途',
+  [Key.todoDescription]: '把散落的想法混合熔煉',
 
   [Key.seriesNav]: '系列',
 

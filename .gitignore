@@ -17,6 +17,9 @@ pnpm-debug.log*
 .env
 .env.production
 
+# local credential material
+/keys/gamil.md
+
 # macOS-specific files
 .DS_Store
 

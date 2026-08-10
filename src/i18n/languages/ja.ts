@@ -56,7 +56,8 @@ export const ja: Translation = {
 
   [Key.shelf]: '本棚',
 
-  [Key.memo]: 'メモ',
+  [Key.todo]: '進行中',
+  [Key.todoDescription]: '散らばったアイデアを完成へと錬成する',
 
   [Key.seriesNav]: 'シリーズ',
 

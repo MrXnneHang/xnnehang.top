@@ -56,7 +56,8 @@ export const zh_CN: Translation = {
 
   [Key.shelf]: '书架',
 
-  [Key.memo]: '碎碎念',
+  [Key.todo]: '在途',
+  [Key.todoDescription]: '把散落的想法混合熔炼',
 
   [Key.seriesNav]: '系列',
 

@@ -56,7 +56,8 @@ export const id: Translation = {
 
   [Key.shelf]: 'Rak',
 
-  [Key.memo]: 'Memo',
+  [Key.todo]: 'Dalam proses',
+  [Key.todoDescription]: 'Mengubah gagasan yang tersebar menjadi karya yang selesai',
 
   [Key.seriesNav]: 'Seri',
 

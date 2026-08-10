@@ -43,7 +43,7 @@ export enum LinkPreset {
   Graph = 4,
   Shelf = 5,
   Series = 6,
-  Memo = 7,
+  Todo = 7,
   Statistics = 8,
 }
 
