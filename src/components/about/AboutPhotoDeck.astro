@@ -32,6 +32,9 @@ const photoData = JSON.stringify(
     srcset: photo.srcSet.map((image) => `${image.src} ${image.attributes.width}w`).join(', '),
     width: photo.srcSet[0].attributes.width,
     height: photo.srcSet[0].attributes.height,
+    fullSrc: photo.src.src,
+    fullWidth: photo.src.width,
+    fullHeight: photo.src.height,
   }))
 ).replaceAll('<', '\\u003c')
 ---
@@ -80,6 +83,15 @@ const photoData = JSON.stringify(
       ))
     }
     <span class="shelf-index" aria-hidden="true">READING PORTRAIT</span>
+    <button
+      class="photo-zoom"
+      type="button"
+      data-about-photo-preview
+      aria-label={`查看第 1 张阅读侧写全图：${photos[0]?.caption}`}
+      title="在站内查看完整照片"
+    >
+      <Icon name="material-symbols:zoom-in-rounded" />
+    </button>
   </div>
 
   <div class="deck-meta">
@@ -121,6 +133,9 @@ const photoData = JSON.stringify(
     srcset: string
     width: number
     height: number
+    fullSrc: string
+    fullWidth: number
+    fullHeight: number
   }
 
   class AboutPhotoDeck extends HTMLElement {
@@ -130,12 +145,14 @@ const photoData = JSON.stringify(
     private photos: PhotoData[] = []
     private caption?: HTMLElement
     private currentOutput?: HTMLElement
+    private zoomButton?: HTMLButtonElement
 
     connectedCallback() {
       this.cards = Array.from(this.querySelectorAll<HTMLElement>('[data-card]'))
       this.dots = Array.from(this.querySelectorAll<HTMLButtonElement>('[data-dot]'))
       this.caption = this.querySelector<HTMLElement>('[data-caption-output]') ?? undefined
       this.currentOutput = this.querySelector<HTMLElement>('[data-current]') ?? undefined
+      this.zoomButton = this.querySelector<HTMLButtonElement>('[data-about-photo-preview]') ?? undefined
       const photoData = this.querySelector<HTMLScriptElement>('[data-photos]')?.textContent
       this.photos = photoData ? JSON.parse(photoData) : []
 
@@ -145,6 +162,7 @@ const photoData = JSON.stringify(
       this.querySelector<HTMLElement>('[data-next-control]')?.addEventListener('click', this.next)
       this.querySelector<HTMLElement>('[data-prev]')?.addEventListener('click', this.previous)
       this.dots.forEach((dot) => dot.addEventListener('click', this.goToFromControl))
+      this.zoomButton?.addEventListener('click', this.openPreview)
       this.querySelector<HTMLElement>('.deck-stage')?.addEventListener('keydown', this.onKeydown)
       this.renderInstantly()
     }
@@ -156,6 +174,7 @@ const photoData = JSON.stringify(
       this.querySelector<HTMLElement>('[data-next-control]')?.removeEventListener('click', this.next)
       this.querySelector<HTMLElement>('[data-prev]')?.removeEventListener('click', this.previous)
       this.dots.forEach((dot) => dot.removeEventListener('click', this.goToFromControl))
+      this.zoomButton?.removeEventListener('click', this.openPreview)
       this.querySelector<HTMLElement>('.deck-stage')?.removeEventListener('keydown', this.onKeydown)
     }
 
@@ -200,6 +219,25 @@ const photoData = JSON.stringify(
       if (index === (this.current - 1 + this.photos.length) % this.photos.length) return this.previous()
       this.current = index
       this.renderInstantly()
+    }
+
+    private openPreview = () => {
+      const photo = this.photos[this.current]
+      const frontImage = this.querySelector<HTMLImageElement>('[data-position="0"] img')
+      if (!photo) return
+
+      document.dispatchEvent(
+        new CustomEvent('about-photo:preview', {
+          detail: {
+            src: photo.fullSrc,
+            width: photo.fullWidth,
+            height: photo.fullHeight,
+            msrc: frontImage?.currentSrc || photo.src,
+            alt: photo.alt,
+            caption: photo.caption,
+          },
+        })
+      )
     }
 
     private onKeydown = (event: KeyboardEvent) => {
@@ -266,6 +304,12 @@ const photoData = JSON.stringify(
       if (this.caption && activePhoto) {
         this.caption.textContent = activePhoto.caption
         this.caption.title = activePhoto.caption
+      }
+      if (this.zoomButton && activePhoto) {
+        this.zoomButton.setAttribute(
+          'aria-label',
+          `查看第 ${this.current + 1} 张阅读侧写全图：${activePhoto.caption}`
+        )
       }
       if (this.currentOutput) this.currentOutput.textContent = String(this.current + 1).padStart(2, '0')
     }
@@ -370,6 +414,47 @@ const photoData = JSON.stringify(
     border-radius: 0.7rem;
     box-shadow: inset 0 -3rem 4rem rgb(22 28 35 / 6%);
     pointer-events: none;
+  }
+
+  .photo-zoom {
+    position: absolute;
+    right: 1rem;
+    bottom: 0.8rem;
+    z-index: 20;
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    border: 1px solid oklch(0.9 0.045 190 / 68%);
+    border-radius: 1rem 1rem 1rem 0.45rem;
+    background: oklch(0.68 0.07 190 / 58%);
+    color: rgb(255 255 255 / 92%);
+    box-shadow:
+      0 0.45rem 1.1rem oklch(0.46 0.055 190 / 20%),
+      inset 0 1px 0 rgb(255 255 255 / 34%);
+    cursor: zoom-in;
+    transform: rotate(-2deg);
+    backdrop-filter: blur(8px);
+    transition: transform 160ms ease, background-color 160ms ease;
+  }
+
+  .photo-zoom:hover {
+    transform: translateY(-1px) rotate(1deg) scale(1.06);
+    background: oklch(0.62 0.08 190 / 72%);
+  }
+
+  .photo-zoom:active {
+    transform: rotate(0deg) scale(0.94);
+  }
+
+  .photo-zoom:focus-visible {
+    outline: 3px solid oklch(0.82 0.08 190 / 78%);
+    outline-offset: 3px;
+  }
+
+  .photo-zoom :global(svg) {
+    width: 1.25rem;
+    height: 1.25rem;
   }
 
   .shelf-index {
@@ -512,6 +597,11 @@ const photoData = JSON.stringify(
       border-width: 0.25rem;
     }
 
+    .photo-zoom {
+      right: 0.75rem;
+      bottom: 0.65rem;
+    }
+
     .deck-meta {
       grid-template-columns: 1fr;
       gap: 0.65rem;
@@ -530,6 +620,7 @@ const photoData = JSON.stringify(
 
   @media (prefers-reduced-motion: reduce) {
     .deck-card,
+    .photo-zoom,
     .deck-arrow,
     .deck-dot span {
       transition-duration: 0.01ms !important;

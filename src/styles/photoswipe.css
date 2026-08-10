@@ -13,3 +13,72 @@
 .pswp__button--close {
   @apply !mr-4;
 }
+
+.pswp--about-photo {
+  --pswp-bg: color-mix(in oklch, var(--page-bg) 20%, rgb(13 23 31 / 96%));
+}
+
+.pswp--about-photo .pswp__img {
+  border: 0.35rem solid oklch(0.86 0.035 190 / 78%);
+  border-radius: 1.1rem;
+  box-shadow:
+    0 1.8rem 4rem rgb(0 0 0 / 36%),
+    0 0 0 1px rgb(255 255 255 / 8%);
+}
+
+.pswp--about-photo .pswp__top-bar {
+  background: linear-gradient(to bottom, rgb(8 18 26 / 62%), transparent);
+}
+
+.pswp--about-photo .pswp__button--zoom,
+.pswp--about-photo .pswp__button--close {
+  border: 1px solid oklch(0.86 0.05 190 / 58%);
+  background: oklch(0.43 0.055 190 / 62%) !important;
+  box-shadow:
+    0 0.45rem 1rem rgb(0 0 0 / 20%),
+    inset 0 1px 0 rgb(255 255 255 / 24%);
+  backdrop-filter: blur(10px);
+}
+
+.pswp__about-caption {
+  display: none;
+}
+
+.pswp--about-photo .pswp__about-caption {
+  position: absolute;
+  right: 1rem;
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  left: 1rem;
+  z-index: 10;
+  display: -webkit-box;
+  width: fit-content;
+  max-width: min(42rem, calc(100vw - 2rem));
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid oklch(0.86 0.045 190 / 48%);
+  border-radius: 0.95rem 0.95rem 0.95rem 0.35rem;
+  padding: 0.65rem 0.9rem;
+  background: oklch(0.25 0.035 190 / 64%);
+  color: rgb(255 255 255 / 90%);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  text-align: center;
+  box-shadow: 0 0.6rem 1.8rem rgb(0 0 0 / 24%);
+  backdrop-filter: blur(12px);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+@media (max-width: 700px) {
+  .pswp--about-photo .pswp__img {
+    border-width: 0.25rem;
+    border-radius: 0.9rem;
+  }
+
+  .pswp--about-photo .pswp__about-caption {
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    max-width: calc(100vw - 1.5rem);
+    padding: 0.55rem 0.75rem;
+    -webkit-line-clamp: 3;
+  }
+}
