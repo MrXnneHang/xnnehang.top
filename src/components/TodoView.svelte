@@ -22,15 +22,30 @@
     counts: { active: number; completed: number }
     tasks: TodoTask[]
   }
-  type View = 'all' | 'completed' | `tag:${number}`
+  type PriorityKey = 'p0' | 'p1' | 'p2' | 'p3'
+  type PriorityFilter = {
+    key: PriorityKey
+    label: string
+    description: string
+    fallbackColor: string
+  }
+  type View = 'all' | 'completed' | `priority:${PriorityKey}` | `tag:${number}`
 
   const recentCompletedLimit = 3
+  const priorityFilters: readonly PriorityFilter[] = [
+    { key: 'p0', label: 'P0', description: '立即处理', fallbackColor: 'B60205' },
+    { key: 'p1', label: 'P1', description: '尽快处理', fallbackColor: 'D93F0B' },
+    { key: 'p2', label: 'P2', description: '正常推进', fallbackColor: 'FBCA04' },
+    { key: 'p3', label: 'P3', description: '有空再做', fallbackColor: '0E8A16' },
+  ]
   let data: TodoSnapshot | null = $state(null)
   let loading = $state(true)
   let error = $state('')
   let view: View = $state('all')
   let query = $state('')
   let selectedNumber: number | null = $state(null)
+  let prioritiesCollapsed = $state(false)
+  let tagsCollapsed = $state(false)
 
   function isTag(value: unknown): value is TodoTag {
     if (!value || typeof value !== 'object') return false
@@ -77,28 +92,53 @@
     return new Intl.DateTimeFormat('zh-CN', { dateStyle: 'medium', timeZone: 'Asia/Shanghai' }).format(new Date(value))
   }
 
-  function tagStyle(tag: TodoTag) {
+  function tagStyle(tag: Pick<TodoTag, 'color'>) {
     return `--tag-color: #${tag.color}`
   }
+
+  function priorityKey(name: string): PriorityKey | null {
+    const normalized = name.trim().toLowerCase()
+    return priorityFilters.some((priority) => priority.key === normalized) ? normalized as PriorityKey : null
+  }
+
+  function taskHasPriority(task: TodoTask, key: PriorityKey) {
+    return task.tags.some((tag) => priorityKey(tag.name) === key)
+  }
+
+  let priorities = $derived(priorityFilters.map((priority) => {
+    const label = data?.tasks.flatMap((task) => task.tags).find((tag) => priorityKey(tag.name) === priority.key)
+    const activeCount = data?.tasks.filter((task) => task.state === 'open' && taskHasPriority(task, priority.key)).length ?? 0
+    return { ...priority, color: label?.color ?? priority.fallbackColor, activeCount }
+  }))
 
   let tags = $derived.by(() => {
     if (!data) return []
     const tagMap = new Map<number, TodoTag & { activeCount: number }>()
     for (const task of data.tasks) {
+      if (task.state !== 'open') continue
       for (const tag of task.tags) {
+        if (priorityKey(tag.name)) continue
         const entry = tagMap.get(tag.id) ?? { ...tag, activeCount: 0 }
-        if (task.state === 'open') entry.activeCount += 1
+        entry.activeCount += 1
         tagMap.set(tag.id, entry)
       }
     }
     return Array.from(tagMap.values()).sort((left, right) => right.activeCount - left.activeCount || left.name.localeCompare(right.name))
   })
 
+  let selectedPriorityKey = $derived(view.startsWith('priority:') ? view.slice(9) as PriorityKey : null)
+  let activePriority = $derived(priorities.find((priority) => priority.key === selectedPriorityKey) ?? null)
   let selectedTagId = $derived(view.startsWith('tag:') ? Number(view.slice(4)) : null)
   let activeTag = $derived(tags.find((tag) => tag.id === selectedTagId) ?? null)
   let visibleTasks = $derived.by(() => {
     if (!data) return []
     if (view === 'completed') return data.tasks.filter((task) => task.state === 'closed' && matchesQuery(task))
+    if (selectedPriorityKey) {
+      const matching = data.tasks.filter((task) => taskHasPriority(task, selectedPriorityKey) && matchesQuery(task))
+      const active = matching.filter((task) => task.state === 'open')
+      const recentCompleted = matching.filter((task) => task.state === 'closed').slice(0, recentCompletedLimit)
+      return [...active, ...recentCompleted]
+    }
     if (selectedTagId !== null) {
       const matching = data.tasks.filter((task) => task.tags.some((tag) => tag.id === selectedTagId) && matchesQuery(task))
       const active = matching.filter((task) => task.state === 'open')
@@ -108,7 +148,7 @@
     return data.tasks.filter((task) => task.state === 'open' && matchesQuery(task))
   })
   let selectedTask = $derived(visibleTasks.find((task) => task.number === selectedNumber) ?? visibleTasks[0] ?? null)
-  let viewTitle = $derived(view === 'completed' ? '结晶' : activeTag?.name ?? '坩埚')
+  let viewTitle = $derived(view === 'completed' ? '结晶' : activePriority ? `${activePriority.label} · ${activePriority.description}` : activeTag?.name ?? '坩埚')
   let viewCount = $derived(visibleTasks.filter((task) => task.state === 'open' || view === 'completed').length)
 
   function selectView(next: View) {
@@ -166,17 +206,43 @@
         </button>
       </nav>
 
-      {#if tags.length > 0}
-        <div class="tag-heading">标签</div>
-        <nav class="tag-nav" aria-label="标签">
-          {#each tags as tag (tag.id)}
-            <button class:active={selectedTagId === tag.id} aria-pressed={selectedTagId === tag.id} onclick={() => selectView(`tag:${tag.id}`)}>
-              <span class="tag-dot" style={tagStyle(tag)}></span>
-              <span>{tag.name}</span>
-              <strong>{tag.activeCount}</strong>
+      <button class="group-heading" aria-expanded={!prioritiesCollapsed} aria-controls="priority-filters" onclick={() => prioritiesCollapsed = !prioritiesCollapsed}>
+        <Icon icon="material-symbols:keyboard-arrow-down-rounded" />
+        <span>优先级</span>
+      </button>
+      {#if !prioritiesCollapsed}
+        <nav id="priority-filters" class="priority-nav" aria-label="优先级">
+          {#each priorities as priority (priority.key)}
+            <button
+              class:active={selectedPriorityKey === priority.key}
+              aria-pressed={selectedPriorityKey === priority.key}
+              style={tagStyle(priority)}
+              onclick={() => selectView(`priority:${priority.key}`)}
+            >
+              <span class="priority-dot" aria-hidden="true"></span>
+              <span class="priority-copy"><span class="priority-code">{priority.label}</span><span class="priority-description">{priority.description}</span></span>
+              <strong>{priority.activeCount}</strong>
             </button>
           {/each}
         </nav>
+      {/if}
+
+      {#if tags.length > 0}
+        <button class="group-heading" aria-expanded={!tagsCollapsed} aria-controls="tag-filters" onclick={() => tagsCollapsed = !tagsCollapsed}>
+          <Icon icon="material-symbols:keyboard-arrow-down-rounded" />
+          <span>标签</span>
+        </button>
+        {#if !tagsCollapsed}
+          <nav id="tag-filters" class="tag-nav" aria-label="标签">
+            {#each tags as tag (tag.id)}
+              <button class:active={selectedTagId === tag.id} aria-pressed={selectedTagId === tag.id} onclick={() => selectView(`tag:${tag.id}`)}>
+                <span class="tag-dot" style={tagStyle(tag)}></span>
+                <span>{tag.name}</span>
+                <strong>{tag.activeCount}</strong>
+              </button>
+            {/each}
+          </nav>
+        {/if}
       {/if}
     </aside>
 
@@ -196,7 +262,7 @@
         {#if visibleTasks.length === 0}
           <div class="empty-state">
             <Icon icon="material-symbols:checklist-rounded" />
-            <p>{query ? '没有匹配的在途事项' : view === 'completed' ? '还没有结晶' : '坩埚暂时是空的'}</p>
+            <p>{query ? '没有匹配的在途事项' : view === 'completed' ? '还没有结晶' : activePriority ? `${activePriority.label} 暂无待处理事项` : '坩埚暂时是空的'}</p>
           </div>
         {:else}
           {#each visibleTasks as task (task.number)}
@@ -261,13 +327,23 @@
   .workspace-nav header h1 { margin: .15rem 0 0; color: rgba(0,0,0,.86); font-size: 1.3rem; letter-spacing: -.04em; }
   .workspace-nav header span { display: block; margin-top: .3rem; color: rgba(0,0,0,.4); font-size: .66rem; }
   .workspace-nav header .workspace-note { max-width: 10rem; margin-top: .35rem; color: rgba(0,0,0,.56); font-size: .68rem; line-height: 1.45; }
-  .primary-nav, .tag-nav { display: flex; flex-direction: column; gap: .2rem; }
-  .primary-nav button, .tag-nav button { display: grid; min-width: 0; grid-template-columns: 1rem minmax(0,1fr) auto; align-items: center; gap: .55rem; border-radius: .55rem; padding: .55rem .6rem; color: rgba(0,0,0,.62); text-align: left; transition: 120ms ease; }
-  .primary-nav button:hover, .tag-nav button:hover { background: var(--btn-plain-bg-hover); }
+  .primary-nav, .priority-nav, .tag-nav { display: flex; flex-direction: column; gap: .2rem; }
+  .primary-nav button, .priority-nav button, .tag-nav button { display: grid; min-width: 0; grid-template-columns: 1rem minmax(0,1fr) auto; align-items: center; gap: .55rem; border-radius: .55rem; padding: .55rem .6rem; color: rgba(0,0,0,.62); text-align: left; transition: 120ms ease; }
+  .primary-nav button:hover, .priority-nav button:hover, .tag-nav button:hover { background: var(--btn-plain-bg-hover); }
   .primary-nav button.active, .tag-nav button.active { color: var(--primary); background: color-mix(in oklab, var(--primary) 12%, transparent); }
+  .priority-nav button.active { background: color-mix(in oklab, var(--primary) 12%, transparent); }
   .primary-nav button span, .tag-nav button span:nth-child(2) { overflow: hidden; font-size: .78rem; font-weight: 560; text-overflow: ellipsis; white-space: nowrap; }
-  .primary-nav button strong, .tag-nav button strong { color: rgba(0,0,0,.38); font-size: .66rem; font-weight: 500; }
-  .tag-heading { margin: 1.2rem .6rem .4rem; color: rgba(0,0,0,.35); font-size: .62rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+  .primary-nav button strong, .priority-nav button strong, .tag-nav button strong { color: rgba(0,0,0,.38); font-size: .66rem; font-weight: 500; }
+  .priority-dot { width: .52rem; height: .52rem; border: 2px solid color-mix(in srgb, var(--tag-color) 72%, Canvas); border-radius: 50%; background: var(--tag-color); box-shadow: 0 0 0 2px color-mix(in srgb, var(--tag-color) 9%, transparent); }
+  .priority-nav button.active .priority-dot { box-shadow: 0 0 0 3px color-mix(in srgb, var(--tag-color) 15%, transparent); }
+  .priority-copy { display: flex; min-width: 0; align-items: baseline; gap: .42rem; overflow: hidden; font-size: .76rem; font-weight: 560; white-space: nowrap; }
+  .priority-code { color: inherit; font-variant-numeric: tabular-nums; letter-spacing: .01em; transition: color 120ms ease, text-shadow 120ms ease; }
+  .priority-nav button.active .priority-code, .priority-nav button.active .priority-description { color: var(--primary); text-shadow: 0 0 .42rem color-mix(in srgb, var(--primary) 34%, transparent); }
+  .priority-description { overflow: hidden; color: rgba(0,0,0,.5); text-overflow: ellipsis; transition: color 120ms ease, text-shadow 120ms ease; }
+  .group-heading { display: flex; width: 100%; align-items: center; gap: .2rem; margin: 1rem 0 .3rem; border-radius: .45rem; padding: .25rem .35rem; color: rgba(0,0,0,.35); font-size: .62rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; transition: 120ms ease; }
+  .group-heading:hover { background: var(--btn-plain-bg-hover); color: rgba(0,0,0,.52); }
+  .group-heading :global(svg) { font-size: .95rem; transition: transform 160ms ease; }
+  .group-heading[aria-expanded='false'] :global(svg) { transform: rotate(-90deg); }
   .tag-dot { display: inline-block; width: .5rem; height: .5rem; flex-shrink: 0; border-radius: 50%; background: var(--tag-color); }
   .task-pane { min-width: 0; background: var(--card-bg); }
   .task-toolbar { display: flex; min-height: 4.6rem; align-items: center; justify-content: space-between; gap: .8rem; border-bottom: 1px solid var(--line-divider); padding: .85rem 1rem; }
@@ -316,8 +392,12 @@
   .mobile-detail { display: none; }
   button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
   :global(.dark) .workspace-nav header h1, :global(.dark) .task-toolbar h2, :global(.dark) .task-title, :global(.dark) .task-detail > h2, :global(.dark) .error-state h1 { color: rgba(255,255,255,.88); }
-  :global(.dark) .workspace-nav header span, :global(.dark) .workspace-nav header .workspace-note, :global(.dark) .primary-nav button strong, :global(.dark) .tag-nav button strong, :global(.dark) .task-toolbar > div > span, :global(.dark) .task-excerpt, :global(.dark) .task-detail footer, :global(.dark) .no-description { color: rgba(255,255,255,.38); }
-  :global(.dark) .primary-nav button, :global(.dark) .tag-nav button, :global(.dark) .detail-state, :global(.dark) .detail-body { color: rgba(255,255,255,.62); }
+  :global(.dark) .group-heading { color: rgba(255,255,255,.35); }
+  :global(.dark) .group-heading:hover { color: rgba(255,255,255,.52); }
+  :global(.dark) .workspace-nav header span, :global(.dark) .workspace-nav header .workspace-note, :global(.dark) .primary-nav button strong, :global(.dark) .priority-nav button strong, :global(.dark) .tag-nav button strong, :global(.dark) .task-toolbar > div > span, :global(.dark) .task-excerpt, :global(.dark) .task-detail footer, :global(.dark) .no-description { color: rgba(255,255,255,.38); }
+  :global(.dark) .primary-nav button, :global(.dark) .priority-nav button, :global(.dark) .tag-nav button, :global(.dark) .detail-state, :global(.dark) .detail-body { color: rgba(255,255,255,.62); }
+  :global(.dark) .priority-nav button.active .priority-code, :global(.dark) .priority-nav button.active .priority-description { color: color-mix(in srgb, var(--primary) 72%, white); text-shadow: 0 0 .5rem color-mix(in srgb, var(--primary) 48%, transparent); }
+  :global(.dark) .priority-description { color: rgba(255,255,255,.5); }
   :global(.dark) .detail-body :global(h2) { color: rgba(255,255,255,.84); }
   :global(.dark) .detail-body :global(h3) { color: color-mix(in oklab, var(--primary) 70%, rgba(255,255,255,.82)); }
   :global(.dark) .detail-body :global(h4) { color: rgba(255,255,255,.72); }
@@ -325,7 +405,7 @@
   :global(.dark) .task-check, :global(.dark) .row-arrow, :global(.dark) .task-detail > header > a { color: rgba(255,255,255,.3); }
   :global(.dark) .task-row.completed .task-title, :global(.dark) .task-detail > h2.completed { color: rgba(255,255,255,.42); }
   @media (max-width: 900px) { .workspace { grid-template-columns: 11rem minmax(18rem,1fr); } .detail-pane { display: none; } .mobile-detail { display: block; border-bottom: 1px solid var(--line-divider); background: color-mix(in oklab, var(--card-bg) 97%, var(--primary)); } .mobile-detail .task-detail { min-height: 0; padding: 1rem 1.2rem 1.2rem; } .mobile-detail .task-detail > h2, .mobile-detail .task-detail > header { display: none; } .mobile-detail .task-detail footer { padding-top: 1rem; } }
-  @media (max-width: 640px) { .workspace { display: block; min-height: 0; } .workspace-nav { border-right: 0; border-bottom: 1px solid var(--line-divider); padding: .8rem; } .workspace-nav header { display: grid; grid-template-columns: auto 1fr auto; align-items: baseline; gap: .2rem .6rem; padding: 0 .2rem .65rem; } .workspace-nav header p { display: none; } .workspace-nav header h1 { font-size: 1.05rem; } .workspace-nav header .workspace-note { grid-column: 1 / -1; grid-row: 2; max-width: none; margin: 0; } .workspace-nav header span:not(.workspace-note) { grid-column: 3; grid-row: 1; margin: 0; } .primary-nav, .tag-nav { flex-direction: row; overflow-x: auto; } .primary-nav { margin-bottom: .55rem; } .primary-nav button, .tag-nav button { min-width: max-content; grid-template-columns: 1rem auto auto; padding: .45rem .55rem; } .tag-heading { display: none; } .task-pane { border-right: 0; } .task-toolbar { min-height: 3.8rem; } .task-row { grid-template-columns: 1.2rem minmax(0,1fr) auto; } .task-tags { max-width: 7.5rem; } .row-arrow { display: none; } .task-excerpt { display: none; } }
+  @media (max-width: 640px) { .workspace { display: block; min-height: 0; } .workspace-nav { border-right: 0; border-bottom: 1px solid var(--line-divider); padding: .8rem; } .workspace-nav header { display: grid; grid-template-columns: auto 1fr auto; align-items: baseline; gap: .2rem .6rem; padding: 0 .2rem .65rem; } .workspace-nav header p { display: none; } .workspace-nav header h1 { font-size: 1.05rem; } .workspace-nav header .workspace-note { grid-column: 1 / -1; grid-row: 2; max-width: none; margin: 0; } .workspace-nav header span:not(.workspace-note) { grid-column: 3; grid-row: 1; margin: 0; } .primary-nav, .priority-nav, .tag-nav { flex-direction: row; overflow-x: auto; } .primary-nav { margin-bottom: .55rem; } .primary-nav button, .priority-nav button, .tag-nav button { min-width: max-content; grid-template-columns: 1rem auto auto; padding: .45rem .55rem; } .priority-description { display: none; } .group-heading { margin-top: .65rem; } .task-pane { border-right: 0; } .task-toolbar { min-height: 3.8rem; } .task-row { grid-template-columns: 1.2rem minmax(0,1fr) auto; } .task-tags { max-width: 7.5rem; } .row-arrow { display: none; } .task-excerpt { display: none; } }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
   @media (forced-colors: active) { .workspace, .task-row, .tag-pill { border: 1px solid CanvasText; } }
 </style>
