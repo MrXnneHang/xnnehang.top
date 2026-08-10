@@ -60,7 +60,9 @@ export function GithubCardComponent(properties, children) {
         document.getElementById('${cardUuid}-forks').innerText = Intl.NumberFormat('en-us', { notation: "compact", maximumFractionDigits: 1 }).format(data.forks).replaceAll("\u202f", '');
         document.getElementById('${cardUuid}-stars').innerText = Intl.NumberFormat('en-us', { notation: "compact", maximumFractionDigits: 1 }).format(data.stargazers_count).replaceAll("\u202f", '');
         const avatarEl = document.getElementById('${cardUuid}-avatar');
-        avatarEl.style.backgroundImage = 'url(' + data.owner.avatar_url + ')';
+        const avatarUrl = new URL(data.owner.avatar_url);
+        avatarUrl.searchParams.set('s', '128');
+        avatarEl.style.backgroundImage = 'url(' + avatarUrl + ')';
         avatarEl.style.backgroundColor = 'transparent';
         document.getElementById('${cardUuid}-license').innerText = data.license?.spdx_id || "no-license";
         document.getElementById('${cardUuid}-card').classList.remove("fetch-waiting");
