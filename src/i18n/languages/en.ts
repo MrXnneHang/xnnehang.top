@@ -56,7 +56,8 @@ export const en: Translation = {
 
   [Key.shelf]: 'Shelf',
 
-  [Key.memo]: 'Murmurs',
+  [Key.todo]: 'Underway',
+  [Key.todoDescription]: 'Turning scattered ideas into finished work',
 
   [Key.seriesNav]: 'Series',
 

@@ -52,7 +52,8 @@ enum I18nKey {
   noWikiLinks = 'noWikiLinks',
 
   shelf = 'shelf',
-  memo = 'memo',
+  todo = 'todo',
+  todoDescription = 'todoDescription',
   seriesNav = 'seriesNav',
 
   pinned = 'pinned',

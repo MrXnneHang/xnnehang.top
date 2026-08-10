@@ -56,7 +56,8 @@ export const th: Translation = {
 
   [Key.shelf]: 'ชั้นหนังสือ',
 
-  [Key.memo]: 'บันทึก',
+  [Key.todo]: 'กำลังดำเนินการ',
+  [Key.todoDescription]: 'หลอมรวมความคิดที่กระจัดกระจายให้กลายเป็นงานที่เสร็จสมบูรณ์',
 
   [Key.seriesNav]: 'ซีรีส์',
 

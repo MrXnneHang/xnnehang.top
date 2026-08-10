@@ -56,7 +56,8 @@ export const tr: Translation = {
 
   [Key.shelf]: 'Raf',
 
-  [Key.memo]: 'Not',
+  [Key.todo]: 'Yolda',
+  [Key.todoDescription]: 'Dağınık fikirleri tamamlanmış işlere dönüştürmek',
 
   [Key.seriesNav]: 'Seriler',
 

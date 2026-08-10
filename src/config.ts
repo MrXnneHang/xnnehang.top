@@ -41,7 +41,7 @@ export const navBarConfig: NavBarConfig = {
     LinkPreset.Statistics,
     LinkPreset.About,
     LinkPreset.Friends,
-    LinkPreset.Memo,
+    LinkPreset.Todo,
     {
       name: 'GitHub',
       url: 'https://github.com/MrXnneHang',

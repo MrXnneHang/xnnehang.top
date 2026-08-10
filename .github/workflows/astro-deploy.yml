@@ -1,14 +1,32 @@
 name: Deploy
 
+permissions:
+  contents: write
+  issues: read
+
 on:
   push:
     branches: [master]
+  issues:
+    types: [opened, edited, closed, reopened, labeled, unlabeled]
   schedule:
     - cron: '17 */6 * * *'
   workflow_dispatch:
 
 jobs:
   build-and-deploy:
+    if: >-
+      github.event_name != 'issues' ||
+      (
+        (github.event.issue.user.id == 150757813 || github.event.issue.user.id == 260583610) &&
+        (
+          contains(github.event.issue.labels.*.name, 'workspace:todo') ||
+          (github.event.action == 'unlabeled' && github.event.label.name == 'workspace:todo')
+        )
+      )
+    concurrency:
+      group: pages-deploy
+      cancel-in-progress: true
     runs-on: ubuntu-latest
 
     steps:
@@ -37,6 +55,12 @@ jobs:
           GA4_PROPERTY_ID: ${{ vars.GA4_PROPERTY_ID }}
           GA4_SERVICE_ACCOUNT_JSON: ${{ secrets.GA4_SERVICE_ACCOUNT_JSON }}
         run: vp run stats:fetch
+
+      - name: Generate Todo snapshot
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TODO_WORKSPACE_LABEL_ID: ${{ vars.TODO_WORKSPACE_LABEL_ID }}
+        run: vp run todo:fetch
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

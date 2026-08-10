@@ -11,6 +11,8 @@
     "type-check": "tsc --noEmit --isolatedDeclarations",
     "stats:fetch": "node scripts/fetch-ga4-statistics.mjs",
     "stats:test": "node --test scripts/statistics-lib.test.mjs",
+    "todo:fetch": "node scripts/fetch-github-todo.mjs",
+    "todo:test": "node --test scripts/todo-lib.test.mjs",
     "preinstall": "npx only-allow pnpm",
     "img:upload": "bash scripts/upload-img.sh",
     "case-police": "case-police . --fix",

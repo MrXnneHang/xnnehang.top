@@ -56,7 +56,8 @@ export const ko: Translation = {
 
   [Key.shelf]: '서재',
 
-  [Key.memo]: '메모',
+  [Key.todo]: '진행 중',
+  [Key.todoDescription]: '흩어진 생각을 완성된 일로 빚어냅니다',
 
   [Key.seriesNav]: '시리즈',
 
