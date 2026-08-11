@@ -17,7 +17,7 @@ const API_BASE_URL = `https://api.github.com/repos/${TODO_REPOSITORY.owner}/${TO
 function headers() {
   if (!process.env.GITHUB_TOKEN) throw new Error('GITHUB_TOKEN is not configured')
   return {
-    Accept: 'application/vnd.github+json',
+    Accept: 'application/vnd.github.full+json',
     Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
     'X-GitHub-Api-Version': '2022-11-28',
   }

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import '@fontsource-variable/jetbrains-mono'
+  import '@fontsource-variable/jetbrains-mono/wght-italic.css'
   import { onMount } from 'svelte'
   import Icon from '@iconify/svelte'
 
@@ -309,7 +311,7 @@
     <h2 class:completed={task.state === 'closed'}>{task.title}</h2>
     {#if task.tags.length > 0}<div class="detail-tags">{#each task.tags as tag (tag.id)}<span class="tag-pill" style={tagStyle(tag)}><span class="tag-dot" style={tagStyle(tag)}></span>{tag.name}</span>{/each}</div>{/if}
     <div class="detail-rule"></div>
-    {#if task.descriptionHtml}<div class="detail-body">{@html task.descriptionHtml}</div>{:else}<p class="no-description">没有补充详情。</p>{/if}
+    {#if task.descriptionHtml}<div class="detail-body prose dark:prose-invert custom-md !max-w-none">{@html task.descriptionHtml}</div>{:else}<p class="no-description">没有补充详情。</p>{/if}
     <footer>
       <span>创建于 {formatDate(task.createdAt)}</span>
       <span>{task.state === 'closed' ? `结晶于 ${formatDate(task.closedAt)}` : `更新于 ${formatDate(task.updatedAt)}`}</span>
@@ -374,12 +376,17 @@
   .task-detail > h2.completed { color: rgba(0,0,0,.48); text-decoration: line-through; }
   .detail-tags { display: flex; flex-wrap: wrap; gap: .35rem; }
   .detail-rule { height: 1px; margin: 1.2rem 0; background: var(--line-divider); }
-  .detail-body { color: rgba(0,0,0,.64); font-size: .82rem; line-height: 1.75; }
-  .detail-body :global(h2) { margin: 1.8rem 0 .65rem; color: rgba(0,0,0,.82); font-size: 1.05rem; font-weight: 750; line-height: 1.4; letter-spacing: -.025em; }
-  .detail-body :global(h3) { margin: 1.3rem 0 .5rem; border-left: 2px solid color-mix(in oklab, var(--primary) 60%, transparent); padding-left: .55rem; color: color-mix(in oklab, var(--primary) 72%, rgba(0,0,0,.82)); font-size: .9rem; font-weight: 720; line-height: 1.45; }
-  .detail-body :global(h4) { margin: 1rem 0 .4rem; color: rgba(0,0,0,.72); font-size: .82rem; font-weight: 700; line-height: 1.5; }
-  .detail-body :global(h2:first-child), .detail-body :global(h3:first-child), .detail-body :global(h4:first-child), .detail-body :global(p:first-child) { margin-top: 0; }
-  .detail-body :global(p:last-child) { margin-bottom: 0; }
+  .detail-body { min-width: 0; color: rgba(0,0,0,.64); font-size: .82rem; line-height: 1.75; overflow-wrap: anywhere; }
+  .detail-body :global(> :first-child) { margin-top: 0; }
+  .detail-body :global(> :last-child) { margin-bottom: 0; }
+  .detail-body :global(h1) { font-size: 1.35rem; }
+  .detail-body :global(h2) { font-size: 1.08rem; }
+  .detail-body :global(h3) { font-size: .98rem; }
+  .detail-body :global(h4) { font-size: .9rem; }
+  .detail-body :global(h5), .detail-body :global(h6) { font-size: .82rem; }
+  .detail-body :global(h1), .detail-body :global(h2), .detail-body :global(h3), .detail-body :global(h4), .detail-body :global(h5), .detail-body :global(h6) { scroll-margin-top: 6rem; letter-spacing: -.025em; }
+  .detail-body :global(pre), .detail-body :global(markdown-accessiblity-table) { max-width: 100%; overflow-x: auto; }
+  .detail-body :global(img) { max-width: 100%; height: auto; }
   .detail-body :global(a), .task-detail footer a { color: var(--primary); }
   .no-description { color: rgba(0,0,0,.36); font-size: .8rem; }
   .task-detail footer { display: flex; flex-wrap: wrap; gap: .35rem 1rem; margin-top: auto; padding-top: 2rem; color: rgba(0,0,0,.36); font-size: .65rem; }
@@ -395,12 +402,10 @@
   :global(.dark) .group-heading { color: rgba(255,255,255,.35); }
   :global(.dark) .group-heading:hover { color: rgba(255,255,255,.52); }
   :global(.dark) .workspace-nav header span, :global(.dark) .workspace-nav header .workspace-note, :global(.dark) .primary-nav button strong, :global(.dark) .priority-nav button strong, :global(.dark) .tag-nav button strong, :global(.dark) .task-toolbar > div > span, :global(.dark) .task-excerpt, :global(.dark) .task-detail footer, :global(.dark) .no-description { color: rgba(255,255,255,.38); }
-  :global(.dark) .primary-nav button, :global(.dark) .priority-nav button, :global(.dark) .tag-nav button, :global(.dark) .detail-state, :global(.dark) .detail-body { color: rgba(255,255,255,.62); }
+  :global(.dark) .primary-nav button, :global(.dark) .priority-nav button, :global(.dark) .tag-nav button, :global(.dark) .detail-state { color: rgba(255,255,255,.62); }
+  :global(.dark) .detail-body { color: rgba(255,255,255,.62); }
   :global(.dark) .priority-nav button.active .priority-code, :global(.dark) .priority-nav button.active .priority-description { color: color-mix(in srgb, var(--primary) 72%, white); text-shadow: 0 0 .5rem color-mix(in srgb, var(--primary) 48%, transparent); }
   :global(.dark) .priority-description { color: rgba(255,255,255,.5); }
-  :global(.dark) .detail-body :global(h2) { color: rgba(255,255,255,.84); }
-  :global(.dark) .detail-body :global(h3) { color: color-mix(in oklab, var(--primary) 70%, rgba(255,255,255,.82)); }
-  :global(.dark) .detail-body :global(h4) { color: rgba(255,255,255,.72); }
   :global(.dark) .task-toolbar label { background: rgba(255,255,255,.06); color: rgba(255,255,255,.35); } :global(.dark) .task-toolbar input { color: rgba(255,255,255,.76); }
   :global(.dark) .task-check, :global(.dark) .row-arrow, :global(.dark) .task-detail > header > a { color: rgba(255,255,255,.3); }
   :global(.dark) .task-row.completed .task-title, :global(.dark) .task-detail > h2.completed { color: rgba(255,255,255,.42); }
