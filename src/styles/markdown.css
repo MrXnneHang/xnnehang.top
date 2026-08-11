@@ -147,6 +147,179 @@
     }
   }
 
+  > pre,
+  .highlight pre,
+  .render-plaintext-hidden pre {
+    max-width: 100%;
+    overflow-x: auto;
+    border-radius: 0.75rem;
+    background: var(--codeblock-bg);
+    padding: 1rem;
+    color: rgb(255 255 255 / 0.82);
+    font-family:
+      'JetBrains Mono Variable',
+      ui-monospace,
+      SFMono-Regular,
+      Menlo,
+      Monaco,
+      Consolas,
+      Liberation Mono,
+      Courier New,
+      monospace;
+  }
+
+  > pre code,
+  .highlight pre code,
+  .render-plaintext-hidden pre code {
+    overflow: visible;
+    border-radius: 0;
+    background: transparent;
+    padding: 0;
+    color: inherit;
+  }
+
+  markdown-accessiblity-table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 1.25rem 0;
+  }
+
+  markdown-accessiblity-table table {
+    width: max-content;
+    min-width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    border: 1px solid var(--line-divider);
+    padding: 0.45rem 0.7rem;
+  }
+
+  th {
+    background: var(--btn-regular-bg);
+  }
+
+  img,
+  picture,
+  themed-picture {
+    max-width: 100%;
+  }
+
+  img {
+    height: auto;
+    border-radius: 0.75rem;
+  }
+
+  picture,
+  themed-picture {
+    display: inline-block;
+  }
+
+  .contains-task-list {
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .task-list-item {
+    list-style: none;
+  }
+
+  .task-list-item .contains-task-list {
+    margin-top: 0.25rem;
+    padding-left: 1.35rem;
+  }
+
+  .task-list-item-checkbox {
+    width: 1em;
+    height: 1em;
+    margin: 0 0.45em 0.15em 0;
+    accent-color: var(--primary);
+    vertical-align: middle;
+  }
+
+  .markdown-alert {
+    --markdown-alert-color: var(--admonitions-color-note);
+    margin: 1.25rem 0;
+    border-left: 0.25rem solid var(--markdown-alert-color);
+    border-radius: 0.5rem;
+    background: color-mix(in oklab, var(--markdown-alert-color) 8%, transparent);
+    padding: 0.8rem 1rem;
+  }
+
+  .markdown-alert-title {
+    margin: 0 0 0.35rem;
+    color: var(--markdown-alert-color);
+    font-weight: 700;
+  }
+
+  .markdown-alert-title svg {
+    display: none;
+  }
+
+  .markdown-alert-tip {
+    --markdown-alert-color: var(--admonitions-color-tip);
+  }
+
+  .markdown-alert-important {
+    --markdown-alert-color: var(--admonitions-color-important);
+  }
+
+  .markdown-alert-warning {
+    --markdown-alert-color: var(--admonitions-color-warning);
+  }
+
+  .markdown-alert-caution {
+    --markdown-alert-color: var(--admonitions-color-caution);
+  }
+
+  .footnotes {
+    margin-top: 2rem;
+    border-top: 1px dashed var(--line-divider);
+    padding-top: 0.75rem;
+    font-size: 0.875em;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+  }
+
+  kbd {
+    border: 1px solid var(--line-divider);
+    border-bottom-width: 2px;
+    border-radius: 0.35rem;
+    background: var(--btn-regular-bg);
+    padding: 0.1rem 0.35rem;
+    font-family: inherit;
+    font-size: 0.85em;
+  }
+
+  math-renderer {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    border-radius: 0.5rem;
+    background: var(--btn-regular-bg);
+    padding: 0.75rem;
+    font-family: 'JetBrains Mono Variable', ui-monospace, monospace;
+    white-space: pre-wrap;
+  }
+
+  math-renderer.js-inline-math {
+    display: inline;
+    background: transparent;
+    padding: 0;
+    white-space: normal;
+  }
+
   .katex-display-container {
     max-width: 100%;
     overflow-x: auto;
