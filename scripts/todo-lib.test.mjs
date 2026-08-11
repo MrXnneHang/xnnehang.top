@@ -114,7 +114,10 @@ test('preserves GitHub Flavored Markdown structures and hardens their attributes
   assert.match(html, /<span class="pl-k">const<\/span>/)
   assert.match(html, /loading="lazy" decoding="async"/)
   assert.match(html, /data-footnote-backref/)
-  assert.match(html, /<math-renderer class="js-inline-math" aria-label="math">\$x\^2\$<\/math-renderer>/)
+  assert.match(
+    html,
+    /<math-renderer class="js-inline-math" aria-label="math">\$x\^2\$<\/math-renderer>/
+  )
   assert.equal(isTodoSnapshot(createSnapshot([task])), true)
 })
 
@@ -185,7 +188,10 @@ test('rejects dangerous Markdown URLs and forces inert task inputs', () => {
   )
 
   const html = task?.descriptionHtml ?? ''
-  assert.doesNotMatch(html, /javascript:|\/\/evil\.example|secrets\.txt|data:image|onclick|type="text"|value=/)
+  assert.doesNotMatch(
+    html,
+    /javascript:|\/\/evil\.example|secrets\.txt|data:image|onclick|type="text"|value=/
+  )
   assert.match(html, /<input type="checkbox" disabled class="task-list-item-checkbox"/)
   assert.doesNotMatch(html, /<img/)
   assert.match(html, /\nscript\n/)
@@ -204,7 +210,12 @@ test('normalizes rendered HTML idempotently and rejects post-sanitize mutations'
   assert.equal(
     isTodoSnapshot({
       ...snapshot,
-      tasks: [{ ...snapshot.tasks[0], descriptionHtml: `${snapshot.tasks[0].descriptionHtml}<style>x</style>` }],
+      tasks: [
+        {
+          ...snapshot.tasks[0],
+          descriptionHtml: `${snapshot.tasks[0].descriptionHtml}<style>x</style>`,
+        },
+      ],
     }),
     false
   )
@@ -223,7 +234,8 @@ test('strips executable markup and unsafe links from descriptions', () => {
 
 test('accepts an existing version-one snapshot with the previous safe HTML shape', () => {
   const snapshot = createSnapshot([normalizeIssue(issue())])
-  const previousHtml = '<p>Legacy <a href="https://example.com" target="_blank" rel="noopener noreferrer">notes</a>.</p>'
+  const previousHtml =
+    '<p>Legacy <a href="https://example.com" target="_blank" rel="noopener noreferrer">notes</a>.</p>'
   assert.equal(
     isTodoSnapshot({
       ...snapshot,

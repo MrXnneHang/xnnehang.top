@@ -309,10 +309,7 @@
     border-radius: 0.5rem;
     background: var(--btn-regular-bg);
     padding: 0.75rem;
-    font-family:
-      'JetBrains Mono Variable',
-      ui-monospace,
-      monospace;
+    font-family: 'JetBrains Mono Variable', ui-monospace, monospace;
     white-space: pre-wrap;
   }
 
