@@ -39,6 +39,14 @@ Do **not** delete the template structure or write a freeform PR body. The commen
 
 The template is only in the `xnnehang.top` repo (`.github/PULL_REQUEST_TEMPLATE.md`); fetch it with `gh api` if you cannot read it locally.
 
+## 炼金台 Todo Issue Follow-ups
+
+When you discover a discrete, valuable follow-up that is outside the user's explicitly requested scope, create a Todo Issue with `.github/ISSUE_TEMPLATE/todo.md` rather than silently expanding the current task. Only do this for work that is concrete enough to track and safe to publish; do not open issues for speculative or trivial observations.
+
+Todo Issues are published on `xnnehang.top/todo/`. Keep their titles and bodies free of private information, credentials, personal data, and private coordination. Preserve the template's default `workspace:todo` label, clearly state the intended outcome in **What should happen?**, and add actionable **Acceptance checks**.
+
+Additional labels become public tags on the Todo page. Comments are not published, but they are not a private progress channel. Creating the Todo Issue records later work only; it never grants permission to implement that work within the current request.
+
 ## Submodule Image Commit Order
 
 The image submodule (`src/assets/img`) is managed from this repository. When the user adds an image to the main-repository root or asks to publish an image:
