@@ -1,8 +1,8 @@
 <h1>
    <ruby>
-      xnnehang<rp>(</rp><rt>写代码是因为爱</rt><rp>)</rp>
+      xnnehang<rp>(</rp><rt>猫猫</rt><rp>)</rp>
       .<rp>(</rp><rt>超</rt><rp>)</rp>
-      top<rp>(</rp><rt>可愛い</rt><rp>)</rp>
+      top<rp>(</rp><rt>可愛い</rt><rp>)
    </ruby>
 </h1>
 
