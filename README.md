@@ -1,7 +1,5 @@
 <h1 align="center">xnnehang.top</h1>
 
-<h2 align="center">魔女の手帳</h2>
-
 <p align="center">
    <a href="https://github.com/withastro/astro" target="_blank"><img alt="astro" src="https://img.shields.io/badge/Astro-build-1aad19?style=for-the-badge&logo=astro"></a>
    <a href="https://github.com/saicaca/fuwari" target="_blank"><img alt="Fuwari" src="https://img.shields.io/badge/Fuwari-theme-26a2ff?style=for-the-badge&logo=astro"></a>
