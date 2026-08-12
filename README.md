@@ -1,10 +1,8 @@
-<h1>
-   <ruby>
-      xnnehang<rp>(</rp><rt>ニャック</rt><rp>)</rp>
-      .<rp>(</rp><rt>超</rt><rp>)</rp>
-      top<rp>(</rp><rt>可愛い</rt><rp>)
-   </ruby>
-</h1>
+<h1 align="center">xnnehang.top</h1>
+
+<p align="center">
+   <sub>魔女の手帳</sub>
+</p>
 
 <p align="center">
    <a href="https://github.com/withastro/astro" target="_blank"><img alt="astro" src="https://img.shields.io/badge/Astro-build-1aad19?style=for-the-badge&logo=astro"></a>
