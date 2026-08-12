@@ -44,7 +44,7 @@ export const navBarConfig: NavBarConfig = {
     LinkPreset.Todo,
     {
       name: 'GitHub',
-      url: 'https://github.com/MrXnneHang',
+      url: 'https://github.com/MrXnneHang/xnnehang.top',
       external: true,
     },
   ],
