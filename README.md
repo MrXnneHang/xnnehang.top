@@ -1,8 +1,6 @@
 <h1 align="center">xnnehang.top</h1>
 
-<p align="center">
-   <sub>魔女の手帳</sub>
-</p>
+<h2 align="center">魔女の手帳</h2>
 
 <p align="center">
    <a href="https://github.com/withastro/astro" target="_blank"><img alt="astro" src="https://img.shields.io/badge/Astro-build-1aad19?style=for-the-badge&logo=astro"></a>
