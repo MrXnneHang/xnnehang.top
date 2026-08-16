@@ -78,7 +78,7 @@
     @apply pointer-events-none text-black/10 dark:text-white/10;
   }
   .btn-plain {
-    @apply relative flex items-center justify-center bg-none text-black/75 transition hover:text-[var(--primary)] dark:text-white/75 dark:hover:text-[var(--primary)];
+    @apply relative flex items-center justify-center bg-none text-[var(--text-75)] transition hover:text-[var(--primary)];
     &:not(.scale-animation) {
       @apply hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)];
     }
@@ -90,7 +90,7 @@
     }
   }
   .btn-regular {
-    @apply flex items-center justify-center bg-[var(--btn-regular-bg)] text-[var(--btn-content)] transition hover:bg-[var(--btn-regular-bg-hover)] active:bg-[var(--btn-regular-bg-active)] dark:text-white/75;
+    @apply flex items-center justify-center bg-[var(--btn-regular-bg)] text-[var(--icon-content)] transition hover:bg-[var(--btn-regular-bg-hover)] active:bg-[var(--btn-regular-bg-active)];
   }
 
   .link-underline {
@@ -121,19 +121,19 @@
   }
 
   .text-90 {
-    @apply text-black/90 dark:text-white/90;
+    color: var(--text-90);
   }
   .text-75 {
-    @apply text-black/75 dark:text-white/75;
+    color: var(--text-75);
   }
   .text-50 {
-    @apply text-black/50 dark:text-white/50;
+    color: var(--text-50);
   }
   .text-30 {
-    @apply text-black/30 dark:text-white/30;
+    color: var(--text-30);
   }
   .text-25 {
-    @apply text-black/25 dark:text-white/25;
+    color: var(--text-25);
   }
 
   .meta-icon {
