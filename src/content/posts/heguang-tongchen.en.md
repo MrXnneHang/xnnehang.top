@@ -24,9 +24,9 @@ I found a video on Bilibili with few views, but it moved me deeply.
 
 Not because it says anything especially profound, but because it uses Han Li as an example and somehow lets me see myself.
 
-After watching *A Record of a Mortal's Journey to Immortality* for so long, I have always felt comfortable watching Han Li—more comfortable than Tang San, Wang Lin, Xiao Yan, and others. There is a sense of closeness, none of that sharpness. This is also why many people think of him as “mortal.”
+After watching _A Record of a Mortal's Journey to Immortality_ for so long, I have always felt comfortable watching Han Li—more comfortable than Tang San, Wang Lin, Xiao Yan, and others. There is a sense of closeness, none of that sharpness. This is also why many people think of him as “mortal.”
 
-Qin Mu is the complete opposite of Han Li. Qin Mu's cleverness and intricate mind are displayed openly. Whatever he thinks, he says; he never holds it in. He also has an extremely open-source spirit, never reluctant to give away what he has thought of. When I first read *Tales of Herding Gods*, I thought Qin Mu was much like me, but he always also carried a sense of immaturity.
+Qin Mu is the complete opposite of Han Li. Qin Mu's cleverness and intricate mind are displayed openly. Whatever he thinks, he says; he never holds it in. He also has an extremely open-source spirit, never reluctant to give away what he has thought of. When I first read _Tales of Herding Gods_, I thought Qin Mu was much like me, but he always also carried a sense of immaturity.
 
 Han Li's intelligence, by contrast, is almost always hidden beneath the iceberg. Others never see even one tenth of his true thoughts. More often he simply acts silently and does not explain himself. Of course, the video's account of “blunting his sharpness” says it better than I can.
 
@@ -38,7 +38,7 @@ A gentleman is not something forced into shape. Take Chen Changsheng: he has rea
 
 But from Chen Changsheng's first appearance in animation, he has felt artificial to me. The production team cares too much about the scholar's image of warm jade and pushes it too far. It turns Chen Changsheng into an outward gentleman—or, more accurately, someone with a respectable facade. By neglecting the character's depth, they make him too thin. It is hard not to feel uncomfortable and suspect that something unknown is hidden deeper down.
 
-On the *Mortal's Journey* side, however, the production team places Han Li's inner complexity, choices, and psychological dilemmas in plain sight. Their presentation makes viewers feel they have seen Han Li whole, rather than only a shell.
+On the _Mortal's Journey_ side, however, the production team places Han Li's inner complexity, choices, and psychological dilemmas in plain sight. Their presentation makes viewers feel they have seen Han Li whole, rather than only a shell.
 
 A gentleman is not in speech or manners. A gentleman is in the heart.
 
@@ -56,7 +56,7 @@ When Yellow Maple Valley abandoned him as a disposable pawn, he did not question
 
 Then comes seeing through things without saying so. The video speaks of four states of mind: treating oneself as another, another as oneself, another as another, and oneself as oneself. I can understand the first three; the last is the hardest. Do not care about other people's evaluations; hear your own voice first.
 
-Honestly, I have not done it. Too many things matter to me: other people's views, their expectations, even what they think of these blog posts. Sometimes I revise wording again and again before publishing, until in the end I have forgotten what I wanted to say. I suppose this is why I return to *Mortal's Journey* every so often—not for the fights, but to watch how Han Li handles these relationships. To remind myself that there is a fourth option.
+Honestly, I have not done it. Too many things matter to me: other people's views, their expectations, even what they think of these blog posts. Sometimes I revise wording again and again before publishing, until in the end I have forgotten what I wanted to say. I suppose this is why I return to _Mortal's Journey_ every so often—not for the fights, but to watch how Han Li handles these relationships. To remind myself that there is a fourth option.
 
 The third step is letting others shine. The video uses Lin Xiangru as an example: Lin lets Lian Po understand that his light belongs on the battlefield. Han Li does much the same. He lets the old monsters of Tiannan fight for fame and gain while he quietly takes the actual benefits. This is neither pleasing people nor flattering them; it is genuinely seeing another person's value and helping it flourish.
 
@@ -68,7 +68,7 @@ I am less moved by this part than the first two. Perhaps my life has not yet rea
 
 The last step, blending with the dust, feels like such an elevated phrase.
 
-It means letting go of discriminating thoughts and prejudices of high and low, noble and base. The video has a line that made me laugh: “People who listen to classical music look down on people who listen to pop; people who watch stage plays look down on people who watch errenzhuan.” But after laughing, it did not feel quite right, because I have this discriminating mind too. I used to look down on mindless power fantasies and think only works like *Mortal's Journey* counted as good. Later I thought: they enjoy what they watch, and I enjoy what I watch; as long as we do not interfere with each other, that is fine.
+It means letting go of discriminating thoughts and prejudices of high and low, noble and base. The video has a line that made me laugh: “People who listen to classical music look down on people who listen to pop; people who watch stage plays look down on people who watch errenzhuan.” But after laughing, it did not feel quite right, because I have this discriminating mind too. I used to look down on mindless power fantasies and think only works like _Mortal's Journey_ counted as good. Later I thought: they enjoy what they watch, and I enjoy what I watch; as long as we do not interfere with each other, that is fine.
 
 And **old-man energy** arises when you believe your own tastes are superior and cannot resist judging, blaming, and correcting others. So people do not become old-manish because they get old; they get old-manish because they are old-manish (bushi).
 
@@ -80,21 +80,21 @@ Han Li does not have this discriminating mind. From the Seven Mysteries Sect to 
 
 > Episode 178: the dialogue scenes are still astonishing.
 
-The video quotes *Soul*: every soul needs a spark when it comes into the world, and that spark is a passion.
+The video quotes _Soul_: every soul needs a spark when it comes into the world, and that spark is a passion.
 
 I wrote before in [[On Mortal Lives in Renegade Immortal and A Record of a Mortal's Journey to Immortality]] that the essence of living as a mortal is setting aside a cultivator's identity and experiencing life as an ordinary person again. Looking at it now, Han Li's “blending with the dust” means something similar. Whatever realm he cultivates to, in a corner of his heart Han Li still considers himself a mortal—or rather, preserves that corner of humanity and the feeling of being alive. Wang Lin's mortal life is a pot of fruit wine, festivals across the four seasons, and the lived warmth of the blacksmith's family. Han Li's is subtler. He does not need to deliberately live as a mortal, or deliberately try to fit in, because he has always been this way.
 
 Seen this way, Han Li's Dao heart is far steadier than Wang Lin's. Wang Lin found his Dao amid AABB and BBAA (I am really not trying to hate on him). Han Li knew what he wanted from the beginning and only continued to make it firm. His cultivation is pure, like someone with a pure desire for knowledge who learns in order to seek knowledge and discern truth. Han Li's cultivation and Dao heart are just as pure. (Perhaps at first they were mixed with a wish to catch up to his wife, but later he even forgot to look for her, did he not?) Wang Lin's cultivation began with revenge, and later with reviving Li Muwan. He never understood why he cultivated in the first place; he was only a puppet passively pulled forward by hatred and romance. Can such a Dao heart truly be pure?
 
-Han Li was plotted against by Doctor Mo, abandoned by Yellow Maple Valley, adrift in the Scattered Star Seas, entered and left Devilfall Valley, and fell into a spatial rift. These experiences would make anyone extreme or cold, but Han Li remains gentle and unhurried, neither servile nor arrogant. Call him gentle, call him calculating—either way, he has none of that viciousness. Wang Lin, from the time Teng Huayuan destroyed his entire clan, stepped onto a path wrapped in violence. He fought the Teng clan, then later fought the Heavenly Dao. He has never stopped since, and I cannot see a trace of living humanity in him. I see only, “Noisy! Die!” It is genuinely abstract. I am not criticizing him just to criticize him; in a sense, he has truly lost empathy. Perhaps this is also because the *Renegade Immortal* animation only keeps shaping standard, stereotyped villains, so every ruthless move Wang Lin makes is hard to fault.
+Han Li was plotted against by Doctor Mo, abandoned by Yellow Maple Valley, adrift in the Scattered Star Seas, entered and left Devilfall Valley, and fell into a spatial rift. These experiences would make anyone extreme or cold, but Han Li remains gentle and unhurried, neither servile nor arrogant. Call him gentle, call him calculating—either way, he has none of that viciousness. Wang Lin, from the time Teng Huayuan destroyed his entire clan, stepped onto a path wrapped in violence. He fought the Teng clan, then later fought the Heavenly Dao. He has never stopped since, and I cannot see a trace of living humanity in him. I see only, “Noisy! Die!” It is genuinely abstract. I am not criticizing him just to criticize him; in a sense, he has truly lost empathy. Perhaps this is also because the _Renegade Immortal_ animation only keeps shaping standard, stereotyped villains, so every ruthless move Wang Lin makes is hard to fault.
 
 But are villains really all the sort who walk up, provoke someone with “You little Core Formation brat,” and then stretch out their necks for the protagonist to kill? Meng Tuzi is the most laughable villain I have seen.
 
-In *Mortal's Journey*, viewers see Xuan Gu fall and call for an entire Xuan Gu side story. When Young Lord Wen dies, they cry, “No, Young Lord!” Perhaps viewers are letting their facial features guide their values? But Xuan Gu's ultimate personal charm as an antagonist cannot be denied.
+In _Mortal's Journey_, viewers see Xuan Gu fall and call for an entire Xuan Gu side story. When Young Lord Wen dies, they cry, “No, Young Lord!” Perhaps viewers are letting their facial features guide their values? But Xuan Gu's ultimate personal charm as an antagonist cannot be denied.
 
 ![Xuan Gu falls](../../assets/img/heguang-tongchen/xuangu-yuluo.png)
 
-What is more remarkable is that every character in *Mortal's Journey* is complex and many-sided. Even when they stand against the protagonist and receive the villain label, they are not simply divided into good and evil. Or rather, *Mortal's Journey* tries hard to avoid praising good and punishing evil, and to avoid manufacturing opposition. There are many satirical novels that advertise “demonic cultivators act human while righteous cultivators do not,” then all reach the same conclusion: demonic cultivators are not necessarily evil; look at what they actually do. *Mortal's Journey* is more direct. It creates many such characters: from their own perspective, perhaps they can only do what they do. For instance, Wen Qiang is right to protect his daughter, and right to seek revenge against the decayed management of the Star Palace.
+What is more remarkable is that every character in _Mortal's Journey_ is complex and many-sided. Even when they stand against the protagonist and receive the villain label, they are not simply divided into good and evil. Or rather, _Mortal's Journey_ tries hard to avoid praising good and punishing evil, and to avoid manufacturing opposition. There are many satirical novels that advertise “demonic cultivators act human while righteous cultivators do not,” then all reach the same conclusion: demonic cultivators are not necessarily evil; look at what they actually do. _Mortal's Journey_ is more direct. It creates many such characters: from their own perspective, perhaps they can only do what they do. For instance, Wen Qiang is right to protect his daughter, and right to seek revenge against the decayed management of the Star Palace.
 
 But he is also genuinely a villain, and that is what makes such a character compelling.
 
@@ -107,7 +107,7 @@ His daughter Wen Siyue, along with later Gongsun Xing and Mei Ning, also establi
 > The wordless dramatic scene in episode 106.<br>
 > Two kneelings nearly a hundred years apart: the second is a test. Wen Siyue learns that Han Li is the senior who had inexplicably helped her a century earlier; Han Li knows that she knows, but neither says it. And after this parting, the day they meet again is far away.
 
-A fairly complete compilation is available here: [In *A Record of a Mortal's Journey to Immortality*, Siyue's kneeling recognized him as Senior Han](https://www.bilibili.com/video/BV16vTA6hE2m). Han Li used a disguise technique, so Wen Siyue saw an old man; he even deliberately copied an old man's voice and tone.
+A fairly complete compilation is available here: [In _A Record of a Mortal's Journey to Immortality_, Siyue's kneeling recognized him as Senior Han](https://www.bilibili.com/video/BV16vTA6hE2m). Han Li used a disguise technique, so Wen Siyue saw an old man; he even deliberately copied an old man's voice and tone.
 
 Yet the single line `Do not mention this to anyone else` immediately makes Wen Siyue connect him with Senior Han, who had helped her multiple times for no apparent reason.
 
@@ -137,7 +137,7 @@ Han Li sees his own guilt and feeling toward his parents in Gongsun Xing, then g
 
 If Mei Ning had shown even a trace of determination instead of uncertainty, Han Li would have given everything to her without reservation. Old Devil Han says that forming a Nascent Soul will take one or several centuries, an endlessly distant future—would that not frighten a young girl? Then, in a few decades, he becomes a grand elder. Mei Ning's temperament is relatively weak; if Mo Caihuan or Senior Sister Chen had been there, they would have firmly chosen to follow Han Li. Yet it is precisely that indecision and vulnerability, born of having been protected too well by her brother, combined with her pitiable expression, that leaves many fellow Daoists and me unable to let go. Still, following Zi Ling is not bad. Zi Ling is a professional at raising children; she previously raised Wen Siyue well.
 
-And the production team has truly put thought into it. They even bring in *A New Account of the Tales of the World*. Very few people can understand that layer of symbolism; I certainly cannot.
+And the production team has truly put thought into it. They even bring in _A New Account of the Tales of the World_. Very few people can understand that layer of symbolism; I certainly cannot.
 
 Perhaps anime like this is exhausting to make and hard to please everyone with; it is also exhausting to watch. Dialogue scenes demand thought and feeling, and sometimes cannot be understood without an explanation. But as I grow older, I find it hard to say I can simply leave my brain aside when watching animation, so I can gradually watch only this sort of animation.
 

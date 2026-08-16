@@ -39,11 +39,11 @@ The mindful mode of being (I have to say, the Chinese phrase is difficult both t
 
 > _A person looks at things as they truly are rather than as they ought to be, and finds them novel. To exist in this mode means remaining continuously aware of one's existence._
 
-This makes me think of Zhexiu in *Fighter of the Destiny*. He says, “Either live awake, or die awake.” Compared with Chen Changsheng, who is continually driven by a known death, Zhexiu is a genuine existentialist.
+This makes me think of Zhexiu in _Fighter of the Destiny_. He says, “Either live awake, or die awake.” Compared with Chen Changsheng, who is continually driven by a known death, Zhexiu is a genuine existentialist.
 
 The discussion turns to death with a known limit. In many ways, it is no different from a winter or summer break whose end date is known. Yet after winter break ends there will be a new beginning, while death is forever held by the unknown. Many philosophers and writers have offered similar views, and with a little humor: “From the moment we are born, we are always dying. The final day's contribution is not greater than any ordinary day; it merely exposes the latent decay for people to see.”
 
-Haruki Murakami also wrote in *Norwegian Wood*, “Death is not the opposite of life, but a part of it that remains forever.” I do not know whether he realized it himself or borrowed someone else's words.
+Haruki Murakami also wrote in _Norwegian Wood_, “Death is not the opposite of life, but a part of it that remains forever.” I do not know whether he realized it himself or borrowed someone else's words.
 
 Let us first discuss what it means to be conscious of death's arrival. Death is the fundamental source of anxiety. We all know that we will eventually die, but we also build protective mechanisms within ourselves and feel that death has nothing to do with us. Most of the time, we know it, yet we do not truly register it.
 
@@ -65,7 +65,7 @@ There is a lot of rambling above, and my ability to organize language is not eno
 
 One last thing I want to add is that this kind of “urgent experience” can sometimes be gained through novels and manga, especially long novels. I have to reconsider my previous view. I was almost misled by the common opinion that novels are useless; people who say that are the truly useless ones. Fiction itself can give people this simulated, complete experience—something different from film, something that can only be felt in novels and writing.
 
-Today, after finishing the manga adaptation of *Three Days of Happiness*, I felt the absurdity of how I had been living: looking down on everything, yet accumulating not even the smallest happiness. I read it and was able to critically “return to the starting line.” Perhaps I will keep reading in the future, and keep returning to the start.
+Today, after finishing the manga adaptation of _Three Days of Happiness_, I felt the absurdity of how I had been living: looking down on everything, yet accumulating not even the smallest happiness. I read it and was able to critically “return to the starting line.” Perhaps I will keep reading in the future, and keep returning to the start.
 
 ---
 
@@ -91,7 +91,7 @@ For example, when an eighty-year-old woman looks back on her life, or someone as
 
 But if I extended my view to that situation, perhaps I would feel that my life had been a continual losing: this moment loses the previous moment, until in the end nothing remains, including emotion. The insignificance of memory.
 
-For choosing between these two views, I can recommend a manga, [Tsunomata no Ichika](https://book.douban.com/subject/35431511/), also called *A Momentary Flower*. Its character work is somewhat thin, but what the teacher says in the final lesson is worth remembering.
+For choosing between these two views, I can recommend a manga, [Tsunomata no Ichika](https://book.douban.com/subject/35431511/), also called _A Momentary Flower_. Its character work is somewhat thin, but what the teacher says in the final lesson is worth remembering.
 
 ## Compulsion:
 

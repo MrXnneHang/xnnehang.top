@@ -1,17 +1,17 @@
 ---
 title: Love in Yushima
 published: 2024-07-15
-shelf: "书籍"
-subCategory: ["文学"]
+shelf: '书籍'
+subCategory: ['文学']
 category: Reviews
 tags:
-   - Reading
-   - Love in Yushima
-   - Izumi Kyōka
-   - Snow Country
-description: "Reading thoughts on Love in Yushima: the innocence of geisha and a love that remains pure."
+  - Reading
+  - Love in Yushima
+  - Izumi Kyōka
+  - Snow Country
+description: 'Reading thoughts on Love in Yushima: the innocence of geisha and a love that remains pure.'
 series:
-   - Reading
+  - Reading
 lang: en
 translationKey: tangdao-zhi-lian
 ---

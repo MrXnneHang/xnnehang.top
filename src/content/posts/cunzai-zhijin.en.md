@@ -67,6 +67,6 @@ I used to learn and make things under the grand premise of wanting to lie flat, 
 
 With only three months left to live, Kusunoki holds the 300,000 yen he got by selling thirty years of his lifespan, drinks beer, and says that he will use his remaining time to create a splendor he could not have had in the previous thirty years. It sounds like something a gambler would say. But Miyagi sees things clearly. Rather than realizing that one had made mistakes before and believing one can now turn things around, it is better to take the present and slowly accumulate “small happinesses.” Perhaps this is why I write a blog too.
 
-> Because we are born with nothing, we can possess everything. — *No Game No Life*
+> Because we are born with nothing, we can possess everything. — _No Game No Life_
 
 Death is forever my best teacher.

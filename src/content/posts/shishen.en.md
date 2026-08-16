@@ -1,16 +1,16 @@
 ---
 title: After The God of Cookery
 published: 2024-08-13
-shelf: "电影"
+shelf: '电影'
 category: Reviews
 tags:
-   - Film
-   - Stephen Chow
-   - The God of Cookery
-   - Film Review
-description: "Thoughts on The God of Cookery: a bowl of rice that marks a change, and breaking past appearances."
+  - Film
+  - Stephen Chow
+  - The God of Cookery
+  - Film Review
+description: 'Thoughts on The God of Cookery: a bowl of rice that marks a change, and breaking past appearances.'
 series:
-   - Film and Television
+  - Film and Television
 lang: en
 translationKey: shishen
 ---

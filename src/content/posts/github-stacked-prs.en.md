@@ -1,7 +1,7 @@
 ---
-title: "First Impressions of GitHub Stacked PRs"
+title: 'First Impressions of GitHub Stacked PRs'
 published: 2026-08-05
-description: "Notes from a real refactoring project on GitHub Stacked PRs: linear dependencies, layered merging, multi-level synchronization, and local branch relationships."
+description: 'Notes from a real refactoring project on GitHub Stacked PRs: linear dependencies, layered merging, multi-level synchronization, and local branch relationships.'
 tags: [GitHub, Git, Stacked PRs, Development Tools]
 category: Learning as I Build
 draft: false

@@ -1,5 +1,5 @@
 ---
-title: "In the LLM Era, What Exactly Is My Ability?"
+title: 'In the LLM Era, What Exactly Is My Ability?'
 published: 2026-06-12
 featured: true
 category: Reflections
@@ -8,7 +8,7 @@ tags:
   - AI Coding
   - Reflections
   - Blogging
-description: "After a year of heavy AI coding use, my coding ability has nearly vanished. So what ability do I still have?"
+description: 'After a year of heavy AI coding use, my coding ability has nearly vanished. So what ability do I still have?'
 series:
   - LLM
 image: ../../assets/img/covers/neko.jpg

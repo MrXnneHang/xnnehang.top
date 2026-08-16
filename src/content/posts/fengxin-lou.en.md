@@ -1,15 +1,15 @@
 ---
 title: Fengxin Is a Good Name
 published: 2022-10-17
-shelf: "游戏"
+shelf: '游戏'
 category: Reviews
 tags:
-   - Gaming
-   - Fengxin Tower
-   - Galgame
-description: "A ten-year dream of Yangzhou: the people and moments in Fengxin Tower."
+  - Gaming
+  - Fengxin Tower
+  - Galgame
+description: 'A ten-year dream of Yangzhou: the people and moments in Fengxin Tower.'
 series:
-   - Gaming
+  - Gaming
 lang: en
 translationKey: fengxin-lou
 ---

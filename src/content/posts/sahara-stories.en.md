@@ -1,15 +1,15 @@
 ---
-title: "Sahara Stories: Reading Notes"
+title: 'Sahara Stories: Reading Notes'
 published: 2024-10-10
-shelf: "书籍"
-subCategory: ["散文"]
+shelf: '书籍'
+subCategory: ['散文']
 category: Reviews
 tags:
-   - Reading
-   - Sanmao
+  - Reading
+  - Sanmao
 description: Sanmao and José, a desert restaurant, and a record of their marriage.
 series:
-   - Reading
+  - Reading
 lang: en
 translationKey: sahara-stories
 ---

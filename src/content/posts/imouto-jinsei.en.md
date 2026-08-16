@@ -1,5 +1,5 @@
 ---
-title: "Imouto Life"
+title: 'Imouto Life'
 published: 2024-10-18
 shelf: 书籍
 subCategory: ['轻小说']
@@ -7,7 +7,7 @@ category: Reviews
 tags:
   - Reading
   - Light Novels
-description: "On fading feelings, new encounters, and the work required to sustain an emotion."
+description: 'On fading feelings, new encounters, and the work required to sustain an emotion.'
 series:
   - Reading
 lang: en
@@ -28,7 +28,7 @@ translationKey: imouto-jinsei
 >
 > [And because it cannot be renewed, memories begin to fade. There are limits to what the mind can remember. Even if you do not want to forget, memories still grow hazier and hazier. If you do not want that to happen, then of course you would not want to leave.]
 
-It matches exactly what I felt after watching the *Soul Land* anime some time ago. I watched obsessively, neglecting food and sleep, for a short five-day stretch. The feelings afterward were incredibly sincere and intense. I did not want to let them go, but I also knew they would fade and be forgotten. So I wrote something like, “What I am afraid of is forgetting.” But thinking about it now, I can barely even remember what it felt like to be afraid of forgetting.
+It matches exactly what I felt after watching the _Soul Land_ anime some time ago. I watched obsessively, neglecting food and sleep, for a short five-day stretch. The feelings afterward were incredibly sincere and intense. I did not want to let them go, but I also knew they would fade and be forgotten. So I wrote something like, “What I am afraid of is forgetting.” But thinking about it now, I can barely even remember what it felt like to be afraid of forgetting.
 
 Feelings must be affirmed and sustained through contact.
 
@@ -36,7 +36,7 @@ Feelings must be affirmed and sustained through contact.
 
 I had not considered this before. I thought that as time passed, I would inevitably forget little by little.
 
-In fact, it is not time that dilutes emotions, but the new encounters hidden within time. After *Battle Through the Heavens*, I encountered many more things: *Fighter of the Destiny*, *Yuan Zun*, *The Great Ruler*, and so on. It was not time that made me forget, but new encounters—and not only with novels.
+In fact, it is not time that dilutes emotions, but the new encounters hidden within time. After _Battle Through the Heavens_, I encountered many more things: _Fighter of the Destiny_, _Yuan Zun_, _The Great Ruler_, and so on. It was not time that made me forget, but new encounters—and not only with novels.
 
 I find it remarkable that, after three years of high school, Little Sister still retains that longing for her “brother” and lives almost entirely with the aim of attending his university. She has not forgotten that longing with time. Instead, she is like a mayfly living on a single drop of blood from years ago. She remembers drawing diaries and all the outings they took together during summer vacations. She has no new encounters, living only on memories.
 

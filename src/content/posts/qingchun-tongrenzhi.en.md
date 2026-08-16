@@ -1,15 +1,15 @@
 ---
 title: Fanfic
 published: 2024-07-08
-shelf: "电影"
+shelf: '电影'
 category: Reviews
 tags:
-   - Film
-   - Fanfic
-   - Film Review
-description: "Thoughts on Fanfic: androgynous beauty, flaws, and resonance."
+  - Film
+  - Fanfic
+  - Film Review
+description: 'Thoughts on Fanfic: androgynous beauty, flaws, and resonance.'
 series:
-   - Film and Television
+  - Film and Television
 lang: en
 translationKey: qingchun-tongrenzhi
 ---

@@ -1,5 +1,5 @@
 ---
-title: "First Impressions of Obsidian-YOLO"
+title: 'First Impressions of Obsidian-YOLO'
 published: 2026-06-18
 category: Tutorials
 tags:

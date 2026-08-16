@@ -1,5 +1,5 @@
 ---
-title: "Reading Notes on Rashomon"
+title: 'Reading Notes on Rashomon'
 published: 2024-09-26
 shelf: 书籍
 subCategory: ['文学']
@@ -19,9 +19,9 @@ translationKey: luoshengmen
 
 September 26
 
-I had failed to finish long novels like *The Razor's Edge* when rereading them before, so I decided to begin with short stories instead.
+I had failed to finish long novels like _The Razor's Edge_ when rereading them before, so I decided to begin with short stories instead.
 
-The kappa in the table of contents reminded me of *The Girlfriend at the End of the World*, a book that still leaves a very good impression when I think back on it.
+The kappa in the table of contents reminded me of _The Girlfriend at the End of the World_, a book that still leaves a very good impression when I think back on it.
 
 ---
 
@@ -31,7 +31,7 @@ September 27
 
 I came across Lu Xun’s translations! They did not feel distant at all: they were easy to read and hardly different from more recent translations. Both pieces Lu Xun translated even include short afterwords, discussing Akutagawa and why he chose those works to translate. You really do not see such interesting post-reading notes beneath translated works today. They feel like an exchange of views with the reader. Nowadays translators generally write only one preface at the beginning, which I usually skip. Perhaps translators are no longer expected to speak for themselves; perhaps they worry readers will think they are putting on airs; or perhaps the extra writing does not count toward their fee. =-=
 
-The detective elements in *In a Grove* and *Hell Screen* were immensely satisfying. Several of the stories as a whole feel a little like reworkings of old tales: their material already existed, perhaps as folk legends or works by earlier writers, and then the stories and characters are taken out and shown from a new perspective—or adapted into new stories. Lu Xun’s *Old Tales Retold* may also have drawn some inspiration from this. [I inferred this from Lu Xun’s little post-reading notes.]
+The detective elements in _In a Grove_ and _Hell Screen_ were immensely satisfying. Several of the stories as a whole feel a little like reworkings of old tales: their material already existed, perhaps as folk legends or works by earlier writers, and then the stories and characters are taken out and shown from a new perspective—or adapted into new stories. Lu Xun’s _Old Tales Retold_ may also have drawn some inspiration from this. [I inferred this from Lu Xun’s little post-reading notes.]
 
 Akutagawa read so widely. He understood not only Japan, but China as well. A genius, a genius. There really should be more afterwords.
 
@@ -51,11 +51,11 @@ September 28
 
 ## Father, The Monkey, The Life of a Stupid Man
 
-Both *Father* and *The Monkey* reflect an instinct for pity and sympathy. But *Father* awakens to it first, while *The Monkey* awakens to it later. Placing these two stories next to each other shows real editorial skill.
+Both _Father_ and _The Monkey_ reflect an instinct for pity and sympathy. But _Father_ awakens to it first, while _The Monkey_ awakens to it later. Placing these two stories next to each other shows real editorial skill.
 
-*The Life of a Stupid Man*, like *Hell Screen*, has something of the spirit of a god of creation. But *Hell Screen* has a third party objectively record one person’s almost pathological pursuit of art, mixing mystery with hearsay. In the moment when the carriage is burned, he is majestic as a god. Everything seems cut off from him. Interestingly, the fox spirits are used to describe his creative state: when he creates, a group of fox spirits stands behind him, so he writes through the night without stopping and ignores even the daughter he normally dotes on.
+_The Life of a Stupid Man_, like _Hell Screen_, has something of the spirit of a god of creation. But _Hell Screen_ has a third party objectively record one person’s almost pathological pursuit of art, mixing mystery with hearsay. In the moment when the carriage is burned, he is majestic as a god. Everything seems cut off from him. Interestingly, the fox spirits are used to describe his creative state: when he creates, a group of fox spirits stands behind him, so he writes through the night without stopping and ignores even the daughter he normally dotes on.
 
-But *The Life of a Stupid Man* brings the perspective much closer, focusing throughout on Bakin—the creator—and tracing his psychological changes in great detail. Two points are especially interesting. First, Bakin can remain unmoved by praise for his work, yet criticism immediately puts him on guard. But when he truly looks at the person criticizing him, he suddenly finds he cannot take it personally at all, and his mood abruptly clears. This first reveals a shift in his creative spirit: he is becoming unconcerned with the outside world, though he has not yet reached the peak.
+But _The Life of a Stupid Man_ brings the perspective much closer, focusing throughout on Bakin—the creator—and tracing his psychological changes in great detail. Two points are especially interesting. First, Bakin can remain unmoved by praise for his work, yet criticism immediately puts him on guard. But when he truly looks at the person criticizing him, he suddenly finds he cannot take it personally at all, and his mood abruptly clears. This first reveals a shift in his creative spirit: he is becoming unconcerned with the outside world, though he has not yet reached the peak.
 
 That peak comes later that night, when he goes home and rereads the drafts he had previously written and revised. They feel dull on rereading, so he can only rewrite them. Yet his inspiration runs dry, and he feels that he may be nothing more than a conceited mediocrity, no different from the people he despises. Then his little grandson—perhaps genuinely, perhaps taught by his parents—comes to him. [Bakin adores the child, and immediately puts down the gloom that had gathered while writing.] The boy says that the Bodhisattva at the temple asked him to bring two sentences: “Work hard. Do not lose your temper.” It is as if Bakin suddenly understands something.
 
@@ -83,9 +83,9 @@ When I was learning digital painting before, I would also feel a kind of passion
 
 Another Side
 
-This morning, beginning was difficult in the same way. But the first story, *Father*, quickly brought me into the right state, like a sudden jolt.
+This morning, beginning was difficult in the same way. But the first story, _Father_, quickly brought me into the right state, like a sudden jolt.
 
-Interestingly, I do most of my reading while eating. After finishing *Father*, I went out for breakfast and read while slowly eating rice porridge. I became especially absorbed in it. It was also the first time I had felt like I was truly enjoying a weekend morning, or simply felt leisurely on a day without classes.
+Interestingly, I do most of my reading while eating. After finishing _Father_, I went out for breakfast and read while slowly eating rice porridge. I became especially absorbed in it. It was also the first time I had felt like I was truly enjoying a weekend morning, or simply felt leisurely on a day without classes.
 
 I also noticed something: changing environments can make a great difference compared with staying beside a source of temptation—the computer.
 
@@ -97,11 +97,11 @@ September 29
 
 ---
 
-*Oranges* depicts a person changing from nihilism back to reality, from finding everything dull at first to feeling life again. It is worth rereading and saving away, then bringing out again when I feel something similar.
+_Oranges_ depicts a person changing from nihilism back to reality, from finding everything dull at first to feeling life again. It is worth rereading and saving away, then bringing out again when I feel something similar.
 
-*The Dragon*: even if something begins as a prank, when countless people believe in it and hold hope for it, the thing receives a response from the gods. There is no metaphor about public opinion or anything like that; instead, it shows the beauty of wishes.
+_The Dragon_: even if something begins as a prank, when countless people believe in it and hold hope for it, the thing receives a response from the gods. There is no metaphor about public opinion or anything like that; instead, it shows the beauty of wishes.
 
-*Scallions* is a novel with an extremely strong visual quality. Its ending is very interesting, and it gives the feeling of suddenly waking up, abruptly pulling reality into fantasy. Worth saving and rereading.
+_Scallions_ is a novel with an extremely strong visual quality. Its ending is very interesting, and it gives the feeling of suddenly waking up, abruptly pulling reality into fantasy. Worth saving and rereading.
 
 ---
 
@@ -121,7 +121,7 @@ It is only a difference of thought, but my old way of thinking was not quite rig
 
 ## Kappa, The Life of a Stupid Man, A Fool’s Life, Life
 
-In the final few stories of the collection, Akutagawa’s mental state seems no longer very good. The editor has arranged these pieces from light to heavy; perhaps the earliest sign appeared in *Oranges*.
+In the final few stories of the collection, Akutagawa’s mental state seems no longer very good. The editor has arranged these pieces from light to heavy; perhaps the earliest sign appeared in _Oranges_.
 
 It seems that eight or nine out of every ten Japanese writers I know died by suicide. Kawabata, Dazai, Akutagawa, Mishima?
 
@@ -145,4 +145,4 @@ Another interesting part:
 >
 > He did not answer. At some point, a volcano had come clearly into view over the red spikes in the field. He felt a little envious of that volcano, though he could not say why…
 
-I hope everyone like this can find the redemption that appears in *Oranges*.
+I hope everyone like this can find the redemption that appears in _Oranges_.

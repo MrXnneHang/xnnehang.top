@@ -7,7 +7,7 @@ tags:
   - Daily Life
   - Anime
   - Psychology
-description: "On viewing rituals and procrastination, and the compulsive resistance that keeps one from beginning."
+description: 'On viewing rituals and procrastination, and the compulsive resistance that keeps one from beginning.'
 series:
   - Film Watching
 lang: en
@@ -22,13 +22,13 @@ In reality, though, that ritual kept me circling around instead of getting into 
 
 In the end, I watched for only forty minutes, from 10:20 to 11:00.
 
-But after playing basketball today, I got home at 7:20. I put off showering until 8:30. I could not decide whether to play games with my classmates, so I spent an hour browsing Bilibili instead. It was 9:00 after I showered, but I still did not get into bed. I watched the beginning of my *Red Dead Redemption* playthrough and lingered until 10:20.
+But after playing basketball today, I got home at 7:20. I put off showering until 8:30. I could not decide whether to play games with my classmates, so I spent an hour browsing Bilibili instead. It was 9:00 after I showered, but I still did not get into bed. I watched the beginning of my _Red Dead Redemption_ playthrough and lingered until 10:20.
 
 I run into this kind of procrastination often. It is undoubtedly a form of resistance.
 
 At the end of the semester before last, one of my roommates had one fewer exam than I did, so I stayed in the dorm alone for three extra days.
 
-On two of those nights [it was exam week, so there were no classes], I turned off the lights and got into bed at seven on the dot to watch [*Throne of Seal*](https://movie.douban.com/subject/35755307/). I watched sixty episodes in two days. That atmosphere is something I could never recreate.
+On two of those nights [it was exam week, so there were no classes], I turned off the lights and got into bed at seven on the dot to watch [_Throne of Seal_](https://movie.douban.com/subject/35755307/). I watched sixty episodes in two days. That atmosphere is something I could never recreate.
 
 Even now, my viewing experience is still wonderful. There are funny moments and profound ones—and, it must be said, lying down makes it much easier to slip into the experience than watching while seated.
 

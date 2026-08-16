@@ -1,17 +1,17 @@
 ---
 title: I Come Alone, I Leave Alone
 published: 2024-08-17
-shelf: "动漫"
+shelf: '动漫'
 category: Reviews
 tags:
-   - Slice of Life
-   - Film
-   - Frieren
-   - Reflections
+  - Slice of Life
+  - Film
+  - Frieren
+  - Reflections
 description: On Frieren’s sense of time, and whether what passes is insignificant or precious.
 series:
-   - Film and Television
-   - Philosophical Reflections
+  - Film and Television
+  - Philosophical Reflections
 lang: en
 translationKey: wo-yigerenlai
 ---

@@ -217,7 +217,11 @@ test('builds post ranges and filters unknown paths', () => {
 
 test('keeps translation-pair metrics separated by localized paths', () => {
   const chinesePost = contentPost({ title: '中文', path: '/posts/example/' })
-  const englishPost = contentPost({ title: 'English', path: '/en/posts/example/', category: 'Reviews' })
+  const englishPost = contentPost({
+    title: 'English',
+    path: '/en/posts/example/',
+    category: 'Reviews',
+  })
   const row = (path, views) => ({
     dimensionValues: [{ value: path }],
     metricValues: [{ value: '2' }, { value: String(views) }, { value: '20' }],

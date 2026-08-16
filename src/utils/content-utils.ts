@@ -2,11 +2,7 @@ import { type CollectionEntry, getCollection } from 'astro:content'
 import I18nKey from '@i18n/i18nKey'
 import { i18n } from '@i18n/translation'
 import { DEFAULT_LOCALE, type Locale } from '@i18n/locales'
-import {
-  filterPostsByLocale,
-  getPostRouteSlug,
-  linkPostNeighbors,
-} from '@utils/post-locale'
+import { filterPostsByLocale, getPostRouteSlug, linkPostNeighbors } from '@utils/post-locale'
 import { getCategoryUrl } from '@utils/url-utils.ts'
 
 // // Retrieve posts and sort them by publication date
@@ -18,14 +14,16 @@ async function getRawSortedPosts(locale: Locale = DEFAULT_LOCALE) {
     }
   )
 
-  const sorted = filterPostsByLocale(allBlogPosts, locale).sort((a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => {
-    const aPin = a.data.pin ? 1 : 0
-    const bPin = b.data.pin ? 1 : 0
-    if (aPin !== bPin) return bPin - aPin
-    const dateA = new Date(a.data.published)
-    const dateB = new Date(b.data.published)
-    return dateA > dateB ? -1 : 1
-  })
+  const sorted = filterPostsByLocale(allBlogPosts, locale).sort(
+    (a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => {
+      const aPin = a.data.pin ? 1 : 0
+      const bPin = b.data.pin ? 1 : 0
+      if (aPin !== bPin) return bPin - aPin
+      const dateA = new Date(a.data.published)
+      const dateB = new Date(b.data.published)
+      return dateA > dateB ? -1 : 1
+    }
+  )
   return sorted
 }
 
@@ -36,9 +34,7 @@ export type PostForList = {
   slug: string
   data: CollectionEntry<'posts'>['data']
 }
-export async function getSortedPostsList(
-  locale: Locale = DEFAULT_LOCALE
-): Promise<PostForList[]> {
+export async function getSortedPostsList(locale: Locale = DEFAULT_LOCALE): Promise<PostForList[]> {
   const sortedFullPosts = await getRawSortedPosts(locale)
 
   // delete post.body
@@ -84,9 +80,7 @@ export type Series = {
   posts: CollectionEntry<'posts'>[]
 }
 
-export async function getCategoryList(
-  locale: Locale = DEFAULT_LOCALE
-): Promise<Category[]> {
+export async function getCategoryList(locale: Locale = DEFAULT_LOCALE): Promise<Category[]> {
   const allBlogPosts = await getRawSortedPosts(locale)
   const count: { [key: string]: number } = {}
   allBlogPosts.forEach((post: CollectionEntry<'posts'>) => {

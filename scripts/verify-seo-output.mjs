@@ -20,18 +20,27 @@ function assert(condition, message) {
   if (!condition) throw new Error(message)
 }
 
-const [index, robots, rootRss, englishRss, rootHtml, englishHtml, rootCatalog, englishCatalog, englishGraph] =
-  await Promise.all([
-    readFile(indexPath, 'utf8'),
-    readFile(robotsPath, 'utf8'),
-    readFile(resolve(dist, 'rss.xml'), 'utf8'),
-    readFile(resolve(dist, 'en/rss.xml'), 'utf8'),
-    readFile(resolve(dist, 'index.html'), 'utf8'),
-    readFile(resolve(dist, 'en/index.html'), 'utf8'),
-    readFile(resolve(dist, 'statistics-content.json'), 'utf8').then(JSON.parse),
-    readFile(resolve(dist, 'en/statistics-content.json'), 'utf8').then(JSON.parse),
-    readFile(resolve(dist, 'en/graph-data.json'), 'utf8').then(JSON.parse),
-  ])
+const [
+  index,
+  robots,
+  rootRss,
+  englishRss,
+  rootHtml,
+  englishHtml,
+  rootCatalog,
+  englishCatalog,
+  englishGraph,
+] = await Promise.all([
+  readFile(indexPath, 'utf8'),
+  readFile(robotsPath, 'utf8'),
+  readFile(resolve(dist, 'rss.xml'), 'utf8'),
+  readFile(resolve(dist, 'en/rss.xml'), 'utf8'),
+  readFile(resolve(dist, 'index.html'), 'utf8'),
+  readFile(resolve(dist, 'en/index.html'), 'utf8'),
+  readFile(resolve(dist, 'statistics-content.json'), 'utf8').then(JSON.parse),
+  readFile(resolve(dist, 'en/statistics-content.json'), 'utf8').then(JSON.parse),
+  readFile(resolve(dist, 'en/graph-data.json'), 'utf8').then(JSON.parse),
+])
 
 const sitemapUrl = robots.match(/^Sitemap:\s*(\S+)$/m)?.[1]
 assert(sitemapUrl, 'robots.txt must declare a sitemap URL')

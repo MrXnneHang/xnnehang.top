@@ -1,17 +1,17 @@
 ---
 title: Pandora's Box
 published: 2024-08-04
-shelf: "书籍"
-subCategory: ["文学"]
+shelf: '书籍'
+subCategory: ['文学']
 category: Reviews
 tags:
-   - Reading
-   - Pandora's Box
-   - Osamu Dazai
+  - Reading
+  - Pandora's Box
+  - Osamu Dazai
 description: On coughing up blood, awareness of death, and personality change.
 series:
-   - Reading
-   - Philosophical Reflections
+  - Reading
+  - Philosophical Reflections
 lang: en
 translationKey: panduola
 ---

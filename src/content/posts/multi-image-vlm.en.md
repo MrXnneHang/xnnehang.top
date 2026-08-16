@@ -1,16 +1,16 @@
 ---
-title: "Single Image Does Not Equal Multiple Images: Why VLMs Hallucinate More with Multiple Images, and a Two-Stage Fix"
+title: 'Single Image Does Not Equal Multiple Images: Why VLMs Hallucinate More with Multiple Images, and a Two-Stage Fix'
 published: 2026-02-08
 category: Learning as I Build
 tags:
-   - VLM
-   - Multimodal
-   - Multi-image Understanding
-   - LLM
-   - Engineering
+  - VLM
+  - Multimodal
+  - Multi-image Understanding
+  - LLM
+  - Engineering
 description: An investigation into why web and API results diverge during multi-image analysis, from Lost in the Middle to a two-stage approach based on per-image pre-summaries.
 series:
-   - LLM
+  - LLM
 lang: en
 translationKey: multi-image-vlm
 ---
@@ -162,27 +162,27 @@ The branch for per-image analysis is separate for token-budget reasons, so it sh
 
 ```json
 {
-   "scene": "VS Code full-screen with code and a terminal",
-   "key_items": [
-      {
-         "type": "app",
-         "label": "VS Code",
-         "detail": "dark theme, full-screen window"
-      },
-      {
-         "type": "ui",
-         "label": "file tree",
-         "detail": "multiple directories expanded in the left explorer"
-      },
-      {
-         "type": "code",
-         "label": "Python code",
-         "detail": "async-related functions shown in the central editor"
-      }
-   ],
-   "visible_text": ["run_tool_loop", "ToolTrace", "vision__screen_shot"],
-   "ui_hints": ["multiple file tabs at the top", "terminal logs at the bottom"],
-   "uncertainty": ["some file names are too small to read in full"]
+  "scene": "VS Code full-screen with code and a terminal",
+  "key_items": [
+    {
+      "type": "app",
+      "label": "VS Code",
+      "detail": "dark theme, full-screen window"
+    },
+    {
+      "type": "ui",
+      "label": "file tree",
+      "detail": "multiple directories expanded in the left explorer"
+    },
+    {
+      "type": "code",
+      "label": "Python code",
+      "detail": "async-related functions shown in the central editor"
+    }
+  ],
+  "visible_text": ["run_tool_loop", "ToolTrace", "vision__screen_shot"],
+  "ui_hints": ["multiple file tabs at the top", "terminal logs at the bottom"],
+  "uncertainty": ["some file names are too small to read in full"]
 }
 ```
 

@@ -4,12 +4,12 @@ published: 2026-06-29
 updated: 2026-07-14
 category: Learning as I Build
 tags:
-   - memU
-   - Memory Systems
-   - Prompt Design
+  - memU
+  - Memory Systems
+  - Prompt Design
 description: A breakdown of memU focused on its main paths and ADR architecture documents, currently following through ADR 0008.
 series:
-   - Long-Term Memory
+  - Long-Term Memory
 featured: true
 pin: false
 lang: en

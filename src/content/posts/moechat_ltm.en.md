@@ -1,13 +1,13 @@
 ---
-title: "MoeChat: How AI Characters Remember You and Feel Emotions"
+title: 'MoeChat: How AI Characters Remember You and Feel Emotions'
 published: 2026-07-15
-description: "An in-depth look at how MoeChat builds long-term memory for AI characters, including its time-and-semantic hybrid retrieval—written for people interested in memory systems."
+description: 'An in-depth look at how MoeChat builds long-term memory for AI characters, including its time-and-semantic hybrid retrieval—written for people interested in memory systems.'
 tags: [AI, LLM, MoeChat, RAG, Memory Systems]
 category: Learning as I Build
 draft: false
 featured: true
 series:
-   - Long-Term Memory
+  - Long-Term Memory
 lang: en
 translationKey: moechat_ltm
 ---
@@ -63,14 +63,14 @@ data/agents/Chat酱/
 
 ```yaml
 settings:
-   writeLongMemory: true # write new memories after chatting
-   enableLongMemory: true # retrieve memories while chatting
-   enableLongMemorySearchEnhance: true # filter with vector similarity
-   longMemoryThreshold: 0.32 # cosine-similarity threshold
+  writeLongMemory: true # write new memories after chatting
+  enableLongMemory: true # retrieve memories while chatting
+  enableLongMemorySearchEnhance: true # filter with vector similarity
+  longMemoryThreshold: 0.32 # cosine-similarity threshold
 
-   enableCoreMemory: false # extract user facts
-   enableEmotionSystem: false # enable the emotion engine
-   enableEmotionPersist: false # persist emotion across sessions
+  enableCoreMemory: false # extract user facts
+  enableEmotionSystem: false # enable the emotion engine
+  enableEmotionPersist: false # persist emotion across sessions
 ```
 
 Notice that `writeLongMemory` and `enableLongMemory` are independent: you can write without reading, or read without writing.
@@ -82,25 +82,25 @@ Notice that `writeLongMemory` and `enableLongMemory` are independent: you can wr
 ```yaml
 name: Chat酱
 user: 阁下 # how the character addresses you
-birthday: "2022-03-17"
-height: "160"
+birthday: '2022-03-17'
+height: '160'
 personality: 表面清纯可爱，实则腹黑毒舌，内心聪明机智...
 description: Chat酱是存在于现代科技世界手机中的器灵...
 customPrompt: 使用口语的文字风格进行对话，不要太啰嗦...
 messageExamples: # examples of the character's speaking style
-   - "人类视网膜的感光细胞不需要这种自杀式加班，您先休息一下吧。"
+  - '人类视网膜的感光细胞不需要这种自杀式加班，您先休息一下吧。'
 settings:
-   writeLongMemory: true # write new memories after chatting
-   enableLongMemory: true # retrieve memories while chatting
-   enableCoreMemory: false # extract user facts
-   enableEmotionSystem: false # enable the emotion engine
-   longMemoryThreshold: 0.32
+  writeLongMemory: true # write new memories after chatting
+  enableLongMemory: true # retrieve memories while chatting
+  enableCoreMemory: false # extract user facts
+  enableEmotionSystem: false # enable the emotion engine
+  longMemoryThreshold: 0.32
 gsvSetting: # speech-synthesis settings
-   textLang: zh
-   gptModelPath: models/【萝莉】女仆_Ver-1.4-e15.ckpt
-   sovitsModelPath: models/【萝莉】女仆_Ver-1.4_e24_s504.pth
-   refAudioPath: models/tmp/020.wav
-   promptText: 嗯，谢谢您的夸奖，主人可以喜欢就好。
+  textLang: zh
+  gptModelPath: models/【萝莉】女仆_Ver-1.4-e15.ckpt
+  sovitsModelPath: models/【萝莉】女仆_Ver-1.4_e24_s504.pth
+  refAudioPath: models/tmp/020.wav
+  promptText: 嗯，谢谢您的夸奖，主人可以喜欢就好。
 ```
 
 **memory/2025-7-10.jsonl**—long-term memory, one entry per line and one file per day:
@@ -120,20 +120,20 @@ gsvSetting: # speech-synthesis settings
 # 核心记忆文件，请勿自行修改！否侧会丢失索引！
 
 aB3kX9mZwQ:
-   time: "2025-07-01 14:30:00"
-   text: 第一次相遇
+  time: '2025-07-01 14:30:00'
+  text: 第一次相遇
 
 pL8nR2vYcD:
-   time: "2025-07-05 20:15:30"
-   text: 用户今年25岁，是一名程序员
+  time: '2025-07-05 20:15:30'
+  text: 用户今年25岁，是一名程序员
 
 qM4wT7hNjF:
-   time: "2025-07-08 19:22:10"
-   text: 用户喜欢喝冰美式，不喜欢甜食
+  time: '2025-07-08 19:22:10'
+  text: 用户喜欢喝冰美式，不喜欢甜食
 
 xK9sG3bPmW:
-   time: "2025-07-12 21:05:45"
-   text: 用户养了一只叫"团子"的橘猫
+  time: '2025-07-12 21:05:45'
+  text: 用户养了一只叫"团子"的橘猫
 ```
 
 - Every memory has a short UUID as its key.
@@ -144,16 +144,16 @@ xK9sG3bPmW:
 
 ```json
 {
-   "valence": -0.25,
-   "arousal": 0.41,
-   "character_state": "正常",
-   "latent_emotions": {
-      "frustration": 3.8
-   },
-   "meltdown_start_time": null,
-   "cycle_day": 18,
-   "cycle_length": 28,
-   "last_cycle_update_timestamp": "2025-07-15T00:00:00"
+  "valence": -0.25,
+  "arousal": 0.41,
+  "character_state": "正常",
+  "latent_emotions": {
+    "frustration": 3.8
+  },
+  "meltdown_start_time": null,
+  "cycle_day": 18,
+  "cycle_length": 28,
+  "last_cycle_update_timestamp": "2025-07-15T00:00:00"
 }
 ```
 
@@ -288,10 +288,10 @@ A specialized LLM call using the SLM configuration analyzes the user message:
 
 ```json
 {
-   "sentiment": "positive", // positive | negative | neutral
-   "intensity": 3.5, // 1.0 - 5.0
-   "intention": "genuine_praise", // labels such as harsh_insult, playful_teasing
-   "arousal_impact": 2.0 // -5.0: calming to +5.0: exciting
+  "sentiment": "positive", // positive | negative | neutral
+  "intensity": 3.5, // 1.0 - 5.0
+  "intention": "genuine_praise", // labels such as harsh_insult, playful_teasing
+  "arousal_impact": 2.0 // -5.0: calming to +5.0: exciting
 }
 ```
 
@@ -386,14 +386,14 @@ If `enableEmotionPersist` is on, the full state saves to `emotion_state.json`:
 
 ```json
 {
-   "valence": 0.35,
-   "arousal": 0.62,
-   "character_state": "正常",
-   "latent_emotions": { "frustration": 5.2 },
-   "meltdown_start_time": null,
-   "cycle_day": 12,
-   "cycle_length": 28,
-   "last_cycle_update_timestamp": "2025-07-15T00:00:00"
+  "valence": 0.35,
+  "arousal": 0.62,
+  "character_state": "正常",
+  "latent_emotions": { "frustration": 5.2 },
+  "meltdown_start_time": null,
+  "cycle_day": 12,
+  "cycle_length": 28,
+  "last_cycle_update_timestamp": "2025-07-15T00:00:00"
 }
 ```
 
@@ -417,14 +417,14 @@ The minimum `config.yaml`:
 
 ```yaml
 LLM:
-   api: https://api.siliconflow.cn/v1/chat/completions
-   key: "你的密钥"
-   model: Qwen/Qwen3-8B
+  api: https://api.siliconflow.cn/v1/chat/completions
+  key: '你的密钥'
+  model: Qwen/Qwen3-8B
 
 LLM2: # required for memory extraction
-   api: https://api.siliconflow.cn/v1/chat/completions
-   key: "你的密钥"
-   model: Qwen/Qwen3-8B
+  api: https://api.siliconflow.cn/v1/chat/completions
+  key: '你的密钥'
+  model: Qwen/Qwen3-8B
 ```
 
 Without `LLM2`, a character can chat but never builds new memories.

@@ -1,5 +1,5 @@
 ---
-title: "When My Cloud Provider Disappeared: Rethinking the Shape of a Personal Blog and What Is Worth Recording"
+title: 'When My Cloud Provider Disappeared: Rethinking the Shape of a Personal Blog and What Is Worth Recording'
 published: 2026-06-01
 category: Reflections
 tags:
@@ -128,7 +128,7 @@ Here I will also divide the things worth recording into a few broad categories.
 
 - **Resources** usually do not involve transmitting specific knowledge or reflections. They simply recommend channels, applications, or information to other people—for example, sites for finding books or manga.
 - **Reviews** are still worth building as both display cases for memories and traps for like-minded people.
-- **Tutorials** are process-oriented records, such as a guide to using an application or a piece of software: launching SKSE for *The Elder Scrolls V: Skyrim*, refreshing animation data, adjusting body shapes, sorting mods, and so on.
+- **Tutorials** are process-oriented records, such as a guide to using an application or a piece of software: launching SKSE for _The Elder Scrolls V: Skyrim_, refreshing animation data, adjusting body shapes, sorting mods, and so on.
 - **Reflections** are deeper thoughts produced by an event or an object. They may address an object's essence directly, or connect it with other things and then reveal a general pattern or arrive at a personal conclusion. They do not have to be clearly right or wrong, but they must make sense to me.
 - **Learning as I Build** should carry a `useless` tag: an exploratory process with little nutritional value. If readers truly cannot find a suitable tutorial or example, perhaps they can find what they need in my exploration, or arrive at a conclusion that makes sense to me. Of course, that conclusion need not be right; it only needs to be coherent. I will let an LLM review whether it is right or wrong.
   :::

@@ -1,5 +1,5 @@
 ---
-title: "Bringing AI Chat to Congyin in Chill with You: Lo-Fi Story"
+title: 'Bringing AI Chat to Congyin in Chill with You: Lo-Fi Story'
 published: 2025-11-15
 category: Resources
 tags:
@@ -7,7 +7,7 @@ tags:
   - Mod
   - AI
   - LLM
-description: "Notes from exploring a mod that adds AI chat to Congyin, the protagonist of the Steam Pomodoro game Chill with You: Lo-Fi Story."
+description: 'Notes from exploring a mod that adds AI chat to Congyin, the protagonist of the Steam Pomodoro game Chill with You: Lo-Fi Story.'
 shelf: 游戏
 series:
   - LLM
@@ -34,7 +34,7 @@ Before this, I had always used something similar: Spirit City.
 
 ![Spirit City game window](../../assets/img/covers/202601061015872.png)
 
-Unlike Spirit City, though, *Chill with You* includes a small mechanic for interacting with its character. Its premise is that the player is on a video call with Congyin, much like sharing a study room. As time passes, you gradually unlock her story, and, like a visual novel, it unfolds through choices. I do not yet know whether there is a romance route later on.
+Unlike Spirit City, though, _Chill with You_ includes a small mechanic for interacting with its character. Its premise is that the player is on a video call with Congyin, much like sharing a study room. As time passes, you gradually unlock her story, and, like a visual novel, it unfolds through choices. I do not yet know whether there is a romance route later on.
 
 [Could add some screenshots here if I come across them.]
 
@@ -42,11 +42,11 @@ Unlike Spirit City, though, *Chill with You* includes a small mechanic for inter
 
 Spirit City, by contrast, invites the player to imagine themself as the character on screen.
 
-If I had to compare them, I unquestionably prefer the Japanese-inspired character design in *Chill with You*. Congyin also has Japanese voice acting. What is intriguing is that her voice has a slightly mechanical quality, almost like AI-generated speech. It makes me feel as if I am studying with a cyber girlfriend, and that AI-like feeling only makes me like it more.
+If I had to compare them, I unquestionably prefer the Japanese-inspired character design in _Chill with You_. Congyin also has Japanese voice acting. What is intriguing is that her voice has a slightly mechanical quality, almost like AI-generated speech. It makes me feel as if I am studying with a cyber girlfriend, and that AI-like feeling only makes me like it more.
 
 The game also has a mug motif that feels remarkably suited to me. Through Congyin, the author mentions having become dehydrated during an intense stretch of creative work. Since then, she has paid close attention to choosing mugs she likes, so that she will take a sip whenever she is writing. As for me, I make tea before starting a Pomodoro session and drink it while I work; other drinks lack that same sense of ritual. In this respect, the author feels like another version of me somewhere in the world.
 
-Still, when it comes to music, I prefer Spirit City. I have listened to it for dozens of hours without tiring of it, and hearing it immediately helps me settle down. The musical selections in *Chill with You* do not feel as “deep” as Spirit City’s. They are a little too light to draw me into a deeper flow state—perhaps I simply have not listened to them long enough.
+Still, when it comes to music, I prefer Spirit City. I have listened to it for dozens of hours without tiring of it, and hearing it immediately helps me settle down. The musical selections in _Chill with You_ do not feel as “deep” as Spirit City’s. They are a little too light to draw me into a deeper flow state—perhaps I simply have not listened to them long enough.
 
 ## The Mod
 

@@ -1,17 +1,17 @@
 ---
 title: The Deadline
 published: 2024-07-10
-shelf: "书籍"
-subCategory: ["小说", "心理学"]
+shelf: '书籍'
+subCategory: ['小说', '心理学']
 category: Reviews
 tags:
-   - Reading
-   - The Deadline
-   - Project Management
-   - Software Engineering
-description: "Reading notes on The Deadline: project management, design, and a sense of purpose."
+  - Reading
+  - The Deadline
+  - Project Management
+  - Software Engineering
+description: 'Reading notes on The Deadline: project management, design, and a sense of purpose.'
 series:
-   - Reading
+  - Reading
 lang: en
 translationKey: zuihou-qixian
 ---
@@ -70,7 +70,7 @@ Here are some notes. Some are summaries; others are copied directly.
 
 - **Treasure the feeling of suddenly becoming light after a project ends**, and remember afterward to sort out what you gained and learned. A project ending does not mean you are finished.
 
-   --- Let us hope we can stop Belloc from appearing in our lives. (The endless, chattering client.)
+  --- Let us hope we can stop Belloc from appearing in our lives. (The endless, chattering client.)
 
 P.S.
 
@@ -129,26 +129,26 @@ And doing it in one go does not mean writing everything and then running it once
 > - He said he wanted to learn how to write UI properly. At first he boasted that he would make it look good. But what he eventually gave me had no beautification at all: he drew a few boxes, made a few controls, put functions into them, and that was it.
 > - The other issue was speed. Several parts of the software requirements involved taking photographs and facial recognition—in short, opening the camera. When he clicked a button, it initialized the camera. When another part needed the camera, it stopped the first one, released it, and initialized another. And to initialize the camera, he used:
 >
->    ```python
->    self.camera = cv2.VideoCapture(0)
->    ```
+>   ```python
+>   self.camera = cv2.VideoCapture(0)
+>   ```
 >
->    This function took more than three seconds every time. In other words, I clicked to open the camera and waited four seconds; I clicked to start recognition and waited another five. A control took four or five seconds to respond, and it was single-threaded, so during the response the window could not receive messages or perform any other operation.
+>   This function took more than three seconds every time. In other words, I clicked to open the camera and waited four seconds; I clicked to start recognition and waited another five. A control took four or five seconds to respond, and it was single-threaded, so during the response the window could not receive messages or perform any other operation.
 >
->    I was practically coughing up blood. I told him, “You are going to leave it like this without optimizing anything?” He said a device has only one camera; initializing two at once would crash it, so he could only stop one and open the other. He even demonstrated the crash to me.
+>   I was practically coughing up blood. I told him, “You are going to leave it like this without optimizing anything?” He said a device has only one camera; initializing two at once would crash it, so he could only stop one and open the other. He even demonstrated the crash to me.
 >
->    It was already Thursday afternoon. I told him to optimize or beautify it a little more. He said, “Optimize my ass. It works. If you want it optimized, do it yourself,” then went back and opened League of Legends.
+>   It was already Thursday afternoon. I told him to optimize or beautify it a little more. He said, “Optimize my ass. It works. If you want it optimized, do it yourself,” then went back and opened League of Legends.
 >
->    I only felt that the gap between his beginning and end was enormous. He did not beautify it, and he did not optimize it.
+>   I only felt that the gap between his beginning and end was enormous. He did not beautify it, and he did not optimize it.
 >
->    In the end, I really did take it on myself. This is where the distinction between goals and a sense of purpose, tasks and things one ought to do, becomes relevant.
+>   In the end, I really did take it on myself. This is where the distinction between goals and a sense of purpose, tasks and things one ought to do, becomes relevant.
 >
->    For him, there was a goal at first, and perhaps he was even overly excited. Later, though, it became only a task. He had no real sense of purpose and only completed the minimum.
+>   For him, there was a goal at first, and perhaps he was even overly excited. Later, though, it became only a task. He had no real sense of purpose and only completed the minimum.
 >
->    I was the opposite. I am obsessed with UI beautification—or rather, I am obsessed with anime. If I write something, it must have a bit of anime in it. So I added a background image, a logo, and icons. When I write these things, they are usually extras; I may not know exactly what to make, but the positive and excited mindset that comes with having a goal stays with me.
+>   I was the opposite. I am obsessed with UI beautification—or rather, I am obsessed with anime. If I write something, it must have a bit of anime in it. So I added a background image, a logo, and icons. When I write these things, they are usually extras; I may not know exactly what to make, but the positive and excited mindset that comes with having a goal stays with me.
 >
->    For the speed optimization, I initialized the camera when the program started and used it globally afterward. In the end, startup still took four or five seconds, but every other control responded immediately.
+>   For the speed optimization, I initialized the camera when the program started and used it globally afterward. In the end, startup still took four or five seconds, but every other control responded immediately.
 >
->    I call that state of having a sense of purpose **writing my own thing**. When I try to write my own thing, it has nothing to do with other people’s requirements; it is simply what I want. Anime-style beautification is what I want, and that is the key that lets me enter that state. But doing this often makes me skip meals, which is bad for my health.
+>   I call that state of having a sense of purpose **writing my own thing**. When I try to write my own thing, it has nothing to do with other people’s requirements; it is simply what I want. Anime-style beautification is what I want, and that is the key that lets me enter that state. But doing this often makes me skip meals, which is bad for my health.
 >
->    And before trying to write my own thing, I usually make something terrible first—the minimum—at the fastest speed, then optimize it on that foundation. That leaves enough time to think about what can be done later and enough time to tinker. My roommate spent four days delivering what I considered the bare minimum, then stubbornly said that it worked. That made me really angry.
+>   And before trying to write my own thing, I usually make something terrible first—the minimum—at the fastest speed, then optimize it on that foundation. That leaves enough time to think about what can be done later and enough time to tinker. My roommate spent four days delivering what I considered the bare minimum, then stubbornly said that it worked. That made me really angry.

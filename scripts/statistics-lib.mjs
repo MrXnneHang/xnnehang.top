@@ -205,7 +205,8 @@ export function buildContentTotals(inputPosts = [], locale = 'zh-CN') {
   const monthlyOutput = [...monthlyMap.values()]
   const rankedCategories = [...categoryCounts]
     .sort(
-      ([nameA, countA], [nameB, countB]) => countB - countA || nameA.localeCompare(nameB, sortLocale)
+      ([nameA, countA], [nameB, countB]) =>
+        countB - countA || nameA.localeCompare(nameB, sortLocale)
     )
     .map(([name]) => name)
   const categories =

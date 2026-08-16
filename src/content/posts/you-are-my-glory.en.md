@@ -1,14 +1,14 @@
 ---
 title: You Are My Glory
 published: 2025-01-15
-shelf: "电视剧"
+shelf: '电视剧'
 category: Reviews
 tags:
-   - Film Review
-   - Television
+  - Film Review
+  - Television
 description: A letter about You Are My Glory.
 series:
-   - Film and Television
+  - Film and Television
 lang: en
 translationKey: you-are-my-glory
 ---

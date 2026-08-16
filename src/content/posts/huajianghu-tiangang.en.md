@@ -1,5 +1,5 @@
 ---
-title: "After Hua Jiang Hu: Tian Gang — Perhaps True Completion Does Not Exist"
+title: 'After Hua Jiang Hu: Tian Gang — Perhaps True Completion Does Not Exist'
 published: 2025-03-15
 category: Reviews
 shelf: 电影
@@ -9,7 +9,7 @@ tags:
   - Films
   - Anime
   - Completion
-description: "Starting from Hua Jiang Hu: Tian Gang, a reflection on what makes a story feel complete."
+description: 'Starting from Hua Jiang Hu: Tian Gang, a reflection on what makes a story feel complete.'
 lang: en
 translationKey: huajianghu-tiangang
 ---
@@ -40,7 +40,7 @@ Perhaps immortals differ from people partly because I quietly hope for more stor
 
 But a mortal life passes in a flicker to an immortal. Qiao'er will grow old and die, while Yuan Tian Gang will not.
 
-I also understand Yuan Tian Gang’s original wish not to live, but to die. It overlaps with something I felt when I previously watched *A Record of a Mortal’s Journey to Immortality*.
+I also understand Yuan Tian Gang’s original wish not to live, but to die. It overlaps with something I felt when I previously watched _A Record of a Mortal’s Journey to Immortality_.
 
 ## What Kind of Story Counts as Complete?
 
@@ -60,12 +60,12 @@ From Li Chunfeng’s perspective, considering only his final end: he had a kindr
 
 From my point of view:
 
-I have seen very forced happy endings. I still remember how Tian Can Tu Dou spent a very long final chapter writing the ending of *Battle Through the Heavens*. It mainly explained the situations of each heroine, another kind of cut-off ending like the one in this film. Yet although it was a happy ending, I suddenly felt sad, because the imaginings opened by the ending were only imaginings—I would never see any more of their stories.
+I have seen very forced happy endings. I still remember how Tian Can Tu Dou spent a very long final chapter writing the ending of _Battle Through the Heavens_. It mainly explained the situations of each heroine, another kind of cut-off ending like the one in this film. Yet although it was a happy ending, I suddenly felt sad, because the imaginings opened by the ending were only imaginings—I would never see any more of their stories.
 
-One of the cut-off endings I encountered early on—perhaps there is a more elegant technical term for it, but I am not a professional—was, I would say, perfected in *Norwegian Wood*.
+One of the cut-off endings I encountered early on—perhaps there is a more elegant technical term for it, but I am not a professional—was, I would say, perfected in _Norwegian Wood_.
 
 Of course, I have seen bad endings too.
 
-If a character dies, there is no continuation. Erii was unquestionably written to death by Jiang Nan in the third volume of *Dragon Raja*, and for a long time I remained caught in the wish that she could return to life.
+If a character dies, there is no continuation. Erii was unquestionably written to death by Jiang Nan in the third volume of _Dragon Raja_, and for a long time I remained caught in the wish that she could return to life.
 
 Ah, human desire is limitless. In pursuit of completion, we want this and that, only to discover that true completion does not exist at all. It seems that only the story itself remains profound.

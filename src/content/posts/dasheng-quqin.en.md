@@ -1,5 +1,5 @@
 ---
-title: "After A Chinese Odyssey Part Two: Cinderella"
+title: 'After A Chinese Odyssey Part Two: Cinderella'
 published: 2024-09-01
 shelf: '电影'
 category: Reviews
@@ -22,7 +22,7 @@ Let me first put forward two propositions:
 
 And one discussion outside the topic:
 
-1. Would *Cinderella* be seen as a distortion of the original *Journey to the West*? Is that a conspiracy theory? Why do I not reject *Cinderella* as I reject *Black Myth: Wukong*, but accept it instead?
+1. Would _Cinderella_ be seen as a distortion of the original _Journey to the West_? Is that a conspiracy theory? Why do I not reject _Cinderella_ as I reject _Black Myth: Wukong_, but accept it instead?
 
 ## Reality Is Not a Fairy Tale
 
@@ -77,13 +77,13 @@ Joker never gives her that kiss in the end.
 
 Perhaps that is what he owes her.
 
-In *Pandora's Box*, he is the one who takes the initiative, but loses it immediately afterward.
+In _Pandora's Box_, he is the one who takes the initiative, but loses it immediately afterward.
 
 ![Joker and Jingjing](../../assets/img/dasheng-quqin/202408302332805.jpeg)
 
 > Joker and Jingjing
 
-But in *Cinderella*, Joker never holds Zixia like that from beginning to end. After becoming Ma Lau, he cannot even hold her hand.
+But in _Cinderella_, Joker never holds Zixia like that from beginning to end. After becoming Ma Lau, he cannot even hold her hand.
 
 Yet after Ma Lau travels through time again using Pandora's Box, he meets another pair of “Zixia” and “Joker.”
 

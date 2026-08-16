@@ -1,18 +1,18 @@
 ---
-title: "RRF vs. Hybrid Search: How Should Time-Based Retrieval Be Blended, and How Does It Fit Project and Companion Scenarios?"
+title: 'RRF vs. Hybrid Search: How Should Time-Based Retrieval Be Blended, and How Does It Fit Project and Companion Scenarios?'
 published: 2026-07-21
-description: "A discussion inspired by MoeChat about RRF and Hybrid Search: how should time retrieval participate in hybrid retrieval, how should it adapt across scenarios, and where are the boundaries between wikimem and XnneHangLab?"
+description: 'A discussion inspired by MoeChat about RRF and Hybrid Search: how should time retrieval participate in hybrid retrieval, how should it adapt across scenarios, and where are the boundaries between wikimem and XnneHangLab?'
 tags:
-   - RAG
-   - Hybrid Search
-   - RRF
-   - Memory Systems
-   - Retrieval
+  - RAG
+  - Hybrid Search
+  - RRF
+  - Memory Systems
+  - Retrieval
 category: Learning as I Build
 featured: true
 series:
-   - Long-Term Memory
-   - NLP
+  - Long-Term Memory
+  - NLP
 lang: en
 translationKey: RRF-vs-Hybrid-Search
 ---

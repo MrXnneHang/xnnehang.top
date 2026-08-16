@@ -1,16 +1,16 @@
 ---
 title: After The Poppy
 published: 2024-07-17
-shelf: "书籍"
-subCategory: ["文学"]
+shelf: '书籍'
+subCategory: ['文学']
 category: Reviews
 tags:
-   - Reading
-   - Natsume Sōseki
-   - The Poppy
+  - Reading
+  - Natsume Sōseki
+  - The Poppy
 description: "Reading notes on Natsume Sōseki's The Poppy: attention, drama, and the frankness of human nature."
 series:
-   - Reading
+  - Reading
 lang: en
 translationKey: yumei-cao
 ---

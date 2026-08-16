@@ -1,5 +1,5 @@
 ---
-title: "After Building Long-Lived Systems: Is the RAG Monster Right for Constructing a Personal Blog Graph?"
+title: 'After Building Long-Lived Systems: Is the RAG Monster Right for Constructing a Personal Blog Graph?'
 published: 2026-06-06
 category: Reflections
 tags:
@@ -23,7 +23,7 @@ My graduation project was about long-term companionship for an AI desktop compan
 
 ## Why External Memory?
 
-Why do we need **external** long-term memory in the first place? The GPT, Claude, and DeepSeek models we use today are fundamentally **stateless inference** systems: an LLM receives all context for an input at once, then produces one output. Different LLMs have different context-window limits, usually somewhere between 200K and 1M tokens. And a context window is not the same as *effective context*: performance can decline and hallucinations can appear before the stated limit, or, as the U-shaped curve in [[Attention Is Limited — Lost in the Middle]] shows, a large model can “forget the middle.”
+Why do we need **external** long-term memory in the first place? The GPT, Claude, and DeepSeek models we use today are fundamentally **stateless inference** systems: an LLM receives all context for an input at once, then produces one output. Different LLMs have different context-window limits, usually somewhere between 200K and 1M tokens. And a context window is not the same as _effective context_: performance can decline and hallucinations can appear before the stated limit, or, as the U-shaped curve in [[Attention Is Limited — Lost in the Middle]] shows, a large model can “forget the middle.”
 
 So whether the goal is remembering things after starting a fresh context or slowing that performance decline, a memory system is necessary. It needs to be **external** to avoid taking up context, so it can be inserted only when needed to guide the model.
 
@@ -70,7 +70,7 @@ It might extract two memories: “The user’s graduation project includes a lon
 
 You can define the format and content of that extraction through prompts.
 
-Those memories are then **vectorized** and stored in a database. Whenever the user asks something new, the system compares the question vector with vectors in the database, selects the top *n*, and inserts them as context to support the LLM’s reply.
+Those memories are then **vectorized** and stored in a database. Whenever the user asks something new, the system compares the question vector with vectors in the database, selects the top _n_, and inserts them as context to support the LLM’s reply.
 
 **Write on a question; inject on a question.** Memory grows like a snowball.
 
@@ -132,7 +132,7 @@ But from the standpoint of its purpose, can it really serve as an internal prese
 
 ### The Limits of Vector Similarity
 
-Based on what we have discussed above, RAG builds connections through retrieval similarity, whether vector semantic matching, keyword matching, or hybrid retrieval. Setting aside the complexity of computation and additional models, it ultimately returns a connection from one text chunk in an article to another text chunk in a different article. That connection *does not say what kind of relationship it is*; mathematically, it only means those two chunks are more related than a chosen threshold.
+Based on what we have discussed above, RAG builds connections through retrieval similarity, whether vector semantic matching, keyword matching, or hybrid retrieval. Setting aside the complexity of computation and additional models, it ultimately returns a connection from one text chunk in an article to another text chunk in a different article. That connection _does not say what kind of relationship it is_; mathematically, it only means those two chunks are more related than a chosen threshold.
 
 > Unlike extracting useful memories from conversation and converting them into vectors, blogs need to be processed through text chunking: each post is divided into chunks of a certain size and then converted into vectors.
 
@@ -144,7 +144,7 @@ RAG creates a huge number of messy relationship links between posts, but cannot 
 
 ### The Short-Sightedness of Text Chunking
 
-At the same time, those relationship links themselves are **short-sighted**. Why? The issue lies in text chunking. It limits relationship analysis to a small paragraph, or even a single sentence. But authors usually want a *global view* of a relationship, like thematic reading, or perhaps only a _feeling_. That feeling or global view is something RAG cannot express. Even when it can, it is drowned out by the many low-level connections it calculates.
+At the same time, those relationship links themselves are **short-sighted**. Why? The issue lies in text chunking. It limits relationship analysis to a small paragraph, or even a single sentence. But authors usually want a _global view_ of a relationship, like thematic reading, or perhaps only a _feeling_. That feeling or global view is something RAG cannot express. Even when it can, it is drowned out by the many low-level connections it calculates.
 
 At least for now, RAG itself is unsuitable for directly presenting the relationship graph of personal blog content.
 

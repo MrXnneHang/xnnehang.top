@@ -56,13 +56,13 @@ Perhaps I should not avoid encounters. Self-study and self-transformation exist,
 
 #### My own thoughts.
 
-I am reminded of a Japanese light novel I read before, *Love Comes After Simulation*. The first half of it was very good. It describes a protagonist who can use a simulator to run through possible futures in advance, and even extract the experience he learned from each simulation. He can foresee certain things ahead of time, and the first two romances have considerable depth.
+I am reminded of a Japanese light novel I read before, _Love Comes After Simulation_. The first half of it was very good. It describes a protagonist who can use a simulator to run through possible futures in advance, and even extract the experience he learned from each simulation. He can foresee certain things ahead of time, and the first two romances have considerable depth.
 
 It does not quite reach ultimate concern in existentialism, but it is not far away.
 
 That ultimate concern is death.
 
-*Three Days of Happiness* suggests that the final three days may be more valuable than the thirty years sold away, or than the original thirty days remaining.
+_Three Days of Happiness_ suggests that the final three days may be more valuable than the thirty years sold away, or than the original thirty days remaining.
 
 I do not disagree with this view, but perhaps deep down I still place too much trust in personal agency: as long as one is alive, perhaps a turning point may still exist.
 

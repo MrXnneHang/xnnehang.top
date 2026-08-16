@@ -1,5 +1,5 @@
 ---
-title: "Go Build Long-Term Memory! A Review and Plan After Graduating with an AI Degree"
+title: 'Go Build Long-Term Memory! A Review and Plan After Graduating with an AI Degree'
 published: 2026-06-28
 featured: true
 category: Reflections

@@ -1,5 +1,5 @@
 ---
-title: "Sparse vs. Dense: From BPE to Hybrid Search"
+title: 'Sparse vs. Dense: From BPE to Hybrid Search'
 published: 2026-07-14
 featured: true
 category: Learning as I Build
@@ -12,7 +12,7 @@ tags:
   - BM25
   - Sparse Vectors
   - Dense Vectors
-description: "Starting from the question of what sparse and dense really mean, this works through the embedding pipeline, subwords and vocabularies, input length, and their practical uses."
+description: 'Starting from the question of what sparse and dense really mean, this works through the embedding pipeline, subwords and vocabularies, input length, and their practical uses.'
 lang: en
 translationKey: sparsing-and-densing-embeddings
 ---
@@ -144,11 +144,11 @@ So the answer is: **in modern tokenizers, “cannot even assemble its roots” i
 
 The practical difference between a BERT vocabulary of roughly 30k and byte-level BPE is:
 
-| | BERT WordPiece | Byte-level BPE |
-| --- | --- | --- |
-| Vocabulary size | ~30k | ~100k, including every byte |
-| OOV? | Possible; falls back to `[UNK]` | Almost none; bytes can always assemble input |
-| Split basis | Statistical subwords plus language preference | Pure statistics at byte level |
+|                 | BERT WordPiece                                | Byte-level BPE                               |
+| --------------- | --------------------------------------------- | -------------------------------------------- |
+| Vocabulary size | ~30k                                          | ~100k, including every byte                  |
+| OOV?            | Possible; falls back to `[UNK]`               | Almost none; bytes can always assemble input |
+| Split basis     | Statistical subwords plus language preference | Pure statistics at byte level                |
 
 This is why GPT-family models later abandoned WordPiece for BPE: no `[UNK]` handling, one problem removed.
 :::
@@ -172,13 +172,13 @@ I want to understand further how BPE and WordPiece differ and resemble each othe
 :::note[Korewaxnne]
 Their central difference is **the merge criterion**, which changes how vocabulary is formed:
 
-| | BPE | WordPiece |
-| --- | --- | --- |
-| **Merge basis** | Frequency: merge the pair that occurs most often | Likelihood: merge the pair that increases model probability most |
-| **Training** | Start from single characters and repeatedly merge the most frequent adjacent pair until vocabulary size is reached | Start from single characters and merge the pair that most improves training-data likelihood each time |
-| **Vocabulary** | Purely statistical: frequent fragments mix together, such as `ing`, `tion`, `ab`, and `##s` | More inclined toward linguistic boundaries, because improving likelihood often merges meaningful units |
-| **OOV handling** | Almost none: every byte exists | Possible: fully unseen combinations fall back to `[UNK]` |
-| **Typical models** | GPT family, LLaMA | BERT, DistilBERT |
+|                    | BPE                                                                                                                | WordPiece                                                                                              |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| **Merge basis**    | Frequency: merge the pair that occurs most often                                                                   | Likelihood: merge the pair that increases model probability most                                       |
+| **Training**       | Start from single characters and repeatedly merge the most frequent adjacent pair until vocabulary size is reached | Start from single characters and merge the pair that most improves training-data likelihood each time  |
+| **Vocabulary**     | Purely statistical: frequent fragments mix together, such as `ing`, `tion`, `ab`, and `##s`                        | More inclined toward linguistic boundaries, because improving likelihood often merges meaningful units |
+| **OOV handling**   | Almost none: every byte exists                                                                                     | Possible: fully unseen combinations fall back to `[UNK]`                                               |
+| **Typical models** | GPT family, LLaMA                                                                                                  | BERT, DistilBERT                                                                                       |
 
 **An intuitive comparison:**
 
@@ -225,11 +225,11 @@ An output vector's **dimension is fixed**—1024 for BGE-M3, 1536 for OpenAI's t
 
 Input length actually affects:
 
-| What it affects | Why |
-| --- | --- |
-| **Compute** | Longer input → more embedding lookups → slower and more expensive |
+| What it affects           | Why                                                                                                                             |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **Compute**               | Longer input → more embedding lookups → slower and more expensive                                                               |
 | **Output-vector quality** | Too short, one or two words, gives too little information; too long exceeds max tokens and loses information through truncation |
-| **Pooling choice** | After chunking long input, average, weighted, or `[CLS]` pooling changes the final vector's center of gravity |
+| **Pooling choice**        | After chunking long input, average, weighted, or `[CLS]` pooling changes the final vector's center of gravity                   |
 
 **An intuition:**
 
@@ -275,10 +275,10 @@ Yes. Every term is a dimension. The dimension corresponding to “猫” has a v
 
 **Which suits scenarios 1 and 2?**
 
-| Scenario | Matching type | Better fit | Why |
-| --- | --- | --- | --- |
-| 1. Conversation summaries → memories | **Semantic matching:** “the user likes cats” ≈ “they own a Ragdoll” | Dense vectors | Memories need to understand meaning rather than exact words. If a user says “I own a Ragdoll,” dense vectors can associate it with “cat”; sparse vectors cannot. |
-| 2. Search articles about “猫” | **Keyword matching:** title or text contains “猫” | Sparse vectors, BM25 | The query is too short for a dense vector to say much; sparse vectors can hit the exact term immediately. |
+| Scenario                             | Matching type                                                       | Better fit           | Why                                                                                                                                                              |
+| ------------------------------------ | ------------------------------------------------------------------- | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. Conversation summaries → memories | **Semantic matching:** “the user likes cats” ≈ “they own a Ragdoll” | Dense vectors        | Memories need to understand meaning rather than exact words. If a user says “I own a Ragdoll,” dense vectors can associate it with “cat”; sparse vectors cannot. |
+| 2. Search articles about “猫”        | **Keyword matching:** title or text contains “猫”                   | Sparse vectors, BM25 | The query is too short for a dense vector to say much; sparse vectors can hit the exact term immediately.                                                        |
 
 **But there is an implicit question worth expanding: why do dense vectors struggle with short queries?**
 
@@ -311,6 +311,7 @@ When breaking down memU, we can capture how it uses BM25: simple hybrid search, 
 I raised two questions at the beginning and forgot to ask them later, so I will add them here.
 
 :::note[Claude]
+
 ### Why are some models good at dense vectors and others at sparse ones?
 
 **Both architecture and pretraining matter, but the pretraining objective is decisive.**
@@ -325,10 +326,10 @@ The central idea is exactly what you guessed: **bring similar semantics together
 
 Training constructs positive and negative pairs:
 
-| Sample type | Meaning | Sources |
-| --- | --- | --- |
-| **Positive pairs** | Two semantically similar texts | Query and a clicked document; question and answer; title and body; a sentence and its paraphrase |
-| **Negative pairs** | Two semantically unrelated texts | Random pairing, or hard negatives that look similar but are unrelated |
+| Sample type        | Meaning                          | Sources                                                                                          |
+| ------------------ | -------------------------------- | ------------------------------------------------------------------------------------------------ |
+| **Positive pairs** | Two semantically similar texts   | Query and a clicked document; question and answer; title and body; a sentence and its paraphrase |
+| **Negative pairs** | Two semantically unrelated texts | Random pairing, or hard negatives that look similar but are unrelated                            |
 
 The loss function pulls positive-pair vectors closer and pushes negative-pair vectors apart.
 

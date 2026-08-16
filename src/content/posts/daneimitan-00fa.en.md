@@ -1,5 +1,5 @@
 ---
-title: "After Forbidden City Cop"
+title: 'After Forbidden City Cop'
 published: 2024-09-07
 shelf: 电影
 category: Reviews
@@ -7,7 +7,7 @@ tags:
   - Films
   - Stephen Chow
   - Film Reviews
-description: "Notes on Forbidden City Cop: its familiar kind of love and its use of light and composition."
+description: 'Notes on Forbidden City Cop: its familiar kind of love and its use of light and composition.'
 series:
   - Film Watching
 lang: en
@@ -20,7 +20,7 @@ This film had been on hold for a long time. It was still my first time watching 
 
 Before, I had put it off partly because I could not find a copy, and partly because the two “old ladies” on the poster were rather discouraging.
 
-But once I started watching, I realized they were familiar faces after all: Peach Blossom from *Ashes of Time*, and Xiao Longnü!
+But once I started watching, I realized they were familiar faces after all: Peach Blossom from _Ashes of Time_, and Xiao Longnü!
 
 The makeup is dramatically different, especially for Xiao Longnü. She originally looked like this:
 
@@ -40,7 +40,7 @@ Had there not been a close-up of her eyes and brows midway through the film, I w
 
 ![Close-up of her eyes and brows](../../assets/img/daneimitan-00fa/202409072302785.jpg)
 
-When I watched *The Return of the Condor Heroes* in the past, I always thought Auntie’s eyes were especially profound. Seeing them here suddenly brought that back to me.
+When I watched _The Return of the Condor Heroes_ in the past, I always thought Auntie’s eyes were especially profound. Seeing them here suddenly brought that back to me.
 
 Beauty is dynamic. Compared with the two old ladies on the poster, his wife in the film is simply adorable.
 

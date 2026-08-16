@@ -3,12 +3,12 @@ title: Fuwari Blog Theme Guide
 published: 2024-07-01
 category: Tutorials
 tags:
-   - Fuwari
-   - Blogging
-   - Tutorials
-description: "A guide to the Fuwari-based blog: frontmatter, Markdown, GitHub cards, admonitions, code highlighting, and video embeds."
+  - Fuwari
+  - Blogging
+  - Tutorials
+description: 'A guide to the Fuwari-based blog: frontmatter, Markdown, GitHub cards, admonitions, code highlighting, and video embeds.'
 series:
-   - Blogging
+  - Blogging
 lang: en
 translationKey: fuwari-guide
 ---

@@ -1,15 +1,15 @@
 ---
 title: After Gold or Shit
 published: 2024-08-13
-shelf: "电影"
+shelf: '电影'
 category: Reviews
 tags:
-   - Film
-   - Gold or Shit
-   - Film Review
+  - Film
+  - Gold or Shit
+  - Film Review
 description: Thoughts on Gold or Shit, pursuing success, and improving oneself.
 series:
-   - Film and Television
+  - Film and Television
 lang: en
 translationKey: zouzoutingting
 ---

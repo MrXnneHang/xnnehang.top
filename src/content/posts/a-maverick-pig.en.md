@@ -23,9 +23,9 @@ Wang is talking about fiction here. Recently, while reading short stories, I hav
 
 I find Wang Xiaobo's writing very easy to focus on. It is easy to quiet down and settle into the right frame of mind.
 
-> Spend a lifetime learning art. I studied both the humanities and the sciences. Yet in the classroom, it was my science teachers who mentioned the word *art* more often: my chemistry teacher said there was an art to conducting experiments; my computer science teacher said there was an art to programming. They said that knowing how to do something correctly is science, while knowing how to do it well is art. The former has rules for judging truth from falsehood; the latter does not. The essence of art is to make people feel that something is good—even flawless.
+> Spend a lifetime learning art. I studied both the humanities and the sciences. Yet in the classroom, it was my science teachers who mentioned the word _art_ more often: my chemistry teacher said there was an art to conducting experiments; my computer science teacher said there was an art to programming. They said that knowing how to do something correctly is science, while knowing how to do it well is art. The former has rules for judging truth from falsehood; the latter does not. The essence of art is to make people feel that something is good—even flawless.
 
-After the college entrance exam, I initially wanted to major in Chinese language and literature, my head full of dreams of writing fiction. But after several twists and turns, I ended up in artificial intelligence. AI—*Artificial Intelligence*—at least it still gave me half a claim to *Art*.
+After the college entrance exam, I initially wanted to major in Chinese language and literature, my head full of dreams of writing fiction. But after several twists and turns, I ended up in artificial intelligence. AI—_Artificial Intelligence_—at least it still gave me half a claim to _Art_.
 
 I also took quite a few online electives in art and literature: Buddhist art, appreciation of the Four Great Classical Novels, ancient Chinese literature, architectural art, and so on.
 
@@ -33,11 +33,11 @@ Later, though, I realized that these so-called “arts” were merely constructi
 
 Seen that way, this accidental turn of events may have been something to be grateful for.
 
-> I have always felt that once you have read *The Lover*, you know what the art of the modern novel is; once you have read Wang Daoqian's translated prose, you know what modern Chinese literary language is.
+> I have always felt that once you have read _The Lover_, you know what the art of the modern novel is; once you have read Wang Daoqian's translated prose, you know what modern Chinese literary language is.
 
-When I first read this in high school and saw Wang Xiaobo lavish praise on Wang Daoqian's translation of *The Lover*, I immediately went out and bought that edition. It was my first work of French literature, dreamlike and unreal.
+When I first read this in high school and saw Wang Xiaobo lavish praise on Wang Daoqian's translation of _The Lover_, I immediately went out and bought that edition. It was my first work of French literature, dreamlike and unreal.
 
-Later, after I lent the book to a female classmate, two more female classmates came to ask whether I had a copy of *The Lover*.
+Later, after I lent the book to a female classmate, two more female classmates came to ask whether I had a copy of _The Lover_.
 
 ## The Art of Fiction
 
@@ -51,12 +51,12 @@ So there is really no need for me to spout nonsense unless I cannot help myself.
 
 Still, reading an essay now and then can be a pleasure. It gives you the feeling of having arrived at a different point of view without having to use your brain.
 
-## On the Art of Fiction, Starting with *The Golden Age*
+## On the Art of Fiction, Starting with _The Golden Age_
 
 > Being positive and aspiring may be a principle for conducting oneself, but it should not be kept on one's lips at every moment. I believe my proper job is to make my fiction as engaging as possible, not to lace it with deliberate moralizing. My approach to writing is to create works for people who read fiction, not to lecture wayward young people.
 
 Shaping people's character and the like should be a concern for children's books. The author's proper task, and fiction's proper task, is simply to convey another life, another world. As an extension of my brief life, if that world is rendered with fullness and in concrete form, then the work has already done its job. Moral instruction is not an author's obligation; drawing insight from the work is the reader's concern.
 
-> In truth, every book should be interesting. For some books, being interesting is their reason for existing; for some novels, it is the standard they ought to meet. I can remember every interesting book I have read, while with dull ones I cannot even recall the title. But it is not just me: all of us are close to forgetting what *interesting* even means.
+> In truth, every book should be interesting. For some books, being interesting is their reason for existing; for some novels, it is the standard they ought to meet. I can remember every interesting book I have read, while with dull ones I cannot even recall the title. But it is not just me: all of us are close to forgetting what _interesting_ even means.
 
-What does it mean for something to be interesting? Every work by Xia Da is quite interesting, *Song of the Long March* most of all. That is what I think for now.
+What does it mean for something to be interesting? Every work by Xia Da is quite interesting, _Song of the Long March_ most of all. That is what I think for now.

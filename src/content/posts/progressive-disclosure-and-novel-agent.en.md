@@ -1,5 +1,5 @@
 ---
-title: "Starting with How We Use Skills: What Are Progressive Disclosure and Task Decomposition, and What Do I Want to Explore?"
+title: 'Starting with How We Use Skills: What Are Progressive Disclosure and Task Decomposition, and What Do I Want to Explore?'
 published: 2026-07-03
 featured: true
 category: Reflections
@@ -7,7 +7,7 @@ tags:
   - Progressive Disclosure
   - Skills
   - Symbolic Language
-description: "Reading notes on How We Use Skills: when you cannot put everything in front of an Agent at once, how do you keep it effective? Progressive Disclosure and Task Decomposition."
+description: 'Reading notes on How We Use Skills: when you cannot put everything in front of an Agent at once, how do you keep it effective? Progressive Disclosure and Task Decomposition.'
 image: ../../assets/img/progressive-disclosure/cover.png
 lang: en
 translationKey: progressive-disclosure-and-novel-agent

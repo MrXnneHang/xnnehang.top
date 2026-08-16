@@ -3,8 +3,8 @@ title: The Girlfriend at the End of the World
 published: 2024-03-26
 featured: true
 category: Reviews
-shelf: "书籍"
-description: "A style I love: it showed me that twenty-first-century Chinese literature holds more than pain literature and realism—mono no aware, for one."
+shelf: '书籍'
+description: 'A style I love: it showed me that twenty-first-century Chinese literature holds more than pain literature and realism—mono no aware, for one.'
 series: [Reading]
 lang: en
 translationKey: shijie-jintou-de-nvyou

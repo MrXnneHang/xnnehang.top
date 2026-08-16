@@ -1,15 +1,15 @@
 ---
-title: "Rebuilding My Blog: Where My Inspirations Came From"
+title: 'Rebuilding My Blog: Where My Inspirations Came From'
 published: 2026-06-07
 updated: 2026-08-11
 category: Learning as I Build
 tags:
-   - Blogging
-   - Open Source
+  - Blogging
+  - Open Source
 description: Tracing the inspirations behind each page and module throughout the blog's rebuild and continuing evolution.
 pin: true
 series:
-   - Blogging
+  - Blogging
 lang: en
 translationKey: blog-rebuild-inspirations
 ---

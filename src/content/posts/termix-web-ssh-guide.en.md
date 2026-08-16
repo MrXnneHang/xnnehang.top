@@ -1,5 +1,5 @@
 ---
-title: "Termix: A Very Cool Web-Based SSH Client"
+title: 'Termix: A Very Cool Web-Based SSH Client'
 published: 2025-12-29
 category: Tutorials
 tags:
@@ -7,7 +7,7 @@ tags:
   - Docker
   - SSH
   - Termix
-description: "A Termix deployment guide: use Docker to host a web-based SSH client and finally say goodbye to Termius acting up."
+description: 'A Termix deployment guide: use Docker to host a web-based SSH client and finally say goodbye to Termius acting up.'
 image: ../../assets/img/covers/202512291044412.png
 lang: en
 translationKey: termix-web-ssh-guide
@@ -87,20 +87,20 @@ In a directory where you want to keep it, for example `/opt/termix`, create `com
 
 ```yaml
 services:
-   termix:
-      image: ghcr.io/lukegus/termix:latest
-      container_name: termix
-      restart: unless-stopped
-      ports:
-         - "8080:8080"
-      volumes:
-         - termix-data:/app/data
-      environment:
-         PORT: "8080"
+  termix:
+    image: ghcr.io/lukegus/termix:latest
+    container_name: termix
+    restart: unless-stopped
+    ports:
+      - '8080:8080'
+    volumes:
+      - termix-data:/app/data
+    environment:
+      PORT: '8080'
 
 volumes:
-   termix-data:
-      driver: local
+  termix-data:
+    driver: local
 ```
 
 Then pull the image:

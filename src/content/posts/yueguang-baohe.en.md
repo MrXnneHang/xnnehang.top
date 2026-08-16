@@ -16,7 +16,7 @@ lang: en
 translationKey: yueguang-baohe
 ---
 
-## After *Pandora's Box* — Are films that take romantic love as their subject clichéd, and how might their bad effects arise?
+## After _Pandora's Box_ — Are films that take romantic love as their subject clichéd, and how might their bad effects arise?
 
 Let me begin by putting forward three propositions:
 
@@ -32,7 +32,7 @@ To solve the first question, we must first answer: can people avoid being ordina
 
 As far as I know, most people cannot.
 
-What mainly kept me watching *Pandora's Box* was Spider Woman's looks =-= and the adorable Karen Mok. The liveliness of the role she plays exceeds Chingmy Yau's; every smile and glance moves the heart. Then there is that they are both demons, the transformation jokes, and the contrast that makes the contrast cute rather than tiring. When viewers may be approaching comedy fatigue and their threshold for laughter has risen, the director also lets the characters settle and deepen. Suddenly there is depth—for example, when Spider Woman calls out “Nanny,” and the way Uncle Tat looks at her in that moment.
+What mainly kept me watching _Pandora's Box_ was Spider Woman's looks =-= and the adorable Karen Mok. The liveliness of the role she plays exceeds Chingmy Yau's; every smile and glance moves the heart. Then there is that they are both demons, the transformation jokes, and the contrast that makes the contrast cute rather than tiring. When viewers may be approaching comedy fatigue and their threshold for laughter has risen, the director also lets the characters settle and deepen. Suddenly there is depth—for example, when Spider Woman calls out “Nanny,” and the way Uncle Tat looks at her in that moment.
 
 As for depth, I put all my attention on Uncle Tat. Earlier, during the Spider Woman's fight, she asks Uncle Tat, controlled by the Bewitching Mind spell:
 
@@ -42,7 +42,7 @@ Uncle Tat's response is, “Even in a crisis like this, she still remembers to c
 
 Some of that may not be the original line, but “love her for ten thousand years” certainly is.
 
-I admire the nonsensical humor and comic rhythm of most Stephen Chow films, such as *Fight Back to School*. A single step too far becomes excessive. It is as though only Stephen Chow can make nonsense comedy feel natural to me; other actors always seem awkward. The director knows when to joke and when to become serious. That rhythm cannot be learned; there is no rule for it, only a complete grasp of the audience's heart.
+I admire the nonsensical humor and comic rhythm of most Stephen Chow films, such as _Fight Back to School_. A single step too far becomes excessive. It is as though only Stephen Chow can make nonsense comedy feel natural to me; other actors always seem awkward. The director knows when to joke and when to become serious. That rhythm cannot be learned; there is no rule for it, only a complete grasp of the audience's heart.
 
 So is not every nonsensical film that fits your heart also the director's heartbeat synchronizing with yours—a confession of sorts?
 
@@ -62,19 +62,19 @@ I cannot avoid being ordinary. As I said above, those things are what keep me wa
 
 ![Spider Woman 5](../../assets/img/yueguang-baohe/202408291227795.jpeg)
 
-> The expression on the one at the far left is very cute. Especially after watching *The King of Comedy*, the contrast is even cuter.
+> The expression on the one at the far left is very cute. Especially after watching _The King of Comedy_, the contrast is even cuter.
 
 I may put more at the end, so I will not add too many here.
 
 I am an ordinary person, so I do not think it is a problem for a work to catch my attention through romantic love and advance the plot through it. On the contrary, I welcome it.
 
-And *A Chinese Odyssey* is not deliberate about it. It never makes me feel that love is the most important thing, that everything is discussing it, that nothing can work without it. I have seen films that do that—*White Snake*, for example, which writes love too forcefully. Once love is removed, what is left? Overemphasizing romantic love and having nothing but romantic attachments are what make people feel a work is too clichéd.
+And _A Chinese Odyssey_ is not deliberate about it. It never makes me feel that love is the most important thing, that everything is discussing it, that nothing can work without it. I have seen films that do that—_White Snake_, for example, which writes love too forcefully. Once love is removed, what is left? Overemphasizing romantic love and having nothing but romantic attachments are what make people feel a work is too clichéd.
 
 ![image](../../assets/img/yueguang-baohe/202408291236394.png)
 
-Of course, not everyone will find it clichéd. Everyone has their own range of cliché they can bear. At least to me, *White Snake* feels somewhat narrow and extreme.
+Of course, not everyone will find it clichéd. Everyone has their own range of cliché they can bear. At least to me, _White Snake_ feels somewhat narrow and extreme.
 
-This approach also often falls into a trap. The later films in the *White Snake* series cannot break out of the frame they set for themselves. At that point, romantic attachment truly becomes a limitation.
+This approach also often falls into a trap. The later films in the _White Snake_ series cannot break out of the frame they set for themselves. At that point, romantic attachment truly becomes a limitation.
 
 Oh—I seem to have reached the answer by accident. I did not know it from the beginning; I was only trying to discuss it, and arrived at my own answer that way.
 
@@ -83,7 +83,7 @@ Oh—I seem to have reached the answer by accident. I did not know it from the b
 - Probably no one can avoid being ordinary. I certainly cannot.
 - Everyone has their own range of cliché they can bear.
 - When romantic love is written too forcefully and treated as the only important thing, it easily becomes narrow and extreme, and easily falls into cliché.
-- In *Pandora's Box*, romantic love is more like bait that catches someone like me and makes me watch to the end. It is not the most important thing, and the film does not need it absolutely. I cannot say what is most important, though perhaps Uncle Tat's performance contains the answer.
+- In _Pandora's Box_, romantic love is more like bait that catches someone like me and makes me watch to the end. It is not the most important thing, and the film does not need it absolutely. I cannot say what is most important, though perhaps Uncle Tat's performance contains the answer.
 
 ## In terms of intention, are small domestic concerns inferior to feelings for the nation?
 
@@ -91,9 +91,9 @@ Oh—I seem to have reached the answer by accident. I did not know it from the b
 
 My personal view is that the two are not opposed.
 
-Anyone who finished *Gu Jian 3* may recognize this instantly.
+Anyone who finished _Gu Jian 3_ may recognize this instantly.
 
-Although *Gu Jian 3* reverses the focus on romance in *Gu Jian 1* and *2*, in the end it expresses a feeling of generations succeeding one another, sparks being passed on. Many people say it has been elevated.
+Although _Gu Jian 3_ reverses the focus on romance in _Gu Jian 1_ and _2_, in the end it expresses a feeling of generations succeeding one another, sparks being passed on. Many people say it has been elevated.
 
 But the contribution of the smaller home within that greater whole cannot be erased.
 

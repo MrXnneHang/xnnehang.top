@@ -99,8 +99,8 @@ Use `:::note[Title]` (directive syntax) instead of `> [!NOTE] Title` (GitHub syn
 Always write article `title` and `description` frontmatter values as double-quoted YAML strings. Do this even when the value currently looks safe: translated prose can acquire a colon or another YAML-significant character during editing, and unquoted values can prevent Astro from loading the entire content collection.
 
 ```yaml
-title: "Bringing AI Chat to Congyin in Chill with You: Lo-Fi Story"
-description: "Notes from exploring a mod that adds AI chat to Congyin."
+title: 'Bringing AI Chat to Congyin in Chill with You: Lo-Fi Story'
+description: 'Notes from exploring a mod that adds AI chat to Congyin.'
 ```
 
 Never use a plain scalar for `title` or `description`. Other scalar frontmatter values must also be quoted if they contain YAML-significant characters such as `:`, `#`, `{`, `}`, `[`, `]`, `,`, `&`, `*`, `!`, `|`, `>`, `'`, `"`, `%`, `@`, or a leading `-`, `?`, or `:`.

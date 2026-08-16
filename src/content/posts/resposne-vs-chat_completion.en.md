@@ -1,18 +1,18 @@
 ---
-title: "The Shape of a Protocol Determines Its Capabilities: Why Codex Removed chat_completion, and What Actually Blocks a Desktop Companion from Talking While It Works"
+title: 'The Shape of a Protocol Determines Its Capabilities: Why Codex Removed chat_completion, and What Actually Blocks a Desktop Companion from Talking While It Works'
 published: 2026-07-28
 description: "From Codex's hard removal of chat/completions to the migration damage it caused in new-api, this examines the real tool-flow differences between Anthropic Messages and OpenAI protocols—why my long-chain silence is not the protocol's fault, and what truly counts as talking while working."
 tags:
-   - LLM
-   - Agent
-   - OpenAI
-   - Anthropic
-   - Protocol
-   - Tool Call
+  - LLM
+  - Agent
+  - OpenAI
+  - Anthropic
+  - Protocol
+  - Tool Call
 category: Learning as I Build
 featured: true
 series:
-   - LLM
+  - LLM
 lang: en
 translationKey: resposne-vs-chat_completion
 ---

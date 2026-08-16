@@ -1,12 +1,12 @@
 ---
-title: "Using OBS with VTube Studio: Be a Vtuber"
+title: 'Using OBS with VTube Studio: Be a Vtuber'
 published: 2024-01-30
 category: Tutorials
 tags:
-   - Tutorials
-   - OBS
-   - VTube Studio
-   - Vtuber
+  - Tutorials
+  - OBS
+  - VTube Studio
+  - Vtuber
 description: A guide to using OBS together with VTube Studio for livestreaming or video recording.
 lang: en
 translationKey: obs-vtube-studio-vtuber-guide

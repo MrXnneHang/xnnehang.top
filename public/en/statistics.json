@@ -42,9 +42,7 @@
       }
     ],
     "categoryEvolution": {
-      "categories": [
-        "Reviews"
-      ],
+      "categories": ["Reviews"],
       "months": [
         {
           "month": "2024-04",

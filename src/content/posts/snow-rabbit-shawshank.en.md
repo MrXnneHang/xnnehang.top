@@ -1,16 +1,16 @@
 ---
 title: A Snow Rabbit Twenty Centimeters from Spring and The Shawshank Redemption
 published: 2025-02-16
-shelf: "书籍"
-subCategory: ["散文"]
+shelf: '书籍'
+subCategory: ['散文']
 category: Reviews
 tags:
-   - Reading
-   - Film
-description: "A rabbit and a prisoner: two tunnels, two kinds of freedom."
+  - Reading
+  - Film
+description: 'A rabbit and a prisoner: two tunnels, two kinds of freedom.'
 series:
-   - Reading
-   - Film and Television
+  - Reading
+  - Film and Television
 lang: en
 translationKey: snow-rabbit-shawshank
 ---

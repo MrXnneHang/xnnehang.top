@@ -3,7 +3,7 @@ title: What Bad Intentions Could I Possibly Have?
 published: 2025-09-07
 featured: true
 category: Reviews
-shelf: "书籍"
+shelf: '书籍'
 description: In my anxiety on the train back to campus, an animal's perspective gave me a good dream.
 series: [Reading]
 lang: en
