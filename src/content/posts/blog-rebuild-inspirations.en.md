@@ -1,7 +1,7 @@
 ---
 title: 'Rebuilding My Blog: Where My Inspirations Came From'
 published: 2026-06-07
-updated: 2026-08-11
+updated: 2026-08-16
 category: Learning as I Build
 tags:
   - Blogging
@@ -170,6 +170,18 @@ The site does not reproduce any of those systems wholesale. Instead, it recombin
 > Mix and refine scattered ideas.
 
 For Xnne, showing work in progress does more than reveal “what comes next.” It also gives fleeting ideas a container before they disappear. A Todo is no longer merely a line waiting to be crossed out, but material still being refined.
+
+# A Bilingual Site: Making Another Language Part of the Structure
+
+When Xnne first considered adding English to the blog, the task was not simply to “translate the posts.” If English existed only in the article body while navigation, search, archives, statistics, the relationship graph, and RSS still understood only Chinese, the result would have been a scattered collection of translations rather than an English site that could be read on its own.
+
+The redesign therefore preserves every existing Chinese URL while placing the English site under `/en/`, with language changes left to the reader. Pages do not force a redirect based on browser language, and the Chinese and English versions of each post are paired through a stable `translationKey`. Old links remain intact, while both languages receive clear and predictable addresses.
+
+The harder part was carrying language through the entire network of content. The homepage, navigation, archives, series, Bookshelf, In-Progress Workbench, Statistics, relationship graph, search, 404 page, RSS, and SEO all gained English counterparts. WikiLinks, related posts, previous and next navigation, categories, and series are resolved only within the current language. Chinese and English also receive separate search indexes, RSS feeds, statistics catalogs, and graph data, so switching to English does not lead the reader unexpectedly back into Chinese somewhere farther along the path.
+
+At the same time, all 66 published posts were migrated into complete English counterparts. The migration did not treat them as isolated pieces of text: groups connected by WikiLinks had to move together, or translated links would point toward titles that did not yet exist. Each post first went through translation-pair and file checks, while full production builds were reserved for batch checkpoints. This order kept a large migration divisible, inspectable, and traceable.
+
+The purpose of making the whole site bilingual was not to pretend that the blog no longer has a linguistic boundary. It was more like laying a second complete path through it. Chinese remains the place where the blog first grew, while English is no longer an attachment beside the body text; it has its own entrances, navigation, and content network. **Bilingualism thus changed from a translation task into part of the blog's structure itself.**
 
 ---
 
