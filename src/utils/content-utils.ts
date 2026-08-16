@@ -1,10 +1,16 @@
 import { type CollectionEntry, getCollection } from 'astro:content'
 import I18nKey from '@i18n/i18nKey'
 import { i18n } from '@i18n/translation'
+import { DEFAULT_LOCALE, type Locale } from '@i18n/locales'
+import {
+  filterPostsByLocale,
+  getPostRouteSlug,
+  linkPostNeighbors,
+} from '@utils/post-locale'
 import { getCategoryUrl } from '@utils/url-utils.ts'
 
 // // Retrieve posts and sort them by publication date
-async function getRawSortedPosts() {
+async function getRawSortedPosts(locale: Locale = DEFAULT_LOCALE) {
   const allBlogPosts: CollectionEntry<'posts'>[] = await getCollection(
     'posts',
     ({ data }: { data: { draft?: boolean } }) => {
@@ -12,7 +18,7 @@ async function getRawSortedPosts() {
     }
   )
 
-  const sorted = allBlogPosts.sort((a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => {
+  const sorted = filterPostsByLocale(allBlogPosts, locale).sort((a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => {
     const aPin = a.data.pin ? 1 : 0
     const bPin = b.data.pin ? 1 : 0
     if (aPin !== bPin) return bPin - aPin
@@ -23,30 +29,21 @@ async function getRawSortedPosts() {
   return sorted
 }
 
-export async function getSortedPosts() {
-  const sorted = await getRawSortedPosts()
-
-  for (let i = 1; i < sorted.length; i++) {
-    sorted[i].data.nextSlug = sorted[i - 1].id
-    sorted[i].data.nextTitle = sorted[i - 1].data.title
-  }
-  for (let i = 0; i < sorted.length - 1; i++) {
-    sorted[i].data.prevSlug = sorted[i + 1].id
-    sorted[i].data.prevTitle = sorted[i + 1].data.title
-  }
-
-  return sorted
+export async function getSortedPosts(locale: Locale = DEFAULT_LOCALE) {
+  return linkPostNeighbors(await getRawSortedPosts(locale))
 }
 export type PostForList = {
   slug: string
   data: CollectionEntry<'posts'>['data']
 }
-export async function getSortedPostsList(): Promise<PostForList[]> {
-  const sortedFullPosts = await getRawSortedPosts()
+export async function getSortedPostsList(
+  locale: Locale = DEFAULT_LOCALE
+): Promise<PostForList[]> {
+  const sortedFullPosts = await getRawSortedPosts(locale)
 
   // delete post.body
   const sortedPostsList = sortedFullPosts.map((post: CollectionEntry<'posts'>) => ({
-    slug: post.id,
+    slug: getPostRouteSlug(post),
     data: post.data,
   }))
 
@@ -57,13 +54,8 @@ export type Tag = {
   count: number
 }
 
-export async function getTagList(): Promise<Tag[]> {
-  const allBlogPosts: CollectionEntry<'posts'>[] = await getCollection(
-    'posts',
-    ({ data }: { data: { draft?: boolean } }) => {
-      return import.meta.env.PROD ? data.draft !== true : true
-    }
-  )
+export async function getTagList(locale: Locale = DEFAULT_LOCALE): Promise<Tag[]> {
+  const allBlogPosts = await getRawSortedPosts(locale)
 
   const countMap: { [key: string]: number } = {}
   allBlogPosts.forEach((post: CollectionEntry<'posts'>) => {
@@ -92,17 +84,14 @@ export type Series = {
   posts: CollectionEntry<'posts'>[]
 }
 
-export async function getCategoryList(): Promise<Category[]> {
-  const allBlogPosts: CollectionEntry<'posts'>[] = await getCollection(
-    'posts',
-    ({ data }: { data: { draft?: boolean } }) => {
-      return import.meta.env.PROD ? data.draft !== true : true
-    }
-  )
+export async function getCategoryList(
+  locale: Locale = DEFAULT_LOCALE
+): Promise<Category[]> {
+  const allBlogPosts = await getRawSortedPosts(locale)
   const count: { [key: string]: number } = {}
   allBlogPosts.forEach((post: CollectionEntry<'posts'>) => {
     if (!post.data.category) {
-      const ucKey = i18n(I18nKey.uncategorized)
+      const ucKey = i18n(I18nKey.uncategorized, locale)
       count[ucKey] = count[ucKey] ? count[ucKey] + 1 : 1
       return
     }
@@ -124,19 +113,14 @@ export async function getCategoryList(): Promise<Category[]> {
     ret.push({
       name: c,
       count: count[c],
-      url: getCategoryUrl(c),
+      url: getCategoryUrl(c, locale),
     })
   }
   return ret
 }
 
-export async function getSeriesList(): Promise<Series[]> {
-  const allBlogPosts: CollectionEntry<'posts'>[] = await getCollection(
-    'posts',
-    ({ data }: { data: { draft?: boolean } }) => {
-      return import.meta.env.PROD ? data.draft !== true : true
-    }
-  )
+export async function getSeriesList(locale: Locale = DEFAULT_LOCALE): Promise<Series[]> {
+  const allBlogPosts = await getRawSortedPosts(locale)
 
   const seriesMap: Map<string, PostForList[]> = new Map()
   allBlogPosts.forEach((post: CollectionEntry<'posts'>) => {

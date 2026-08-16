@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "generatedAt": null,
   "status": "empty",
   "source": "ga4",
@@ -1073,7 +1073,13 @@
       }
     ],
     "categoryEvolution": {
-      "categories": ["观后", "思考", "边写边学", "教程", "资源"],
+      "categories": [
+        "观后",
+        "思考",
+        "边写边学",
+        "教程",
+        "资源"
+      ],
       "months": [
         {
           "month": "2022-10",
@@ -2975,5 +2981,6 @@
     "30d": [],
     "90d": [],
     "all": []
-  }
+  },
+  "locale": "zh-CN"
 }

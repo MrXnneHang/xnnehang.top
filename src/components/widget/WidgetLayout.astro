@@ -1,7 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components'
 import I18nKey from '../../i18n/i18nKey'
-import { i18n } from '../../i18n/translation'
+import { DEFAULT_LOCALE, type Locale } from '../../i18n/locales'
+import { createI18n } from '../../i18n/translation'
 
 interface Props {
   id: string
@@ -10,8 +11,10 @@ interface Props {
   collapsedHeight?: string
   class?: string
   style?: string
+  locale?: Locale
 }
-const { id, name, isCollapsed, collapsedHeight, style } = Astro.props
+const { id, name, isCollapsed, collapsedHeight, style, locale = DEFAULT_LOCALE } = Astro.props
+const t = createI18n(locale)
 const className = Astro.props.class
 ---
 
@@ -34,7 +37,7 @@ const className = Astro.props.class
       <div class="expand-btn -mb-2 px-4">
         <button class="btn-plain h-9 w-full rounded-lg">
           <div class="flex -translate-x-2 items-center justify-center gap-2 text-[var(--primary)]">
-            <Icon name="material-symbols:more-horiz" class="text-[1.75rem]" /> {i18n(I18nKey.more)}
+            <Icon name="material-symbols:more-horiz" class="text-[1.75rem]" /> {t(I18nKey.more)}
           </div>
         </button>
       </div>

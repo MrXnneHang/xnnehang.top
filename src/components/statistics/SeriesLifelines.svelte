@@ -1,12 +1,16 @@
 <script lang="ts">
+  import { DEFAULT_LOCALE, type Locale } from '@/i18n/locales'
   import type { StatisticsSeriesLifeline } from '@/types/statistics'
+  import { getStatisticsLabels } from '@/utils/statistics-locale'
   import { formatDate, formatNumber, seriesUrl, type TrailRange } from './writing-trail-utils'
 
   export let lifelines: StatisticsSeriesLifeline[] = undefined!
   export let range: TrailRange = undefined!
   export let rangeStart: string = undefined!
+  export let locale: Locale = DEFAULT_LOCALE
 
   type Sort = 'recent' | 'duration' | 'activity'
+  $: labels = getStatisticsLabels(locale)
   let sort: Sort = 'recent'
   let activeSeries = ''
   let activePath = ''
@@ -53,21 +57,21 @@
 <section class="time-part" aria-labelledby="series-lifelines-title">
   <div class="mb-5 flex flex-wrap items-end justify-between gap-4">
     <div>
-      <p class="part-kicker">系列延伸</p>
-      <h4 id="series-lifelines-title" class="mt-1 text-base font-semibold text-black/85 dark:text-white/85">系列生命线</h4>
-      <p class="mt-1 text-xs text-black/45 dark:text-white/45">同一时间切片中，系列何时延续或停顿</p>
+      <p class="part-kicker">{labels.seriesKicker}</p>
+      <h4 id="series-lifelines-title" class="mt-1 text-base font-semibold text-black/85 dark:text-white/85">{labels.seriesTitle}</h4>
+      <p class="mt-1 text-xs text-black/45 dark:text-white/45">{labels.seriesDescription}</p>
     </div>
-    <div class="sort-controls" aria-label="系列排序">
-      {#each [{ value: 'recent', label: '最近活跃' }, { value: 'duration', label: '跨度' }, { value: 'activity', label: '文章数' }] as item}
+    <div class="sort-controls" aria-label={labels.seriesSortAria}>
+      {#each [{ value: 'recent', label: labels.recent }, { value: 'duration', label: labels.duration }, { value: 'activity', label: labels.activity }] as item}
         <button type="button" class:active={sort === item.value} aria-pressed={sort === item.value} onclick={() => sort = item.value as Sort}>{item.label}</button>
       {/each}
     </div>
   </div>
 
-  <p class="mb-5 rounded-xl bg-black/[0.025] p-3 text-xs leading-5 text-black/45 dark:bg-white/[0.045] dark:text-white/45">同一篇文章可以属于多个系列，因此各系列文章数会重叠，不能相加为全站文章总数。Git 提交次数只代表文件历史触达，不等于语义重写次数。</p>
+  <p class="mb-5 rounded-xl bg-black/[0.025] p-3 text-xs leading-5 text-black/45 dark:bg-white/[0.045] dark:text-white/45">{labels.seriesCaveat}</p>
 
   {#if sorted.length === 0}
-    <p class="py-12 text-center text-sm text-black/40 dark:text-white/40">这个时间范围还没有系列更新</p>
+    <p class="py-12 text-center text-sm text-black/40 dark:text-white/40">{labels.noSeries}</p>
   {:else}
     <div class="timeline-scroll">
       <div class="timeline">
@@ -75,18 +79,18 @@
         {#each sorted as series}
           <div class="series-row">
             <div class="series-label">
-              <a class="link font-medium text-black/75 dark:text-white/75" href={seriesUrl(series.name)}>{series.name}</a>
-              <span>{series.postCount} 篇 · {formatNumber(series.totalWords)} 字</span>
+              <a class="link font-medium text-black/75 dark:text-white/75" href={seriesUrl(series.name, locale)}>{series.name}</a>
+              <span>{labels.postUnit(series.postCount)} · {labels.wordUnit(series.totalWords)}</span>
             </div>
-            <div class="series-track" aria-label={`${series.name}，${series.postCount} 篇，从 ${series.firstPublished} 到 ${series.lastPublished}`}>
+            <div class="series-track" aria-label={labels.seriesRange(series.name, series.postCount, series.firstPublished, series.lastPublished)}>
               <span class="lifeline" style={`left: ${position(series.firstPublished)}%; width: ${Math.max(.5, position(series.lastPublished) - position(series.firstPublished))}%`}></span>
               {#each series.posts as post}
                 <a
                   href={post.path}
                   class="point-hit"
                   style={`left: ${position(post.published)}%`}
-                  aria-label={`${post.title}，${formatDate(post.published)}，${formatNumber(post.words)} 字`}
-                  title={`${post.title}\n${formatDate(post.published)} · ${formatNumber(post.words)} 字`}
+                  aria-label={`${post.title}, ${formatDate(post.published, locale)}, ${labels.wordUnit(post.words)}`}
+                  title={`${post.title}\n${formatDate(post.published, locale)} · ${labels.wordUnit(post.words)}`}
                   onmouseenter={() => { activeSeries = series.name; activePath = post.path }}
                   onfocus={() => { activeSeries = series.name; activePath = post.path }}
                 ><span class="point" style={`width: ${dotSize(post.words)}px; height: ${dotSize(post.words)}px`}></span></a>
@@ -99,7 +103,7 @@
   {/if}
 
   {#if activePost}
-    <p class="mt-4 text-sm text-black/60 dark:text-white/60" aria-live="polite"><a class="link font-semibold" href={activePost.path}>{activePost.title}</a> · {formatDate(activePost.published)} · {formatNumber(activePost.words)} 字</p>
+    <p class="mt-4 text-sm text-black/60 dark:text-white/60" aria-live="polite"><a class="link font-semibold" href={activePost.path}>{activePost.title}</a> · {formatDate(activePost.published, locale)} · {labels.wordUnit(activePost.words)}</p>
   {/if}
 </section>
 

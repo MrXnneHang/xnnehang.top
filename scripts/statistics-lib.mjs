@@ -6,8 +6,31 @@ export const STATISTICS_RANGES = {
 }
 
 const DAY_MS = 24 * 60 * 60 * 1000
-const UNCATEGORIZED = '未分类'
-const OTHER_CATEGORY = '其他'
+export const STATISTICS_LOCALES = ['zh-CN', 'en']
+export const ENGLISH_PATH_REGEX = '^/en(?:/.*)?$'
+
+const CONTENT_OPTIONS = {
+  'zh-CN': { uncategorized: '未分类', otherCategory: '其他', sortLocale: 'zh-CN' },
+  en: { uncategorized: 'Uncategorized', otherCategory: 'Other', sortLocale: 'en' },
+}
+
+function contentOptions(locale = 'zh-CN') {
+  return CONTENT_OPTIONS[locale] ?? CONTENT_OPTIONS['zh-CN']
+}
+
+export function isEnglishPagePath(value) {
+  return /^\/en(?:\/|$)/i.test(normalizePagePath(value))
+}
+
+export function buildLocaleDimensionFilter(locale) {
+  const filter = {
+    filter: {
+      fieldName: 'pagePath',
+      stringFilter: { matchType: 'FULL_REGEXP', value: ENGLISH_PATH_REGEX },
+    },
+  }
+  return locale === 'en' ? filter : { notExpression: filter }
+}
 
 export function normalizePagePath(value) {
   if (!value) return '/'
@@ -132,7 +155,8 @@ function buildRhythm(dailyPublications) {
   }
 }
 
-export function buildContentTotals(inputPosts = []) {
+export function buildContentTotals(inputPosts = [], locale = 'zh-CN') {
+  const { uncategorized, otherCategory, sortLocale } = contentOptions(locale)
   const posts = [...inputPosts].sort(
     (a, b) => a.published.localeCompare(b.published) || a.path.localeCompare(b.path)
   )
@@ -163,7 +187,7 @@ export function buildContentTotals(inputPosts = []) {
       monthly.estimatedMinutes += numeric(post.estimatedMinutes)
     }
 
-    const category = String(post.category || '').trim() || UNCATEGORIZED
+    const category = String(post.category || '').trim() || uncategorized
     categoryCounts.set(category, (categoryCounts.get(category) ?? 0) + 1)
     const monthCategories = categoryMonthMaps.get(month)
     monthCategories?.set(category, (monthCategories.get(category) ?? 0) + 1)
@@ -181,19 +205,19 @@ export function buildContentTotals(inputPosts = []) {
   const monthlyOutput = [...monthlyMap.values()]
   const rankedCategories = [...categoryCounts]
     .sort(
-      ([nameA, countA], [nameB, countB]) => countB - countA || nameA.localeCompare(nameB, 'zh-CN')
+      ([nameA, countA], [nameB, countB]) => countB - countA || nameA.localeCompare(nameB, sortLocale)
     )
     .map(([name]) => name)
   const categories =
     rankedCategories.length > 8
-      ? [...rankedCategories.slice(0, 7), OTHER_CATEGORY]
+      ? [...rankedCategories.slice(0, 7), otherCategory]
       : rankedCategories
   const visibleCategorySet = new Set(categories)
   const categoryMonths = months.map((month) => {
     const rawValues = categoryMonthMaps.get(month) ?? new Map()
     const mappedValues = new Map(categories.map((category) => [category, 0]))
     for (const [category, count] of rawValues) {
-      const target = visibleCategorySet.has(category) ? category : OTHER_CATEGORY
+      const target = visibleCategorySet.has(category) ? category : otherCategory
       mappedValues.set(target, (mappedValues.get(target) ?? 0) + count)
     }
     const total = [...mappedValues.values()].reduce((sum, count) => sum + count, 0)
@@ -221,7 +245,7 @@ export function buildContentTotals(inputPosts = []) {
     }))
     .sort(
       (a, b) =>
-        b.lastPublished.localeCompare(a.lastPublished) || a.name.localeCompare(b.name, 'zh-CN')
+        b.lastPublished.localeCompare(a.lastPublished) || a.name.localeCompare(b.name, sortLocale)
     )
 
   return {
@@ -264,11 +288,12 @@ export function average(numerator, denominator) {
   return Math.round((numerator / denominator) * 100) / 100
 }
 
-export function createEmptyStatistics(content = { posts: [], totals: {} }) {
+export function createEmptyStatistics(content = { posts: [], totals: {} }, locale = 'zh-CN') {
   const totals = content.totals ?? {}
-  const defaults = buildContentTotals([])
+  const defaults = buildContentTotals([], locale)
   return {
-    version: 1,
+    version: 2,
+    locale,
     generatedAt: null,
     status: 'empty',
     source: 'ga4',
@@ -294,15 +319,17 @@ export function createEmptyStatistics(content = { posts: [], totals: {} }) {
   }
 }
 
-export function isStatisticsData(value) {
+export function isStatisticsData(value, expectedLocale) {
   if (!value || typeof value !== 'object') return false
-  if (value.version !== 1 || value.source !== 'ga4') return false
+  if (value.version !== 2 || value.source !== 'ga4') return false
+  if (!STATISTICS_LOCALES.includes(value.locale)) return false
+  if (expectedLocale && value.locale !== expectedLocale) return false
   if (!value.site || !value.content || !value.ranges) return false
   return ['7d', '30d', '90d', 'all'].every((range) => Array.isArray(value.ranges[range]))
 }
 
-export function buildStatistics(content, rangeRows, siteMetrics) {
-  const output = createEmptyStatistics(content)
+export function buildStatistics(content, rangeRows, siteMetrics, locale = 'zh-CN') {
+  const output = createEmptyStatistics(content, locale)
   const contentByPath = new Map(
     content.posts.map((post) => [normalizePagePath(post.path), { ...post }])
   )

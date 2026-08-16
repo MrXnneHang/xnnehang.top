@@ -1,0 +1,13 @@
+---
+import LocalizedPostPage from '@components/LocalizedPostPage.astro'
+import { ENGLISH_LOCALE } from '@i18n/locales'
+import { getLocalizedPostStaticPaths } from '@utils/post-page'
+
+export function getStaticPaths() {
+  return getLocalizedPostStaticPaths(ENGLISH_LOCALE)
+}
+
+const props = Astro.props
+---
+
+<LocalizedPostPage {...props} />

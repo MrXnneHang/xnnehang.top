@@ -3,7 +3,12 @@
   import '@fontsource-variable/jetbrains-mono/wght-italic.css'
   import { onMount } from 'svelte'
   import Icon from '@iconify/svelte'
+  import { DEFAULT_LOCALE, type Locale } from '../i18n/locales'
+  import { formatTodoDate, getTodoLabels } from '../utils/todo-locale'
 
+  interface Props {
+    locale?: Locale
+  }
   type TodoTag = { id: number; name: string; color: string }
   type TodoTask = {
     number: number
@@ -34,12 +39,14 @@
   type View = 'all' | 'completed' | `priority:${PriorityKey}` | `tag:${number}`
 
   const recentCompletedLimit = 3
-  const priorityFilters: readonly PriorityFilter[] = [
-    { key: 'p0', label: 'P0', description: '立即处理', fallbackColor: 'B60205' },
-    { key: 'p1', label: 'P1', description: '尽快处理', fallbackColor: 'D93F0B' },
-    { key: 'p2', label: 'P2', description: '正常推进', fallbackColor: 'FBCA04' },
-    { key: 'p3', label: 'P3', description: '有空再做', fallbackColor: '0E8A16' },
-  ]
+  let { locale = DEFAULT_LOCALE }: Props = $props()
+  const labels = $derived(getTodoLabels(locale))
+  const priorityFilters = $derived<readonly PriorityFilter[]>([
+    { key: 'p0', label: 'P0', description: labels.priorityDescriptions.p0, fallbackColor: 'B60205' },
+    { key: 'p1', label: 'P1', description: labels.priorityDescriptions.p1, fallbackColor: 'D93F0B' },
+    { key: 'p2', label: 'P2', description: labels.priorityDescriptions.p2, fallbackColor: 'FBCA04' },
+    { key: 'p3', label: 'P3', description: labels.priorityDescriptions.p3, fallbackColor: '0E8A16' },
+  ])
   let data: TodoSnapshot | null = $state(null)
   let loading = $state(true)
   let error = $state('')
@@ -90,8 +97,7 @@
   }
 
   function formatDate(value: string | null) {
-    if (!value) return ''
-    return new Intl.DateTimeFormat('zh-CN', { dateStyle: 'medium', timeZone: 'Asia/Shanghai' }).format(new Date(value))
+    return formatTodoDate(value, locale)
   }
 
   function tagStyle(tag: Pick<TodoTag, 'color'>) {
@@ -150,7 +156,7 @@
     return data.tasks.filter((task) => task.state === 'open' && matchesQuery(task))
   })
   let selectedTask = $derived(visibleTasks.find((task) => task.number === selectedNumber) ?? visibleTasks[0] ?? null)
-  let viewTitle = $derived(view === 'completed' ? '结晶' : activePriority ? `${activePriority.label} · ${activePriority.description}` : activeTag?.name ?? '坩埚')
+  let viewTitle = $derived(view === 'completed' ? labels.completed : activePriority ? `${activePriority.label} · ${activePriority.description}` : activeTag?.name ?? labels.active)
   let viewCount = $derived(visibleTasks.filter((task) => task.state === 'open' || view === 'completed').length)
 
   function selectView(next: View) {
@@ -167,7 +173,7 @@
       data = snapshot
     } catch (reason) {
       console.error('Failed to load Todo snapshot:', reason)
-      error = '在途数据暂时无法加载，请稍后再试。'
+      error = labels.loadError
     } finally {
       loading = false
     }
@@ -177,43 +183,43 @@
 {#if loading}
   <section class="card-base loading-state" aria-live="polite">
     <Icon icon="material-symbols:progress-activity" class="animate-spin" />
-    正在整理工作台
+    {labels.loading}
   </section>
 {:else if error || !data}
   <section class="card-base error-state" role="alert">
     <Icon icon="material-symbols:cloud-off-outline-rounded" />
-    <h1>工作台暂时离线</h1>
+    <h1>{labels.offlineTitle}</h1>
     <p>{error}</p>
   </section>
 {:else}
-  <section class="workspace card-base" data-pagefind-body aria-label="在途工作台">
-    <aside class="workspace-nav" aria-label="在途视图">
+  <section class="workspace card-base" data-pagefind-body aria-label={labels.workspaceLabel}>
+    <aside class="workspace-nav" aria-label={labels.workspaceNavLabel}>
       <header>
         <p>Workspace</p>
-        <h1>炼金</h1>
-        <span class="workspace-note">把散落的想法混合熔炼</span>
-        <span>{data.status === 'fallback' ? '上一份快照' : formatDate(data.generatedAt)}</span>
+        <h1>{labels.workspaceTitle}</h1>
+        <span class="workspace-note">{labels.workspaceDescription}</span>
+        <span>{data.status === 'fallback' ? labels.fallbackSnapshot : formatDate(data.generatedAt)}</span>
       </header>
 
       <nav class="primary-nav">
         <button class:active={view === 'all'} aria-pressed={view === 'all'} onclick={() => selectView('all')}>
           <Icon icon="material-symbols:inbox-rounded" />
-          <span>坩埚</span>
+          <span>{labels.active}</span>
           <strong>{data.counts.active}</strong>
         </button>
         <button class:active={view === 'completed'} aria-pressed={view === 'completed'} onclick={() => selectView('completed')}>
           <Icon icon="material-symbols:check-circle-outline-rounded" />
-          <span>结晶</span>
+          <span>{labels.completed}</span>
           <strong>{data.counts.completed}</strong>
         </button>
       </nav>
 
       <button class="group-heading" aria-expanded={!prioritiesCollapsed} aria-controls="priority-filters" onclick={() => prioritiesCollapsed = !prioritiesCollapsed}>
         <Icon icon="material-symbols:keyboard-arrow-down-rounded" />
-        <span>优先级</span>
+        <span>{labels.priorities}</span>
       </button>
       {#if !prioritiesCollapsed}
-        <nav id="priority-filters" class="priority-nav" aria-label="优先级">
+        <nav id="priority-filters" class="priority-nav" aria-label={labels.priorities}>
           {#each priorities as priority (priority.key)}
             <button
               class:active={selectedPriorityKey === priority.key}
@@ -232,10 +238,10 @@
       {#if tags.length > 0}
         <button class="group-heading" aria-expanded={!tagsCollapsed} aria-controls="tag-filters" onclick={() => tagsCollapsed = !tagsCollapsed}>
           <Icon icon="material-symbols:keyboard-arrow-down-rounded" />
-          <span>标签</span>
+          <span>{labels.tags}</span>
         </button>
         {#if !tagsCollapsed}
-          <nav id="tag-filters" class="tag-nav" aria-label="标签">
+          <nav id="tag-filters" class="tag-nav" aria-label={labels.tags}>
             {#each tags as tag (tag.id)}
               <button class:active={selectedTagId === tag.id} aria-pressed={selectedTagId === tag.id} onclick={() => selectView(`tag:${tag.id}`)}>
                 <span class="tag-dot" style={tagStyle(tag)}></span>
@@ -252,11 +258,11 @@
       <header class="task-toolbar">
         <div>
           <h2>{viewTitle}</h2>
-          <span>{viewCount} 项</span>
+          <span>{labels.items(viewCount)}</span>
         </div>
         <label>
           <Icon icon="material-symbols:search-rounded" aria-hidden="true" />
-          <input bind:value={query} type="search" aria-label="搜索在途事项" placeholder="搜索" />
+          <input bind:value={query} type="search" aria-label={labels.searchLabel} placeholder={labels.searchPlaceholder} />
         </label>
       </header>
 
@@ -264,7 +270,7 @@
         {#if visibleTasks.length === 0}
           <div class="empty-state">
             <Icon icon="material-symbols:checklist-rounded" />
-            <p>{query ? '没有匹配的在途事项' : view === 'completed' ? '还没有结晶' : activePriority ? `${activePriority.label} 暂无待处理事项` : '坩埚暂时是空的'}</p>
+            <p>{query ? labels.noMatches : view === 'completed' ? labels.noCompleted : activePriority ? labels.priorityEmpty(activePriority.label) : labels.activeEmpty}</p>
           </div>
         {:else}
           {#each visibleTasks as task (task.number)}
@@ -276,14 +282,14 @@
               aria-pressed={selectedTask?.number === task.number}
               onclick={() => selectedNumber = task.number}
             >
-              <span class="task-check" aria-label={task.state === 'closed' ? '已结晶' : '炼制中'}>
+              <span class="task-check" aria-label={task.state === 'closed' ? labels.completedState : labels.activeState}>
                 <Icon icon={task.state === 'closed' ? 'material-symbols:check-rounded' : 'material-symbols:circle-outline'} />
               </span>
               <span class="task-copy">
                 <span class="task-title">{task.title}</span>
                 {#if task.descriptionHtml}<span class="task-excerpt">{plainText(task.descriptionHtml).trim()}</span>{/if}
               </span>
-              <span class="task-tags" aria-label="标签">
+              <span class="task-tags" aria-label={labels.tags}>
                 {#each task.tags as tag (tag.id)}<span class="tag-pill" style={tagStyle(tag)}>{tag.name}</span>{/each}
               </span>
               <Icon icon="material-symbols:chevron-right-rounded" class="row-arrow" aria-hidden="true" />
@@ -297,7 +303,7 @@
     </div>
 
     <aside class="detail-pane" aria-live="polite">
-      {#if selectedTask}{@render TaskDetail(selectedTask)}{:else}<div class="detail-empty"><Icon icon="material-symbols:select-check-box-outline-rounded" /><p>选择一项查看详情</p></div>{/if}
+      {#if selectedTask}{@render TaskDetail(selectedTask)}{:else}<div class="detail-empty"><Icon icon="material-symbols:select-check-box-outline-rounded" /><p>{labels.selectTask}</p></div>{/if}
     </aside>
   </section>
 {/if}
@@ -305,17 +311,17 @@
 {#snippet TaskDetail(task: TodoTask)}
   <article class="task-detail">
     <header>
-      <span class:done={task.state === 'closed'} class="detail-state"><Icon icon={task.state === 'closed' ? 'material-symbols:check-rounded' : 'material-symbols:circle-outline'} />{task.state === 'closed' ? '已结晶' : '炼制中'}</span>
-      <a href={task.issueUrl} target="_blank" rel="noopener noreferrer" aria-label="在 GitHub 中打开"><Icon icon="material-symbols:open-in-new-rounded" /></a>
+      <span class:done={task.state === 'closed'} class="detail-state"><Icon icon={task.state === 'closed' ? 'material-symbols:check-rounded' : 'material-symbols:circle-outline'} />{task.state === 'closed' ? labels.completedState : labels.activeState}</span>
+      <a href={task.issueUrl} target="_blank" rel="noopener noreferrer" aria-label={labels.openGitHubLabel}><Icon icon="material-symbols:open-in-new-rounded" /></a>
     </header>
     <h2 class:completed={task.state === 'closed'}>{task.title}</h2>
     {#if task.tags.length > 0}<div class="detail-tags">{#each task.tags as tag (tag.id)}<span class="tag-pill" style={tagStyle(tag)}><span class="tag-dot" style={tagStyle(tag)}></span>{tag.name}</span>{/each}</div>{/if}
     <div class="detail-rule"></div>
-    {#if task.descriptionHtml}<div class="detail-body prose dark:prose-invert custom-md !max-w-none">{@html task.descriptionHtml}</div>{:else}<p class="no-description">没有补充详情。</p>{/if}
+    {#if task.descriptionHtml}<div class="detail-body prose dark:prose-invert custom-md !max-w-none">{@html task.descriptionHtml}</div>{:else}<p class="no-description">{labels.noDescription}</p>{/if}
     <footer>
-      <span>创建于 {formatDate(task.createdAt)}</span>
-      <span>{task.state === 'closed' ? `结晶于 ${formatDate(task.closedAt)}` : `更新于 ${formatDate(task.updatedAt)}`}</span>
-      <a href={task.issueUrl} target="_blank" rel="noopener noreferrer">在 GitHub 中{task.state === 'closed' ? '查看' : '编辑'} <Icon icon="material-symbols:arrow-outward-rounded" /></a>
+      <span>{labels.createdAt(formatDate(task.createdAt))}</span>
+      <span>{task.state === 'closed' ? labels.completedAt(formatDate(task.closedAt)) : labels.updatedAt(formatDate(task.updatedAt))}</span>
+      <a href={task.issueUrl} target="_blank" rel="noopener noreferrer">{task.state === 'closed' ? labels.viewOnGitHub : labels.editOnGitHub} <Icon icon="material-symbols:arrow-outward-rounded" /></a>
     </footer>
   </article>
 {/snippet}

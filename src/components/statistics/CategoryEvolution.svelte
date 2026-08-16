@@ -1,12 +1,16 @@
 <script lang="ts">
+  import { DEFAULT_LOCALE, type Locale } from '@/i18n/locales'
   import type { StatisticsCategoryEvolution, StatisticsMonthlyOutput } from '@/types/statistics'
+  import { getStatisticsLabels } from '@/utils/statistics-locale'
   import { compressQuietMonths, filterMonths, formatMonth, type TrailRange } from './writing-trail-utils'
 
   export let evolution: StatisticsCategoryEvolution = undefined!
   export let months: StatisticsMonthlyOutput[] = undefined!
   export let range: TrailRange = undefined!
+  export let locale: Locale = DEFAULT_LOCALE
 
   type Mode = 'count' | 'share'
+  $: labels = getStatisticsLabels(locale)
   let mode: Mode = 'count'
   let activeMonth = ''
   let activeCategory = ''
@@ -22,33 +26,33 @@
 <section class="time-part category-viz" aria-labelledby="category-evolution-title">
   <div class="mb-4 flex flex-wrap items-end justify-between gap-4">
     <div>
-      <p class="part-kicker">主题构成</p>
-      <h4 id="category-evolution-title" class="mt-1 text-base font-semibold text-black/85 dark:text-white/85">分类演化</h4>
-      <p class="mt-1 text-xs text-black/45 dark:text-white/45">同一时间切片中，内容主题如何变化</p>
+      <p class="part-kicker">{labels.categoryKicker}</p>
+      <h4 id="category-evolution-title" class="mt-1 text-base font-semibold text-black/85 dark:text-white/85">{labels.categoryTitle}</h4>
+      <p class="mt-1 text-xs text-black/45 dark:text-white/45">{labels.categoryDescription}</p>
     </div>
-    <div class="mode-controls" aria-label="分类统计方式">
-      <button type="button" class:active={mode === 'count'} aria-pressed={mode === 'count'} onclick={() => mode = 'count'}>数量</button>
-      <button type="button" class:active={mode === 'share'} aria-pressed={mode === 'share'} onclick={() => mode = 'share'}>占比</button>
+    <div class="mode-controls" aria-label={labels.categoryModeAria}>
+      <button type="button" class:active={mode === 'count'} aria-pressed={mode === 'count'} onclick={() => mode = 'count'}>{labels.count}</button>
+      <button type="button" class:active={mode === 'share'} aria-pressed={mode === 'share'} onclick={() => mode = 'share'}>{labels.share}</button>
     </div>
   </div>
 
-  <ul class="legend mb-5" aria-label="分类图例">
+  <ul class="legend mb-5" aria-label={labels.categoryLegendAria}>
     {#each evolution.categories as category, index}
       <li><span class="legend-mark" style={`--series-color: var(--series-${index})`}></span><span>{category}</span></li>
     {/each}
   </ul>
 
   <div class="chart-scroll">
-    <div class="stacked-chart" role="img" aria-label={`每月分类${mode === 'count' ? '文章数量' : '占比'}堆叠柱状图`}>
+    <div class="stacked-chart" role="img" aria-label={labels.categoryChart(mode)}>
       {#each displayItems as display, displayIndex}
         {#if display.kind === 'quiet'}
-          <div class="quiet-gap" aria-label={`${display.start} 至 ${display.end}，沉寂 ${display.count} 个月`} title={`${display.start} — ${display.end}\n沉寂 ${display.count} 个月`}>
-            <span>···</span><small>沉寂 {display.count} 个月</small>
+          <div class="quiet-gap" aria-label={`${display.start} — ${display.end}, ${labels.quietMonths(display.count)}`} title={`${display.start} — ${display.end}\n${labels.quietMonths(display.count)}`}>
+            <span>···</span><small>{labels.quietMonths(display.count)}</small>
           </div>
         {:else}
           {@const month = categoryByMonth.get(display.item.month)}
           {#if month}
-            <div class="stack-column" aria-label={`${formatMonth(month.month)}共 ${month.total} 篇`}>
+            <div class="stack-column" aria-label={labels.monthCategoryTotal(formatMonth(month.month, locale), month.total)}>
               <div class="stack" style={`height: ${mode === 'count' ? Math.max(1, month.total / maxTotal * 100) : (month.total ? 100 : 1)}%`}>
                 {#each month.values as value, categoryIndex}
                   {#if value.count > 0}
@@ -57,8 +61,8 @@
                       class="segment"
                       class:data-end={categoryIndex === month.values.findLastIndex((item) => item.count > 0)}
                       style={`height: ${mode === 'share' ? value.share : value.count / month.total * 100}%; --series-color: var(--series-${categoryIndex})`}
-                      aria-label={`${formatMonth(month.month)}，${value.category}：${value.count} 篇，占 ${value.share}%`}
-                      title={`${formatMonth(month.month)} · ${value.category}\n${value.count} 篇 · ${value.share}%`}
+                      aria-label={labels.categoryValue(formatMonth(month.month, locale), value.category, value.count, value.share)}
+                      title={`${formatMonth(month.month, locale)} · ${value.category}\n${labels.postUnit(value.count)} · ${value.share}%`}
                       onmouseenter={() => { activeMonth = month.month; activeCategory = value.category }}
                       onfocus={() => { activeMonth = month.month; activeCategory = value.category }}
                       onclick={() => { activeMonth = month.month; activeCategory = value.category }}
@@ -75,7 +79,7 @@
   </div>
 
   {#if activeValue}
-    <p class="mt-3 text-sm text-black/60 dark:text-white/60" aria-live="polite"><strong>{formatMonth(activeMonth)} · {activeValue.category}</strong>：{activeValue.count} 篇，占 {activeValue.share}%</p>
+    <p class="mt-3 text-sm text-black/60 dark:text-white/60" aria-live="polite"><strong>{formatMonth(activeMonth, locale)} · {activeValue.category}</strong>: {labels.postUnit(activeValue.count)}, {activeValue.share}%</p>
   {/if}
 </section>
 

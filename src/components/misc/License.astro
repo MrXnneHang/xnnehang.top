@@ -2,17 +2,20 @@
 import { Icon } from 'astro-icon/components'
 import { licenseConfig, profileConfig } from '../../config'
 import I18nKey from '../../i18n/i18nKey'
-import { i18n } from '../../i18n/translation'
+import { DEFAULT_LOCALE, type Locale } from '../../i18n/locales'
+import { createI18n } from '../../i18n/translation'
 import { formatDateToYYYYMMDD } from '../../utils/date-utils'
 
 interface Props {
   title: string
   slug: string
   pubDate: Date
+  locale?: Locale
   class: string
 }
 
-const { title, pubDate } = Astro.props
+const { title, pubDate, locale = DEFAULT_LOCALE } = Astro.props
+const t = createI18n(locale)
 const className = Astro.props.class
 const profileConf = profileConfig
 const licenseConf = licenseConfig
@@ -30,19 +33,19 @@ const postUrl = decodeURIComponent(Astro.url.toString())
   </a>
   <div class="mt-2 flex gap-6">
     <div>
-      <div class="text-sm text-black/30 transition dark:text-white/30">{i18n(I18nKey.author)}</div>
+      <div class="text-sm text-black/30 transition dark:text-white/30">{t(I18nKey.author)}</div>
       <div class="line-clamp-2 text-black/75 transition dark:text-white/75">{profileConf.name}</div>
     </div>
     <div>
       <div class="text-sm text-black/30 transition dark:text-white/30">
-        {i18n(I18nKey.publishedAt)}
+        {t(I18nKey.publishedAt)}
       </div>
       <div class="line-clamp-2 text-black/75 transition dark:text-white/75">
         {formatDateToYYYYMMDD(pubDate)}
       </div>
     </div>
     <div>
-      <div class="text-sm text-black/30 transition dark:text-white/30">{i18n(I18nKey.license)}</div>
+      <div class="text-sm text-black/30 transition dark:text-white/30">{t(I18nKey.license)}</div>
       <a href={licenseConf.url} target="_blank" class="link line-clamp-2 text-[var(--primary)]"
         >{licenseConf.name}</a
       >

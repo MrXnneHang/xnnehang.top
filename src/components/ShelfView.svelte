@@ -1,17 +1,25 @@
 <script lang="ts">
+  import { DEFAULT_LOCALE, type Locale } from '../i18n/locales'
+  import {
+    getShelfCategoryLabel,
+    getShelfLabels,
+    getShelfSubCategoryLabel,
+    SHELF_CATEGORY_ORDER,
+    type ShelfCategory,
+  } from '../utils/shelf-locale'
   import ContinueReading from './ContinueReading.svelte'
   import type { CurrentShelfItem, ShelfItem } from '../types/shelf'
 
   interface Props {
     items: ShelfItem[]
     currentItems: CurrentShelfItem[]
+    locale?: Locale
   }
 
-  const categoryOrder = ['书籍', '漫画', '游戏', '电影', '电视剧', '动漫', '论文']
-
-  let { items = [], currentItems = [] }: Props = $props()
-  let availableCategories = $derived(categoryOrder.filter(category => items.some(item => item.shelf === category)))
-  let activeCategory: string = $state(categoryOrder.find(category => items.some(item => item.shelf === category)) ?? '')
+  let { items = [], currentItems = [], locale = DEFAULT_LOCALE }: Props = $props()
+  const labels = $derived(getShelfLabels(locale))
+  let availableCategories = $derived(SHELF_CATEGORY_ORDER.filter(category => items.some(item => item.shelf === category)))
+  let activeCategory: string = $state(SHELF_CATEGORY_ORDER.find(category => items.some(item => item.shelf === category)) ?? '')
   let activeSubCategory: string = $state('')
   let categoryItems = $derived(items.filter(item => item.shelf === activeCategory))
   let availableSubCategories = $derived.by(() => {
@@ -28,7 +36,7 @@
   )
 
   function categoryId(category: string) {
-    return `shelf-category-${categoryOrder.indexOf(category)}`
+    return `shelf-category-${SHELF_CATEGORY_ORDER.indexOf(category as ShelfCategory)}`
   }
 
   function selectCategory(category: string) {
@@ -94,21 +102,21 @@
 
 <div class="shelf-view">
   {#if currentItems.length > 0}
-    <ContinueReading items={currentItems} />
+    <ContinueReading items={currentItems} {locale} />
   {/if}
 
   <section class="library" aria-labelledby="library-title">
     <header class="library-heading">
       <div>
-        <p class="eyebrow">Library</p>
-        <h2 id="library-title">完整收藏</h2>
+        <p class="eyebrow">{labels.libraryEyebrow}</p>
+        <h2 id="library-title">{labels.libraryTitle}</h2>
       </div>
-      <p>{items.length} 部作品</p>
+      <p>{labels.works(items.length)}</p>
     </header>
 
     <div class="library-layout">
-      <nav class="category-nav" aria-label="收藏分类">
-        <div class="category-tabs hide-scrollbar" role="tablist" aria-label="收藏分类">
+      <nav class="category-nav" aria-label={labels.categoryNavLabel}>
+        <div class="category-tabs hide-scrollbar" role="tablist" aria-label={labels.categoryNavLabel}>
           {#each availableCategories as category, index}
             <button
               id={categoryId(category)}
@@ -121,7 +129,7 @@
               onclick={() => selectCategory(category)}
               onkeydown={(event) => onCategoryKeydown(event, index)}
             >
-              <span>{category}</span>
+              <span>{getShelfCategoryLabel(category, locale)}</span>
               <span class="category-count">{items.filter(item => item.shelf === category).length}</span>
             </button>
           {/each}
@@ -136,25 +144,28 @@
       >
         <header class="collection-heading">
           <div>
-            <h3>{activeCategory}</h3>
-            <p aria-live="polite">{filteredItems.length} 部作品</p>
+            <h3>{getShelfCategoryLabel(activeCategory as ShelfCategory, locale)}</h3>
+            <p aria-live="polite">{labels.works(filteredItems.length)}</p>
           </div>
 
           {#if availableSubCategories.length > 0}
-            <div class="subcategory-filters" aria-label={`${activeCategory}二级分类`}>
+            <div
+              class="subcategory-filters"
+              aria-label={labels.subCategoryLabel(getShelfCategoryLabel(activeCategory as ShelfCategory, locale))}
+            >
               <button
                 type="button"
                 aria-pressed={activeSubCategory === ''}
                 class:active={activeSubCategory === ''}
                 onclick={() => activeSubCategory = ''}
-              >全部</button>
+              >{labels.all}</button>
               {#each availableSubCategories as subCategory}
                 <button
                   type="button"
                   aria-pressed={activeSubCategory === subCategory}
                   class:active={activeSubCategory === subCategory}
                   onclick={() => selectSubCategory(subCategory)}
-                >{subCategory}</button>
+                >{getShelfSubCategoryLabel(subCategory, locale)}</button>
               {/each}
             </div>
           {/if}
@@ -170,7 +181,7 @@
                     <a class="paper-title" href={item.url}>{item.title}</a>
                     {#if item.subCategory.length > 0}
                       <div class="paper-tags">
-                        {#each item.subCategory as subCategory}<span>{subCategory}</span>{/each}
+                        {#each item.subCategoryLabels as subCategory}<span>{subCategory}</span>{/each}
                       </div>
                     {/if}
                     {#if item.blurb}<p>{item.blurb}</p>{/if}
@@ -178,7 +189,7 @@
                 </div>
                 <div class="paper-footer">
                   <time datetime={item.published}>{item.published}</time>
-                  <a href={item.url}>阅读笔记 <span aria-hidden="true">→</span></a>
+                  <a href={item.url}>{labels.readNotes} <span aria-hidden="true">→</span></a>
                   {#if item.arxiv}
                     <a href={item.arxiv} target="_blank" rel="noopener noreferrer">arXiv <span aria-hidden="true">↗</span></a>
                   {/if}
@@ -213,7 +224,7 @@
         {/if}
 
         {#if filteredItems.length === 0}
-          <div class="empty-state">这个分类下还没有内容。</div>
+          <div class="empty-state">{labels.emptyState}</div>
         {/if}
       </div>
     </div>

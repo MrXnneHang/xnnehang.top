@@ -1,0 +1,121 @@
+---
+import ShelfView from '@components/ShelfView.svelte'
+import I18nKey from '@i18n/i18nKey'
+import { DEFAULT_LOCALE, ENGLISH_LOCALE, type Locale } from '@i18n/locales'
+import { createI18n } from '@i18n/translation'
+import MainGridLayout from '@layouts/MainGridLayout.astro'
+import { getPostCoverSource, resolveCoverUrl } from '@utils/cover'
+import { optimizePostCover } from '@utils/cover-optimize'
+import { getSortedPosts } from '@utils/content-utils'
+import { formatDateToYYYYMMDD } from '@utils/date-utils'
+import { getPostTranslationKey } from '@utils/post-locale'
+import {
+  formatShelfProgress,
+  getShelfCategoryLabel,
+  getShelfLabels,
+  getShelfSubCategoryLabel,
+  type ShelfCategory,
+} from '@utils/shelf-locale'
+import { getPostUrlBySlug } from '@utils/url-utils'
+import { getCollection } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+import type { CurrentShelfItem, ShelfItem } from '../types/shelf'
+
+interface Props {
+  locale?: Locale
+}
+
+const { locale = DEFAULT_LOCALE } = Astro.props
+const t = createI18n(locale)
+const labels = getShelfLabels(locale)
+const allPosts = await getSortedPosts(locale)
+const shelfPosts = allPosts.filter((post: CollectionEntry<'posts'>) => post.data.shelf)
+
+const items: ShelfItem[] = await Promise.all(
+  shelfPosts.map(async (post: CollectionEntry<'posts'>) => {
+    const coverSource = getPostCoverSource(
+      post.data.shelfCover || post.data.image,
+      post.body
+    )
+    const cover =
+      (await optimizePostCover(coverSource, post.id, 900)) ||
+      resolveCoverUrl(coverSource ?? undefined, post.id) ||
+      ''
+
+    return {
+      id: post.id,
+      title: post.data.title,
+      shelf: post.data.shelf!,
+      shelfLabel: getShelfCategoryLabel(post.data.shelf! as ShelfCategory, locale),
+      subCategory: post.data.subCategory,
+      subCategoryLabels: post.data.subCategory.map(subCategory =>
+        getShelfSubCategoryLabel(subCategory, locale)
+      ),
+      blurb: post.data.blurb || post.data.description,
+      cover,
+      url: getPostUrlBySlug(getPostTranslationKey(post), locale),
+      published: formatDateToYYYYMMDD(post.data.published),
+      arxiv: post.data.arxiv,
+    }
+  })
+)
+
+const currentEntries = await getCollection('currentShelf')
+if (currentEntries.length > 3) {
+  throw new Error('The current shelf supports at most three entries. Finish or pause one before adding another.')
+}
+
+const currentItems: CurrentShelfItem[] = await Promise.all(
+  currentEntries
+    .toSorted((a, b) => b.data.lastActivity.localeCompare(a.data.lastActivity))
+    .map(async entry => {
+      const matchingPost = allPosts.find(
+        post => getPostTranslationKey(post) === entry.id && !post.data.draft
+      )
+      const coverSource = entry.data.cover || null
+      const cover =
+        (await optimizePostCover(coverSource, entry.id, 640)) ||
+        resolveCoverUrl(coverSource ?? undefined, entry.id) ||
+        ''
+      const progress = entry.data.progress
+        ? {
+            ...entry.data.progress,
+            unit: locale === ENGLISH_LOCALE
+              ? entry.data.progress.unitEn || entry.data.progress.unit
+              : entry.data.progress.unit,
+          }
+        : undefined
+      const formattedProgress = formatShelfProgress(progress, locale)
+
+      return {
+        id: entry.id,
+        title: locale === ENGLISH_LOCALE ? entry.data.titleEn || entry.data.title : entry.data.title,
+        shelf: entry.data.shelf,
+        shelfLabel: getShelfCategoryLabel(entry.data.shelf as ShelfCategory, locale),
+        cover,
+        note: locale === ENGLISH_LOCALE ? entry.data.noteEn : entry.data.note,
+        noteUrl: matchingPost
+          ? getPostUrlBySlug(getPostTranslationKey(matchingPost), locale)
+          : '',
+        progressLabel: formattedProgress.label,
+        progressPercent: formattedProgress.percent,
+        lastActivity: entry.data.lastActivity,
+      }
+    })
+)
+---
+
+<MainGridLayout
+  locale={locale}
+  title={t(I18nKey.shelf)}
+  description={labels.pageDescription}
+  hideSidebar={true}
+>
+  <div class="card-base w-full overflow-hidden rounded-[var(--radius-large)] p-5 md:p-8">
+    <div class="mb-7 flex flex-col items-start gap-1">
+      <p class="text-sm text-black/50 dark:text-white/50">{labels.pageSubtitle}</p>
+    </div>
+
+    <ShelfView {items} {currentItems} {locale} client:load />
+  </div>
+</MainGridLayout>

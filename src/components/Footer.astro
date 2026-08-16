@@ -1,8 +1,11 @@
 ---
 import I18nKey from '@i18n/i18nKey'
-import { i18n } from '@i18n/translation'
+import { DEFAULT_LOCALE, type Locale } from '../i18n/locales'
+import { createI18n } from '../i18n/translation'
 import { url } from '../utils/url-utils'
 
+const { locale = DEFAULT_LOCALE } = Astro.props as { locale?: Locale }
+const t = createI18n(locale)
 const currentYear = new Date().getFullYear()
 ---
 
@@ -16,12 +19,12 @@ const currentYear = new Date().getFullYear()
     XnneHang. All Rights Reserved. /
     <a
       class="link font-medium text-[var(--primary)] transition"
-      href={url('privacy/')}>{i18n(I18nKey.privacy)}</a
+      href={url('privacy/', locale)}>{t(I18nKey.privacy)}</a
     > /
     <a
       class="link font-medium text-[var(--primary)] transition"
       target="_blank"
-      href={url('rss.xml')}>RSS</a
+      href={url('rss.xml', locale)}>RSS</a
     > /
     <a
       class="link font-medium text-[var(--primary)] transition"

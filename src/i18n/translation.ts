@@ -1,4 +1,5 @@
 import { siteConfig } from '../config'
+import { DEFAULT_LOCALE, normalizeLocale, type Locale } from './locales'
 import type I18nKey from './i18nKey'
 import { en } from './languages/en'
 import { es } from './languages/es'
@@ -38,11 +39,21 @@ const map: { [key: string]: Translation } = {
   tr_tr: tr,
 }
 
+export type Translate = (key: I18nKey) => string
+
 export function getTranslation(lang: string): Translation {
   return map[lang.toLowerCase()] || defaultTranslation
 }
 
-export function i18n(key: I18nKey): string {
-  const lang = siteConfig.lang || 'en'
-  return getTranslation(lang)[key]
+export function getLocaleTranslation(locale: Locale): Translation {
+  return getTranslation(locale === DEFAULT_LOCALE ? 'zh_CN' : locale)
+}
+
+export function createI18n(locale: Locale): Translate {
+  const translation = getLocaleTranslation(locale)
+  return (key) => translation[key]
+}
+
+export function i18n(key: I18nKey, lang: string = siteConfig.lang || 'en'): string {
+  return getLocaleTranslation(normalizeLocale(lang))[key]
 }

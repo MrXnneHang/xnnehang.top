@@ -1,0 +1,99 @@
+{
+  "version": 2,
+  "locale": "en",
+  "generatedAt": null,
+  "status": "empty",
+  "source": "ga4",
+  "site": {
+    "activeUsers": 0,
+    "screenPageViews": 0,
+    "engagementSeconds": 0,
+    "engagementSecondsPerUser": 0
+  },
+  "content": {
+    "postCount": 1,
+    "totalWords": 69,
+    "publications": [
+      {
+        "month": "2024-04",
+        "count": 1
+      }
+    ],
+    "dailyPublications": [
+      {
+        "date": "2024-04-01",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Demian",
+            "path": "/en/posts/demian/",
+            "published": "2024-04-01",
+            "words": 69
+          }
+        ]
+      }
+    ],
+    "monthlyOutput": [
+      {
+        "month": "2024-04",
+        "postCount": 1,
+        "words": 69,
+        "estimatedMinutes": 1
+      }
+    ],
+    "categoryEvolution": {
+      "categories": [
+        "Reviews"
+      ],
+      "months": [
+        {
+          "month": "2024-04",
+          "total": 1,
+          "values": [
+            {
+              "category": "Reviews",
+              "count": 1,
+              "share": 100
+            }
+          ]
+        }
+      ]
+    },
+    "seriesLifelines": [
+      {
+        "name": "Reading",
+        "firstPublished": "2024-04-01",
+        "lastPublished": "2024-04-01",
+        "postCount": 1,
+        "totalWords": 69,
+        "posts": [
+          {
+            "title": "Demian",
+            "path": "/en/posts/demian/",
+            "published": "2024-04-01",
+            "words": 69
+          }
+        ]
+      }
+    ],
+    "rhythm": {
+      "firstPublished": "2024-04-01",
+      "lastPublished": "2024-04-01",
+      "spanDays": 1,
+      "publishingDays": 1,
+      "medianIntervalDays": 0,
+      "densest30Days": {
+        "start": "2024-04-01",
+        "end": "2024-04-30",
+        "count": 1
+      },
+      "longestGapDays": 0
+    }
+  },
+  "ranges": {
+    "7d": [],
+    "30d": [],
+    "90d": [],
+    "all": []
+  }
+}

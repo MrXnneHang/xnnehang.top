@@ -94,6 +94,25 @@ When working on blog posts: only touch the files that the user explicitly asks t
 
 Use `:::note[Title]` (directive syntax) instead of `> [!NOTE] Title` (GitHub syntax) for admonitions. The directive syntax supports custom titles natively via `:::note[My Title]`, and is the preferred convention in this project. Both syntaxes render identically, but directive syntax is cleaner for longer blocks — no `> ` prefix on every line.
 
+## YAML Frontmatter Prose Fields
+
+Always write article `title` and `description` frontmatter values as double-quoted YAML strings. Do this even when the value currently looks safe: translated prose can acquire a colon or another YAML-significant character during editing, and unquoted values can prevent Astro from loading the entire content collection.
+
+```yaml
+title: "Bringing AI Chat to Congyin in Chill with You: Lo-Fi Story"
+description: "Notes from exploring a mod that adds AI chat to Congyin."
+```
+
+Never use a plain scalar for `title` or `description`. Other scalar frontmatter values must also be quoted if they contain YAML-significant characters such as `:`, `#`, `{`, `}`, `[`, `]`, `,`, `&`, `*`, `!`, `|`, `>`, `'`, `"`, `%`, `@`, or a leading `-`, `?`, or `:`.
+
+## Bilingual Taxonomy Fields
+
+Treat `category`, `shelf`, and `subCategory` differently in bilingual posts:
+
+- **`category`:** localize it to the article language using the existing five-category taxonomy. Chinese posts keep their Chinese category (`观后`, `思考`, `边写边学`, `教程`, or `资源`); English translations use the corresponding established English category (`Reviews`, `Reflections`, `Learning as I Build`, `Tutorials`, or `Resources`). Do not invent category values.
+- **`shelf`:** always preserve the Chinese value from the source post, including in English translations. This field is validated by the content schema against the fixed enum `电影`, `电视剧`, `动漫`, `书籍`, `漫画`, `游戏`, or `论文`; for example, use `shelf: 电影`, not `shelf: Movies`.
+- **`subCategory`:** also preserve the Chinese source keys, such as `['轻小说']` rather than `['Light Novels']`. The shelf localization layer translates both `shelf` and `subCategory` labels for each locale.
+
 ## Git-Derived Metadata Needs a Full Clone in CI
 
 Post pages read "last modified" and "revision count" from `git log` at build time (`src/utils/git-utils.ts`). `actions/checkout` defaults to a shallow clone (`fetch-depth: 1`), which silently truncates history: every post then builds with revision count 1 and today's date — no error, just wrong values. Any workflow that runs `astro build` (or anything else touching git history) MUST set `fetch-depth: 0` on its checkout step. Locally the same applies to shallow clones (`git clone --depth`).

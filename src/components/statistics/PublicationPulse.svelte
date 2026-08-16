@@ -1,5 +1,7 @@
 <script lang="ts">
+  import { DEFAULT_LOCALE, type Locale } from '@/i18n/locales'
   import type { StatisticsMonthlyOutput } from '@/types/statistics'
+  import { getStatisticsLabels } from '@/utils/statistics-locale'
   import {
     compactFormat,
     compressQuietMonths,
@@ -12,12 +14,14 @@
 
   export let months: StatisticsMonthlyOutput[] = undefined!
   export let range: TrailRange = undefined!
+  export let locale: Locale = DEFAULT_LOCALE
 
   type Metric = 'posts' | 'words' | 'minutes'
-  const metrics: Array<{ value: Metric; label: string; unit: string }> = [
-    { value: 'posts', label: '文章', unit: '篇' },
-    { value: 'words', label: '字数', unit: '字' },
-    { value: 'minutes', label: '预计阅读', unit: '分钟' },
+  $: labels = getStatisticsLabels(locale)
+  $: metrics = [
+    { value: 'posts' as const, label: labels.postsMetric },
+    { value: 'words' as const, label: labels.wordsMetric },
+    { value: 'minutes' as const, label: labels.readingMetric },
   ]
   let metric: Metric = 'posts'
   let activeMonth = ''
@@ -28,18 +32,21 @@
   $: activeItem = visibleMonths.find((item) => item.month === activeMonth)
 
   function valueLabel(item: StatisticsMonthlyOutput) {
-    return `${formatNumber(monthlyValue(item, metric))} ${selectedMetric.unit}`
+    const value = monthlyValue(item, metric)
+    if (metric === 'words') return labels.wordUnit(value)
+    if (metric === 'minutes') return labels.minuteUnit(value)
+    return labels.postUnit(value)
   }
 </script>
 
 <section class="time-part" aria-labelledby="publication-pulse-title">
   <div class="mb-5 flex flex-wrap items-end justify-between gap-4">
     <div>
-      <p class="part-kicker">发布强度</p>
-      <h4 id="publication-pulse-title" class="mt-1 text-base font-semibold text-black/85 dark:text-white/85">发布脉冲</h4>
-      <p class="mt-1 text-xs text-black/45 dark:text-white/45">作品发布的密度、体量与安静时段</p>
+      <p class="part-kicker">{labels.publicationPulseKicker}</p>
+      <h4 id="publication-pulse-title" class="mt-1 text-base font-semibold text-black/85 dark:text-white/85">{labels.publicationPulseTitle}</h4>
+      <p class="mt-1 text-xs text-black/45 dark:text-white/45">{labels.publicationPulseDescription}</p>
     </div>
-    <div class="metric-controls" aria-label="发布脉冲指标">
+    <div class="metric-controls" aria-label={labels.publicationMetricsAria}>
       {#each metrics as item}
         <button type="button" class:active={metric === item.value} aria-pressed={metric === item.value} onclick={() => metric = item.value}>{item.label}</button>
       {/each}
@@ -47,12 +54,12 @@
   </div>
 
   <div class="chart-scroll">
-    <div class="bar-chart" role="img" aria-label={`每月${selectedMetric.label}柱状图`}>
+    <div class="bar-chart" role="img" aria-label={labels.monthlyChart(selectedMetric.label)}>
       {#each displayItems as display, index}
         {#if display.kind === 'quiet'}
-          <div class="quiet-gap" aria-label={`${display.start} 至 ${display.end}，沉寂 ${display.count} 个月`} title={`${display.start} — ${display.end}\n沉寂 ${display.count} 个月`}>
+          <div class="quiet-gap" aria-label={`${display.start} — ${display.end}, ${labels.quietMonths(display.count)}`} title={`${display.start} — ${display.end}\n${labels.quietMonths(display.count)}`}>
             <span class="quiet-dots">···</span>
-            <span class="quiet-label">沉寂 {display.count} 个月</span>
+            <span class="quiet-label">{labels.quietMonths(display.count)}</span>
           </div>
         {:else}
           {@const item = display.item}
@@ -60,13 +67,13 @@
           <button
             type="button"
             class="bar-hit"
-            aria-label={`${formatMonth(item.month)}：${valueLabel(item)}`}
-            title={`${formatMonth(item.month)} · ${valueLabel(item)}`}
+            aria-label={`${formatMonth(item.month, locale)}: ${valueLabel(item)}`}
+            title={`${formatMonth(item.month, locale)} · ${valueLabel(item)}`}
             onmouseenter={() => activeMonth = item.month}
             onfocus={() => activeMonth = item.month}
             onclick={() => activeMonth = item.month}
           >
-            <span class="value-hint">{value > 0 ? compactFormat.format(value) : ''}</span>
+            <span class="value-hint">{value > 0 ? compactFormat(value, locale) : ''}</span>
             <span class="bar" class:zero={value === 0} style={`height: ${value === 0 ? 2 : Math.max(5, value / maxValue * 100)}%`}></span>
             {#if index % Math.max(1, Math.ceil(displayItems.length / 8)) === 0 || index === displayItems.length - 1}<span class="axis-label">{item.month}</span>{/if}
           </button>
@@ -76,7 +83,7 @@
   </div>
 
   {#if activeItem}
-    <p class="mt-3 text-sm text-black/60 dark:text-white/60" aria-live="polite"><strong>{formatMonth(activeItem.month)}</strong> · {valueLabel(activeItem)}</p>
+    <p class="mt-3 text-sm text-black/60 dark:text-white/60" aria-live="polite"><strong>{formatMonth(activeItem.month, locale)}</strong> · {valueLabel(activeItem)}</p>
   {/if}
 </section>
 

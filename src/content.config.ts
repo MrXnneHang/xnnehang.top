@@ -8,6 +8,7 @@ const currentShelfCollection = defineCollection({
   loader: file('src/content/current-shelf.json'),
   schema: z.object({
     title: z.string(),
+    titleEn: z.string().optional().default(''),
     shelf: z.enum(shelfCategories),
     cover: z.string().optional().default(''),
     progress: z
@@ -15,12 +16,14 @@ const currentShelfCollection = defineCollection({
         current: z.number().nonnegative(),
         total: z.number().positive().optional(),
         unit: z.string().optional().default(''),
+        unitEn: z.string().optional().default(''),
       })
       .refine((value) => value.total === undefined || value.current <= value.total, {
         message: 'Current shelf progress cannot exceed its total',
       })
       .optional(),
     note: z.string().optional().default(''),
+    noteEn: z.string().optional().default(''),
     lastActivity: z.string().optional().default(''),
   }),
 })
@@ -39,7 +42,8 @@ const postsCollection = defineCollection({
     tags: z.array(z.string()).optional().default([]),
     category: z.string().optional().nullable().default(''),
     series: z.array(z.string()).optional().default([]),
-    lang: z.string().optional().default(''),
+    lang: z.enum(['zh-CN', 'en']).optional().default('zh-CN'),
+    translationKey: z.string().optional().default(''),
     shelf: z.enum(shelfCategories).optional(),
     subCategory: z.array(z.string()).optional().default([]),
     shelfCover: z.string().optional().default(''),

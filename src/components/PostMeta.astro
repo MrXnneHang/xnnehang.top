@@ -1,7 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components'
 import I18nKey from '../i18n/i18nKey'
-import { i18n } from '../i18n/translation'
+import { DEFAULT_LOCALE, type Locale } from '../i18n/locales'
+import { createI18n } from '../i18n/translation'
 import { formatDateToYYYYMMDD } from '../utils/date-utils'
 import { getCategoryUrl, getTagUrl } from '../utils/url-utils'
 
@@ -11,6 +12,7 @@ interface Props {
   updated?: Date
   tags: string[]
   category: string | null
+  locale?: Locale
   hideTagsForMobile?: boolean
   hideUpdateDate?: boolean
 }
@@ -19,10 +21,12 @@ const {
   updated,
   tags,
   category,
+  locale = DEFAULT_LOCALE,
   hideTagsForMobile = false,
   hideUpdateDate = false,
 } = Astro.props
 const className = Astro.props.class
+const t = createI18n(locale)
 ---
 
 <div
@@ -58,11 +62,11 @@ const className = Astro.props.class
     </div>
     <div class="flex flex-row flex-nowrap items-center">
       <a
-        href={getCategoryUrl(category)}
+        href={getCategoryUrl(category, locale)}
         aria-label={`View all posts in the ${category} category`}
         class="link-lg text-50 text-sm font-medium whitespace-nowrap transition hover:text-[var(--primary)] dark:hover:text-[var(--primary)]"
       >
-        {category || i18n(I18nKey.uncategorized)}
+        {category || t(I18nKey.uncategorized)}
       </a>
     </div>
   </div>
@@ -84,7 +88,7 @@ const className = Astro.props.class
                 /
               </div>
               <a
-                href={getTagUrl(tag)}
+                href={getTagUrl(tag, locale)}
                 aria-label={`View all posts with the ${tag.trim()} tag`}
                 class="link-lg text-50 text-sm font-medium whitespace-nowrap transition hover:text-[var(--primary)] dark:hover:text-[var(--primary)]"
               >
@@ -95,7 +99,7 @@ const className = Astro.props.class
       }
       {
         !(tags && tags.length > 0) && (
-          <div class="text-50 text-sm font-medium transition">{i18n(I18nKey.noTags)}</div>
+          <div class="text-50 text-sm font-medium transition">{t(I18nKey.noTags)}</div>
         )
       }
     </div>

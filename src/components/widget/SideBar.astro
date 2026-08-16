@@ -1,5 +1,6 @@
 ---
 import type { MarkdownHeading } from 'astro'
+import { DEFAULT_LOCALE, type Locale } from '../../i18n/locales'
 import Categories from './Categories.astro'
 import Profile from './Profile.astro'
 import Series from './Series.astro'
@@ -9,22 +10,22 @@ interface Props {
   class?: string
   style?: string
   headings?: MarkdownHeading[]
+  locale?: Locale
 }
 
-const className = Astro.props.class
-const style = Astro.props.style
+const { class: className, style, locale = DEFAULT_LOCALE } = Astro.props
 ---
 
 <div id="sidebar" class:list={[className, 'w-full']} style={style}>
   <div class="mb-4 flex w-full flex-col gap-4">
-    <Profile />
+    <Profile locale={locale} />
   </div>
   <div
     id="sidebar-sticky"
     class="sticky top-4 flex w-full flex-col gap-4 transition-all duration-700"
   >
-    <Categories class="onload-animation" style="animation-delay: 150ms" />
-    <Series class="onload-animation" style="animation-delay: 180ms" />
-    <Tag class="onload-animation" style="animation-delay: 200ms" />
+    <Categories locale={locale} class="onload-animation" style="animation-delay: 150ms" />
+    <Series locale={locale} class="onload-animation" style="animation-delay: 180ms" />
+    <Tag locale={locale} class="onload-animation" style="animation-delay: 200ms" />
   </div>
 </div>

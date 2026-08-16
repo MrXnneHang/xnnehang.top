@@ -1,22 +1,31 @@
 ---
 import { Icon } from 'astro-icon/components'
 import { navBarConfig, siteConfig } from '../config'
-import { LinkPresets } from '../constants/link-presets'
+import { getLinkPreset } from '../constants/link-presets'
+import { DEFAULT_LOCALE, type Locale } from '../i18n/locales'
 import { LinkPreset, type NavBarLink } from '../types/config'
 import { url } from '../utils/url-utils'
+import LanguageSwitch from './LanguageSwitch.astro'
 import LightDarkSwitch from './LightDarkSwitch.svelte'
 import Search from './Search.svelte'
 import DisplaySettings from './widget/DisplaySettings.svelte'
 import NavMenuPanel from './widget/NavMenuPanel.astro'
 
-const className = Astro.props.class
+interface Props {
+  class?: string
+  locale?: Locale
+}
+
+const { class: className, locale = DEFAULT_LOCALE } = Astro.props
 
 let links: NavBarLink[] = navBarConfig.links.map((item: NavBarLink | LinkPreset): NavBarLink => {
   if (typeof item === 'number') {
-    return LinkPresets[item]
+    return getLinkPreset(item, locale)
   }
   return item
 })
+const githubLink = links.find((link) => link.external && link.name === 'GitHub')
+const desktopLinks = links.filter((link) => link !== githubLink)
 ---
 
 <div id="navbar" class="onload-animation z-50 transition-all duration-300">
@@ -29,7 +38,7 @@ let links: NavBarLink[] = navBarConfig.links.map((item: NavBarLink | LinkPreset)
     ]}
   >
     <a
-      href={url('/')}
+      href={url('/', locale)}
       class="btn-plain scale-animation h-[3.25rem] rounded-lg px-5 font-bold active:scale-95"
     >
       <div class="text-md flex flex-row items-center text-[var(--primary)]">
@@ -37,15 +46,15 @@ let links: NavBarLink[] = navBarConfig.links.map((item: NavBarLink | LinkPreset)
         {siteConfig.title}
       </div>
     </a>
-    <div class="hidden md:flex">
+    <div class="hidden xl:flex">
       {
-        links.map((l) => {
+        desktopLinks.map((l) => {
           return (
             <a
               aria-label={l.name}
-              href={l.external ? l.url : url(l.url)}
+              href={l.external ? l.url : url(l.url, locale)}
               target={l.external ? '_blank' : null}
-              class="btn-plain scale-animation h-11 rounded-lg px-5 font-bold active:scale-95"
+              class="btn-plain scale-animation h-11 rounded-lg px-4 font-bold active:scale-95"
             >
               <div class="flex items-center">
                 {l.name}
@@ -63,7 +72,7 @@ let links: NavBarLink[] = navBarConfig.links.map((item: NavBarLink | LinkPreset)
     </div>
     <div class="flex">
       <!--<SearchPanel client:load>-->
-      <Search client:only="svelte" />
+      <Search locale={locale} client:only="svelte" />
       {
         !siteConfig.themeColor.fixed && (
           <button
@@ -75,18 +84,33 @@ let links: NavBarLink[] = navBarConfig.links.map((item: NavBarLink | LinkPreset)
           </button>
         )
       }
-      <LightDarkSwitch client:only="svelte" />
+      {
+        githubLink && (
+          <a
+            href={githubLink.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            title="GitHub"
+            class="btn-plain scale-animation hidden h-11 w-11 rounded-lg active:scale-90 xl:flex"
+          >
+            <Icon name="fa6-brands:github" class="text-[1.25rem]" />
+          </a>
+        )
+      }
+      <LanguageSwitch locale={locale} />
+      <LightDarkSwitch locale={locale} client:only="svelte" />
       <button
         aria-label="Menu"
         name="Nav Menu"
-        class="btn-plain scale-animation h-11 w-11 rounded-lg active:scale-90 md:!hidden"
+        class="btn-plain scale-animation h-11 w-11 rounded-lg active:scale-90 xl:!hidden"
         id="nav-menu-switch"
       >
         <Icon name="material-symbols:menu-rounded" class="text-[1.25rem]" />
       </button>
     </div>
-    <NavMenuPanel links={links} />
-    <DisplaySettings client:only="svelte" />
+    <NavMenuPanel links={links} locale={locale} />
+    <DisplaySettings locale={locale} client:only="svelte" />
   </div>
 </div>
 

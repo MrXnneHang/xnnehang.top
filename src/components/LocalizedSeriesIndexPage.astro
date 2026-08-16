@@ -1,0 +1,60 @@
+---
+import I18nKey from '../i18n/i18nKey'
+import { DEFAULT_LOCALE, type Locale } from '../i18n/locales'
+import { createI18n } from '../i18n/translation'
+import MainGridLayout from '../layouts/MainGridLayout.astro'
+import { getSeriesList } from '../utils/content-utils'
+import { getPostRouteSlug } from '../utils/post-locale'
+import { getPostUrlBySlug, getSeriesUrl } from '../utils/url-utils'
+
+interface Props {
+  locale?: Locale
+}
+
+const { locale = DEFAULT_LOCALE } = Astro.props
+const t = createI18n(locale)
+const seriesList = await getSeriesList(locale)
+---
+
+<MainGridLayout locale={locale} title={t(I18nKey.seriesIndex)} hideSidebar={true}>
+  <div class="flex flex-col gap-6">
+    {
+      seriesList.map((series) => (
+        <section class="card-base rounded-[var(--radius-large)] p-6">
+          <a
+            href={getSeriesUrl(series.name, locale)}
+            class="mb-4 block text-xl font-bold text-[var(--primary)] transition hover:opacity-80"
+          >
+            {series.name}
+            <span class="ml-2 text-sm font-normal text-neutral-500">
+              {t(I18nKey.seriesPostCount).replace('{0}', String(series.posts.length))}
+            </span>
+          </a>
+          <div class="flex flex-col gap-3 md:gap-2">
+            {series.posts.slice(0, 5).map((entry) => (
+              <a
+                href={getPostUrlBySlug(getPostRouteSlug(entry), locale)}
+                class="flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition hover:bg-black/5 dark:hover:bg-white/5"
+              >
+                <span class="truncate font-medium text-black/80 dark:text-white/80">
+                  {entry.data.title}
+                </span>
+                <span class="shrink-0 text-xs text-neutral-400">
+                  {entry.data.published.toISOString().slice(0, 10)}
+                </span>
+              </a>
+            ))}
+            {series.posts.length > 5 && (
+              <a
+                href={getSeriesUrl(series.name, locale)}
+                class="text-center text-xs text-neutral-400 transition hover:text-[var(--primary)]"
+              >
+                {t(I18nKey.seriesCollapsedNext).replace('{0}', String(series.posts.length - 5))}
+              </a>
+            )}
+          </div>
+        </section>
+      ))
+    }
+  </div>
+</MainGridLayout>

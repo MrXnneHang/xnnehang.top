@@ -1,10 +1,14 @@
 <script lang="ts">
   import Icon from '@iconify/svelte'
   import { onMount, tick } from 'svelte'
+  import { DEFAULT_LOCALE, type Locale } from '@/i18n/locales'
   import type { StatisticsPublicationDay } from '@/types/statistics'
+  import { getStatisticsLabels } from '@/utils/statistics-locale'
   import { formatDate, postDetails } from './writing-trail-utils'
 
   export let days: StatisticsPublicationDay[] = undefined!
+  export let locale: Locale = DEFAULT_LOCALE
+  $: labels = getStatisticsLabels(locale)
 
   let activeDate = ''
   let selectedYear = 0
@@ -47,7 +51,7 @@
       const inYearCell = cells.slice(week * 7, week * 7 + 7).find((cell) => cell.inYear)
       const month = inYearCell?.date.slice(0, 7) ?? ''
       if (month && month !== previousMonth) {
-        markers.push({ week, label: `${Number(month.slice(5))} 月` })
+        markers.push({ week, label: new Intl.DateTimeFormat(locale === 'en' ? 'en' : 'zh-CN', { month: 'short', timeZone: 'UTC' }).format(new Date(`${month}-01T00:00:00Z`)) })
         previousMonth = month
       }
     }
@@ -96,14 +100,14 @@
 <section class="card-base p-4 md:p-6" aria-labelledby="publication-calendar-title">
   <div class="mb-5 flex flex-wrap items-end justify-between gap-4">
     <div>
-      <h3 id="publication-calendar-title" class="text-lg font-semibold text-black/85 dark:text-white/85">发布日历</h3>
-      <p class="mt-1 text-xs text-black/45 dark:text-white/45">记录作品发布的日期，不等同于实际写作日</p>
+      <h3 id="publication-calendar-title" class="text-lg font-semibold text-black/85 dark:text-white/85">{labels.calendarTitle}</h3>
+      <p class="mt-1 text-xs text-black/45 dark:text-white/45">{labels.calendarDescription}</p>
     </div>
-    <div class="calendar-controls" aria-label="日历视图">
-      <button class="year-button" type="button" disabled={!canPageCalendarBack} aria-label="查看更早月份" onclick={() => pageCalendar(-1)}>
+    <div class="calendar-controls" aria-label={labels.calendarViewAria}>
+      <button class="year-button" type="button" disabled={!canPageCalendarBack} aria-label={labels.earlierMonths} onclick={() => pageCalendar(-1)}>
         <Icon icon="material-symbols:chevron-left-rounded" />
       </button>
-      <button class="year-button" type="button" disabled={!canPageCalendarForward} aria-label="查看更晚月份" onclick={() => pageCalendar(1)}>
+      <button class="year-button" type="button" disabled={!canPageCalendarForward} aria-label={labels.laterMonths} onclick={() => pageCalendar(1)}>
         <Icon icon="material-symbols:chevron-right-rounded" />
       </button>
     </div>
@@ -117,9 +121,9 @@
           {#each monthMarkers as marker}<span style={`grid-column: ${marker.week + 1}`}>{marker.label}</span>{/each}
         </div>
         <div class="weekday-labels" aria-hidden="true">
-          <span>一</span><span></span><span>三</span><span></span><span>五</span><span></span><span>日</span>
+          <span>{locale === 'en' ? 'M' : '一'}</span><span></span><span>{locale === 'en' ? 'W' : '三'}</span><span></span><span>{locale === 'en' ? 'F' : '五'}</span><span></span><span>{locale === 'en' ? 'S' : '日'}</span>
         </div>
-        <div class="calendar-grid" role="grid" aria-label={`${calendarYear} 年发布日历`}>
+        <div class="calendar-grid" role="grid" aria-label={labels.calendarAria(calendarYear)}>
           {#each calendar as cell}
             {@const day = dayMap.get(cell.date)}
             {#if cell.inYear && day}
@@ -127,8 +131,8 @@
                 type="button"
                 class="calendar-hit"
                 class:selected={activeDate === cell.date}
-                aria-label={`${formatDate(day.date)}发布 ${day.count} 篇：${postDetails(day.posts)}`}
-                title={`${formatDate(day.date)} · ${day.count} 篇\n${postDetails(day.posts)}`}
+                aria-label={`${formatDate(day.date, locale)}, ${labels.publicationCount(day.count)}: ${postDetails(day.posts, locale)}`}
+                title={`${formatDate(day.date, locale)} · ${labels.postUnit(day.count)}\n${postDetails(day.posts, locale)}`}
                 onmouseenter={() => activeDate = day.date}
                 onfocus={() => activeDate = day.date}
                 onclick={() => activeDate = day.date}
@@ -141,7 +145,7 @@
       </div>
     </div>
     {#if years.length > 1}
-      <div class="year-tabs" aria-label="日历年份">
+      <div class="year-tabs" aria-label={labels.calendarYearAria}>
         {#each years as year}
           <button type="button" aria-pressed={calendarYear === year} class:active={calendarYear === year} onclick={() => selectYear(year)}>{year}</button>
         {/each}
@@ -149,15 +153,15 @@
     {/if}
   </div>
 
-  <div class="mt-3 flex items-center justify-end gap-2 text-[0.65rem] text-black/35 dark:text-white/35" aria-label="发布数量色阶">
-    <span>少</span>
+  <div class="mt-3 flex items-center justify-end gap-2 text-[0.65rem] text-black/35 dark:text-white/35" aria-label={labels.publicationScaleAria}>
+    <span>{labels.less}</span>
     {#each [0, 1, 2, 3, 4] as item}<span class="legend-cell" data-level={item}></span>{/each}
-    <span>多</span>
+    <span>{labels.more}</span>
   </div>
 
   {#if activeDay}
     <div class="active-detail mt-4" aria-live="polite">
-      <p class="text-sm font-semibold text-black/75 dark:text-white/75">{formatDate(activeDay.date)} · {activeDay.count} 篇</p>
+      <p class="text-sm font-semibold text-black/75 dark:text-white/75">{formatDate(activeDay.date, locale)} · {labels.postUnit(activeDay.count)}</p>
       <ul class="mt-2 space-y-1 text-sm">
         {#each activeDay.posts as post}
           <li><a class="link text-black/65 dark:text-white/65" href={post.path}>{post.title}</a></li>
