@@ -1,41 +1,35 @@
+import type { Locale } from '@/i18n/locales'
 import type { StatisticsMonthlyOutput, StatisticsTrailPost } from '@/types/statistics'
+import {
+  formatStatisticsCompact,
+  formatStatisticsDate,
+  formatStatisticsMonth,
+  formatStatisticsNumber,
+  getStatisticsLabels,
+  type StatisticsTrailRange,
+} from '@/utils/statistics-locale'
+import { getSeriesUrl } from '@/utils/url-utils'
 
-export type TrailRange = '6m' | '12m' | 'all'
+export type TrailRange = StatisticsTrailRange
 export type MonthDisplayItem =
   | { kind: 'month'; item: StatisticsMonthlyOutput }
   | { kind: 'quiet'; count: number; start: string; end: string }
 
-export const numberFormat: Intl.NumberFormat = new Intl.NumberFormat('zh-CN')
-export const compactFormat: Intl.NumberFormat = new Intl.NumberFormat('zh-CN', {
-  notation: 'compact',
-  maximumFractionDigits: 1,
-})
-export const trailRanges: Array<{ value: TrailRange; label: string }> = [
-  { value: '6m', label: '近半年' },
-  { value: '12m', label: '近一年' },
-  { value: 'all', label: '全部' },
-]
-
-export function formatNumber(value: number): string {
-  return numberFormat.format(Math.round(value))
+export function trailRanges(locale: Locale): Array<{ value: TrailRange; label: string }> {
+  const labels = getStatisticsLabels(locale)
+  return (['6m', '12m', 'all'] as TrailRange[]).map((value) => ({
+    value,
+    label: labels.trailRanges[value],
+  }))
 }
 
-export function formatDate(value: string): string {
-  return new Intl.DateTimeFormat('zh-CN', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    timeZone: 'UTC',
-  }).format(new Date(`${value}T00:00:00Z`))
-}
+export const formatNumber = formatStatisticsNumber
+export const formatDate = formatStatisticsDate
+export const formatMonth = formatStatisticsMonth
+export const compactFormat = formatStatisticsCompact
 
-export function formatMonth(value: string): string {
-  const [year, month] = value.split('-')
-  return `${year} 年 ${Number(month)} 月`
-}
-
-export function postDetails(posts: StatisticsTrailPost[]): string {
-  return posts.map((post) => post.title).join('、')
+export function postDetails(posts: StatisticsTrailPost[], locale: Locale): string {
+  return posts.map((post) => post.title).join(locale === 'en' ? ', ' : '、')
 }
 
 export function monthlyValue(
@@ -86,6 +80,6 @@ export function compressQuietMonths(
   return result
 }
 
-export function seriesUrl(name: string): string {
-  return `/series/${encodeURIComponent(name.trim())}/`
+export function seriesUrl(name: string, locale: Locale): string {
+  return getSeriesUrl(name, locale)
 }

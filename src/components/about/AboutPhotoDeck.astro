@@ -1,6 +1,7 @@
 ---
 import { getImage, type ImageMetadata } from 'astro:assets'
 import { Icon } from 'astro-icon/components'
+import { DEFAULT_LOCALE, ENGLISH_LOCALE, type Locale } from '../../i18n/locales'
 
 interface Photo {
   src: ImageMetadata
@@ -11,9 +12,46 @@ interface Photo {
 
 interface Props {
   photos: Photo[]
+  locale?: Locale
 }
 
-const { photos } = Astro.props
+const { photos, locale = DEFAULT_LOCALE } = Astro.props
+const labels = locale === ENGLISH_LOCALE
+  ? {
+      roledescription: 'photo carousel',
+      group: `Reading portrait, ${photos.length} photos`,
+      next: 'View the next reading portrait',
+      full: (index: number, caption: string) => `View reading portrait ${index} in full: ${caption}`,
+      fullTitle: 'View the complete photo on this site',
+      previous: 'Previous reading portrait',
+      dots: 'Choose a nearby reading portrait',
+      dot: (index: number, caption = '') => `View photo ${index}${caption ? `: ${caption}` : ''}`,
+      nextControl: 'Next reading portrait',
+      more: 'More',
+      expand: (caption: string) => `Read the full caption: ${caption}`,
+      collapse: 'Close the full caption',
+    }
+  : {
+      roledescription: '图片轮播',
+      group: `阅读侧写，共 ${photos.length} 张`,
+      next: '查看下一张阅读侧写',
+      full: (index: number, caption: string) => `查看第 ${index} 张阅读侧写全图：${caption}`,
+      fullTitle: '在站内查看完整照片',
+      previous: '上一张阅读侧写',
+      dots: '选择临近的阅读侧写',
+      dot: (index: number, caption = '') => `查看第 ${index} 张${caption ? `：${caption}` : ''}`,
+      nextControl: '下一张阅读侧写',
+      more: '展开',
+      expand: (caption: string) => `阅读完整说明：${caption}`,
+      collapse: '关闭完整说明',
+    }
+const serializedLabels = JSON.stringify({
+  next: labels.next,
+  fullTemplate: labels.full(0, '{caption}').replace('0', '{index}'),
+  dotTemplate: labels.dot(0, '{caption}').replace('0', '{index}'),
+  expandTemplate: labels.expand('{caption}'),
+  collapse: labels.collapse,
+}).replaceAll('<', '\\u003c')
 const renderedPhotos = await Promise.all(
   photos.map(async (photo) => ({
     ...photo,
@@ -43,8 +81,8 @@ const photoData = JSON.stringify(
   <div
     class="deck-stage"
     role="group"
-    aria-roledescription="图片轮播"
-    aria-label={`阅读侧写，共 ${photos.length} 张`}
+    aria-roledescription={labels.roledescription}
+    aria-label={labels.group}
     tabindex="0"
   >
     {
@@ -62,7 +100,7 @@ const photoData = JSON.stringify(
             class="photo-button"
             type="button"
             data-next
-            aria-label={slot === 0 ? '查看下一张阅读侧写' : undefined}
+            aria-label={slot === 0 ? labels.next : undefined}
             tabindex={slot === 0 ? 0 : -1}
           >
             <img
@@ -87,27 +125,45 @@ const photoData = JSON.stringify(
       class="photo-zoom"
       type="button"
       data-about-photo-preview
-      aria-label={`查看第 1 张阅读侧写全图：${photos[0]?.caption}`}
-      title="在站内查看完整照片"
+      aria-label={labels.full(1, photos[0]?.caption ?? '')}
+      title={labels.fullTitle}
     >
       <Icon name="material-symbols:zoom-in-rounded" />
     </button>
   </div>
 
   <div class="deck-meta">
-    <p class="deck-caption" data-caption-output aria-live="polite">{photos[0]?.caption}</p>
+    <div class="caption-region">
+      <p class="deck-caption" data-caption-output aria-live="polite">{photos[0]?.caption}</p>
+      <button
+        class="caption-more"
+        type="button"
+        data-caption-more
+        aria-expanded="false"
+        aria-controls="about-caption-preview"
+        aria-label={labels.expand(photos[0]?.caption ?? '')}
+      >
+        {labels.more}
+      </button>
+      <div class="caption-preview" id="about-caption-preview" data-caption-preview hidden>
+        <p data-caption-preview-output>{photos[0]?.caption}</p>
+        <button type="button" data-caption-close aria-label={labels.collapse}>
+          <Icon name="material-symbols:close-rounded" />
+        </button>
+      </div>
+    </div>
     <div class="deck-controls">
-      <button class="deck-arrow" type="button" data-prev aria-label="上一张阅读侧写">
+      <button class="deck-arrow" type="button" data-prev aria-label={labels.previous}>
         <Icon name="material-symbols:arrow-back-rounded" />
       </button>
-      <div class="deck-dots" role="group" aria-label="选择临近的阅读侧写">
+      <div class="deck-dots" role="group" aria-label={labels.dots}>
         {
           Array.from({ length: Math.min(4, photos.length) }, (_, index) => (
             <button
               class="deck-dot"
               type="button"
               data-dot={index}
-              aria-label={`查看第 ${index + 1} 张`}
+              aria-label={labels.dot(index + 1)}
               aria-current={index === 0 ? 'true' : undefined}
             >
               <span />
@@ -116,12 +172,13 @@ const photoData = JSON.stringify(
         }
       </div>
       <span class="deck-count" aria-hidden="true"><b data-current>01</b> / {String(photos.length).padStart(2, '0')}</span>
-      <button class="deck-arrow" type="button" data-next-control aria-label="下一张阅读侧写">
+      <button class="deck-arrow" type="button" data-next-control aria-label={labels.nextControl}>
         <Icon name="material-symbols:arrow-forward-rounded" />
       </button>
     </div>
   </div>
   <script type="application/json" data-photos set:html={photoData} />
+  <script type="application/json" data-labels set:html={serializedLabels} />
 </about-photo-deck>
 
 <script>
@@ -138,12 +195,32 @@ const photoData = JSON.stringify(
     fullHeight: number
   }
 
+  interface DeckLabels {
+    next: string
+    fullTemplate: string
+    dotTemplate: string
+    expandTemplate: string
+    collapse: string
+  }
+
   class AboutPhotoDeck extends HTMLElement {
     private current = 0
     private cards: HTMLElement[] = []
     private dots: HTMLButtonElement[] = []
     private photos: PhotoData[] = []
+    private labels: DeckLabels = {
+      next: 'View the next photo',
+      fullTemplate: 'View photo {index} in full: {caption}',
+      dotTemplate: 'View photo {index}: {caption}',
+      expandTemplate: 'Read the full caption: {caption}',
+      collapse: 'Close the full caption',
+    }
     private caption?: HTMLElement
+    private captionMore?: HTMLButtonElement
+    private captionPreview?: HTMLElement
+    private captionPreviewOutput?: HTMLElement
+    private captionClose?: HTMLButtonElement
+    private captionResizeObserver?: ResizeObserver
     private currentOutput?: HTMLElement
     private zoomButton?: HTMLButtonElement
 
@@ -151,10 +228,16 @@ const photoData = JSON.stringify(
       this.cards = Array.from(this.querySelectorAll<HTMLElement>('[data-card]'))
       this.dots = Array.from(this.querySelectorAll<HTMLButtonElement>('[data-dot]'))
       this.caption = this.querySelector<HTMLElement>('[data-caption-output]') ?? undefined
+      this.captionMore = this.querySelector<HTMLButtonElement>('[data-caption-more]') ?? undefined
+      this.captionPreview = this.querySelector<HTMLElement>('[data-caption-preview]') ?? undefined
+      this.captionPreviewOutput = this.querySelector<HTMLElement>('[data-caption-preview-output]') ?? undefined
+      this.captionClose = this.querySelector<HTMLButtonElement>('[data-caption-close]') ?? undefined
       this.currentOutput = this.querySelector<HTMLElement>('[data-current]') ?? undefined
       this.zoomButton = this.querySelector<HTMLButtonElement>('[data-about-photo-preview]') ?? undefined
       const photoData = this.querySelector<HTMLScriptElement>('[data-photos]')?.textContent
+      const labelData = this.querySelector<HTMLScriptElement>('[data-labels]')?.textContent
       this.photos = photoData ? JSON.parse(photoData) : []
+      if (labelData) this.labels = JSON.parse(labelData)
 
       this.querySelectorAll<HTMLElement>('[data-next]').forEach((button) => {
         button.addEventListener('click', this.next)
@@ -163,8 +246,15 @@ const photoData = JSON.stringify(
       this.querySelector<HTMLElement>('[data-prev]')?.addEventListener('click', this.previous)
       this.dots.forEach((dot) => dot.addEventListener('click', this.goToFromControl))
       this.zoomButton?.addEventListener('click', this.openPreview)
+      this.captionMore?.addEventListener('click', this.openCaption)
+      this.captionClose?.addEventListener('click', this.closeCaption)
+      document.addEventListener('pointerdown', this.closeCaptionFromOutside)
+      document.addEventListener('keydown', this.closeCaptionFromEscape)
       this.querySelector<HTMLElement>('.deck-stage')?.addEventListener('keydown', this.onKeydown)
       this.renderInstantly()
+      this.captionResizeObserver = new ResizeObserver(this.updateCaptionOverflow)
+      if (this.caption) this.captionResizeObserver.observe(this.caption)
+      requestAnimationFrame(this.updateCaptionOverflow)
     }
 
     disconnectedCallback() {
@@ -175,11 +265,17 @@ const photoData = JSON.stringify(
       this.querySelector<HTMLElement>('[data-prev]')?.removeEventListener('click', this.previous)
       this.dots.forEach((dot) => dot.removeEventListener('click', this.goToFromControl))
       this.zoomButton?.removeEventListener('click', this.openPreview)
+      this.captionMore?.removeEventListener('click', this.openCaption)
+      this.captionClose?.removeEventListener('click', this.closeCaption)
+      document.removeEventListener('pointerdown', this.closeCaptionFromOutside)
+      document.removeEventListener('keydown', this.closeCaptionFromEscape)
+      this.captionResizeObserver?.disconnect()
       this.querySelector<HTMLElement>('.deck-stage')?.removeEventListener('keydown', this.onKeydown)
     }
 
     private next = () => {
       if (this.photos.length < 2) return
+      this.closeCaption()
       this.current = (this.current + 1) % this.photos.length
 
       const [front, middle, back] = [0, 1, 2].map((position) =>
@@ -197,6 +293,7 @@ const photoData = JSON.stringify(
 
     private previous = () => {
       if (this.photos.length < 2) return
+      this.closeCaption()
       this.current = (this.current - 1 + this.photos.length) % this.photos.length
 
       const [front, middle, back] = [0, 1, 2].map((position) =>
@@ -217,8 +314,51 @@ const photoData = JSON.stringify(
       if (Number.isNaN(index) || index === this.current) return
       if (index === (this.current + 1) % this.photos.length) return this.next()
       if (index === (this.current - 1 + this.photos.length) % this.photos.length) return this.previous()
+      this.closeCaption()
       this.current = index
       this.renderInstantly()
+    }
+
+    private openCaption = () => {
+      if (!this.captionPreview || !this.captionMore) return
+      this.captionPreview.hidden = false
+      this.captionMore.setAttribute('aria-expanded', 'true')
+      this.captionClose?.focus()
+    }
+
+    private closeCaption = () => {
+      if (!this.captionPreview || this.captionPreview.hidden) return
+      this.captionPreview.hidden = true
+      this.captionMore?.setAttribute('aria-expanded', 'false')
+    }
+
+    private closeCaptionFromOutside = (event: PointerEvent) => {
+      if (!this.captionPreview || this.captionPreview.hidden) return
+      if (!this.querySelector('.caption-region')?.contains(event.target as Node)) this.closeCaption()
+    }
+
+    private closeCaptionFromEscape = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape' || !this.captionPreview || this.captionPreview.hidden) return
+      this.closeCaption()
+      this.captionMore?.focus()
+    }
+
+    private updateCaptionOverflow = () => {
+      if (!this.caption || !this.captionMore) return
+
+      const measurement = this.caption.cloneNode(true) as HTMLElement
+      measurement.removeAttribute('data-caption-output')
+      measurement.style.position = 'absolute'
+      measurement.style.visibility = 'hidden'
+      measurement.style.width = `${this.caption.clientWidth}px`
+      measurement.style.height = 'auto'
+      measurement.style.overflow = 'visible'
+      measurement.style.display = 'block'
+      measurement.style.webkitLineClamp = 'unset'
+      this.caption.parentElement?.append(measurement)
+      const isOverflowing = measurement.scrollHeight > this.caption.clientHeight + 1
+      measurement.remove()
+      this.captionMore.hidden = !isOverflowing
     }
 
     private openPreview = () => {
@@ -284,7 +424,7 @@ const photoData = JSON.stringify(
         const button = card.querySelector<HTMLButtonElement>('[data-next]')
         if (button) {
           button.tabIndex = active ? 0 : -1
-          button.setAttribute('aria-label', active ? '查看下一张阅读侧写' : '')
+          button.setAttribute('aria-label', active ? this.labels.next : '')
         }
       })
 
@@ -295,7 +435,12 @@ const photoData = JSON.stringify(
         const index = start + offset
         const photo = this.photos[index]
         dot.dataset.go = String(index)
-        dot.setAttribute('aria-label', `查看第 ${index + 1} 张：${photo?.caption ?? ''}`)
+        dot.setAttribute(
+          'aria-label',
+          this.labels.dotTemplate
+            .replace('{index}', String(index + 1))
+            .replace('{caption}', photo?.caption ?? '')
+        )
         if (index === this.current) dot.setAttribute('aria-current', 'true')
         else dot.removeAttribute('aria-current')
       })
@@ -305,10 +450,22 @@ const photoData = JSON.stringify(
         this.caption.textContent = activePhoto.caption
         this.caption.title = activePhoto.caption
       }
+      if (this.captionPreviewOutput && activePhoto) {
+        this.captionPreviewOutput.textContent = activePhoto.caption
+      }
+      if (this.captionMore && activePhoto) {
+        this.captionMore.setAttribute(
+          'aria-label',
+          this.labels.expandTemplate.replace('{caption}', activePhoto.caption)
+        )
+        requestAnimationFrame(this.updateCaptionOverflow)
+      }
       if (this.zoomButton && activePhoto) {
         this.zoomButton.setAttribute(
           'aria-label',
-          `查看第 ${this.current + 1} 张阅读侧写全图：${activePhoto.caption}`
+          this.labels.fullTemplate
+            .replace('{index}', String(this.current + 1))
+            .replace('{caption}', activePhoto.caption)
         )
       }
       if (this.currentOutput) this.currentOutput.textContent = String(this.current + 1).padStart(2, '0')
@@ -481,6 +638,11 @@ const photoData = JSON.stringify(
     margin-top: 0.9rem;
   }
 
+  .caption-region {
+    position: relative;
+    min-width: 0;
+  }
+
   .deck-caption {
     display: -webkit-box;
     min-width: 0;
@@ -497,6 +659,79 @@ const photoData = JSON.stringify(
 
   :global(html.dark) .deck-caption {
     color: rgb(175 175 175);
+  }
+
+  .caption-more {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border-radius: 999px;
+    padding: 0.05rem 0.45rem;
+    background: var(--card-bg);
+    color: var(--primary);
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1.55;
+    box-shadow: -0.5rem 0 0.55rem var(--card-bg);
+  }
+
+  .caption-more[hidden],
+  .caption-preview[hidden] {
+    display: none;
+  }
+
+  .caption-more:hover {
+    text-decoration: underline;
+  }
+
+  .caption-more:focus-visible,
+  .caption-preview button:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  .caption-preview {
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 0.55rem);
+    left: 0;
+    z-index: 30;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 0.65rem;
+    border: 1px solid var(--line-divider);
+    border-radius: 0.85rem;
+    padding: 0.85rem;
+    background: var(--card-bg);
+    color: var(--deep-text);
+    box-shadow: 0 0.85rem 2rem rgb(20 35 48 / 18%);
+    font-size: 0.8rem;
+    line-height: 1.65;
+  }
+
+  :global(html.dark) .caption-preview {
+    color: rgb(235 235 235);
+    box-shadow: 0 0.85rem 2rem rgb(0 0 0 / 38%);
+  }
+
+  .caption-preview p {
+    margin: 0;
+  }
+
+  .caption-preview button {
+    display: grid;
+    width: 1.75rem;
+    height: 1.75rem;
+    place-items: center;
+    border-radius: 999px;
+    background: var(--btn-regular-bg);
+    color: var(--btn-content);
+  }
+
+  .caption-preview button :global(svg) {
+    width: 1rem;
+    height: 1rem;
   }
 
   .deck-controls {

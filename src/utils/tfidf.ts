@@ -1,7 +1,10 @@
 import { getCollection, type CollectionEntry } from 'astro:content'
+import { DEFAULT_LOCALE, type Locale } from '../i18n/locales'
+import { filterPostsByLocale, getPostRouteSlug } from './post-locale'
 
 export type PostForRelated = {
   slug: string
+  sourceId: string
   data: CollectionEntry<'posts'>['data']
 }
 
@@ -24,18 +27,20 @@ function tokenize(text: string): string[] {
   return words
 }
 
-export async function buildTfidfIndex(): Promise<TfidfIndex> {
-  const allPosts: CollectionEntry<'posts'>[] = await getCollection(
+export async function buildTfidfIndex(locale: Locale = DEFAULT_LOCALE): Promise<TfidfIndex> {
+  const collectionPosts: CollectionEntry<'posts'>[] = await getCollection(
     'posts',
     ({ data }: { data: { draft?: boolean } }) => {
       return import.meta.env.PROD ? data.draft !== true : true
     }
   )
+  const allPosts = filterPostsByLocale(collectionPosts, locale)
 
   const posts: PostForRelated[] = allPosts
     .filter((p: CollectionEntry<'posts'>) => p.body)
     .map((p: CollectionEntry<'posts'>) => ({
-      slug: p.id,
+      slug: getPostRouteSlug(p),
+      sourceId: p.id,
       data: p.data,
     }))
 
@@ -43,7 +48,7 @@ export async function buildTfidfIndex(): Promise<TfidfIndex> {
   const tokenizedDocs = new Map<string, string[]>()
   for (const p of allPosts) {
     if (!p.body) continue
-    tokenizedDocs.set(p.id, tokenize(p.body))
+    tokenizedDocs.set(getPostRouteSlug(p), tokenize(p.body))
   }
 
   // Build vocabulary with document frequency

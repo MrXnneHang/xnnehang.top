@@ -1,3 +1,5 @@
+import type { Locale } from '@/i18n/locales'
+
 export type StatisticsRange = '7d' | '30d' | '90d' | 'all'
 
 export type StatisticsStatus = 'empty' | 'live' | 'fallback'
@@ -95,7 +97,8 @@ export interface StatisticsContentTotals {
 }
 
 export interface StatisticsData {
-  version: 1
+  version: 2
+  locale: Locale
   generatedAt: string | null
   status: StatisticsStatus
   source: 'ga4'

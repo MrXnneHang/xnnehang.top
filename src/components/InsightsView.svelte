@@ -3,22 +3,16 @@
   import Icon from '@iconify/svelte'
   import GraphView from '@/components/GraphView.svelte'
   import StatisticsView from '@/components/StatisticsView.svelte'
+  import { DEFAULT_LOCALE, type Locale } from '@/i18n/locales'
+  import { getStatisticsLabels } from '@/utils/statistics-locale'
 
   type InsightsView = 'overview' | 'graph'
 
-  const tabs: Array<{ value: InsightsView; label: string; description: string; icon: string }> = [
-    {
-      value: 'overview',
-      label: '统计概览',
-      description: '发布轨迹与阅读回声',
-      icon: 'material-symbols:query-stats-rounded',
-    },
-    {
-      value: 'graph',
-      label: '关系图谱',
-      description: '文章之间的引用脉络',
-      icon: 'material-symbols:hub-outline-rounded',
-    },
+  export let locale: Locale = DEFAULT_LOCALE
+  $: labels = getStatisticsLabels(locale)
+  $: tabs = [
+    { value: 'overview' as const, label: labels.overviewTab, description: labels.overviewDescription, icon: 'material-symbols:query-stats-rounded' },
+    { value: 'graph' as const, label: labels.graphTab, description: labels.graphDescription, icon: 'material-symbols:hub-outline-rounded' },
   ]
 
   let view: InsightsView = 'overview'
@@ -59,54 +53,26 @@
 </script>
 
 <div class="flex flex-col gap-4">
-  <nav class="card-base p-2" aria-label="统计与图谱视图">
-    <div class="grid grid-cols-2 gap-1" role="tablist" aria-label="数据视图">
+  <nav class="card-base p-2" aria-label={labels.tabsAria}>
+    <div class="grid grid-cols-2 gap-1" role="tablist" aria-label={labels.viewsAria}>
       {#each tabs as tab, index}
-        <button
-          id={`insights-tab-${tab.value}`}
-          type="button"
-          role="tab"
-          aria-selected={view === tab.value}
-          aria-controls={`insights-panel-${tab.value}`}
-          tabindex={view === tab.value ? 0 : -1}
-          class:active={view === tab.value}
-          class="insights-tab"
-          onclick={() => selectView(tab.value)}
-          onkeydown={(event) => onTabKeydown(event, index)}
-        >
+        <button id={`insights-tab-${tab.value}`} type="button" role="tab" aria-selected={view === tab.value} aria-controls={`insights-panel-${tab.value}`} tabindex={view === tab.value ? 0 : -1} class:active={view === tab.value} class="insights-tab" onclick={() => selectView(tab.value)} onkeydown={(event) => onTabKeydown(event, index)}>
           <span class="insights-icon"><Icon icon={tab.icon} /></span>
-          <span class="min-w-0 text-left">
-            <span class="block text-sm font-semibold">{tab.label}</span>
-            <span class="mt-0.5 hidden text-[0.65rem] opacity-60 sm:block">{tab.description}</span>
-          </span>
+          <span class="min-w-0 text-left"><span class="block text-sm font-semibold">{tab.label}</span><span class="mt-0.5 hidden text-[0.65rem] opacity-60 sm:block">{tab.description}</span></span>
         </button>
       {/each}
     </div>
   </nav>
 
   {#if view === 'overview'}
-    <section id="insights-panel-overview" role="tabpanel" aria-labelledby="insights-tab-overview">
-      <StatisticsView />
-    </section>
+    <section id="insights-panel-overview" role="tabpanel" aria-labelledby="insights-tab-overview"><StatisticsView {locale} /></section>
   {:else}
-    <section id="insights-panel-graph" role="tabpanel" aria-labelledby="insights-tab-graph">
-      <GraphView mode="full" />
-    </section>
+    <section id="insights-panel-graph" role="tabpanel" aria-labelledby="insights-tab-graph"><GraphView mode="full" {locale} /></section>
   {/if}
 </div>
 
 <style>
-  .insights-tab {
-    display: flex;
-    min-width: 0;
-    align-items: center;
-    justify-content: center;
-    gap: .65rem;
-    border-radius: calc(var(--radius-large) - .35rem);
-    padding: .7rem .8rem;
-    color: rgba(0, 0, 0, .58);
-    transition: 160ms ease;
-  }
+  .insights-tab { display: flex; min-width: 0; align-items: center; justify-content: center; gap: .65rem; border-radius: calc(var(--radius-large) - .35rem); padding: .7rem .8rem; color: rgba(0, 0, 0, .58); transition: 160ms ease; }
   :global(.dark) .insights-tab { color: rgba(255, 255, 255, .62); }
   .insights-tab:hover { color: var(--primary); background: var(--btn-plain-bg-hover); }
   .insights-tab.active { color: var(--primary); background: color-mix(in oklab, var(--primary) 11%, transparent); }

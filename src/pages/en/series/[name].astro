@@ -1,0 +1,18 @@
+---
+import type { GetStaticPaths } from 'astro'
+import LocalizedSeriesPage from '../../../components/LocalizedSeriesPage.astro'
+import { ENGLISH_LOCALE } from '../../../i18n/locales'
+import { getSeriesList } from '../../../utils/content-utils'
+
+export const getStaticPaths = (async () => {
+  const seriesList = await getSeriesList(ENGLISH_LOCALE)
+  return seriesList.map((series) => ({
+    params: { name: series.name },
+    props: { series },
+  }))
+}) satisfies GetStaticPaths
+
+const { series } = Astro.props
+---
+
+<LocalizedSeriesPage locale={ENGLISH_LOCALE} series={series} />

@@ -1,0 +1,199 @@
+---
+import { DEFAULT_LOCALE, ENGLISH_LOCALE, type Locale } from '../i18n/locales'
+import { url } from '../utils/url-utils'
+
+interface Props {
+  locale: Locale
+}
+
+const { locale } = Astro.props
+const currentPath = `${Astro.url.pathname}${Astro.url.search}`
+const chineseUrl = url(currentPath, DEFAULT_LOCALE)
+const englishUrl = url(currentPath, ENGLISH_LOCALE)
+const alternateLocale = locale === DEFAULT_LOCALE ? ENGLISH_LOCALE : DEFAULT_LOCALE
+const alternateUrl = alternateLocale === ENGLISH_LOCALE ? englishUrl : chineseUrl
+const compactLabel = locale === DEFAULT_LOCALE ? '文' : 'EN'
+const alternateLabel = alternateLocale === ENGLISH_LOCALE ? 'Switch to English' : '切换到简体中文'
+---
+
+<div class="language-control relative z-50">
+  <a
+    href={alternateUrl}
+    lang={alternateLocale}
+    hreflang={alternateLocale}
+    aria-label={alternateLabel}
+    title={alternateLabel}
+    data-language-toggle
+    data-locale-choice={alternateLocale}
+    data-no-swup
+    class="btn-plain scale-animation flex h-11 w-11 items-center justify-center rounded-lg font-bold active:scale-90"
+  >
+    {compactLabel}
+  </a>
+
+  <div
+    class="language-panel pointer-events-none invisible absolute top-11 right-0 pt-5 opacity-0 transition"
+    data-language-panel
+  >
+    <nav
+      class="card-base float-panel flex min-w-40 flex-col p-2"
+      aria-label="Language"
+    >
+      <a
+        href={chineseUrl}
+        lang="zh-CN"
+        hreflang="zh-CN"
+        aria-current={locale === DEFAULT_LOCALE ? 'page' : undefined}
+        data-locale-choice={DEFAULT_LOCALE}
+        data-no-swup
+        class="language-option"
+      >
+        <span class="language-code">文</span>
+        <span>简体中文</span>
+      </a>
+      <a
+        href={englishUrl}
+        lang="en"
+        hreflang="en"
+        aria-current={locale === ENGLISH_LOCALE ? 'page' : undefined}
+        data-locale-choice={ENGLISH_LOCALE}
+        data-no-swup
+        class="language-option"
+      >
+        <span class="language-code">EN</span>
+        <span>English</span>
+      </a>
+    </nav>
+  </div>
+</div>
+
+<script>
+  import {
+    DEFAULT_LOCALE,
+    ENGLISH_LOCALE,
+    getLocaleFromPathname,
+    localizePath,
+    type Locale,
+  } from '../i18n/locales'
+
+  function getCurrentPath(): string {
+    return `${window.location.pathname}${window.location.search}${window.location.hash}`
+  }
+
+  function updateLanguageControl() {
+    const currentLocale = getLocaleFromPathname(window.location.pathname)
+    const alternateLocale = currentLocale === DEFAULT_LOCALE ? ENGLISH_LOCALE : DEFAULT_LOCALE
+    const control = document.querySelector<HTMLElement>('.language-control')
+    const toggle = control?.querySelector<HTMLAnchorElement>('[data-language-toggle]')
+
+    if (toggle) {
+      toggle.dataset.localeChoice = alternateLocale
+      toggle.href = localizePath(getCurrentPath(), alternateLocale)
+      toggle.textContent = currentLocale === DEFAULT_LOCALE ? '文' : 'EN'
+      const label = alternateLocale === ENGLISH_LOCALE ? 'Switch to English' : '切换到简体中文'
+      toggle.setAttribute('aria-label', label)
+      toggle.title = label
+    }
+
+    document.querySelectorAll<HTMLAnchorElement>('[data-language-panel] [data-locale-choice]').forEach(
+      (link) => {
+        const targetLocale = link.dataset.localeChoice as Locale | undefined
+        if (!targetLocale) return
+
+        link.href = localizePath(getCurrentPath(), targetLocale)
+        if (targetLocale === currentLocale) link.setAttribute('aria-current', 'page')
+        else link.removeAttribute('aria-current')
+      }
+    )
+
+    document.querySelectorAll<HTMLAnchorElement>('[data-locale-choice]').forEach((link) => {
+      link.onclick = () => {
+        const targetLocale = link.dataset.localeChoice as Locale | undefined
+        if (!targetLocale) return
+        localStorage.setItem('locale', targetLocale)
+        link.href = localizePath(getCurrentPath(), targetLocale)
+      }
+    })
+  }
+
+  function setupLanguageControl() {
+    const control = document.querySelector<HTMLElement>('.language-control')
+    const toggle = control?.querySelector<HTMLAnchorElement>('[data-language-toggle]')
+
+    const showPanel = () => control?.classList.add('language-open')
+    const hidePanel = () => control?.classList.remove('language-open')
+    const hidePanelOnBlur = (event: FocusEvent) => {
+      if (!control?.contains(event.relatedTarget as Node | null)) {
+        hidePanel()
+      }
+    }
+
+    control?.addEventListener('mouseenter', showPanel)
+    control?.addEventListener('mouseleave', hidePanel)
+    control?.addEventListener('focusin', showPanel)
+    control?.addEventListener('focusout', hidePanelOnBlur)
+    toggle?.addEventListener('keydown', (event) => {
+      if (event.key !== 'ArrowDown') return
+      event.preventDefault()
+      showPanel()
+      control?.querySelector<HTMLAnchorElement>('[data-language-panel] a')?.focus()
+    })
+
+    updateLanguageControl()
+    window.swup?.hooks.on('page:view', updateLanguageControl)
+  }
+
+  if (window.swup?.hooks) {
+    setupLanguageControl()
+  } else {
+    const swupReady = window.setInterval(() => {
+      if (!window.swup?.hooks) return
+      window.clearInterval(swupReady)
+      setupLanguageControl()
+    }, 50)
+  }
+</script>
+
+<style>
+  .language-control:hover .language-panel,
+  .language-control:focus-within .language-panel,
+  .language-control.language-open .language-panel {
+    visibility: visible;
+    pointer-events: auto;
+    opacity: 1;
+  }
+
+  .language-option {
+    display: flex;
+    height: 2.25rem;
+    align-items: center;
+    gap: 0.75rem;
+    border-radius: 0.5rem;
+    padding-inline: 0.65rem;
+    color: var(--text-75);
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background-color 150ms ease, color 150ms ease;
+  }
+
+  .language-option:hover,
+  .language-option:focus-visible,
+  .language-option[aria-current='page'] {
+    background: var(--btn-plain-bg-hover);
+    color: var(--primary);
+  }
+
+  .language-option[aria-current='page'] {
+    pointer-events: none;
+  }
+
+  .language-code {
+    display: inline-flex;
+    width: 1.6rem;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 0.75rem;
+    font-weight: 800;
+  }
+</style>

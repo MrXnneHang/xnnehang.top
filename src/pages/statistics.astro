@@ -1,14 +1,6 @@
 ---
-import InsightsView from '@components/InsightsView.svelte'
-import I18nKey from '@i18n/i18nKey'
-import { i18n } from '@i18n/translation'
-import MainGridLayout from '@layouts/MainGridLayout.astro'
+import LocalizedStatisticsPage from '../components/LocalizedStatisticsPage.astro'
+import { DEFAULT_LOCALE } from '../i18n/locales'
 ---
 
-<MainGridLayout
-  title={i18n(I18nKey.statistics)}
-  description={i18n(I18nKey.statisticsDescription)}
-  hideSidebar={true}
->
-  <InsightsView client:only="svelte" />
-</MainGridLayout>
+<LocalizedStatisticsPage locale={DEFAULT_LOCALE} />

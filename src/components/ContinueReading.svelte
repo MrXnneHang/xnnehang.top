@@ -1,20 +1,24 @@
 <script lang="ts">
+  import { DEFAULT_LOCALE, type Locale } from '../i18n/locales'
+  import { getShelfLabels } from '../utils/shelf-locale'
   import type { CurrentShelfItem } from '../types/shelf'
 
   interface Props {
     items: CurrentShelfItem[]
+    locale?: Locale
   }
 
-  let { items = [] }: Props = $props()
+  let { items = [], locale = DEFAULT_LOCALE }: Props = $props()
+  const labels = $derived(getShelfLabels(locale))
 </script>
 
 <section class="current-reading" aria-labelledby="current-reading-title">
   <header class="section-heading">
     <div>
-      <p class="eyebrow">Reading now</p>
-      <h2 id="current-reading-title">继续阅读</h2>
+      <p class="eyebrow">{labels.currentEyebrow}</p>
+      <h2 id="current-reading-title">{labels.currentTitle}</h2>
     </div>
-    <p>为正在读的书留个位置，也提醒自己继续读下去。</p>
+    <p>{labels.currentDescription}</p>
   </header>
 
   <div class="current-grid" class:single={items.length === 1}>
@@ -34,14 +38,14 @@
 
         <div class="current-copy">
           <div>
-            <span class="medium">{item.shelf}</span>
+            <span class="medium">{item.shelfLabel}</span>
             <h3>{item.title}</h3>
           </div>
 
           <div class="reading-meta">
             <span class="reading-status">{item.progressLabel}</span>
             {#if item.lastActivity}
-              <time datetime={item.lastActivity}>更新于 {item.lastActivity}</time>
+              <time datetime={item.lastActivity}>{labels.updatedAt(item.lastActivity)}</time>
             {/if}
           </div>
 
@@ -51,9 +55,9 @@
 
           <div class="note-action">
             {#if item.noteUrl}
-              <a href={item.noteUrl} aria-label={`阅读《${item.title}》的笔记`}>阅读笔记 <span aria-hidden="true">→</span></a>
+              <a href={item.noteUrl} aria-label={labels.readNotesLabel(item.title)}>{labels.readNotes} <span aria-hidden="true">→</span></a>
             {:else}
-              <span>笔记尚未开始</span>
+              <span>{labels.notesNotStarted}</span>
             {/if}
           </div>
         </div>

@@ -1,61 +1,156 @@
 ---
+import '@fontsource/roboto/400.css'
+import '@fontsource/roboto/500.css'
+import '@fontsource/roboto/700.css'
+import '../styles/main.css'
+
 import { Icon } from 'astro-icon/components'
-import MainGridLayout from '../layouts/MainGridLayout.astro'
-import { url } from '../utils/url-utils'
+import { profileConfig, siteConfig } from '../config'
+import { PAGE_WIDTH } from '../constants/constants'
+
+const chinese = {
+  title: '坐标未被记录',
+  description: '这片知识星球仍是一片荒漠，返回首页或前往文章归档继续探索。',
+  heading: '这片知识星球还是一片荒漠',
+  body: '你抵达的坐标尚未被记录，也许页面已经迁徙到了别处。可以回到基地，或从文章归档重新开始探索。',
+  navigation: '404 页面导航',
+  home: '返回首页',
+  archive: '查看归档',
+}
+
+const english = {
+  title: 'Coordinate Not Found',
+  description:
+    'This corner of the knowledge planet is still uncharted. Return home or continue exploring from the archive.',
+  heading: 'This corner of the knowledge planet is still uncharted',
+  body: 'The coordinate you reached has not been recorded, or the page may have moved elsewhere. Return to base or restart your journey from the post archive.',
+  navigation: '404 page navigation',
+  home: 'Return Home',
+  archive: 'View Archive',
+}
 ---
 
-<MainGridLayout
-  title="坐标未被记录"
-  description="这片知识星球仍是一片荒漠，返回首页或前往文章归档继续探索。"
-  hideSidebar={true}
->
-  <section class="error-card card-base relative flex min-h-[34rem] w-full items-center justify-center px-6 py-12 md:px-12">
-    <div class="error-grid" aria-hidden="true"></div>
+<!doctype html>
+<html lang="zh-CN" class="overflow-x-hidden bg-[var(--page-bg)] text-[16px] transition">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="author" content={profileConfig.name} />
+    <title>{chinese.title} - {siteConfig.title}</title>
+    <meta name="description" content={chinese.description} />
+    <style
+      define:vars={{
+        hue: siteConfig.themeColor.hue,
+        'page-width': `${PAGE_WIDTH}rem`,
+      }}
+    ></style>
+    <script is:inline define:vars={{ chinese, english, siteTitle: siteConfig.title }}>
+      const isEnglish = /^\/en(?:\/|$)/i.test(window.location.pathname)
+      const copy = isEnglish ? english : chinese
+      document.documentElement.lang = isEnglish ? 'en' : 'zh-CN'
+      document.title = `${copy.title} - ${siteTitle}`
+      document.querySelector('meta[name="description"]')?.setAttribute('content', copy.description)
+      document.documentElement.dataset.notFoundLocale = isEnglish ? 'en' : 'zh-CN'
+    </script>
+  </head>
+  <body class="min-h-screen overflow-x-hidden bg-[var(--page-bg)] transition">
+    <main class="mx-auto flex min-h-screen w-full max-w-[var(--page-width)] items-center px-4 py-8">
+      <section class="error-card card-base relative flex min-h-[34rem] w-full items-center justify-center overflow-hidden rounded-[var(--radius-large)] px-6 py-12 md:px-12">
+        <div class="error-grid" aria-hidden="true"></div>
 
-    <div class="relative z-10 flex max-w-2xl flex-col items-center text-center">
-      <div class="planet-scene mb-8" aria-hidden="true">
-        <span class="orbit">
-          <span class="satellite"></span>
-        </span>
-        <span class="planet">
-          <span class="planet-shadow"></span>
-          <span class="dune dune-back"></span>
-          <span class="dune dune-front"></span>
-        </span>
-      </div>
+        <div class="relative z-10 flex max-w-2xl flex-col items-center text-center">
+          <a href="/" class="brand-link localized-copy localized-copy-zh mb-8 text-xl font-bold text-[var(--primary)]">
+            <Icon name="material-symbols:home-outline-rounded" class="mr-2 inline text-2xl" />
+            {siteConfig.title}
+          </a>
+          <a href="/en/" class="brand-link localized-copy localized-copy-en mb-8 text-xl font-bold text-[var(--primary)]">
+            <Icon name="material-symbols:home-outline-rounded" class="mr-2 inline text-2xl" />
+            {siteConfig.title}
+          </a>
 
-      <p class="coordinate-label mb-3 text-xs font-bold tracking-[0.24em] text-[var(--primary)] uppercase">
-        Coordinate not found
-      </p>
-      <h1 class="error-code text-90 text-[clamp(4.5rem,18vw,9rem)]/[0.85] font-bold tracking-[-0.08em]">
-        404
-      </h1>
-      <h2 class="text-90 mt-7 text-2xl font-bold md:text-3xl">这片知识星球还是一片荒漠</h2>
-      <p class="text-50 mt-4 max-w-lg leading-7">
-        你抵达的坐标尚未被记录，也许页面已经迁徙到了别处。可以回到基地，或从文章归档重新开始探索。
-      </p>
+          <div class="planet-scene mb-8" aria-hidden="true">
+            <span class="orbit">
+              <span class="satellite"></span>
+            </span>
+            <span class="planet">
+              <span class="planet-shadow"></span>
+              <span class="dune dune-back"></span>
+              <span class="dune dune-front"></span>
+            </span>
+          </div>
 
-      <nav class="mt-8 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row" aria-label="404 页面导航">
-        <a
-          href={url('/')}
-          class="primary-action flex h-12 items-center justify-center rounded-xl px-6 font-bold transition active:scale-95"
-        >
-          <Icon name="material-symbols:home-outline-rounded" class="mr-2 text-xl" />
-          返回首页
-        </a>
-        <a
-          href={url('/archive/')}
-          class="secondary-action btn-regular flex h-12 items-center justify-center rounded-xl px-6 font-bold active:scale-95"
-        >
-          <Icon name="material-symbols:archive-outline-rounded" class="mr-2 text-xl" />
-          查看归档
-        </a>
-      </nav>
-    </div>
-  </section>
-</MainGridLayout>
+          <p class="coordinate-label mb-3 text-xs font-bold tracking-[0.24em] text-[var(--primary)] uppercase">
+            Coordinate not found
+          </p>
+          <h1 class="error-code text-90 text-[clamp(4.5rem,18vw,9rem)]/[0.85] font-bold tracking-[-0.08em]">
+            404
+          </h1>
+
+          <div class="localized-copy localized-copy-zh">
+            <h2 class="text-90 mt-7 text-2xl font-bold md:text-3xl">{chinese.heading}</h2>
+            <p class="text-50 mx-auto mt-4 max-w-lg leading-7">{chinese.body}</p>
+            <nav
+              class="mt-8 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row"
+              aria-label={chinese.navigation}
+            >
+              <a href="/" class="primary-action flex h-12 items-center justify-center rounded-xl px-6 font-bold transition active:scale-95">
+                <Icon name="material-symbols:home-outline-rounded" class="mr-2 text-xl" />
+                {chinese.home}
+              </a>
+              <a href="/archive/" class="secondary-action btn-regular flex h-12 items-center justify-center rounded-xl px-6 font-bold active:scale-95">
+                <Icon name="material-symbols:archive-outline-rounded" class="mr-2 text-xl" />
+                {chinese.archive}
+              </a>
+            </nav>
+          </div>
+
+          <div class="localized-copy localized-copy-en">
+            <h2 class="text-90 mt-7 text-2xl font-bold md:text-3xl">{english.heading}</h2>
+            <p class="text-50 mx-auto mt-4 max-w-lg leading-7">{english.body}</p>
+            <nav
+              class="mt-8 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row"
+              aria-label={english.navigation}
+            >
+              <a href="/en/" class="primary-action flex h-12 items-center justify-center rounded-xl px-6 font-bold transition active:scale-95">
+                <Icon name="material-symbols:home-outline-rounded" class="mr-2 text-xl" />
+                {english.home}
+              </a>
+              <a href="/en/archive/" class="secondary-action btn-regular flex h-12 items-center justify-center rounded-xl px-6 font-bold active:scale-95">
+                <Icon name="material-symbols:archive-outline-rounded" class="mr-2 text-xl" />
+                {english.archive}
+              </a>
+            </nav>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
 
 <style>
+  :global(:root) {
+    --radius-large: 1rem;
+    --primary: oklch(0.7 0.14 var(--hue));
+    --page-bg: oklch(0.95 0.01 var(--hue));
+    --card-bg: white;
+    --btn-regular-bg: oklch(0.95 0.025 var(--hue));
+    --btn-content: oklch(0.55 0.12 var(--hue));
+    --deep-text: oklch(0.25 0.02 var(--hue));
+  }
+
+  :global(html),
+  :global(body) {
+    margin: 0;
+    background: var(--page-bg);
+    color: rgb(0 0 0 / 75%);
+  }
+
+  :root:not([data-not-found-locale='en']) .localized-copy-en,
+  :root[data-not-found-locale='en'] .localized-copy-zh {
+    display: none;
+  }
+
   .error-card {
     isolation: isolate;
     border: 1px solid color-mix(in oklch, var(--primary) 10%, transparent);
@@ -170,7 +265,8 @@ import { url } from '../utils/url-utils'
   }
 
   .primary-action:focus-visible,
-  .secondary-action:focus-visible {
+  .secondary-action:focus-visible,
+  .brand-link:focus-visible {
     outline: 3px solid color-mix(in oklch, var(--primary) 55%, transparent);
     outline-offset: 3px;
   }

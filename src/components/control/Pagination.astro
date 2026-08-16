@@ -1,15 +1,17 @@
 ---
 import type { Page } from 'astro'
 import { Icon } from 'astro-icon/components'
+import { DEFAULT_LOCALE, type Locale } from '../../i18n/locales'
 import { url } from '../../utils/url-utils'
 
 interface Props {
   page: Page
   class?: string
   style?: string
+  locale?: Locale
 }
 
-const { page, style } = Astro.props
+const { page, style, locale = DEFAULT_LOCALE } = Astro.props
 
 const HIDDEN = -1
 
@@ -76,7 +78,7 @@ const getPageUrl = (p: number) => {
           )
         return (
           <a
-            href={url(getPageUrl(p))}
+            href={url(getPageUrl(p), locale)}
             aria-label={`Page ${p}`}
             class="btn-card h-11 w-11 overflow-hidden rounded-lg active:scale-[0.85]"
           >

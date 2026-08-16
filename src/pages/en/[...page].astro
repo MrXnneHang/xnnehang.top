@@ -1,0 +1,16 @@
+---
+import type { GetStaticPaths } from 'astro'
+import LocalizedHomePage from '../../components/LocalizedHomePage.astro'
+import { PAGE_SIZE } from '../../constants/constants'
+import { ENGLISH_LOCALE } from '../../i18n/locales'
+import { getSortedPosts } from '../../utils/content-utils'
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const englishPosts = await getSortedPosts(ENGLISH_LOCALE)
+  return paginate(englishPosts, { pageSize: PAGE_SIZE })
+}) satisfies GetStaticPaths
+
+const { page } = Astro.props
+---
+
+<LocalizedHomePage page={page} locale={ENGLISH_LOCALE} />

@@ -158,6 +158,17 @@ export function satteriDirectiveToHast() {
 
 let titleToSlug = null
 
+function parseYamlScalar(value) {
+  const trimmed = value.trim()
+  if (
+    (trimmed.startsWith("'") && trimmed.endsWith("'")) ||
+    (trimmed.startsWith('"') && trimmed.endsWith('"'))
+  ) {
+    return trimmed.slice(1, -1)
+  }
+  return trimmed
+}
+
 function normalizeQuotes(s) {
   // 弯引号统一为直引号，双引号 “ ” „ ‟ → "，单引号 ‘ ’ ‚ ‛ → '
   // 必须用 \u 转义而非字面量弯引号：字面量会被格式化工具/AI 悄悄改写成直引号，让本函数静默失效（已发生过一次）
@@ -176,18 +187,19 @@ function buildTitleMap() {
   }
   for (const file of files) {
     const content = readFileSync(path.join(postsDir, file), 'utf-8')
-    const match = content.match(/^title:\s*(.+)$/m)
-    if (match) {
-      let rawTitle = match[1].trim()
-      // Strip surrounding single or double quotes (YAML quoting syntax)
-      if (
-        (rawTitle.startsWith("'") && rawTitle.endsWith("'")) ||
-        (rawTitle.startsWith('"') && rawTitle.endsWith('"'))
-      ) {
-        rawTitle = rawTitle.slice(1, -1)
-      }
-      const slug = file.replace(/\.md$/, '')
-      titleToSlug.set(normalizeQuotes(rawTitle.toLowerCase()), slug)
+    const titleMatch = content.match(/^title:\s*(.+)$/m)
+    if (titleMatch) {
+      const rawTitle = parseYamlScalar(titleMatch[1])
+      const language = parseYamlScalar(content.match(/^lang:\s*(.+)$/m)?.[1] || 'zh-CN')
+      const translationKey = parseYamlScalar(content.match(/^translationKey:\s*(.+)$/m)?.[1] || '')
+      const fileSlug = file.replace(/\.md$/, '')
+      const routeSlug = translationKey || fileSlug
+      const locale = language.toLowerCase().startsWith('en') ? 'en' : 'zh-CN'
+      const prefix = locale === 'en' ? '/en' : ''
+      titleToSlug.set(
+        `${locale}:${normalizeQuotes(rawTitle.toLowerCase())}`,
+        `${prefix}/posts/${routeSlug}/`
+      )
     }
   }
   return titleToSlug
@@ -200,20 +212,21 @@ export function satteriWikiLinks() {
 
   return {
     name: 'nyakku-wikilinks',
-    text(node) {
+    text(node, ctx) {
       if (!node.value.includes('[[')) return
 
+      const locale = ctx.data.astro?.frontmatter?.lang === 'en' ? 'en' : 'zh-CN'
       let hasMatch = false
 
       WIKI_LINK_REGEX.lastIndex = 0
       const result = node.value.replace(WIKI_LINK_REGEX, (_full, rawTitle, rawDisplay) => {
         const title = rawTitle.trim()
         const displayText = (rawDisplay || rawTitle).trim()
-        const slug = map.get(normalizeQuotes(title.toLowerCase()))
+        const href = map.get(`${locale}:${normalizeQuotes(title.toLowerCase())}`)
 
-        if (slug) {
+        if (href) {
           hasMatch = true
-          return `[${displayText}](/posts/${slug}/${WIKILINK_HASH})`
+          return `[${displayText}](${href}${WIKILINK_HASH})`
         }
         console.warn(`[wikilink] ⚠️  "${title}" 没有匹配到任何文章`)
         return displayText

@@ -1,4 +1,6 @@
 import { getCollection } from 'astro:content'
+import { DEFAULT_LOCALE, type Locale } from '../i18n/locales'
+import { filterPostsByLocale, getPostRouteSlug } from './post-locale'
 import { getPostCoverSource } from './cover'
 import { optimizePostCover } from './cover-optimize'
 import { WIKI_LINK_REGEX } from './wiki-regex'
@@ -36,24 +38,31 @@ export type WikiGraphResult = {
  * Build the wiki link graph and also return the slug→title map.
  * Used by graph serialization to get accurate titles.
  */
-export async function buildWikiGraphWithTitles(): Promise<WikiGraphResult> {
-  const allPosts = await getCollection('posts', ({ data }: { data: { draft?: boolean } }) => {
-    return import.meta.env.PROD ? data.draft !== true : true
-  })
+export async function buildWikiGraphWithTitles(
+  locale: Locale = DEFAULT_LOCALE
+): Promise<WikiGraphResult> {
+  const collectionPosts = await getCollection(
+    'posts',
+    ({ data }: { data: { draft?: boolean } }) => {
+      return import.meta.env.PROD ? data.draft !== true : true
+    }
+  )
+  const allPosts = filterPostsByLocale(collectionPosts, locale)
 
   const titleToSlug = new Map<string, string>()
   const slugToTitle = new Map<string, string>()
   const slugToMetadata = new Map<string, WikiGraphMetadata>()
   for (const post of allPosts) {
     const title = post.data.title.trim()
+    const slug = getPostRouteSlug(post)
     if (title) {
-      titleToSlug.set(title.toLowerCase(), post.id)
-      slugToTitle.set(post.id, title)
-      slugToMetadata.set(post.id, {
+      titleToSlug.set(title.toLowerCase(), slug)
+      slugToTitle.set(slug, title)
+      slugToMetadata.set(slug, {
         title,
         description: post.data.description,
         published: post.data.published.toISOString().slice(0, 10),
-        category: post.data.category?.trim() || '未分类',
+        category: post.data.category?.trim() || (locale === 'en' ? 'Uncategorized' : '未分类'),
         tags: post.data.tags,
         cover: await optimizePostCover(getPostCoverSource(post.data.image, post.body), post.id),
       })
@@ -85,7 +94,7 @@ export async function buildWikiGraphWithTitles(): Promise<WikiGraphResult> {
       }
     }
 
-    graph.set(post.id, {
+    graph.set(getPostRouteSlug(post), {
       outbound: { resolved, unresolved },
       inbound: [],
     })

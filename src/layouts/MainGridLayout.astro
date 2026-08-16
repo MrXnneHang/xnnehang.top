@@ -5,6 +5,7 @@ import Navbar from '@components/Navbar.astro'
 import SideBar from '@components/widget/SideBar.astro'
 import type { MarkdownHeading } from 'astro'
 import { Icon } from 'astro-icon/components'
+import { DEFAULT_LOCALE, type Locale } from '../i18n/locales'
 import ImageWrapper from '../components/misc/ImageWrapper.astro'
 import TOC from '../components/widget/TOC.astro'
 import { siteConfig } from '../config'
@@ -19,13 +20,14 @@ interface Props {
   banner?: string
   description?: string
   lang?: string
+  locale?: Locale
   setOGTypeArticle?: boolean
   headings?: MarkdownHeading[]
   hideSidebar?: boolean
   showBanner?: boolean
 }
 
-const { title, banner, description, lang, setOGTypeArticle, headings = [], hideSidebar = false, showBanner = false } = Astro.props
+const { title, banner, description, lang, locale = DEFAULT_LOCALE, setOGTypeArticle, headings = [], hideSidebar = false, showBanner = false } = Astro.props
 const hasBannerCredit = siteConfig.banner.enable && siteConfig.banner.credit.enable && showBanner
 const hasBannerLink = !!siteConfig.banner.credit.url
 
@@ -39,13 +41,14 @@ const mainPanelTop = showBanner
   banner={banner}
   description={description}
   lang={lang}
+  locale={locale}
   setOGTypeArticle={setOGTypeArticle}
 >
   <!-- Navbar -->
   <slot slot="head" name="head" />
   <div id="navbar-wrapper" class="pointer-events-auto fixed top-0 left-0 right-0 z-50 transition-all duration-300">
     <div class="mx-auto max-w-[var(--page-width)] px-0 md:px-4">
-      <Navbar />
+      <Navbar locale={locale} />
     </div>
   </div>
   <div
@@ -129,6 +132,7 @@ const mainPanelTop = showBanner
         <SideBar
           class="onload-animation col-span-2 row-start-2 row-end-3 mb-4 lg:col-span-1 lg:row-start-1 lg:row-end-2 lg:max-w-[17.5rem]"
           headings={headings}
+          locale={locale}
           style={hideSidebar ? 'display: none' : ''}
         />
 
@@ -141,13 +145,13 @@ const mainPanelTop = showBanner
             <!-- make id different from windows.swup global property -->
             <slot />
             <div class="footer onload-animation col-span-2 hidden lg:block">
-              <Footer />
+              <Footer locale={locale} />
             </div>
           </div>
         </main>
 
         <div class="footer onload-animation col-span-2 block lg:hidden">
-          <Footer />
+          <Footer locale={locale} />
         </div>
       </div>
 

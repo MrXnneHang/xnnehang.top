@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "generatedAt": null,
   "status": "empty",
   "source": "ga4",
@@ -2975,5 +2975,6 @@
     "30d": [],
     "90d": [],
     "all": []
-  }
+  },
+  "locale": "zh-CN"
 }

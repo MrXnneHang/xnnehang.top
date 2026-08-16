@@ -3,6 +3,9 @@
   import Icon from '@iconify/svelte'
   import { forceCenter, forceCollide, forceLink, forceManyBody, forceSimulation } from 'd3-force'
   import type { GraphNode, SerializedGraph } from '@/types/graph'
+  import { getGraphCategoryOrder, getGraphLabels } from '@/utils/graph-locale'
+  import { getPostUrlBySlug } from '@/utils/url-utils'
+  import { getStatisticsGraphPath } from '@/utils/statistics-locale'
   import {
     countGraph,
     getNodeRelations,
@@ -15,6 +18,7 @@
     mode?: 'full' | 'mini'
     currentSlug?: string
     graphData?: SerializedGraph | null
+    locale?: 'zh-CN' | 'en'
   }
 
   interface SimNode extends GraphNode {
@@ -29,17 +33,18 @@
     target: SimNode
   }
 
-  const categoryOrder = ['观后', '思考', '边写边学', '教程', '资源'] as const
-  const categoryColors = {
-    观后: ['#2a78d6', '#3987e5'],
-    思考: ['#eb6834', '#d95926'],
-    边写边学: ['#1baf7a', '#199e70'],
-    教程: ['#4a3aa7', '#9085e9'],
-    资源: ['#e87ba4', '#d55181'],
-  } satisfies Record<(typeof categoryOrder)[number], [string, string]>
+  const categoryColors: Record<string, [string, string]> = {
+    观后: ['#2a78d6', '#3987e5'], Reviews: ['#2a78d6', '#3987e5'],
+    思考: ['#eb6834', '#d95926'], Reflections: ['#eb6834', '#d95926'],
+    边写边学: ['#1baf7a', '#199e70'], 'Learning as I Build': ['#1baf7a', '#199e70'],
+    教程: ['#4a3aa7', '#9085e9'], Tutorials: ['#4a3aa7', '#9085e9'],
+    资源: ['#e87ba4', '#d55181'], Resources: ['#e87ba4', '#d55181'],
+  }
   const fallbackCategoryColor = ['#64748b', '#94a3b8'] as const
 
-  let { mode = 'full', currentSlug = '', graphData = null }: Props = $props()
+  let { mode = 'full', currentSlug = '', graphData = null, locale = 'zh-CN' }: Props = $props()
+  let labels = $derived(getGraphLabels(locale))
+  let categoryOrder = $derived(getGraphCategoryOrder(locale))
 
   let explorer: HTMLElement | undefined = $state(undefined)
   let container: HTMLDivElement | undefined = $state(undefined)
@@ -80,7 +85,7 @@
   )
 
   function categoryColor(category: string): string {
-    const colors = categoryColors[category as keyof typeof categoryColors] ?? fallbackCategoryColor
+    const colors = categoryColors[category] ?? fallbackCategoryColor
     return colors[dark ? 1 : 0]
   }
 
@@ -96,12 +101,12 @@
   }
 
   function getPostUrl(slug: string): string {
-    return `/posts/${slug}/`
+    return getPostUrlBySlug(slug, locale)
   }
 
   function formatPublished(value: string): string {
-    if (!value) return '发布日期未知'
-    return new Intl.DateTimeFormat('zh-CN', {
+    if (!value) return labels.unavailableDate
+    return new Intl.DateTimeFormat(locale === 'en' ? 'en' : 'zh-CN', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
@@ -300,13 +305,13 @@
     loading = true
     error = ''
     try {
-      const response = await fetch('/graph-data.json')
+      const response = await fetch(getStatisticsGraphPath(locale))
       if (!response.ok) throw new Error(`HTTP ${response.status}`)
       rawGraph = await response.json()
       refreshGraph(true)
     } catch (reason) {
       console.error('Failed to load graph data:', reason)
-      error = '关系图谱暂时无法加载，请稍后再试。'
+      error = labels.loadError
     } finally {
       loading = false
     }
@@ -367,9 +372,17 @@
     class="graph-container relative h-[280px] w-full overflow-hidden rounded-xl {dark ? 'bg-white/[0.04] ring-1 ring-white/[0.06]' : 'bg-neutral-50 shadow-inner'}"
   >
     {#if simNodes.length === 0}
-      <div class="flex h-full items-center justify-center text-sm text-black/40 dark:text-white/40">暂无引用关系</div>
+      <div class="flex h-full items-center justify-center text-sm text-black/40 dark:text-white/40">
+        {labels.noLinkedPosts}
+      </div>
     {:else}
-      <svg {width} {height} viewBox="0 0 {width} {height}" class="block w-full" aria-label="本文关系图谱">
+      <svg
+        {width}
+        {height}
+        viewBox="0 0 {width} {height}"
+        class="block w-full"
+        aria-label={labels.miniGraphAria}
+      >
         <g>
           {#each simLinks as link}
             <line x1={link.source.x} y1={link.source.y} x2={link.target.x} y2={link.target.y} stroke={dark ? 'rgba(255,255,255,.12)' : 'rgba(0,0,0,.1)'} stroke-width="0.8" />
@@ -393,15 +406,15 @@
       <div class="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
         <div class="max-w-2xl">
           <p class="mb-2 text-xs font-semibold tracking-[0.18em] text-[var(--primary)] uppercase">Connection atlas</p>
-          <h2 id="graph-explorer-title" class="text-2xl font-bold tracking-tight text-black/90 md:text-3xl dark:text-white/90">顺着引用，探索文章之间的关系</h2>
-          <p class="mt-2 text-sm leading-6 text-black/50 dark:text-white/50">搜索一篇文章，查看它引用了谁、又被谁继续引用。箭头从引用者指向被引用者。</p>
+          <h2 id="graph-explorer-title" class="text-2xl font-bold tracking-tight text-black/90 md:text-3xl dark:text-white/90">{labels.title}</h2>
+          <p class="mt-2 text-sm leading-6 text-black/50 dark:text-white/50">{labels.description}</p>
         </div>
         <dl class="grid grid-cols-4 gap-2 text-center xl:min-w-[27rem]">
           {#each [
-            ['文章', graphCounts.total],
-            ['已关联', graphCounts.connected],
-            ['未关联', graphCounts.isolated],
-            ['引用', graphCounts.links],
+            [labels.posts, graphCounts.total],
+            [labels.connected, graphCounts.connected],
+            [labels.isolated, graphCounts.isolated],
+            [labels.references, graphCounts.links],
           ] as item}
             <div class="rounded-xl bg-black/[0.035] px-2 py-3 dark:bg-white/[0.055]">
               <dt class="text-[0.65rem] text-black/40 dark:text-white/40">{item[0]}</dt>
@@ -425,25 +438,25 @@
               if (event.key === 'Escape') searchExpanded = false
               if (event.key === 'Enter' && searchResults[0]) selectNode(searchResults[0].id, true)
             }}
-            placeholder="搜索文章标题、分类或标签"
-            aria-label="搜索图谱文章"
+            placeholder={labels.searchPlaceholder}
+            aria-label={labels.searchAria}
             aria-expanded={searchExpanded && query.trim().length > 0}
             class="h-10 w-full rounded-xl bg-black/[0.04] pr-3 pl-10 text-sm text-black/75 outline-none ring-[var(--primary)]/30 transition focus:ring-2 dark:bg-white/[0.06] dark:text-white/75"
           />
           {#if searchExpanded && query.trim()}
-            <div class="absolute top-12 right-0 left-0 z-30 max-h-72 overflow-y-auto rounded-xl bg-[var(--float-panel-bg)] p-1.5 shadow-xl ring-1 ring-black/[0.06] dark:ring-white/[0.08]" role="listbox" aria-label="图谱搜索结果">
+            <div class="absolute top-12 right-0 left-0 z-30 max-h-72 overflow-y-auto rounded-xl bg-[var(--float-panel-bg)] p-1.5 shadow-xl ring-1 ring-black/[0.06] dark:ring-white/[0.08]" role="listbox" aria-label={labels.searchResultsAria}>
               {#if searchResults.length}
                 {#each searchResults as node}
                   <button type="button" role="option" class="flex w-full items-start gap-3 rounded-lg px-3 py-2 text-left hover:bg-[var(--btn-plain-bg-hover)]" onclick={() => selectNode(node.id, true)}>
                     <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[var(--primary)]"></span>
                     <span class="min-w-0">
                       <span class="block truncate text-sm font-medium text-black/80 dark:text-white/80">{node.title}</span>
-                      <span class="mt-0.5 block truncate text-xs text-black/40 dark:text-white/40">{node.category} · {node.linkCount ? `${node.linkCount} 条关系` : '暂未关联'}</span>
+                      <span class="mt-0.5 block truncate text-xs text-black/40 dark:text-white/40">{node.category} · {node.linkCount ? labels.relationshipCount(node.linkCount) : labels.noRelationships}</span>
                     </span>
                   </button>
                 {/each}
               {:else}
-                <p class="px-3 py-5 text-center text-sm text-black/45 dark:text-white/45">没有匹配的文章</p>
+                <p class="px-3 py-5 text-center text-sm text-black/45 dark:text-white/45">{labels.noMatches}</p>
               {/if}
             </div>
           {/if}
@@ -452,7 +465,7 @@
         <div class="flex flex-wrap items-center gap-2">
           <label class="graph-action graph-toggle cursor-pointer text-black/65 dark:text-white/75">
             <input type="checkbox" bind:checked={showIsolated} class="accent-[var(--primary)]" disabled={Boolean(focusedNodeId)} />
-            显示未关联文章
+            {labels.showIsolated}
           </label>
         </div>
       </div>
@@ -461,48 +474,48 @@
         <div class="relative min-h-[32rem] overflow-hidden bg-black/[0.018] dark:bg-white/[0.018]" bind:this={container}>
           {#if loading}
             <div class="absolute inset-0 flex items-center justify-center text-sm text-black/45 dark:text-white/45" aria-live="polite">
-              <Icon icon="material-symbols:progress-activity" class="mr-2 animate-spin text-xl" />正在整理文章关系
+              <Icon icon="material-symbols:progress-activity" class="mr-2 animate-spin text-xl" />{labels.loading}
             </div>
           {:else if error}
             <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center" role="alert">
               <Icon icon="material-symbols:cloud-off-outline-rounded" class="text-4xl text-[var(--primary)]" />
               <p class="text-sm text-black/55 dark:text-white/55">{error}</p>
-              <button type="button" class="graph-action" onclick={loadFullGraph}>重新加载</button>
+              <button type="button" class="graph-action" onclick={loadFullGraph}>{labels.retry}</button>
             </div>
           {:else if simNodes.length === 0}
             <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center text-black/45 dark:text-white/45">
               <Icon icon="material-symbols:hub-outline-rounded" class="mb-3 text-4xl text-[var(--primary)] opacity-70" />
-              <p class="font-medium">当前没有可显示的引用关系</p>
-              <p class="mt-1 text-xs">可通过搜索查看暂未关联的文章。</p>
+              <p class="font-medium">{labels.emptyTitle}</p>
+              <p class="mt-1 text-xs">{labels.emptyDescription}</p>
             </div>
           {:else}
             {#if focusedNodeId}
               <button type="button" class="absolute top-3 left-3 z-20 flex min-h-10 items-center gap-2 rounded-xl bg-[var(--primary)] px-3.5 text-sm font-semibold text-white shadow-lg transition hover:brightness-110" onclick={returnToFullGraph}>
-                <Icon icon="material-symbols:arrow-back-rounded" /> 返回全图
+                <Icon icon="material-symbols:arrow-back-rounded" /> {labels.backToGraph}
               </button>
             {:else if visibleCategories.length}
-              <ul class="absolute top-3 left-3 z-10 flex max-w-[calc(100%-5rem)] flex-wrap gap-x-3 gap-y-1.5 rounded-xl bg-[var(--card-bg)]/88 px-3 py-2 text-[0.65rem] text-black/55 shadow-sm ring-1 ring-black/[0.05] backdrop-blur dark:text-white/55 dark:ring-white/[0.07]" aria-label="文章分类图例">
+              <ul class="absolute top-3 left-3 z-10 flex max-w-[calc(100%-5rem)] flex-wrap gap-x-3 gap-y-1.5 rounded-xl bg-[var(--card-bg)]/88 px-3 py-2 text-[0.65rem] text-black/55 shadow-sm ring-1 ring-black/[0.05] backdrop-blur dark:text-white/55 dark:ring-white/[0.07]" aria-label={labels.categoryLegendAria}>
                 {#each visibleCategories as category}
                   <li class="flex items-center gap-1.5"><span class="h-2.5 w-2.5 rounded-full ring-2 ring-[var(--card-bg)]" style={`background: ${categoryColor(category)}`}></span>{category}</li>
                 {/each}
               </ul>
             {/if}
-            <div class="graph-controls absolute top-3 right-3 z-20 flex flex-col gap-1 rounded-xl bg-[var(--card-bg)]/90 p-1 shadow-lg ring-1 ring-black/[0.06] backdrop-blur dark:ring-white/[0.08]" aria-label="图谱视角控制">
-              <button type="button" class="graph-icon-button" aria-label="放大图谱" title="放大" onclick={() => zoomBy(1.2)}><Icon icon="material-symbols:add-rounded" /></button>
-              <button type="button" class="graph-icon-button" aria-label="缩小图谱" title="缩小" onclick={() => zoomBy(1 / 1.2)}><Icon icon="material-symbols:remove-rounded" /></button>
-              <button type="button" class="graph-icon-button" aria-label="适应画布" title="适应画布" onclick={() => fitGraph()}><Icon icon="material-symbols:fit-screen-outline-rounded" /></button>
-              <button type="button" class="graph-icon-button" aria-label="重置视角" title="重置视角" onclick={resetView}><Icon icon="material-symbols:center-focus-strong-outline-rounded" /></button>
-              <button type="button" class="graph-icon-button" aria-label={fullscreen ? '退出全屏' : '全屏查看'} title={fullscreen ? '退出全屏' : '全屏查看'} onclick={toggleFullscreen}><Icon icon={fullscreen ? 'material-symbols:fullscreen-exit-rounded' : 'material-symbols:fullscreen-rounded'} /></button>
+            <div class="graph-controls absolute top-3 right-3 z-20 flex flex-col gap-1 rounded-xl bg-[var(--card-bg)]/90 p-1 shadow-lg ring-1 ring-black/[0.06] backdrop-blur dark:ring-white/[0.08]" aria-label={labels.controlsAria}>
+              <button type="button" class="graph-icon-button" aria-label={labels.zoomIn} title={labels.zoomIn} onclick={() => zoomBy(1.2)}><Icon icon="material-symbols:add-rounded" /></button>
+              <button type="button" class="graph-icon-button" aria-label={labels.zoomOut} title={labels.zoomOut} onclick={() => zoomBy(1 / 1.2)}><Icon icon="material-symbols:remove-rounded" /></button>
+              <button type="button" class="graph-icon-button" aria-label={labels.fit} title={labels.fit} onclick={() => fitGraph()}><Icon icon="material-symbols:fit-screen-outline-rounded" /></button>
+              <button type="button" class="graph-icon-button" aria-label={labels.reset} title={labels.reset} onclick={resetView}><Icon icon="material-symbols:center-focus-strong-outline-rounded" /></button>
+              <button type="button" class="graph-icon-button" aria-label={fullscreen ? labels.exitFullscreen : labels.enterFullscreen} title={fullscreen ? labels.exitFullscreen : labels.enterFullscreen} onclick={toggleFullscreen}><Icon icon={fullscreen ? 'material-symbols:fullscreen-exit-rounded' : 'material-symbols:fullscreen-rounded'} /></button>
             </div>
 
-            <div class="pointer-events-none absolute bottom-3 left-3 z-10 rounded-lg bg-[var(--card-bg)]/80 px-2.5 py-1.5 text-[0.65rem] text-black/40 backdrop-blur dark:text-white/40">{focusedNodeId ? '点击相邻节点继续探索 · Esc 返回全图' : '点击节点查看一跳关系 · 滚轮缩放 · 拖动画布'}</div>
+            <div class="pointer-events-none absolute bottom-3 left-3 z-10 rounded-lg bg-[var(--card-bg)]/80 px-2.5 py-1.5 text-[0.65rem] text-black/40 backdrop-blur dark:text-white/40">{focusedNodeId ? labels.focusedHint : labels.graphHint}</div>
 
             <svg
               {width}
               {height}
               viewBox="0 0 {width} {height}"
               class="block h-full w-full touch-none {isPanning ? 'cursor-grabbing' : 'cursor-grab'}"
-              aria-label="文章引用关系图"
+              aria-label={labels.graphAria}
               onwheel={onWheel}
               onpointerdown={onPointerDown}
               onpointermove={onPointerMove}
@@ -536,7 +549,7 @@
                     data-graph-node
                     role="button"
                     tabindex="0"
-                    aria-label={`${node.title}，${node.linkCount ? `${node.linkCount} 条关系` : '暂未关联'}`}
+                    aria-label={labels.nodeAria(node.title, node.linkCount)}
                     transform={`translate(${node.x},${node.y}) scale(${visualScale})`}
                     class="cursor-pointer outline-none"
                     onclick={() => selectNode(node.id)}
@@ -574,7 +587,7 @@
           {/if}
         </div>
 
-        <aside class="min-h-0 border-t border-black/[0.07] bg-[var(--card-bg)] lg:border-t-0 lg:border-l dark:border-white/[0.08]" aria-label="文章关系详情">
+        <aside class="min-h-0 border-t border-black/[0.07] bg-[var(--card-bg)] lg:border-t-0 lg:border-l dark:border-white/[0.08]" aria-label={labels.detailsAria}>
           {#if selectedNode}
             <div class="flex h-full max-h-[38rem] flex-col p-5 lg:max-h-none">
               <div class="min-h-0 flex-1 overflow-y-auto pr-1">
@@ -600,34 +613,34 @@
                 {/if}
 
                 <div class="relation-group relation-group-out mt-6">
-                  <h4 class="relation-heading"><span class="relation-heading-icon"><Icon icon="material-symbols:arrow-outward-rounded" /></span><span>引用了</span><strong>{selectedRelations.outgoing.length}</strong></h4>
-                  <p class="relation-caption">从这篇文章出发</p>
+                  <h4 class="relation-heading"><span class="relation-heading-icon"><Icon icon="material-symbols:arrow-outward-rounded" /></span><span>{labels.outbound}</span><strong>{selectedRelations.outgoing.length}</strong></h4>
+                  <p class="relation-caption">{labels.outboundCaption}</p>
                   {#if selectedRelations.outgoing.length}
                     <ul class="mt-2 space-y-1">
                       {#each selectedRelations.outgoing as node}<li><button type="button" class="relation-link" onclick={() => selectNode(node.id)}><Icon icon="material-symbols:arrow-outward-rounded" />{node.title}</button></li>{/each}
                     </ul>
-                  {:else}<p class="mt-2 text-xs text-black/45 dark:text-white/50">没有指向其他文章的引用</p>{/if}
+                  {:else}<p class="mt-2 text-xs text-black/45 dark:text-white/50">{labels.noOutbound}</p>{/if}
                 </div>
 
                 <div class="relation-group relation-group-in mt-3">
-                  <h4 class="relation-heading"><span class="relation-heading-icon"><Icon icon="material-symbols:call-received-rounded" /></span><span>被引用</span><strong>{selectedRelations.incoming.length}</strong></h4>
-                  <p class="relation-caption">从其他文章汇入</p>
+                  <h4 class="relation-heading"><span class="relation-heading-icon"><Icon icon="material-symbols:call-received-rounded" /></span><span>{labels.inbound}</span><strong>{selectedRelations.incoming.length}</strong></h4>
+                  <p class="relation-caption">{labels.inboundCaption}</p>
                   {#if selectedRelations.incoming.length}
                     <ul class="mt-2 space-y-1">
                       {#each selectedRelations.incoming as node}<li><button type="button" class="relation-link" onclick={() => selectNode(node.id)}><Icon icon="material-symbols:call-received-rounded" />{node.title}</button></li>{/each}
                     </ul>
-                  {:else}<p class="mt-2 text-xs text-black/45 dark:text-white/50">还没有其他文章引用它</p>{/if}
+                  {:else}<p class="mt-2 text-xs text-black/45 dark:text-white/50">{labels.noInbound}</p>{/if}
                 </div>
               </div>
               <a href={getPostUrl(selectedNode.id)} class="mt-5 flex h-10 shrink-0 items-center justify-center gap-2 rounded-xl bg-[var(--primary)] px-4 text-sm font-medium text-white transition hover:brightness-110">
-                阅读全文 <Icon icon="material-symbols:arrow-forward-rounded" />
+                {labels.readPost} <Icon icon="material-symbols:arrow-forward-rounded" />
               </a>
             </div>
           {:else}
             <div class="flex h-full min-h-64 flex-col items-center justify-center p-6 text-center">
               <Icon icon="material-symbols:touch-app-outline-rounded" class="text-4xl text-[var(--primary)] opacity-60" />
-              <p class="mt-3 text-sm font-medium text-black/60 dark:text-white/60">选择一篇文章</p>
-              <p class="mt-1 max-w-48 text-xs leading-5 text-black/35 dark:text-white/35">点击节点或使用搜索，查看引用方向与文章预览。</p>
+              <p class="mt-3 text-sm font-medium text-black/60 dark:text-white/60">{labels.selectPost}</p>
+              <p class="mt-1 max-w-48 text-xs leading-5 text-black/35 dark:text-white/35">{labels.selectPostDescription}</p>
             </div>
           {/if}
         </aside>

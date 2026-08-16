@@ -1,6 +1,8 @@
 <script lang="ts">
   import { onMount, onDestroy } from 'svelte'
 
+  export let locale: 'zh-CN' | 'en' = 'zh-CN'
+
   const REPO = 'MrXnneHang/xnnehang.top'
   const REPO_ID = 'R_kgDOSusWYQ'
   const CATEGORY = 'Announcements'
@@ -32,7 +34,7 @@
     script.setAttribute('data-emit-metadata', '0')
     script.setAttribute('data-input-position', 'top')
     script.setAttribute('data-theme', getTheme())
-    script.setAttribute('data-lang', 'zh-CN')
+    script.setAttribute('data-lang', locale === 'en' ? 'en' : 'zh-CN')
     script.setAttribute('crossorigin', 'anonymous')
     script.async = true
     container.appendChild(script)

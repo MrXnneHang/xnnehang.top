@@ -1,16 +1,21 @@
 ---
 import { Icon } from 'astro-icon/components'
+import { DEFAULT_LOCALE, ENGLISH_LOCALE, type Locale } from '../../i18n/locales'
 import { profileConfig } from '../../config'
 import { url } from '../../utils/url-utils'
 import ImageWrapper from '../misc/ImageWrapper.astro'
 
 const config = profileConfig
+const { locale = DEFAULT_LOCALE } = Astro.props as { locale?: Locale }
+const bio = locale === ENGLISH_LOCALE ? 'I code because I love it.' : config.bio
+const getProfileLink = (item: (typeof config.links)[number]) =>
+  item.name === 'RSS' ? url('rss.xml', locale) : item.url
 ---
 
 <div class="card-base p-3">
   <a
     aria-label="Go to About Page"
-    href={url('/about/')}
+    href={url('/about/', locale)}
     class="group relative mx-auto mt-1 mb-3 block max-w-[12rem] overflow-hidden rounded-xl active:scale-95 lg:mx-0 lg:mt-0 lg:max-w-none"
   >
     <div
@@ -32,7 +37,7 @@ const config = profileConfig
       {config.name}
     </div>
     <div class="mx-auto mb-2 h-1 w-5 rounded-full bg-[var(--primary)] transition"></div>
-    <div class="mb-2.5 text-center text-neutral-400 transition">{config.bio}</div>
+    <div class="mb-2.5 text-center text-neutral-400 transition">{bio}</div>
     <div class="mb-1 flex flex-wrap justify-center gap-2">
       {
         config.links.length > 1 &&
@@ -40,7 +45,7 @@ const config = profileConfig
             <a
               rel="me"
               aria-label={item.name}
-              href={item.url}
+              href={getProfileLink(item)}
               target="_blank"
               class="btn-regular h-10 w-10 rounded-lg active:scale-90"
             >
@@ -53,7 +58,7 @@ const config = profileConfig
           <a
             rel="me"
             aria-label={config.links[0].name}
-            href={config.links[0].url}
+            href={getProfileLink(config.links[0])}
             target="_blank"
             class="btn-regular h-10 gap-2 rounded-lg px-3 font-bold active:scale-95"
           >
