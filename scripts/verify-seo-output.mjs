@@ -119,7 +119,9 @@ assert(
 )
 
 const themeLockSelectorIndex = rootHtml.indexOf('html.theme-initializing')
-const layerOrderIndex = rootHtml.search(/@layer\s+theme\s*,\s*base\s*,\s*components\s*,\s*utilities\s*;/)
+const layerOrderIndex = rootHtml.search(
+  /@layer\s+theme\s*,\s*base\s*,\s*components\s*,\s*utilities\s*;/
+)
 const firstStylesheetIndex = rootHtml.search(/<link\b[^>]*\brel=["'][^"']*\bstylesheet\b[^>]*>/)
 assert(
   rootHtml.includes('class="theme-initializing '),
