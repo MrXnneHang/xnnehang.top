@@ -20,6 +20,14 @@ function assert(condition, message) {
   if (!condition) throw new Error(message)
 }
 
+function getStylesheetHrefs(html) {
+  return [...html.matchAll(/<link\b[^>]*>/g)].flatMap(([tag]) => {
+    const rel = tag.match(/\brel=["']([^"']+)["']/)?.[1]
+    const href = tag.match(/\bhref=["']([^"']+)["']/)?.[1]
+    return rel?.split(/\s+/).includes('stylesheet') && href ? [href] : []
+  })
+}
+
 const [
   index,
   robots,
@@ -111,6 +119,27 @@ assert(englishCatalog.posts.length > 0, 'English statistics catalog must contain
 assert(
   englishCatalog.posts.every((post) => post.path.startsWith('/en/posts/')),
   'English publication statistics must use English post routes'
+)
+
+const stylesheetHrefs = getStylesheetHrefs(rootHtml)
+assert(stylesheetHrefs.length > 0, 'Root page must reference at least one stylesheet')
+const stylesheets = await Promise.all(
+  stylesheetHrefs.map(async (href) => {
+    const stylesheetUrl = new URL(href, siteOrigin)
+    assert(stylesheetUrl.origin === siteOrigin, `Stylesheet must use ${siteOrigin}: ${href}`)
+    return readFile(resolve(dist, `.${stylesheetUrl.pathname}`), 'utf8')
+  })
+)
+const emittedCss = stylesheets.join('\n')
+for (const variable of ['text-90', 'text-75', 'text-50', 'text-30', 'text-25', 'icon-content']) {
+  assert(
+    new RegExp(`--${variable}:`).test(emittedCss),
+    `Built CSS must define the --${variable} foreground variable`
+  )
+}
+assert(
+  !/(?:^|[^\w-])#[\da-f]{4}(?![\da-f])|(?:^|[^\w-])#[\da-f]{8}(?![\da-f])/i.test(emittedCss),
+  'Built CSS contains 4/8-digit alpha hex colors; keep Vite build.cssTarget compatible with embedded Android WebViews'
 )
 
 const requiredEnglishLinks = [
