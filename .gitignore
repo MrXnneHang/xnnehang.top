@@ -34,6 +34,7 @@ yarn.lock
 *.iml
 .obsidian
 YOLO/
+/Clippings/
 
 # macOS
 .DS_Store
