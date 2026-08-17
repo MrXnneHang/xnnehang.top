@@ -133,6 +133,9 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     build: {
+      // Keep rgba() colors compatible with embedded Android WebViews.
+      // https://vite.dev/config/build-options.html#build-csstarget
+      cssTarget: 'chrome61',
       rollupOptions: {
         onwarn(warning, warn) {
           // temporarily suppress this warning
