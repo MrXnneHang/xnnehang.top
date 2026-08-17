@@ -91,7 +91,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href
 <!doctype html>
 <html
   lang={siteLang}
-  class="overflow-x-hidden bg-[var(--page-bg)] text-[14px] transition md:text-[16px]"
+  class="theme-initializing overflow-x-hidden bg-[var(--page-bg)] text-[14px] transition md:text-[16px]"
   data-overlayscrollbars-initialize
 >
   <head>
@@ -132,6 +132,19 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href
       ))
     }
 
+    <!-- Fix Tailwind's cascade layer order before code-split stylesheets load. -->
+    <style is:inline>
+      @layer theme, base, components, utilities;
+    </style>
+    <!-- Prevent the initial theme from transitioning from unloaded light colors. -->
+    <style is:inline>
+      html.theme-initializing,
+      html.theme-initializing *,
+      html.theme-initializing *::before,
+      html.theme-initializing *::after {
+        transition: none !important;
+      }
+    </style>
     <!-- Set the theme before the page is rendered to avoid a flash -->
     <script
       is:inline
@@ -170,6 +183,19 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href
       let offset = Math.floor(window.innerHeight * (BANNER_HEIGHT_EXTEND / 100))
       offset = offset - (offset % 4)
       document.documentElement.style.setProperty('--banner-height-extend', `${offset}px`)
+
+      const unlockThemeTransitions = () => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            document.documentElement.classList.remove('theme-initializing')
+          })
+        })
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', unlockThemeTransitions, { once: true })
+      } else {
+        unlockThemeTransitions()
+      }
     </script>
     <style
       define:vars={{

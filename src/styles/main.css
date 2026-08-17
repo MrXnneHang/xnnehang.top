@@ -11,6 +11,7 @@
 
 @layer base {
   body {
+    color: var(--text-75);
     cursor: url('/cursor/default.cur'), auto;
   }
 

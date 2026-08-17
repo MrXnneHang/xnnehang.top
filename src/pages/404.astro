@@ -139,8 +139,8 @@ const english = {
     --deep-text: oklch(0.25 0.02 var(--hue));
   }
 
-  :global(html),
-  :global(body) {
+  :global(html[data-not-found-locale]),
+  :global(html[data-not-found-locale] body) {
     margin: 0;
     background: var(--page-bg);
     color: rgb(0 0 0 / 75%);

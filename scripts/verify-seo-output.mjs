@@ -113,6 +113,35 @@ assert(
   englishHtml.includes(`href="${siteOrigin}/en/rss.xml"`),
   'English pages must advertise the English RSS feed'
 )
+assert(
+  !/html\s*,\s*body\s*\{[^}]*color\s*:\s*(?:rgba?\(0|black\b)/i.test(rootHtml),
+  'Root page must not inherit the 404 page light foreground color'
+)
+
+const themeLockSelectorIndex = rootHtml.indexOf('html.theme-initializing')
+const layerOrderIndex = rootHtml.search(
+  /@layer\s+theme\s*,\s*base\s*,\s*components\s*,\s*utilities\s*;/
+)
+const firstStylesheetIndex = rootHtml.search(/<link\b[^>]*\brel=["'][^"']*\bstylesheet\b[^>]*>/)
+assert(
+  rootHtml.includes('class="theme-initializing '),
+  'Root page must mark the initial theme before styles load'
+)
+assert(themeLockSelectorIndex >= 0, 'Root page must inline the initial theme transition lock')
+assert(layerOrderIndex >= 0, 'Root page must declare the Tailwind cascade layer order')
+assert(firstStylesheetIndex >= 0, 'Root page must reference at least one stylesheet')
+assert(
+  layerOrderIndex < firstStylesheetIndex,
+  'Tailwind cascade layer order must be declared before the first stylesheet'
+)
+assert(
+  themeLockSelectorIndex < firstStylesheetIndex,
+  'Initial theme transition lock must appear before the first stylesheet'
+)
+assert(
+  /classList\.remove\(["']theme-initializing["']\)/.test(rootHtml),
+  'Root page must unlock theme transitions after initialization'
+)
 
 assert(rootCatalog.posts.length > 0, 'Root statistics catalog must contain posts')
 assert(englishCatalog.posts.length > 0, 'English statistics catalog must contain posts')
@@ -131,6 +160,10 @@ const stylesheets = await Promise.all(
   })
 )
 const emittedCss = stylesheets.join('\n')
+assert(
+  /body\s*\{[^}]*color:\s*var\(--text-75\)/.test(emittedCss),
+  'Built CSS must give body the semantic theme foreground'
+)
 for (const variable of ['text-90', 'text-75', 'text-50', 'text-30', 'text-25', 'icon-content']) {
   assert(
     new RegExp(`--${variable}:`).test(emittedCss),
