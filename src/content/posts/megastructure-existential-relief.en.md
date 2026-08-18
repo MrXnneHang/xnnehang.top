@@ -1,6 +1,7 @@
 ---
 title: The Psychological Suggestion of Megastructures and Existential Relief
 published: 2026-08-18
+featured: true
 category: Reflections
 tags:
   - Philosophy
