@@ -293,7 +293,7 @@ export function createEmptyStatistics(content = { posts: [], totals: {} }, local
   const totals = content.totals ?? {}
   const defaults = buildContentTotals([], locale)
   return {
-    version: 2,
+    version: 3,
     locale,
     generatedAt: null,
     status: 'empty',
@@ -322,7 +322,7 @@ export function createEmptyStatistics(content = { posts: [], totals: {} }, local
 
 export function isStatisticsData(value, expectedLocale) {
   if (!value || typeof value !== 'object') return false
-  if (value.version !== 2 || value.source !== 'ga4') return false
+  if (value.version !== 3 || value.source !== 'ga4') return false
   if (!STATISTICS_LOCALES.includes(value.locale)) return false
   if (expectedLocale && value.locale !== expectedLocale) return false
   if (!value.site || !value.content || !value.ranges) return false
@@ -355,7 +355,7 @@ export function buildStatistics(content, rangeRows, siteMetrics, locale = 'zh-CN
       .map(([path, metrics]) => ({
         ...contentByPath.get(path),
         ...metrics,
-        engagementSecondsPerView: average(metrics.engagementSeconds, metrics.screenPageViews),
+        engagementSecondsPerUser: average(metrics.engagementSeconds, metrics.activeUsers),
       }))
       .sort((a, b) => b.screenPageViews - a.screenPageViews)
   }

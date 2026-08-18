@@ -15,7 +15,7 @@ export interface StatisticsPost extends StatisticsContentPost {
   activeUsers: number
   screenPageViews: number
   engagementSeconds: number
-  engagementSecondsPerView: number
+  engagementSecondsPerUser: number
 }
 
 export interface StatisticsPublicationMonth {
@@ -97,7 +97,7 @@ export interface StatisticsContentTotals {
 }
 
 export interface StatisticsData {
-  version: 2
+  version: 3
   locale: Locale
   generatedAt: string | null
   status: StatisticsStatus

@@ -20,7 +20,7 @@
     getStatisticsLabels,
   } from '@/utils/statistics-locale'
 
-  type SortKey = 'screenPageViews' | 'activeUsers' | 'engagementSecondsPerView'
+  type SortKey = 'screenPageViews' | 'activeUsers' | 'engagementSecondsPerUser'
 
   export let locale: Locale = DEFAULT_LOCALE
   $: labels = getStatisticsLabels(locale)
@@ -28,7 +28,7 @@
   $: sortOptions = [
     { value: 'screenPageViews' as const, label: labels.sortViews },
     { value: 'activeUsers' as const, label: labels.sortVisitors },
-    { value: 'engagementSecondsPerView' as const, label: labels.sortDuration },
+    { value: 'engagementSecondsPerUser' as const, label: labels.sortDuration },
   ]
   const minimumUsers = 5
 
@@ -39,7 +39,7 @@
   let sortKey: SortKey = 'screenPageViews'
 
   function rankingValue(post: StatisticsPost, key: SortKey) {
-    if (key === 'engagementSecondsPerView' && post.activeUsers < minimumUsers) return -1
+    if (key === 'engagementSecondsPerUser' && post.activeUsers < minimumUsers) return -1
     return post[key]
   }
 
@@ -78,7 +78,7 @@
 
       if (!nextData && !catalog) throw new Error('Statistics snapshot and content catalog are unavailable')
       nextData ??= {
-        version: 2,
+        version: 3,
         locale,
         generatedAt: null,
         status: 'empty',
@@ -131,7 +131,7 @@
         <div class="flex min-h-64 flex-col items-center justify-center text-center"><Icon icon="material-symbols:hourglass-empty-rounded" class="mb-3 text-4xl text-[var(--primary)] opacity-60" /><p class="font-medium text-black/70 dark:text-white/70">{labels.noReading}</p><p class="mt-1 text-sm text-black/40 dark:text-white/40">{labels.noReadingDescription}</p></div>
       {:else}
         <div class="overflow-x-auto"><table class="w-full min-w-[42rem] border-collapse text-left"><thead><tr class="border-b border-black/[0.07] text-xs text-black/40 dark:border-white/[0.09] dark:text-white/40"><th class="w-12 px-2 py-3 font-medium">#</th><th class="px-2 py-3 font-medium">{labels.rankArticle}</th><th class="px-2 py-3 text-right font-medium">{labels.visitors}</th><th class="px-2 py-3 text-right font-medium">{labels.views}</th><th class="px-2 py-3 text-right font-medium">{labels.averageReading}</th></tr></thead><tbody>
-          {#each posts as post, index}<tr class="border-b border-black/[0.045] transition last:border-0 hover:bg-black/[0.018] dark:border-white/[0.06] dark:hover:bg-white/[0.025]"><td class="px-2 py-4 text-sm tabular-nums text-black/35 dark:text-white/35">{index + 1}</td><td class="px-2 py-4"><a href={post.path} class="link font-medium text-black/80 dark:text-white/80">{post.title}</a><p class="mt-1 text-xs text-black/35 dark:text-white/35">{labels.estimatedReading(post.estimatedMinutes, formatStatisticsNumber(post.words, locale))}</p></td><td class="px-2 py-4 text-right text-sm tabular-nums text-black/65 dark:text-white/65">{formatStatisticsNumber(post.activeUsers, locale)}</td><td class="px-2 py-4 text-right text-sm tabular-nums text-black/65 dark:text-white/65">{formatStatisticsNumber(post.screenPageViews, locale)}</td><td class="px-2 py-4 text-right text-sm tabular-nums text-black/65 dark:text-white/65">{#if post.activeUsers < minimumUsers}<span title={labels.insufficientSampleTitle(minimumUsers)} class="rounded-md bg-black/[0.04] px-2 py-1 text-xs text-black/40 dark:bg-white/[0.06] dark:text-white/40">{labels.insufficientSample}</span>{:else}{formatStatisticsDuration(post.engagementSecondsPerView, locale)}{/if}</td></tr>{/each}
+          {#each posts as post, index}<tr class="border-b border-black/[0.045] transition last:border-0 hover:bg-black/[0.018] dark:border-white/[0.06] dark:hover:bg-white/[0.025]"><td class="px-2 py-4 text-sm tabular-nums text-black/35 dark:text-white/35">{index + 1}</td><td class="px-2 py-4"><a href={post.path} class="link font-medium text-black/80 dark:text-white/80">{post.title}</a><p class="mt-1 text-xs text-black/35 dark:text-white/35">{labels.estimatedReading(post.estimatedMinutes, formatStatisticsNumber(post.words, locale))}</p></td><td class="px-2 py-4 text-right text-sm tabular-nums text-black/65 dark:text-white/65">{formatStatisticsNumber(post.activeUsers, locale)}</td><td class="px-2 py-4 text-right text-sm tabular-nums text-black/65 dark:text-white/65">{formatStatisticsNumber(post.screenPageViews, locale)}</td><td class="px-2 py-4 text-right text-sm tabular-nums text-black/65 dark:text-white/65">{#if post.activeUsers < minimumUsers}<span title={labels.insufficientSampleTitle(minimumUsers)} class="rounded-md bg-black/[0.04] px-2 py-1 text-xs text-black/40 dark:bg-white/[0.06] dark:text-white/40">{labels.insufficientSample}</span>{:else}{formatStatisticsDuration(post.engagementSecondsPerUser, locale)}{/if}</td></tr>{/each}
         </tbody></table></div>
       {/if}
       <div class="mt-5 rounded-xl bg-black/[0.025] p-4 text-xs leading-5 text-black/45 dark:bg-white/[0.045] dark:text-white/45"><p class="font-medium text-black/65 dark:text-white/65">{labels.interpretationTitle}</p><p class="mt-2">{labels.interpretation}</p><a href={url('/privacy/', locale)} class="link mt-3 inline-block text-[var(--primary)]">{labels.privacyLink}</a></div>
