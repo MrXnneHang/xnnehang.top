@@ -215,7 +215,7 @@ const labels: Record<Locale, StatisticsLabels> = {
     insufficientSampleTitle: (minimum) => `少于 ${minimum} 位访客，暂不参与时长排名`,
     interpretationTitle: '数据如何理解',
     interpretation:
-      '阅读时长是 GA4 记录的参与时长，不代表访客始终在认真阅读。预计阅读时间则由文章字数计算。',
+      '阅读时长是 GA4 记录的参与时长，文章平均阅读时长按访客数计算，不代表访客始终在认真阅读。预计阅读时间则由文章字数计算。',
     privacyLink: '隐私与统计说明 →',
     days: (count) => `${count} 天`,
     hours: (count) => `${count} 小时`,
@@ -331,7 +331,7 @@ const labels: Record<Locale, StatisticsLabels> = {
       `Fewer than ${minimum} visitors; excluded from duration ranking`,
     interpretationTitle: 'How to read this data',
     interpretation:
-      'Reading time is GA4 engagement time and does not mean a visitor was actively reading throughout. Estimated reading time is calculated from the post word count.',
+      'Reading time is GA4 engagement time, and each post average is calculated per visitor; it does not mean a visitor was actively reading throughout. Estimated reading time is calculated from the post word count.',
     privacyLink: 'Privacy and analytics →',
     days: (count) => `${count} ${count === 1 ? 'day' : 'days'}`,
     hours: (count) => `${count} ${count === 1 ? 'hour' : 'hours'}`,
