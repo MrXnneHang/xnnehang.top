@@ -3,12 +3,12 @@ title: The Psychological Suggestion of Megastructures and Existential Relief
 published: 2026-08-18
 category: Reflections
 tags:
-   - Philosophy
-   - Existentialism
-   - Megastructure Aesthetics
+  - Philosophy
+  - Existentialism
+  - Megastructure Aesthetics
 description: From death's pressure on time to the vast scale of megastructures, an inquiry into why Chang'an, strange tales, immortality, and seemingly remembered worlds can bring existential relief.
 series:
-   - Philosophical Reflections
+  - Philosophical Reflections
 lang: en
 translationKey: megastructure-existential-relief
 ---

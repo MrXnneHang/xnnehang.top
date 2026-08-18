@@ -3,12 +3,12 @@ title: 巨构的心理暗示与存在主义的解脱感
 published: 2026-08-18
 category: 思考
 tags:
-   - 哲学
-   - 存在主义
-   - 巨构美学
+  - 哲学
+  - 存在主义
+  - 巨构美学
 description: 从死亡的时间约束、巨构的空间尺度，到长安、志怪与修仙意象，追问那些似曾相识的精神故乡为何带来存在主义式的解脱。
 series:
-   - 哲学思考
+  - 哲学思考
 ---
 
 ![云海之上的中式巨构](../../assets/img/megastructure-existential-relief/chinese-megastructure-above-the-clouds.jpg)
