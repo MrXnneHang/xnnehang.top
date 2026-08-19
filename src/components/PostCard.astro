@@ -113,7 +113,10 @@ const labels = locale === ENGLISH_LOCALE
           name="material-symbols:chevron-right-rounded"
         />
         <Icon
-          class="post-card-navigation-icon absolute top-1/2 right-0 hidden -translate-x-1 -translate-y-1/2 text-[2rem] text-[var(--primary)] opacity-0 transition group-hover:translate-x-0 group-hover:opacity-100 md:inline"
+          class:list={[
+            'post-card-navigation-icon absolute top-1/2 right-0 hidden -translate-x-1 -translate-y-1/2 text-[2rem] text-[var(--primary)] opacity-0 transition group-hover:translate-x-0 group-hover:opacity-100 md:inline',
+            { 'md:!hidden': stableDesktopLayout },
+          ]}
           name="material-symbols:chevron-right-rounded"
         />
       </a>
@@ -227,7 +230,7 @@ const labels = locale === ENGLISH_LOCALE
           'mx-4 mt-4 -mb-2 max-h-[20vh] md:mx-0 md:mt-0 md:mb-0 md:max-h-none',
           'relative overflow-hidden rounded-xl active:scale-95 md:absolute md:right-3 md:w-[var(--coverWidth)]',
           {
-            'md:top-1/2 md:aspect-[4/3] md:-translate-y-1/2': stableDesktopLayout,
+            'stable-card-cover md:top-1/2 md:-translate-y-1/2': stableDesktopLayout,
             'md:top-3 md:bottom-3': !stableDesktopLayout,
           },
         ]}
@@ -433,7 +436,7 @@ const labels = locale === ENGLISH_LOCALE
           if (this.activeField === field) this.close()
           return
         }
-        const lineLimit = text.classList.contains('post-card-title-text') ? 1 : 2
+        const lineLimit = 2
         const availableHeight = Number.parseFloat(textStyle.lineHeight) * lineLimit
         measurement.style.position = 'fixed'
         measurement.style.top = '-10000px'
@@ -452,6 +455,11 @@ const labels = locale === ENGLISH_LOCALE
           measurement.style.lineHeight = '1.2'
         }
         document.body.append(measurement)
+        if (text.classList.contains('post-card-title-text')) {
+          this.dataset.titleLines = measurement.scrollHeight > Number.parseFloat(textStyle.lineHeight) + 1
+            ? '2'
+            : '1'
+        }
         const isOverflowing = measurement.scrollHeight > availableHeight + 1
         measurement.remove()
 
@@ -487,7 +495,7 @@ const labels = locale === ENGLISH_LOCALE
   }
 
   .stable-card .post-card-title-text {
-    padding-right: 4rem;
+    padding-right: 1.75rem;
   }
 
   .stable-card .post-card-description-text {
@@ -516,7 +524,7 @@ const labels = locale === ENGLISH_LOCALE
   }
 
   .post-card-title-disclosure {
-    right: 2.25rem;
+    right: 0;
   }
 
   .post-card-disclosure[hidden],
@@ -602,9 +610,17 @@ const labels = locale === ENGLISH_LOCALE
     }
 
     .stable-card .post-card-title-text {
-      height: 1.2em;
+      max-height: calc(1.2em * 2);
       line-height: 1.2;
-      -webkit-line-clamp: 1;
+      -webkit-line-clamp: 2;
+    }
+
+    .stable-card .stable-card-cover {
+      aspect-ratio: 3 / 2;
+    }
+
+    .stable-card[data-title-lines='2'] .stable-card-cover {
+      aspect-ratio: 4 / 3;
     }
 
     .stable-card .post-card-description-text {
