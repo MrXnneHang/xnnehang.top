@@ -132,7 +132,7 @@ const labels = locale === ENGLISH_LOCALE
               aria-label={labels.title}
               hidden
             >
-              <Icon name="material-symbols:unfold-more-rounded" />
+              <span aria-hidden="true">…</span>
             </button>
             <div
               class="post-card-preview post-card-title-preview"
@@ -185,7 +185,7 @@ const labels = locale === ENGLISH_LOCALE
               aria-label={labels.description}
               hidden
             >
-              <Icon name="material-symbols:unfold-more-rounded" />
+              <span aria-hidden="true">…</span>
             </button>
             <div
               class="post-card-preview post-card-description-preview"
@@ -510,17 +510,21 @@ const labels = locale === ENGLISH_LOCALE
   .post-card-disclosure {
     position: absolute;
     right: 0;
-    bottom: 0.1rem;
+    bottom: 0;
     z-index: 20;
     display: grid;
-    width: 1.5rem;
+    min-width: 1.5rem;
     height: 1.5rem;
     place-items: center;
-    border-radius: 999px;
-    background: color-mix(in oklch, var(--card-bg) 82%, var(--primary));
-    color: var(--primary);
-    box-shadow: 0 0 0 0.2rem var(--card-bg);
-    transition: transform 160ms ease, background-color 160ms ease;
+    padding: 0 0.2rem 0.22rem;
+    border-radius: 0.35rem;
+    background: transparent;
+    color: color-mix(in oklch, var(--primary) 65%, var(--text-75));
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+    opacity: 0.42;
+    transition: color 160ms ease, opacity 160ms ease;
   }
 
   .post-card-title-disclosure {
@@ -532,9 +536,12 @@ const labels = locale === ENGLISH_LOCALE
     display: none;
   }
 
-  .post-card-disclosure:hover {
-    transform: translateY(-1px);
-    background: color-mix(in oklch, var(--card-bg) 68%, var(--primary));
+  .post-card-disclosure:hover,
+  .post-card-disclosure:focus-visible,
+  .post-card-field:hover .post-card-disclosure,
+  .post-card-field:focus-within .post-card-disclosure {
+    color: var(--primary);
+    opacity: 1;
   }
 
   .post-card-disclosure:focus-visible,
@@ -544,7 +551,6 @@ const labels = locale === ENGLISH_LOCALE
     outline-offset: 2px;
   }
 
-  .post-card-disclosure :global(svg),
   .post-card-preview button :global(svg) {
     width: 1rem;
     height: 1rem;
@@ -631,6 +637,12 @@ const labels = locale === ENGLISH_LOCALE
     .stable-card :global(.stable-card-metadata) {
       height: 2rem;
       overflow: hidden;
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .post-card-disclosure {
+      opacity: 0.12;
     }
   }
 
