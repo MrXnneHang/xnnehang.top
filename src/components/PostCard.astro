@@ -55,13 +55,11 @@ const titlePreviewId = `${cardId}-title-preview`
 const descriptionPreviewId = `${cardId}-description-preview`
 const labels = locale === ENGLISH_LOCALE
   ? {
-      title: `View the full title: ${title}`,
       description: `View the full description: ${descriptionText}`,
       closeTitle: 'Close the full title',
       closeDescription: 'Close the full description',
     }
   : {
-      title: `查看完整标题：${title}`,
       description: `查看完整简介：${descriptionText}`,
       closeTitle: '关闭完整标题',
       closeDescription: '关闭完整简介',
@@ -105,6 +103,7 @@ const labels = locale === ENGLISH_LOCALE
       <a
         href={url}
         class="text-90 group relative block w-full text-3xl font-bold transition before:absolute before:top-[7px] before:-left-[18px] before:hidden before:h-5 before:w-1 before:rounded-md before:bg-[var(--primary)] hover:text-[var(--primary)] active:text-[var(--title-active)] md:before:block dark:hover:text-[var(--primary)] dark:active:text-[var(--title-active)]"
+        data-card-trigger={stableDesktopLayout ? '' : undefined}
       >
         {isPinned && <span class="sr-only">{t(I18nKey.pinned)}</span>}
         <span class="post-card-text post-card-title-text" data-card-text>{title}</span>
@@ -122,30 +121,17 @@ const labels = locale === ENGLISH_LOCALE
       </a>
       {
         stableDesktopLayout && (
-          <>
-            <button
-              class="post-card-disclosure post-card-title-disclosure"
-              type="button"
-              data-card-disclosure
-              aria-expanded="false"
-              aria-controls={titlePreviewId}
-              aria-label={labels.title}
-              hidden
-            >
-              <Icon name="material-symbols:unfold-more-rounded" />
+          <div
+            class="post-card-preview post-card-title-preview"
+            id={titlePreviewId}
+            data-card-preview
+            hidden
+          >
+            <a href={url} class="post-card-preview-content font-bold">{title}</a>
+            <button type="button" data-card-close aria-label={labels.closeTitle}>
+              <Icon name="material-symbols:close-rounded" />
             </button>
-            <div
-              class="post-card-preview post-card-title-preview"
-              id={titlePreviewId}
-              data-card-preview
-              hidden
-            >
-              <a href={url} class="post-card-preview-content font-bold">{title}</a>
-              <button type="button" data-card-close aria-label={labels.closeTitle}>
-                <Icon name="material-symbols:close-rounded" />
-              </button>
-            </div>
-          </>
+          </div>
         )
       }
     </div>
@@ -170,35 +156,24 @@ const labels = locale === ENGLISH_LOCALE
           { 'line-clamp-2 md:line-clamp-1': !stableDesktopLayout && !description },
         ]}
         data-card-text
+        data-card-trigger={stableDesktopLayout ? '' : undefined}
+        data-full-text-label={stableDesktopLayout ? labels.description : undefined}
       >
         {descriptionText}
       </div>
       {
         stableDesktopLayout && (
-          <>
-            <button
-              class="post-card-disclosure"
-              type="button"
-              data-card-disclosure
-              aria-expanded="false"
-              aria-controls={descriptionPreviewId}
-              aria-label={labels.description}
-              hidden
-            >
-              <Icon name="material-symbols:unfold-more-rounded" />
+          <div
+            class="post-card-preview post-card-description-preview"
+            id={descriptionPreviewId}
+            data-card-preview
+            hidden
+          >
+            <p class="post-card-preview-content">{descriptionText}</p>
+            <button type="button" data-card-close aria-label={labels.closeDescription}>
+              <Icon name="material-symbols:close-rounded" />
             </button>
-            <div
-              class="post-card-preview post-card-description-preview"
-              id={descriptionPreviewId}
-              data-card-preview
-              hidden
-            >
-              <p class="post-card-preview-content">{descriptionText}</p>
-              <button type="button" data-card-close aria-label={labels.closeDescription}>
-                <Icon name="material-symbols:close-rounded" />
-              </button>
-            </div>
-          </>
+          </div>
         )
       }
     </div>
@@ -289,7 +264,7 @@ const labels = locale === ENGLISH_LOCALE
         field.addEventListener('pointerleave', this.closeFromHover)
         field.addEventListener('focusin', this.openFromFocus)
         field.addEventListener('focusout', this.closeFromFocus)
-        field.querySelector('[data-card-disclosure]')?.addEventListener('click', this.toggleFromControl)
+        field.querySelector('[data-card-trigger]')?.addEventListener('keydown', this.toggleFromKeyboard)
         field.querySelector('[data-card-close]')?.addEventListener('click', this.closeFromControl)
       })
       document.addEventListener('pointerdown', this.closeFromOutside)
@@ -311,7 +286,7 @@ const labels = locale === ENGLISH_LOCALE
         field.removeEventListener('pointerleave', this.closeFromHover)
         field.removeEventListener('focusin', this.openFromFocus)
         field.removeEventListener('focusout', this.closeFromFocus)
-        field.querySelector('[data-card-disclosure]')?.removeEventListener('click', this.toggleFromControl)
+        field.querySelector('[data-card-trigger]')?.removeEventListener('keydown', this.toggleFromKeyboard)
         field.querySelector('[data-card-close]')?.removeEventListener('click', this.closeFromControl)
       })
       document.removeEventListener('pointerdown', this.closeFromOutside)
@@ -329,11 +304,10 @@ const labels = locale === ENGLISH_LOCALE
       if (this.activeField && this.activeField !== field) this.close()
 
       const preview = field.querySelector<HTMLElement>('[data-card-preview]')
-      const disclosure = field.querySelector<HTMLButtonElement>('[data-card-disclosure]')
-      if (!preview || !disclosure) return
+      const trigger = field.querySelector<HTMLElement>('[data-card-trigger]')
+      if (!preview || !trigger) return
 
       preview.hidden = false
-      disclosure.setAttribute('aria-expanded', 'true')
       field.dataset.open = 'true'
       this.activeField = field
       this.openReason = reason
@@ -351,16 +325,15 @@ const labels = locale === ENGLISH_LOCALE
 
       const field = this.activeField
       const preview = field.querySelector<HTMLElement>('[data-card-preview]')
-      const disclosure = field.querySelector<HTMLButtonElement>('[data-card-disclosure]')
+      const trigger = field.querySelector<HTMLElement>('[data-card-trigger]')
       if (preview) preview.hidden = true
-      disclosure?.setAttribute('aria-expanded', 'false')
       delete field.dataset.open
       this.activeField = undefined
       this.openReason = undefined
 
-      if (restoreFocus && disclosure) {
+      if (restoreFocus && trigger) {
         this.suppressFocusOpen = true
-        disclosure.focus()
+        trigger.focus()
         requestAnimationFrame(() => {
           this.suppressFocusOpen = false
         })
@@ -379,10 +352,7 @@ const labels = locale === ENGLISH_LOCALE
     private openFromFocus = (event: FocusEvent) => {
       if (this.suppressFocusOpen) return
       const target = event.target as HTMLElement
-      if (
-        !target.matches(':focus-visible') ||
-        target.matches('[data-card-disclosure], [data-card-close]')
-      ) return
+      if (!target.matches(':focus-visible') || target.matches('[data-card-close]')) return
       this.open(event.currentTarget as HTMLElement, 'focus')
     }
 
@@ -392,10 +362,15 @@ const labels = locale === ENGLISH_LOCALE
       this.close()
     }
 
-    private toggleFromControl = (event: Event) => {
+    private toggleFromKeyboard = (event: Event) => {
+      const keyboardEvent = event as KeyboardEvent
+      if (!['Enter', ' '].includes(keyboardEvent.key)) return
+      const target = event.currentTarget as HTMLElement
+      if (target instanceof HTMLAnchorElement && keyboardEvent.key === 'Enter') return
+
       event.preventDefault()
       event.stopPropagation()
-      const field = (event.currentTarget as HTMLElement).closest<HTMLElement>('[data-card-field]')
+      const field = target.closest<HTMLElement>('[data-card-field]')
       if (!field) return
       if (this.activeField === field) this.close()
       else this.open(field, 'manual')
@@ -424,15 +399,17 @@ const labels = locale === ENGLISH_LOCALE
 
       this.getFields().forEach((field) => {
         const text = field.querySelector<HTMLElement>('[data-card-text]')
-        const disclosure = field.querySelector<HTMLButtonElement>('[data-card-disclosure]')
-        if (!text || !disclosure) return
+        const trigger = field.querySelector<HTMLElement>('[data-card-trigger]')
+        if (!text || !trigger) return
 
         const measurement = text.cloneNode(true) as HTMLElement
         measurement.removeAttribute('data-card-text')
         const textStyle = getComputedStyle(text)
         if (!desktopClamp) {
           field.dataset.overflowing = 'false'
-          disclosure.hidden = true
+          trigger.removeAttribute('role')
+          trigger.removeAttribute('tabindex')
+          trigger.removeAttribute('aria-label')
           if (this.activeField === field) this.close()
           return
         }
@@ -464,7 +441,17 @@ const labels = locale === ENGLISH_LOCALE
         measurement.remove()
 
         field.dataset.overflowing = String(isOverflowing)
-        disclosure.hidden = !isOverflowing
+        if (trigger.matches('.post-card-description-text')) {
+          if (isOverflowing) {
+            trigger.setAttribute('role', 'button')
+            trigger.tabIndex = 0
+            trigger.setAttribute('aria-label', trigger.dataset.fullTextLabel ?? '')
+          } else {
+            trigger.removeAttribute('role')
+            trigger.removeAttribute('tabindex')
+            trigger.removeAttribute('aria-label')
+          }
+        }
         if (!isOverflowing && this.activeField === field) this.close()
       })
     }
@@ -494,57 +481,30 @@ const labels = locale === ENGLISH_LOCALE
     min-width: 0;
   }
 
-  .stable-card .post-card-title-text {
-    padding-right: 1.75rem;
-  }
-
+  .stable-card .post-card-title-text,
   .stable-card .post-card-description-text {
-    padding-right: 1.75rem;
-  }
-
-  .stable-card .post-card-field[data-overflowing='false'] .post-card-title-text,
-  .stable-card .post-card-field[data-overflowing='false'] .post-card-description-text {
     padding-right: 0;
   }
 
-  .post-card-disclosure {
-    position: absolute;
-    right: 0;
-    bottom: 0.1rem;
-    z-index: 20;
-    display: grid;
-    width: 1.5rem;
-    height: 1.5rem;
-    place-items: center;
-    border-radius: 999px;
-    background: color-mix(in oklch, var(--card-bg) 82%, var(--primary));
-    color: var(--primary);
-    box-shadow: 0 0 0 0.2rem var(--card-bg);
-    transition: transform 160ms ease, background-color 160ms ease;
+  .stable-card .post-card-field[data-overflowing='true'] .post-card-description-text {
+    cursor: pointer;
   }
 
-  .post-card-title-disclosure {
-    right: 0;
+  .stable-card .post-card-field[data-overflowing='true'] .post-card-description-text:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
   }
 
-  .post-card-disclosure[hidden],
   .post-card-preview[hidden] {
     display: none;
   }
 
-  .post-card-disclosure:hover {
-    transform: translateY(-1px);
-    background: color-mix(in oklch, var(--card-bg) 68%, var(--primary));
-  }
-
-  .post-card-disclosure:focus-visible,
   .post-card-preview button:focus-visible,
   .post-card-preview a:focus-visible {
     outline: 2px solid var(--primary);
     outline-offset: 2px;
   }
 
-  .post-card-disclosure :global(svg),
   .post-card-preview button :global(svg) {
     width: 1rem;
     height: 1rem;
@@ -634,9 +594,4 @@ const labels = locale === ENGLISH_LOCALE
     }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .post-card-disclosure {
-      transition-duration: 0.01ms;
-    }
-  }
 </style>
