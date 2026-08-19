@@ -3,7 +3,7 @@ import { render, type CollectionEntry } from 'astro:content'
 import path from 'node:path'
 import { Icon } from 'astro-icon/components'
 import I18nKey from '../i18n/i18nKey'
-import { DEFAULT_LOCALE, type Locale } from '../i18n/locales'
+import { DEFAULT_LOCALE, ENGLISH_LOCALE, type Locale } from '../i18n/locales'
 import { createI18n } from '../i18n/translation'
 import { getDir } from '../utils/url-utils'
 import ImageWrapper from './misc/ImageWrapper.astro'
@@ -22,28 +22,64 @@ interface Props {
   description: string
   draft: boolean
   locale?: Locale
+  stableDesktopLayout?: boolean
   style: string
 }
-const { entry, title, url, published, updated, tags, category, image, description, locale = DEFAULT_LOCALE, style } =
-  Astro.props
+const {
+  entry,
+  title,
+  url,
+  published,
+  updated,
+  tags,
+  category,
+  image,
+  description,
+  locale = DEFAULT_LOCALE,
+  stableDesktopLayout = false,
+  style,
+} = Astro.props
 const t = createI18n(locale)
 const className = Astro.props.class
 
-const coverWidth = '28%'
+const coverWidth = stableDesktopLayout ? '32%' : '28%'
 
 const { remarkPluginFrontmatter } = await render(entry)
 
 const coverUrl = image || remarkPluginFrontmatter.firstImage || ''
 const hasCover = coverUrl !== ''
 const isPinned = entry.data.pin
+const descriptionText = description || remarkPluginFrontmatter.excerpt
+const cardId = `${locale}-${entry.id}`.replace(/[^a-zA-Z0-9_-]/g, '-')
+const titlePreviewId = `${cardId}-title-preview`
+const descriptionPreviewId = `${cardId}-description-preview`
+const labels = locale === ENGLISH_LOCALE
+  ? {
+      title: `View the full title: ${title}`,
+      description: `View the full description: ${descriptionText}`,
+      closeTitle: 'Close the full title',
+      closeDescription: 'Close the full description',
+    }
+  : {
+      title: `查看完整标题：${title}`,
+      description: `查看完整简介：${descriptionText}`,
+      closeTitle: '关闭完整标题',
+      closeDescription: '关闭完整简介',
+    }
 ---
 
-<div
+<post-card
   class:list={[
-    'card-base relative flex w-full flex-col-reverse overflow-hidden rounded-[var(--radius-large)] md:flex-col',
-    { 'pinned-card': isPinned },
+    'card-base relative flex w-full flex-col-reverse rounded-[var(--radius-large)] md:flex-col',
+    {
+      'overflow-hidden': !stableDesktopLayout,
+      'overflow-hidden md:overflow-visible': stableDesktopLayout,
+      'pinned-card': isPinned,
+      'stable-card': stableDesktopLayout,
+    },
     className,
   ]}
+  data-stable-desktop-layout={stableDesktopLayout ? '' : undefined}
   style={style}
 >
   {
@@ -65,21 +101,51 @@ const isPinned = entry.data.pin
       },
     ]}
   >
-    <a
-      href={url}
-      class="text-90 group mb-3 block w-full text-3xl font-bold transition before:absolute before:top-[35px] before:left-[18px] before:hidden before:h-5 before:w-1 before:rounded-md before:bg-[var(--primary)] hover:text-[var(--primary)] active:text-[var(--title-active)] md:before:block dark:hover:text-[var(--primary)] dark:active:text-[var(--title-active)]"
-    >
-      {isPinned && <span class="sr-only">{t(I18nKey.pinned)}</span>}
-      {title}
-      <Icon
-        class="absolute inline translate-y-0.5 text-[2rem] text-[var(--primary)] md:hidden"
-        name="material-symbols:chevron-right-rounded"
-      />
-      <Icon
-        class="absolute hidden -translate-x-1 translate-y-0.5 text-[2rem] text-[var(--primary)] opacity-0 transition group-hover:translate-x-0 group-hover:opacity-100 md:inline"
-        name="material-symbols:chevron-right-rounded"
-      />
-    </a>
+    <div class="post-card-field post-card-title-field mb-3" data-card-field>
+      <a
+        href={url}
+        class="text-90 group relative block w-full text-3xl font-bold transition before:absolute before:top-[7px] before:-left-[18px] before:hidden before:h-5 before:w-1 before:rounded-md before:bg-[var(--primary)] hover:text-[var(--primary)] active:text-[var(--title-active)] md:before:block dark:hover:text-[var(--primary)] dark:active:text-[var(--title-active)]"
+      >
+        {isPinned && <span class="sr-only">{t(I18nKey.pinned)}</span>}
+        <span class="post-card-text post-card-title-text" data-card-text>{title}</span>
+        <Icon
+          class="post-card-navigation-icon absolute top-1/2 right-0 -translate-y-1/2 text-[2rem] text-[var(--primary)] md:hidden"
+          name="material-symbols:chevron-right-rounded"
+        />
+        <Icon
+          class="post-card-navigation-icon absolute top-1/2 right-0 hidden -translate-x-1 -translate-y-1/2 text-[2rem] text-[var(--primary)] opacity-0 transition group-hover:translate-x-0 group-hover:opacity-100 md:inline"
+          name="material-symbols:chevron-right-rounded"
+        />
+      </a>
+      {
+        stableDesktopLayout && (
+          <>
+            <button
+              class="post-card-disclosure post-card-title-disclosure"
+              type="button"
+              data-card-disclosure
+              aria-expanded="false"
+              aria-controls={titlePreviewId}
+              aria-label={labels.title}
+              hidden
+            >
+              <Icon name="material-symbols:unfold-more-rounded" />
+            </button>
+            <div
+              class="post-card-preview post-card-title-preview"
+              id={titlePreviewId}
+              data-card-preview
+              hidden
+            >
+              <a href={url} class="post-card-preview-content font-bold">{title}</a>
+              <button type="button" data-card-close aria-label={labels.closeTitle}>
+                <Icon name="material-symbols:close-rounded" />
+              </button>
+            </div>
+          </>
+        )
+      }
+    </div>
 
     <!-- metadata -->
     <PostMetadata
@@ -90,17 +156,48 @@ const isPinned = entry.data.pin
       locale={locale}
       hideTagsForMobile={true}
       hideUpdateDate={true}
-      class="mb-4"
+      class="mb-4 stable-card-metadata"
     />
 
     <!-- description -->
-    <div
-      class:list={[
-        'text-75 mb-3.5 pr-4 transition',
-        { 'line-clamp-2 md:line-clamp-1': !description },
-      ]}
-    >
-      {description || remarkPluginFrontmatter.excerpt}
+    <div class="post-card-field post-card-description-field mb-3.5 pr-4" data-card-field>
+      <div
+        class:list={[
+          'post-card-text post-card-description-text text-75 transition',
+          { 'line-clamp-2 md:line-clamp-1': !stableDesktopLayout && !description },
+        ]}
+        data-card-text
+      >
+        {descriptionText}
+      </div>
+      {
+        stableDesktopLayout && (
+          <>
+            <button
+              class="post-card-disclosure"
+              type="button"
+              data-card-disclosure
+              aria-expanded="false"
+              aria-controls={descriptionPreviewId}
+              aria-label={labels.description}
+              hidden
+            >
+              <Icon name="material-symbols:unfold-more-rounded" />
+            </button>
+            <div
+              class="post-card-preview post-card-description-preview"
+              id={descriptionPreviewId}
+              data-card-preview
+              hidden
+            >
+              <p class="post-card-preview-content">{descriptionText}</p>
+              <button type="button" data-card-close aria-label={labels.closeDescription}>
+                <Icon name="material-symbols:close-rounded" />
+              </button>
+            </div>
+          </>
+        )
+      }
     </div>
 
     <!-- word count and read time  -->
@@ -128,7 +225,11 @@ const isPinned = entry.data.pin
         class:list={[
           'group',
           'mx-4 mt-4 -mb-2 max-h-[20vh] md:mx-0 md:mt-0 md:mb-0 md:max-h-none',
-          'relative overflow-hidden rounded-xl active:scale-95 md:absolute md:top-3 md:right-3 md:bottom-3 md:w-[var(--coverWidth)]',
+          'relative overflow-hidden rounded-xl active:scale-95 md:absolute md:right-3 md:w-[var(--coverWidth)]',
+          {
+            'md:top-1/2 md:aspect-[4/3] md:-translate-y-1/2': stableDesktopLayout,
+            'md:top-3 md:bottom-3': !stableDesktopLayout,
+          },
         ]}
       >
         <div class="pointer-events-none absolute z-10 h-full w-full transition group-hover:bg-black/30 group-active:bg-black/50" />
@@ -162,11 +263,207 @@ const isPinned = entry.data.pin
       </a>
     )
   }
-</div>
+</post-card>
 <div
   class="mx-6 border-t-[1px] border-dashed border-black/10 transition last:border-t-0 md:hidden dark:border-white/[0.15]"
 >
 </div>
+
+<script>
+  class PostCard extends HTMLElement {
+    private activeField?: HTMLElement
+    private openReason?: 'focus' | 'hover' | 'manual'
+    private resizeObserver?: ResizeObserver
+    private suppressFocusOpen = false
+    private wasDesktop = false
+
+    connectedCallback() {
+      if (!this.hasAttribute('data-stable-desktop-layout')) return
+
+      const fields = this.getFields()
+      fields.forEach((field) => {
+        field.addEventListener('pointerenter', this.openFromHover)
+        field.addEventListener('pointerleave', this.closeFromHover)
+        field.addEventListener('focusin', this.openFromFocus)
+        field.addEventListener('focusout', this.closeFromFocus)
+        field.querySelector('[data-card-disclosure]')?.addEventListener('click', this.toggleFromControl)
+        field.querySelector('[data-card-close]')?.addEventListener('click', this.closeFromControl)
+      })
+      document.addEventListener('pointerdown', this.closeFromOutside)
+      document.addEventListener('keydown', this.closeFromEscape)
+      window.addEventListener('resize', this.updateOverflow)
+
+      this.resizeObserver = new ResizeObserver(this.updateOverflow)
+      fields.forEach((field) => {
+        const text = field.querySelector<HTMLElement>('[data-card-text]')
+        if (text) this.resizeObserver?.observe(text)
+      })
+      this.updateOverflow()
+      requestAnimationFrame(this.updateOverflow)
+    }
+
+    disconnectedCallback() {
+      this.getFields().forEach((field) => {
+        field.removeEventListener('pointerenter', this.openFromHover)
+        field.removeEventListener('pointerleave', this.closeFromHover)
+        field.removeEventListener('focusin', this.openFromFocus)
+        field.removeEventListener('focusout', this.closeFromFocus)
+        field.querySelector('[data-card-disclosure]')?.removeEventListener('click', this.toggleFromControl)
+        field.querySelector('[data-card-close]')?.removeEventListener('click', this.closeFromControl)
+      })
+      document.removeEventListener('pointerdown', this.closeFromOutside)
+      document.removeEventListener('keydown', this.closeFromEscape)
+      window.removeEventListener('resize', this.updateOverflow)
+      this.resizeObserver?.disconnect()
+    }
+
+    private getFields() {
+      return Array.from(this.querySelectorAll<HTMLElement>('[data-card-field]'))
+    }
+
+    private open(field: HTMLElement, reason: 'focus' | 'hover' | 'manual') {
+      if (field.dataset.overflowing !== 'true') return
+      if (this.activeField && this.activeField !== field) this.close()
+
+      const preview = field.querySelector<HTMLElement>('[data-card-preview]')
+      const disclosure = field.querySelector<HTMLButtonElement>('[data-card-disclosure]')
+      if (!preview || !disclosure) return
+
+      preview.hidden = false
+      disclosure.setAttribute('aria-expanded', 'true')
+      field.dataset.open = 'true'
+      this.activeField = field
+      this.openReason = reason
+      PostCard.closeOtherCards(this)
+    }
+
+    private static closeOtherCards(current: PostCard) {
+      document.querySelectorAll<PostCard>('post-card[data-stable-desktop-layout]').forEach((card) => {
+        if (card !== current) card.close()
+      })
+    }
+
+    private close(restoreFocus = false) {
+      if (!this.activeField) return
+
+      const field = this.activeField
+      const preview = field.querySelector<HTMLElement>('[data-card-preview]')
+      const disclosure = field.querySelector<HTMLButtonElement>('[data-card-disclosure]')
+      if (preview) preview.hidden = true
+      disclosure?.setAttribute('aria-expanded', 'false')
+      delete field.dataset.open
+      this.activeField = undefined
+      this.openReason = undefined
+
+      if (restoreFocus && disclosure) {
+        this.suppressFocusOpen = true
+        disclosure.focus()
+        requestAnimationFrame(() => {
+          this.suppressFocusOpen = false
+        })
+      }
+    }
+
+    private openFromHover = (event: PointerEvent) => {
+      if (event.pointerType !== 'mouse' || !window.matchMedia('(hover: hover)').matches) return
+      this.open(event.currentTarget as HTMLElement, 'hover')
+    }
+
+    private closeFromHover = (event: PointerEvent) => {
+      if (event.pointerType === 'mouse' && this.openReason === 'hover') this.close()
+    }
+
+    private openFromFocus = (event: FocusEvent) => {
+      if (this.suppressFocusOpen) return
+      const target = event.target as HTMLElement
+      if (
+        !target.matches(':focus-visible') ||
+        target.matches('[data-card-disclosure], [data-card-close]')
+      ) return
+      this.open(event.currentTarget as HTMLElement, 'focus')
+    }
+
+    private closeFromFocus = (event: FocusEvent) => {
+      const field = event.currentTarget as HTMLElement
+      if (this.openReason !== 'focus' || field.contains(event.relatedTarget as Node)) return
+      this.close()
+    }
+
+    private toggleFromControl = (event: Event) => {
+      event.preventDefault()
+      event.stopPropagation()
+      const field = (event.currentTarget as HTMLElement).closest<HTMLElement>('[data-card-field]')
+      if (!field) return
+      if (this.activeField === field) this.close()
+      else this.open(field, 'manual')
+    }
+
+    private closeFromControl = (event: Event) => {
+      event.preventDefault()
+      event.stopPropagation()
+      this.close(true)
+    }
+
+    private closeFromOutside = (event: PointerEvent) => {
+      if (this.activeField && !this.activeField.contains(event.target as Node)) this.close()
+    }
+
+    private closeFromEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && this.activeField) this.close(true)
+    }
+
+    private updateOverflow = () => {
+      const desktopClamp = window.matchMedia('(min-width: 768px)').matches
+      if (desktopClamp !== this.wasDesktop) {
+        this.wasDesktop = desktopClamp
+        requestAnimationFrame(this.updateOverflow)
+      }
+
+      this.getFields().forEach((field) => {
+        const text = field.querySelector<HTMLElement>('[data-card-text]')
+        const disclosure = field.querySelector<HTMLButtonElement>('[data-card-disclosure]')
+        if (!text || !disclosure) return
+
+        const measurement = text.cloneNode(true) as HTMLElement
+        measurement.removeAttribute('data-card-text')
+        const textStyle = getComputedStyle(text)
+        if (!desktopClamp) {
+          field.dataset.overflowing = 'false'
+          disclosure.hidden = true
+          if (this.activeField === field) this.close()
+          return
+        }
+        const lineLimit = text.classList.contains('post-card-title-text') ? 1 : 2
+        const availableHeight = Number.parseFloat(textStyle.lineHeight) * lineLimit
+        measurement.style.position = 'fixed'
+        measurement.style.top = '-10000px'
+        measurement.style.left = '-10000px'
+        measurement.style.visibility = 'hidden'
+        measurement.style.width = `${text.clientWidth}px`
+        measurement.style.height = 'auto'
+        measurement.style.maxHeight = 'none'
+        measurement.style.margin = '0'
+        measurement.style.overflow = 'visible'
+        measurement.style.display = 'block'
+        measurement.style.webkitLineClamp = 'unset'
+        if (text.classList.contains('post-card-title-text')) {
+          measurement.style.fontSize = '1.875rem'
+          measurement.style.fontWeight = '700'
+          measurement.style.lineHeight = '1.2'
+        }
+        document.body.append(measurement)
+        const isOverflowing = measurement.scrollHeight > availableHeight + 1
+        measurement.remove()
+
+        field.dataset.overflowing = String(isOverflowing)
+        disclosure.hidden = !isOverflowing
+        if (!isOverflowing && this.activeField === field) this.close()
+      })
+    }
+  }
+
+  if (!customElements.get('post-card')) customElements.define('post-card', PostCard)
+</script>
 
 <style define:vars={{ coverWidth }}>
   .pinned-card {
@@ -178,5 +475,152 @@ const isPinned = entry.data.pin
     inset: 0 auto 0 0;
     width: 0.25rem;
     background: var(--primary);
+  }
+
+  .stable-card .post-card-field {
+    position: relative;
+    min-width: 0;
+  }
+
+  .stable-card .post-card-text {
+    min-width: 0;
+  }
+
+  .stable-card .post-card-title-text {
+    padding-right: 4rem;
+  }
+
+  .stable-card .post-card-description-text {
+    padding-right: 1.75rem;
+  }
+
+  .stable-card .post-card-field[data-overflowing='false'] .post-card-title-text,
+  .stable-card .post-card-field[data-overflowing='false'] .post-card-description-text {
+    padding-right: 0;
+  }
+
+  .post-card-disclosure {
+    position: absolute;
+    right: 0;
+    bottom: 0.1rem;
+    z-index: 20;
+    display: grid;
+    width: 1.5rem;
+    height: 1.5rem;
+    place-items: center;
+    border-radius: 999px;
+    background: color-mix(in oklch, var(--card-bg) 82%, var(--primary));
+    color: var(--primary);
+    box-shadow: 0 0 0 0.2rem var(--card-bg);
+    transition: transform 160ms ease, background-color 160ms ease;
+  }
+
+  .post-card-title-disclosure {
+    right: 2.25rem;
+  }
+
+  .post-card-disclosure[hidden],
+  .post-card-preview[hidden] {
+    display: none;
+  }
+
+  .post-card-disclosure:hover {
+    transform: translateY(-1px);
+    background: color-mix(in oklch, var(--card-bg) 68%, var(--primary));
+  }
+
+  .post-card-disclosure:focus-visible,
+  .post-card-preview button:focus-visible,
+  .post-card-preview a:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  .post-card-disclosure :global(svg),
+  .post-card-preview button :global(svg) {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .post-card-preview {
+    position: absolute;
+    right: 0;
+    left: 0;
+    z-index: 40;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 0.65rem;
+    max-height: min(16rem, 70vh);
+    overflow: auto;
+    border: 1px solid var(--line-divider);
+    border-radius: 0.85rem;
+    padding: 0.85rem;
+    background: var(--card-bg);
+    color: var(--deep-text);
+    box-shadow: 0 0.85rem 2rem rgb(20 35 48 / 18%);
+    line-height: 1.65;
+  }
+
+  .post-card-title-preview {
+    top: calc(100% + 0.35rem);
+    font-size: 1rem;
+  }
+
+  .post-card-description-preview {
+    bottom: calc(100% + 0.35rem);
+    font-size: 0.9rem;
+  }
+
+  .post-card-preview-content {
+    margin: 0;
+    color: inherit;
+  }
+
+  .post-card-preview button {
+    display: grid;
+    width: 1.75rem;
+    height: 1.75rem;
+    flex: none;
+    place-items: center;
+    border-radius: 999px;
+    background: var(--btn-regular-bg);
+    color: var(--btn-content);
+  }
+
+  :global(html.dark) .post-card-preview {
+    color: rgb(235 235 235);
+    box-shadow: 0 0.85rem 2rem rgb(0 0 0 / 38%);
+  }
+
+  @media (min-width: 768px) {
+    .stable-card .post-card-text {
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    .stable-card .post-card-title-text {
+      height: 1.2em;
+      line-height: 1.2;
+      -webkit-line-clamp: 1;
+    }
+
+    .stable-card .post-card-description-text {
+      height: calc(1.5em * 2);
+      line-height: 1.5;
+    }
+
+    .stable-card :global(.stable-card-metadata) {
+      height: 2rem;
+      overflow: hidden;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .post-card-disclosure {
+      transition-duration: 0.01ms;
+    }
   }
 </style>

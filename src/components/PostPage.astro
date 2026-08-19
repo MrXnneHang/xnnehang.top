@@ -30,6 +30,7 @@ const interval = 50
         description={entry.data.description}
         draft={entry.data.draft}
         locale={locale}
+        stableDesktopLayout={true}
         class:list="onload-animation"
         style={`animation-delay: calc(var(--content-delay) + ${delay++ * interval}ms);`}
       />
