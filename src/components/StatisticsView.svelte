@@ -36,7 +36,7 @@
   let loading = true
   let error = ''
   let range: StatisticsRange = '90d'
-  let sortKey: SortKey = 'screenPageViews'
+  let sortKey: SortKey = 'engagementSecondsPerUser'
 
   function rankingValue(post: StatisticsPost, key: SortKey) {
     if (key === 'engagementSecondsPerUser' && post.activeUsers < minimumUsers) return -1
