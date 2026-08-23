@@ -5,7 +5,7 @@ description: 为了给喜欢的漫剧角色做超分，我折腾起了 SeedVR2�
 tags:
   - 病娇
   - 图像超分
-category: 胡思乱想
+category: 思考
 draft: false
 featured: true
 ---
