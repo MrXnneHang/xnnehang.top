@@ -159,6 +159,25 @@ series:
 > 内容
 ```
 
+### 图片前后对比
+
+使用 `:::compare` 包裹恰好两张标准 Markdown 图片，生成可拖动的前后对比检视台：
+
+```markdown
+:::compare{before="原图" after="SeedVR2 · 4×" label="SeedVR2 超分效果对比"}
+![原图](../../assets/img/article-slug/original.png)
+
+![SeedVR2 超分图](../../assets/img/article-slug/seedvr2.png)
+:::
+```
+
+- `before`：左侧标签，默认 `Before`
+- `after`：右侧标签，默认 `After`
+- `label`：提供给屏幕阅读器的整体说明，默认由两侧标签组成
+- 默认只显示结果图，读者点击右下角按钮后进入可拖动对比，再次点击返回结果图
+- 添加无值属性 `autoplay` 可在首次进入视口时自动扫过一次；扫完停留在可拖动对比状态
+- 两张图片必须是相同构图和宽高比；正文图片仍按普通文章图片规则存放和引用
+
 ### GitHub 仓库卡片
 
 ```html

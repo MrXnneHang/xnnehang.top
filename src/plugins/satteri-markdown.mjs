@@ -5,6 +5,7 @@ import getReadingTime from 'reading-time'
 import { WIKI_LINK_REGEX } from '../utils/wiki-regex.ts'
 import { AdmonitionComponent } from './rehype-component-admonition.mjs'
 import { GithubCardComponent } from './rehype-component-github-card.mjs'
+import { ImageCompareComponent } from './rehype-component-image-compare.mjs'
 
 function setFrontmatter(ctx, key, value) {
   const frontmatter = ctx.data.astro?.frontmatter
@@ -317,10 +318,14 @@ export function satteriDirectiveComponents() {
   return {
     name: 'nyakku-directive-components',
     element: {
-      filter: ['github', 'blockquote', ...admonitionTypes],
+      filter: ['github', 'compare', 'blockquote', ...admonitionTypes],
       visit(node) {
         if (node.tagName === 'github') {
           return GithubCardComponent({ ...node.properties }, cloneHastChildren(node))
+        }
+
+        if (node.tagName === 'compare') {
+          return ImageCompareComponent({ ...node.properties }, cloneHastChildren(node))
         }
 
         const githubAdmonition = getGithubAdmonitionType(node)
