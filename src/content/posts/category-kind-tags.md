@@ -13,7 +13,7 @@ draft: false
 featured: true
 ---
 
-![初音未来背着吉他走过街角](../../assets/img/category-kind-tags/miku823.jpg)
+![初音未来背着吉他走过街角](../../assets/img/category-kind-tags/miku82300.jpg)
 
 > [!NOTE]
 > **AI 协作说明：** 本文源于我对现有博客分类的困惑。我提供问题、文章案例与原有分类逻辑，Korewaxnne（基于 Claude 的 AI 助手）协助盘点现状、拆分概念并整理成文，最终结构由我们共同讨论确定。

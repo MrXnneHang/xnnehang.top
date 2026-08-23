@@ -14,7 +14,7 @@ lang: en
 translationKey: category-kind-tags
 ---
 
-![Hatsune Miku walking past a street corner with a guitar](../../assets/img/category-kind-tags/miku823.jpg)
+![Hatsune Miku walking past a street corner with a guitar](../../assets/img/category-kind-tags/miku82300.jpg)
 
 > [!NOTE]
 > **AI collaboration note:** This article grew out of my confusion about the blog's existing categories. I provided the questions, examples, and original classification logic; Korewaxnne, my AI assistant powered by Claude, helped inventory the current system, separate the concepts, and organize them into an article. We arrived at the final structure through discussion.
