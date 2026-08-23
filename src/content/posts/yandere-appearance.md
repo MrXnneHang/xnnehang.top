@@ -9,6 +9,7 @@ category: 胡思乱想
 draft: false
 featured: true
 ---
+
 我大约是在 Seedance 2.5 出来那阵子入坑看漫剧的，所以也确实能感受到漫剧成长的速度。目前精品剧的人物模型细节已经非常能打了，B 站也有不少个人制作者开始用 Seedance 做个人电影。从这方面来看，AI 极大地释放了个人创作者的表达力。
 
 而我看漫剧很挑剔，人物建模必须在第一眼吸引我，同时剧情不侮辱智商。
@@ -32,7 +33,6 @@ featured: true
 同时 SeedVR2 很强的一点就是不会破坏图像原本的层次，对于一些高斯模糊或者图像的朦胧感，它会保留，而不会像 RealESRGAN 那种全图抹平。比如上图的这种朦胧感没有被 SeedVR2 所破坏，虽然因此看上去变化不大但恰逢我意，吸引我的正是这份朦胧感。
 
 如果要看细节层次的恢复，我这里也有一个例子——
-
 
 :::compare{before="原图" after="超分图" label="第 1 张原图与超分图对比" autoplay}
 ![病娇角色原图 1](../../assets/img/yandere-appearance/00-before.jpg)
@@ -99,8 +99,6 @@ featured: true
 
 ![病娇角色超分图 15](../../assets/img/yandere-appearance/14-after.jpg)
 :::
-
-
 
 :::compare{before="原图" after="超分图" label="第 18 张原图与超分图对比"}
 ![病娇角色原图 18](../../assets/img/yandere-appearance/17-before.jpg)

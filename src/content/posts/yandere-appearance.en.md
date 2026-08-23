@@ -11,6 +11,7 @@ featured: true
 lang: en
 translationKey: yandere-appearance
 ---
+
 I started watching manhua dramas around the time Seedance 2.5 came out, so I have genuinely felt how quickly the medium has improved. Character models in the better productions already look remarkably polished, and plenty of independent creators on Bilibili have begun using Seedance to make their own films. In that sense, AI has dramatically expanded what individual creators can express.
 
 I am picky about manhua dramas, though. The character design has to catch my eye immediately, and the story cannot insult my intelligence.
