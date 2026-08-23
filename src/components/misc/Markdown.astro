@@ -44,4 +44,95 @@ const className = Astro.props.class
       target.setAttribute('data-timeout-id', newTimeoutId.toString())
     }
   })
+
+  class ImageCompare extends HTMLElement {
+    private range?: HTMLInputElement
+    private toggle?: HTMLButtonElement
+    private observer?: IntersectionObserver
+    private sweepFrame?: number
+
+    connectedCallback() {
+      this.range = this.querySelector<HTMLInputElement>('.image-compare__range') ?? undefined
+      this.toggle = this.querySelector<HTMLButtonElement>('.image-compare__toggle') ?? undefined
+      if (!this.range || !this.toggle) return
+
+      this.range.addEventListener('input', this.update)
+      this.range.addEventListener('focus', this.cancelSweep)
+      this.range.addEventListener('pointerdown', this.cancelSweep)
+      this.range.addEventListener('keydown', this.cancelSweep)
+      this.toggle.addEventListener('click', this.toggleCompare)
+      this.setComparing(false)
+
+      if (!this.hasAttribute('data-autoplay')) return
+      this.observer = new IntersectionObserver(this.startSweep, { threshold: 0.6 })
+      this.observer.observe(this)
+    }
+
+    disconnectedCallback() {
+      this.range?.removeEventListener('input', this.update)
+      this.range?.removeEventListener('focus', this.cancelSweep)
+      this.range?.removeEventListener('pointerdown', this.cancelSweep)
+      this.range?.removeEventListener('keydown', this.cancelSweep)
+      this.toggle?.removeEventListener('click', this.toggleCompare)
+      this.observer?.disconnect()
+      if (this.sweepFrame) cancelAnimationFrame(this.sweepFrame)
+    }
+
+    private setComparing(comparing: boolean) {
+      if (!this.range || !this.toggle) return
+      this.classList.toggle('is-comparing', comparing)
+      this.range.disabled = !comparing
+      this.toggle.setAttribute('aria-pressed', String(comparing))
+      this.toggle.setAttribute('aria-label', comparing ? '返回超分图' : '进入图片对比')
+      if (comparing) this.update()
+    }
+
+    private update = () => {
+      if (!this.range) return
+      this.style.setProperty('--image-compare-position', `${this.range.value}%`)
+      this.range.setAttribute('aria-valuetext', `${this.range.value}%`)
+    }
+
+    private toggleCompare = () => {
+      this.cancelSweep()
+      this.setComparing(!this.classList.contains('is-comparing'))
+    }
+
+    private startSweep = (entries: IntersectionObserverEntry[]) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return
+      this.observer?.disconnect()
+      this.setComparing(true)
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+      const startedAt = performance.now()
+      const keyframes = [50, 18, 82, 50]
+      const offsets = [0, 0.2, 0.72, 1]
+      const step = (now: number) => {
+        const progress = Math.min((now - startedAt) / 1800, 1)
+        const segment = offsets.findIndex((offset) => offset >= progress)
+        const end = Math.max(1, segment)
+        const local = (progress - offsets[end - 1]) / (offsets[end] - offsets[end - 1])
+        const eased = 0.5 - Math.cos(local * Math.PI) / 2
+        const position = keyframes[end - 1] + (keyframes[end] - keyframes[end - 1]) * eased
+        this.style.setProperty('--image-compare-position', `${position}%`)
+        if (progress < 1) this.sweepFrame = requestAnimationFrame(step)
+        else {
+          this.sweepFrame = undefined
+          this.update()
+        }
+      }
+      this.sweepFrame = requestAnimationFrame(step)
+    }
+
+    private cancelSweep = () => {
+      this.observer?.disconnect()
+      if (this.sweepFrame) cancelAnimationFrame(this.sweepFrame)
+      this.sweepFrame = undefined
+      this.update()
+    }
+  }
+
+  if (!customElements.get('image-compare')) {
+    customElements.define('image-compare', ImageCompare)
+  }
 </script>

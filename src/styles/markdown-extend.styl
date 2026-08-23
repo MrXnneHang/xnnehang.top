@@ -89,6 +89,195 @@
       height: auto
       display: inline-block
 
+  image-compare
+    --image-compare-position: 50%
+    display: block
+    margin: 1.5rem 0
+
+    .image-compare__stage
+      position: relative
+      overflow: hidden
+      border-radius: var(--radius-large)
+      background: var(--card-bg)
+      box-shadow: 0 0 0 1px var(--line-color)
+      isolation: isolate
+
+    .image-compare__image
+      margin: 0
+
+      img
+        display: block
+        width: 100%
+        max-width: none
+        margin: 0
+        border-radius: 0
+        pointer-events: none
+        user-select: none
+
+    .image-compare__before
+      display: none
+
+    .image-compare__after
+      position: relative
+
+      img
+        height: 100%
+        object-fit: fill
+
+    .image-compare__label, .image-compare__divider, .image-compare__range
+      display: none
+
+    .image-compare__label
+      position: absolute
+      top: .75rem
+      z-index: 2
+      max-width: calc(50% - 1.5rem)
+      padding: .3rem .65rem
+      overflow: hidden
+      color: white
+      font-size: .8rem
+      font-weight: 700
+      line-height: 1.25
+      text-overflow: ellipsis
+      white-space: nowrap
+      background: rgba(0, 0, 0, .62)
+      border-radius: 999px
+      backdrop-filter: blur(6px)
+
+    .image-compare__label--before
+      left: .75rem
+
+    .image-compare__label--after
+      right: .75rem
+
+    .image-compare__divider
+      position: absolute
+      top: 0
+      bottom: 0
+      left: var(--image-compare-position)
+      z-index: 3
+      width: 2px
+      background: white
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, .25), 0 0 1rem rgba(0, 0, 0, .35)
+      transform: translateX(-50%)
+      pointer-events: none
+
+    .image-compare__handle
+      position: absolute
+      top: 50%
+      left: 50%
+      width: 2.75rem
+      height: 2.75rem
+      background: var(--primary)
+      border: 3px solid white
+      border-radius: 50%
+      box-shadow: 0 .2rem .8rem rgba(0, 0, 0, .35)
+      transform: translate(-50%, -50%)
+
+      &:before, &:after
+        content: ''
+        position: absolute
+        top: 50%
+        width: .5rem
+        height: .5rem
+        border-bottom: 2px solid white
+        transform: translateY(-50%) rotate(45deg)
+
+      &:before
+        left: .55rem
+        border-left: 2px solid white
+
+      &:after
+        right: .55rem
+        border-top: 2px solid white
+        border-right: 2px solid white
+        border-bottom: 0
+
+    .image-compare__range
+      position: absolute
+      inset: 0
+      z-index: 4
+      width: 100%
+      height: 100%
+      margin: 0
+      opacity: 0
+      cursor: ew-resize
+      touch-action: pan-y
+
+    .image-compare__toggle
+      position: absolute
+      right: .75rem
+      bottom: .75rem
+      z-index: 5
+      display: grid
+      width: 2.75rem
+      height: 2.75rem
+      padding: 0
+      place-items: center
+      color: white
+      background: rgba(0, 0, 0, .62)
+      border: 2px solid rgba(255, 255, 255, .9)
+      border-radius: 50%
+      box-shadow: 0 .2rem .8rem rgba(0, 0, 0, .3)
+      cursor: pointer
+      backdrop-filter: blur(6px)
+
+      &:hover
+        background: var(--primary)
+
+      &:focus-visible
+        outline: 3px solid var(--primary)
+        outline-offset: 3px
+
+    .image-compare__toggle-icon
+      position: relative
+      width: 1.25rem
+      height: .9rem
+      border-right: 2px solid currentColor
+      border-left: 2px solid currentColor
+
+      &:before
+        content: ''
+        position: absolute
+        top: 50%
+        left: 50%
+        height: 1.15rem
+        border-left: 2px solid currentColor
+        transform: translate(-50%, -50%)
+
+    &.is-comparing
+      .image-compare__before, .image-compare__label, .image-compare__divider, .image-compare__range
+        display: block
+
+      .image-compare__before
+        position: relative
+
+      .image-compare__after
+        position: absolute
+        inset: 0
+        clip-path: inset(0 0 0 var(--image-compare-position))
+
+      .image-compare__toggle-icon
+        border: 0
+
+        &:before, &:after
+          content: ''
+          position: absolute
+          top: 50%
+          left: 50%
+          width: 1.2rem
+          border-top: 2px solid currentColor
+
+        &:before
+          transform: translate(-50%, -50%) rotate(45deg)
+
+        &:after
+          transform: translate(-50%, -50%) rotate(-45deg)
+
+    &:has(.image-compare__range:focus-visible) .image-compare__stage
+      outline: 3px solid var(--primary)
+      outline-offset: 4px
+
   hr
     border-color: var(--line-divider)
     border-style: dashed

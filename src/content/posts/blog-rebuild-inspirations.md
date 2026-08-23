@@ -1,7 +1,7 @@
 ---
 title: 重建博客：我的灵感来源都是哪里
 published: 2026-06-07
-updated: 2026-08-16
+updated: 2026-08-23
 category: 边写边学
 tags:
   - 博客
@@ -80,6 +80,20 @@ NBlog 也是 Xnne 在云服务器时代部署的第一个博客系统。它的�
 [Innei's Blog](https://innei.in/)
 
 阅读场景下导航栏是干扰项，隐藏它能让读者更沉浸。简单但有效。
+
+## 图像检视台
+
+视频平台会转码，GIF 又会牺牲画质和体积。对于图像超分这种需要观察同一位置细节差异的内容，最直接的方式还是把原图与结果图叠在一起，让读者自己拖动分割线。
+
+因此，本站为 Markdown 增加了图像检视台：默认先展示结果图，点击右下角按钮后即可用鼠标、触屏或方向键对比；也可以在进入视口时自动演示一次，扫完继续留给读者拖动。
+
+:::compare{before="原图 · 1099×818" after="SeedVR2 · 1648×1224" label="SeedVR2 图像超分效果对比" autoplay}
+![SeedVR2 超分前的原图](../../assets/img/blog-rebuild-inspirations/image-compare-original.jpg)
+
+![SeedVR2 图像超分结果](../../assets/img/blog-rebuild-inspirations/image-compare-seedvr2.jpg)
+:::
+
+这套检视台后来用在 [[什么叫做从她的长相就能看出来是病娇？]] 中：在同一位置来回拖动，比并排放图更容易看出 SeedVR2 对人物脸部、衣物纹理和朦胧层次的处理，也避免了 GIF 与视频转码对细节的损失。
 
 # 书架：正在读的，和已经留下来的
 

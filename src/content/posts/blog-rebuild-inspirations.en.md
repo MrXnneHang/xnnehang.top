@@ -1,7 +1,7 @@
 ---
 title: 'Rebuilding My Blog: Where My Inspirations Came From'
 published: 2026-06-07
-updated: 2026-08-16
+updated: 2026-08-23
 category: Learning as I Build
 tags:
   - Blogging
@@ -82,6 +82,20 @@ While a post is being read, the top navigation disappears and leaves the visual 
 [Innei's Blog](https://innei.in/)
 
 Navigation is a distraction in a reading context. Hiding it makes the experience more immersive. Simple, but effective.
+
+## Image Comparison Workbench
+
+Video platforms transcode uploads, while GIFs sacrifice either image quality or file size. For image upscaling, where the point is to inspect differences at exactly the same position, the most direct approach is to stack the original and the result and let readers move the divider themselves.
+
+The blog therefore gained an image comparison workbench for Markdown. It shows the result by default; the button in the lower-right corner opens a comparison that can be controlled with a mouse, touch, or arrow keys. A comparison may also play one automatic sweep when it enters the viewport, then remain draggable.
+
+:::compare{before="Original · 1099×818" after="SeedVR2 · 1648×1224" label="SeedVR2 image upscaling comparison" autoplay}
+![Original image before SeedVR2 upscaling](../../assets/img/blog-rebuild-inspirations/image-compare-original.jpg)
+
+![SeedVR2 image upscaling result](../../assets/img/blog-rebuild-inspirations/image-compare-seedvr2.jpg)
+:::
+
+The workbench later appeared in [[What Does It Mean When Someone Looks Like a Yandere?]]. Moving back and forth over the same position makes it easier to see how SeedVR2 handles faces, clothing textures, and atmospheric softness, without losing those details to GIF compression or video transcoding.
 
 # The Bookshelf: What I Am Reading and What Has Stayed with Me
 
