@@ -1,12 +1,11 @@
 ---
 title: 'After Building Long-Lived Systems: Is the RAG Monster Right for Constructing a Personal Blog Graph?'
 published: 2026-06-06
-category: Reflections
+category: technology
+kind: reflection
 tags:
-  - LLM
   - RAG
-  - Memory Systems
-  - Blogging
+  - 记忆系统
 description: Starting from hands-on work on an AI desktop companion's long-term memory, this post compares three long-term-memory approaches for LLMs and asks whether RAG belongs in a personal blog's relationship graph.
 series:
   - LLM

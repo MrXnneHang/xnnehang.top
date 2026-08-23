@@ -1,13 +1,14 @@
 ---
 title: "memU's Architectural Shift Through the Eyes of a Consumer-Facing Developer"
 published: 2026-07-02
-category: Reflections
+category: technology
+kind: reflection
 tags:
   - memU
-  - Architecture
+  - 架构
   - Agent
   - Memory
-  - Product Thinking
+  - 产品思考
 description: 'memU ADR 0007 overturns the earlier LLM mode: thoughts from a consumer-product developer and emotional-companion perspective.'
 featured: true
 image: ../../assets/img/memu-adr0007-ce-duan-perspective/cover.png

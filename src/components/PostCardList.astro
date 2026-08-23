@@ -1,0 +1,39 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import type { Locale } from '../i18n/locales'
+import { getPostRouteSlug } from '../utils/post-locale'
+import { getPostUrlBySlug } from '../utils/url-utils'
+import PostCard from './PostCard.astro'
+
+interface Props {
+  posts: CollectionEntry<'posts'>[]
+  locale: Locale
+}
+
+const { posts, locale } = Astro.props
+---
+
+<div
+  class="mb-4 flex flex-col rounded-[var(--radius-large)] bg-[var(--card-bg)] py-1 transition md:gap-4 md:bg-transparent md:py-0"
+>
+  {
+    posts.map((entry, index) => (
+      <PostCard
+        entry={entry}
+        title={entry.data.title}
+        tags={entry.data.tags}
+        category={entry.data.category}
+        kind={entry.data.kind}
+        published={entry.data.published}
+        updated={entry.data.updated}
+        url={getPostUrlBySlug(getPostRouteSlug(entry), locale)}
+        image={entry.data.image}
+        description={entry.data.description}
+        draft={entry.data.draft}
+        locale={locale}
+        class:list="onload-animation"
+        style={`animation-delay: calc(var(--content-delay) + ${index * 50}ms);`}
+      />
+    ))
+  }
+</div>

@@ -2,7 +2,9 @@
 title: The Lychee of Chang'an
 published: 2026-08-08
 featured: true
-category: Reviews
+tags: []
+category: culture
+kind: review
 shelf: '书籍'
 description: Devoting yourself to something over the long term—even if it is an impractical dream—is a pretty good choice.
 series: [Reading]

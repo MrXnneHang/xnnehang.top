@@ -1,10 +1,9 @@
 ---
 title: 云服务商跑路后：再次审视个人博客的形态与值得被记录的东西
 published: 2026-06-01
-category: 思考
+category: thought
+kind: reflection
 tags:
-  - 博客
-  - 思考
   - 存档
 description: 云服务商跑路导致博客数据丢失后，对博客形态和记录内容的重新审视。
 series:

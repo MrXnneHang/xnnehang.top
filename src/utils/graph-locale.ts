@@ -149,8 +149,6 @@ export function getGraphLabels(locale: Locale): GraphLabels {
   return labels[locale]
 }
 
-export function getGraphCategoryOrder(locale: Locale): string[] {
-  return locale === ENGLISH_LOCALE
-    ? ['Reviews', 'Reflections', 'Learning as I Build', 'Tutorials', 'Resources']
-    : ['观后', '思考', '边写边学', '教程', '资源']
+export function getGraphCategoryOrder(): string[] {
+  return ['technology', 'culture', 'thought', 'life']
 }

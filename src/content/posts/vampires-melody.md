@@ -3,11 +3,11 @@ title: Vampires' Melody 吸血鬼的旋律 后
 published: 2024-09-01
 shelf: '游戏'
 shelfCover: '../../assets/img/covers/vampires-melody-shelf.jpg'
-category: 观后
+category: culture
+kind: review
 tags:
   - galgame
   - 吸血鬼的旋律
-  - 游戏
 description: 吸血鬼的旋律通关感想，极致的浪漫主义
 series:
   - 游戏

@@ -1,14 +1,14 @@
 ---
 title: 'After Hua Jiang Hu: Tian Gang — Perhaps True Completion Does Not Exist'
 published: 2025-03-15
-category: Reviews
+category: culture
+kind: review
 shelf: 电影
 series:
   - Film Watching
 tags:
-  - Films
-  - Anime
-  - Completion
+  - 动漫
+  - 完满
 description: 'Starting from Hua Jiang Hu: Tian Gang, a reflection on what makes a story feel complete.'
 lang: en
 translationKey: huajianghu-tiangang

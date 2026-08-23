@@ -3,9 +3,9 @@ title: 存在主义阅读手记
 published: 2024-06-20
 shelf: '书籍'
 subCategory: ['心理学']
-category: 思考
+category: thought
+kind: reflection
 tags:
-  - 读书
   - 存在主义
   - 哲学
 description: 关于存在主义中死亡、记忆与强迫的思考

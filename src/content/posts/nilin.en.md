@@ -2,11 +2,11 @@
 title: 'After Under Current: The Jianghu Brotherhood of the 1980s and 1990s'
 published: 2024-08-20
 shelf: '电影'
-category: Reviews
+category: culture
+kind: review
 tags:
-  - Film
-  - Under Current
-  - Film Review
+  - 逆鳞
+  - 影评
 description: Thoughts on Under Current and the brotherhood of the 1980s and 1990s jianghu.
 series:
   - Film and Television

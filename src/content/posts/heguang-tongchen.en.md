@@ -1,11 +1,11 @@
 ---
 title: Blending with the Dust — Starting with Han Li
 published: 2026-06-30
-category: Reviews
+category: culture
+kind: review
 tags:
-  - A Record of a Mortal's Journey to Immortality
-  - Tao Te Ching
-  - Reflections
+  - 凡人修仙传
+  - 道德经
 description: Starting from a video about blending with the dust, this reflects on Han Li's Dao heart, character writing in A Record of a Mortal's Journey to Immortality, and letting go of the self.
 image: ../../assets/img/heguang-tongchen/cover.png
 shelf: '动漫'

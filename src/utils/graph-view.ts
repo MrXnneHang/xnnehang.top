@@ -79,7 +79,7 @@ export function searchGraphNodes(nodes: GraphNode[], query: string, limit = 8): 
 
   return nodes
     .filter((node) =>
-      `${node.title}\n${node.category}\n${node.tags.join('\n')}`
+      `${node.title}\n${node.category}\n${node.kind}\n${node.tags.join('\n')}`
         .toLocaleLowerCase()
         .includes(normalized)
     )

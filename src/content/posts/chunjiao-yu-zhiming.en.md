@@ -2,11 +2,11 @@
 title: Love in the Buff
 published: 2024-07-08
 shelf: '电影'
-category: Reviews
+category: culture
+kind: review
 tags:
-  - Film
-  - Love in the Buff
-  - Reviews
+  - 春娇与志明
+  - 影评
 description: Reflections on Love in the Buff and the bonds that time creates
 series:
   - Film and Television

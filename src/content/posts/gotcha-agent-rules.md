@@ -2,7 +2,8 @@
 title: gotcha.md：给 Agent 一本项目避坑手册
 published: 2026-07-07
 description: 你的 Agent 是不是也经常同一个错误犯好几遍才记住？聊聊 gotcha.md——哪些记忆是 Agent 在 new session 后必须立刻全量具备的？哪些靠后续召回就够了？
-category: 思考
+category: technology
+kind: reflection
 tags:
   - AI
   - Agent

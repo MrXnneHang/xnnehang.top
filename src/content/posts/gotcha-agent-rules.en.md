@@ -2,12 +2,13 @@
 title: 'gotcha.md: A Pitfall Handbook for Your Agent'
 published: 2026-07-07
 description: 'Does your Agent keep repeating the same mistake before it finally remembers? A look at gotcha.md: which memories must be fully available as soon as a new session begins, and which can wait to be retrieved later?'
-category: Reflections
+category: technology
+kind: reflection
 tags:
   - AI
   - Agent
-  - Design
-  - Best Practices
+  - 设计
+  - 最佳实践
 featured: true
 series:
   - Long-Term Memory

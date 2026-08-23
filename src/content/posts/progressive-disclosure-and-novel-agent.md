@@ -2,7 +2,8 @@
 title: 从 How We Use Skills 开始：什么是渐进式披露？什么是任务拆解？我想了解什么？
 published: 2026-07-03
 featured: true
-category: 思考
+category: technology
+kind: reflection
 tags:
   - 渐进式披露
   - Skills

@@ -2,9 +2,9 @@
 title: 春娇与志明
 published: 2024-07-08
 shelf: '电影'
-category: 观后
+category: culture
+kind: review
 tags:
-  - 电影
   - 春娇与志明
   - 影评
 description: 春娇与志明观后，关于时间带来的牵绊

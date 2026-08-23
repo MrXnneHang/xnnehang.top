@@ -2,9 +2,9 @@
 title: 青春同人志
 published: 2024-07-08
 shelf: '电影'
-category: 观后
+category: culture
+kind: review
 tags:
-  - 电影
   - 青春同人志
   - 影评
 description: 青春同人志观影记录，关于中性美、缺陷与共鸣

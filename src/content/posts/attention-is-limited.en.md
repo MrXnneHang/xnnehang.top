@@ -3,12 +3,11 @@ title: Attention Is Limited — Lost in the Middle
 published: 2025-07-06
 shelf: '论文'
 arxiv: 'https://arxiv.org/abs/2307.03172'
-category: Reflections
+category: technology
+kind: reflection
 tags:
-  - LLM
   - Attention
   - Transformer
-  - Research Paper
 description: LLM attention is limited. Starting from the difference in weighting between system and user prompts, this article explores the Lost in the Middle phenomenon and what it can teach us.
 series:
   - LLM

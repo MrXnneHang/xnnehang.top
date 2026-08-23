@@ -2,11 +2,10 @@
 title: Filled with Empty Things
 published: 2026-08-16
 shelf: '漫画'
-category: Reviews
+category: culture
+kind: review
 tags:
-  - Reading
-  - Manga
-  - Avogado6
+  - 阿伏伽德六
 description: A cleverly interwoven timeline and a somewhat shallow exploration of death and lifespan.
 series:
   - Reading

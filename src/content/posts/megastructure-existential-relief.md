@@ -2,7 +2,8 @@
 title: 巨构的心理暗示与存在主义的解脱感
 published: 2026-08-18
 featured: true
-category: 思考
+category: thought
+kind: reflection
 tags:
   - 哲学
   - 存在主义

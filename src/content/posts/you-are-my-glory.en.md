@@ -2,10 +2,10 @@
 title: You Are My Glory
 published: 2025-01-15
 shelf: '电视剧'
-category: Reviews
+category: culture
+kind: review
 tags:
-  - Film Review
-  - Television
+  - 影评
 description: A letter about You Are My Glory.
 series:
   - Film and Television

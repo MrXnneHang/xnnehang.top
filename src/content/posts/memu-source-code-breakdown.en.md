@@ -2,11 +2,12 @@
 title: "What Is memU? Let's Break It Down (An Ongoing Series)"
 published: 2026-06-29
 updated: 2026-07-14
-category: Learning as I Build
+category: technology
+kind: learning-note
 tags:
   - memU
-  - Memory Systems
-  - Prompt Design
+  - 记忆系统
+  - 提示词设计
 description: A breakdown of memU focused on its main paths and ADR architecture documents, currently following through ADR 0008.
 series:
   - Long-Term Memory

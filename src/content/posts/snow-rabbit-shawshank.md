@@ -3,9 +3,9 @@ title: 距离春天二十公分的雪兔与肖申克的救赎
 published: 2025-02-16
 shelf: '书籍'
 subCategory: ['散文']
-category: 观后
+category: culture
+kind: review
 tags:
-  - 读书
   - 电影
 description: 一只兔子和一个囚犯，两种凿洞，两种自由
 series:

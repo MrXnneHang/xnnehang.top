@@ -2,11 +2,10 @@
 title: 大模型时代：我的能力究竟是什么？
 published: 2026-06-12
 featured: true
-category: 思考
+category: thought
+kind: reflection
 tags:
-  - LLM
   - AI Coding
-  - 思考
   - 博客
 description: 重度使用 AI coding 一年后，我的编码能力几乎丧失殆尽。那么我究竟还剩下什么能力？
 series:

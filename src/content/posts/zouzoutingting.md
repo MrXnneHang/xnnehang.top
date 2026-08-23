@@ -2,9 +2,9 @@
 title: 《走走停停》后
 published: 2024-08-13
 shelf: '电影'
-category: 观后
+category: culture
+kind: review
 tags:
-  - 电影
   - 走走停停
   - 影评
 description: 《走走停停》观后，关于追求与自我提升

@@ -2,7 +2,8 @@
 title: memU 是啥？我们来拆开看看（长期更新）
 published: 2026-06-29
 updated: 2026-07-14
-category: 边写边学
+category: technology
+kind: learning-note
 tags:
   - memU
   - 记忆系统

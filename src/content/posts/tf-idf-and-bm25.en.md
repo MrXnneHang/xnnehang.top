@@ -1,11 +1,11 @@
 ---
 title: Learning TF-IDF Again After Graduation
 published: 2026-07-12
-category: Learning as I Build
+category: technology
+kind: learning-note
 tags:
   - TF-IDF
-  - NLP
-  - Information Retrieval
+  - 信息检索
 description: My plain-language explanation of TF-IDF, from terms and tokenization through TF, IDF, query scoring, BM25, and using it to recommend related posts on this blog. Apparently, it is much easier to pay back the debt of skipping NLP lectures once there is a reason to learn it.
 featured: true
 series:

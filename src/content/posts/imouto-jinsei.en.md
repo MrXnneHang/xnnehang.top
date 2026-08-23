@@ -3,10 +3,9 @@ title: 'Imouto Life'
 published: 2024-10-18
 shelf: 书籍
 subCategory: ['轻小说']
-category: Reviews
-tags:
-  - Reading
-  - Light Novels
+category: culture
+kind: review
+tags: []
 description: 'On fading feelings, new encounters, and the work required to sustain an emotion.'
 series:
   - Reading

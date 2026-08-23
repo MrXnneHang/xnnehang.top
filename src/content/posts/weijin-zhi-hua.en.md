@@ -2,11 +2,10 @@
 title: Flowers Yet to Bloom
 published: 2024-06-25
 shelf: '漫画'
-category: Reviews
+category: culture
+kind: review
 tags:
-  - Reading
-  - Comics
-  - Zi Bu Yu
+  - 子不语
 description: Thoughts on Flowers Yet to Bloom and the images it completes from Zi Bu Yu.
 series:
   - Reading

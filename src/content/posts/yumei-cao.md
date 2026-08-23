@@ -3,9 +3,9 @@ title: 虞美人草后
 published: 2024-07-17
 shelf: '书籍'
 subCategory: ['文学']
-category: 观后
+category: culture
+kind: review
 tags:
-  - 读书
   - 夏目漱石
   - 虞美人草
 description: 夏目漱石《虞美人草》阅读笔记，关于注意力、戏剧与人性的率真

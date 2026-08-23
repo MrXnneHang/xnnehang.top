@@ -2,11 +2,11 @@
 title: On Mortal Lives in Renegade Immortal and A Record of a Mortal's Journey to Immortality
 published: 2025-02-18
 shelf: '动漫'
-category: Reviews
+category: culture
+kind: review
 tags:
-  - Anime
-  - Renegade Immortal
-  - A Record of a Mortal's Journey to Immortality
+  - 仙逆
+  - 凡人修仙传
 description: "The mortal-life realizations in Renegade Immortal and the secluded life in A Record of a Mortal's Journey to Immortality: two kinds of mortal hearts on the path to immortality."
 series:
   - Film and Television

@@ -3,9 +3,9 @@ title: 《撒哈拉的故事》阅读手记
 published: 2024-10-10
 shelf: '书籍'
 subCategory: ['散文']
-category: 观后
+category: culture
+kind: review
 tags:
-  - 读书
   - 三毛
 description: 三毛与荷西，沙漠中的饭店与结婚记
 series:

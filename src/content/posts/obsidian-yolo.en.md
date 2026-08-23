@@ -1,11 +1,12 @@
 ---
 title: 'First Impressions of Obsidian-YOLO'
 published: 2026-06-18
-category: Tutorials
+category: technology
+kind: tutorial
 tags:
   - Obsidian
   - YOLO
-  - AI Writing
+  - AI写作
 description: A hands-on introduction to using the Obsidian-YOLO plugin and why it is worth recommending.
 series:
   - Blogging

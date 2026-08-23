@@ -18,7 +18,8 @@ const contentPost = (overrides = {}) => ({
   published: '2026-01-01',
   words: 1200,
   estimatedMinutes: 5,
-  category: '思考',
+  category: 'thought',
+  kind: 'reflection',
   series: [],
   editCount: 1,
   lastModified: '2026-01-02T00:00:00.000Z',
@@ -122,49 +123,33 @@ test('calculates publication rhythm by distinct publication days', () => {
   })
 })
 
-test('folds excess categories and preserves monthly count and share totals', () => {
-  const categories = ['', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
-  const totals = buildContentTotals(
-    categories.map((category, index) =>
-      contentPost({
-        title: `Post ${index}`,
-        path: `/posts/${index}/`,
-        category,
-      })
-    )
-  )
+test('keeps category evolution in the stable taxonomy order', () => {
+  const totals = buildContentTotals([
+    contentPost({ category: 'culture' }),
+    contentPost({ title: 'Second', path: '/posts/second/', category: 'technology' }),
+    contentPost({ title: 'Third', path: '/posts/third/', category: 'culture' }),
+  ])
   const month = totals.categoryEvolution.months[0]
 
-  assert.equal(totals.categoryEvolution.categories.length, 8)
-  assert.ok(totals.categoryEvolution.categories.includes('未分类'))
-  assert.ok(totals.categoryEvolution.categories.includes('其他'))
-  assert.equal(
-    month.values.reduce((sum, value) => sum + value.count, 0),
-    9
+  assert.deepEqual(totals.categoryEvolution.categories, [
+    'technology',
+    'culture',
+    'thought',
+    'life',
+  ])
+  assert.deepEqual(
+    month.values.map(({ category, count }) => ({ category, count })),
+    [
+      { category: 'technology', count: 1 },
+      { category: 'culture', count: 2 },
+      { category: 'thought', count: 0 },
+      { category: 'life', count: 0 },
+    ]
   )
   assert.equal(
     month.values.reduce((sum, value) => sum + value.share, 0),
     100
   )
-})
-
-test('localizes uncategorized and other category labels', () => {
-  const categories = ['', '', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
-  const totals = buildContentTotals(
-    categories.map((category, index) =>
-      contentPost({
-        title: `Post ${index}`,
-        path: `/en/posts/${index}/`,
-        category,
-      })
-    ),
-    'en'
-  )
-
-  assert.ok(totals.categoryEvolution.categories.includes('Uncategorized'))
-  assert.ok(totals.categoryEvolution.categories.includes('Other'))
-  assert.ok(!totals.categoryEvolution.categories.includes('未分类'))
-  assert.ok(!totals.categoryEvolution.categories.includes('其他'))
 })
 
 test('adds posts to multiple series without double-counting site totals', () => {
@@ -211,7 +196,7 @@ test('builds post ranges and filters unknown paths', () => {
   assert.equal(output.site.engagementSecondsPerUser, 20)
   assert.equal(output.ranges['7d'].length, 1)
   assert.equal(output.ranges['7d'][0].engagementSecondsPerUser, 10)
-  assert.equal(output.ranges['7d'][0].category, '思考')
+  assert.equal(output.ranges['7d'][0].category, 'thought')
   assert.equal(output.content.dailyPublications.length, 1)
 })
 
@@ -220,7 +205,7 @@ test('keeps translation-pair metrics separated by localized paths', () => {
   const englishPost = contentPost({
     title: 'English',
     path: '/en/posts/example/',
-    category: 'Reviews',
+    category: 'culture',
   })
   const row = (path, views) => ({
     dimensionValues: [{ value: path }],

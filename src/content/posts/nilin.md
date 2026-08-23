@@ -2,9 +2,9 @@
 title: 逆鳞之后
 published: 2024-08-20
 shelf: '电影'
-category: 观后
+category: culture
+kind: review
 tags:
-  - 电影
   - 逆鳞
   - 影评
 description: 《逆鳞》观后，八九十年代的江湖义气

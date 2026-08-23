@@ -1,9 +1,12 @@
+import type { PostCategory, PostKind } from '@/utils/post-taxonomy'
+
 export interface GraphNode {
   id: string
   title: string
   description: string
   published: string
-  category: string
+  category: PostCategory
+  kind: PostKind
   tags: string[]
   cover: string
   linkCount: number

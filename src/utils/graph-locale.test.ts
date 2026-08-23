@@ -10,9 +10,7 @@ describe('Graph localization', () => {
     expect(getGraphLabels(ENGLISH_LOCALE).nodeAria('Demian', 2)).toBe('Demian, 2 relationships')
   })
 
-  test('uses locale-specific category legends', () => {
-    expect(getGraphCategoryOrder(DEFAULT_LOCALE)).toContain('观后')
-    expect(getGraphCategoryOrder(ENGLISH_LOCALE)).toContain('Reviews')
-    expect(getGraphCategoryOrder(ENGLISH_LOCALE)).not.toContain('观后')
+  test('uses stable category keys for every locale', () => {
+    expect(getGraphCategoryOrder()).toEqual(['technology', 'culture', 'thought', 'life'])
   })
 })

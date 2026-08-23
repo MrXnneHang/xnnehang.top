@@ -3,13 +3,13 @@ title: 协议的形状决定能力：codex 为什么砍掉 chat_completion，以
 published: 2026-07-28
 description: 从 codex 硬删 chat/completions 的全过程，追到 new-api 被波及的迁移损伤，再拆开 Anthropic Messages 与 OpenAI 协议在 Tool 流上的真实差别——为什么我的长链静默不是协议的锅，以及什么才算真的「边说边做」。
 tags:
-  - LLM
   - Agent
   - OpenAI
   - Anthropic
   - 协议
   - Tool Call
-category: 边写边学
+category: technology
+kind: learning-note
 featured: true
 series:
   - LLM

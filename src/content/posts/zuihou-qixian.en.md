@@ -3,12 +3,12 @@ title: The Deadline
 published: 2024-07-10
 shelf: '书籍'
 subCategory: ['小说', '心理学']
-category: Reviews
+category: culture
+kind: review
 tags:
-  - Reading
-  - The Deadline
-  - Project Management
-  - Software Engineering
+  - 最后期限
+  - 项目管理
+  - 软件工程
 description: 'Reading notes on The Deadline: project management, design, and a sense of purpose.'
 series:
   - Reading

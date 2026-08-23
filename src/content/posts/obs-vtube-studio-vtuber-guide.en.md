@@ -1,9 +1,9 @@
 ---
 title: 'Using OBS with VTube Studio: Be a Vtuber'
 published: 2024-01-30
-category: Tutorials
+category: technology
+kind: tutorial
 tags:
-  - Tutorials
   - OBS
   - VTube Studio
   - Vtuber

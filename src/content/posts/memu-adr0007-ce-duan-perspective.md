@@ -1,7 +1,8 @@
 ---
 title: 站在 C 端开发者的角度看 memU 的架构转向
 published: 2026-07-02
-category: 思考
+category: technology
+kind: reflection
 tags:
   - memU
   - 架构

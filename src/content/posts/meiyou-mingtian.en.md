@@ -3,11 +3,11 @@ title: We Who Have No Tomorrow Fell in Love Yesterday
 published: 2024-06-25
 shelf: '书籍'
 subCategory: ['Fiction']
-category: Reviews
+category: thought
+kind: review
 tags:
-  - Reading
-  - Light Novels
-  - Sugaru Miaki
+  - 轻小说
+  - 三秋缒
 description: Thoughts at the end of winter break, about death, deadlines, and change.
 series:
   - Reading

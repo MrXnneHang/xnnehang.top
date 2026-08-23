@@ -2,11 +2,11 @@
 title: After “A Year for Ten Thousand Yen”
 published: 2024-07-08
 shelf: '漫画'
-category: Reviews
+category: culture
+kind: review
 tags:
-  - Reading
-  - Light Novels
-  - Sugaru Miaki
+  - 轻小说
+  - 三秋缒
 description: 'Thoughts on *Three Days of Happiness*: death, encounters, and ultimate concern.'
 series:
   - Reading

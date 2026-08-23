@@ -1,0 +1,286 @@
+{
+  "a-maverick-pig": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "agent-framework-exploration": {
+    "category": "technology",
+    "kind": "learning-note"
+  },
+  "attention-is-limited": {
+    "category": "technology",
+    "kind": "reflection"
+  },
+  "blog-rebuild-inspirations": {
+    "category": "technology",
+    "kind": "learning-note"
+  },
+  "category-kind-tags": {
+    "category": "thought",
+    "kind": "reflection"
+  },
+  "changan-de-lizhi": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "changge-xing": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "chongfu-zhi-le": {
+    "category": "thought",
+    "kind": "reflection"
+  },
+  "chunjiao-yu-zhiming": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "claude-desktop-bridging-problem": {
+    "category": "technology",
+    "kind": "learning-note"
+  },
+  "cloud-service-provider": {
+    "category": "thought",
+    "kind": "reflection"
+  },
+  "cong-yin-ai-chat": {
+    "category": "culture",
+    "kind": "resource"
+  },
+  "cunzai-zhijin": {
+    "category": "thought",
+    "kind": "reflection"
+  },
+  "cunzai-zhuyi": {
+    "category": "thought",
+    "kind": "reflection"
+  },
+  "daneimitan-00fa": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "dasheng-quqin": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "demian": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "fengxin-lou": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "frieren-ocd": {
+    "category": "thought",
+    "kind": "reflection"
+  },
+  "fuwari-guide": {
+    "category": "technology",
+    "kind": "tutorial"
+  },
+  "github-stacked-prs": {
+    "category": "technology",
+    "kind": "learning-note"
+  },
+  "gotcha-agent-rules": {
+    "category": "technology",
+    "kind": "reflection"
+  },
+  "heguang-tongchen": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "huajianghu-tiangang": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "imouto-jinsei": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "long-term-memory-graduation-review-and-plan": {
+    "category": "life",
+    "kind": "reflection"
+  },
+  "luoshengmen": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "man-shi-kong-xu-zhi-wu": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "megastructure-existential-relief": {
+    "category": "thought",
+    "kind": "reflection"
+  },
+  "meiyou-mingtian": {
+    "category": "thought",
+    "kind": "review"
+  },
+  "memu-adr0007-ce-duan-perspective": {
+    "category": "technology",
+    "kind": "reflection"
+  },
+  "memu-source-code-breakdown": {
+    "category": "technology",
+    "kind": "learning-note"
+  },
+  "moechat_ltm": {
+    "category": "technology",
+    "kind": "learning-note"
+  },
+  "multi-image-vlm": {
+    "category": "technology",
+    "kind": "learning-note"
+  },
+  "my-book-finding-channels": {
+    "category": "culture",
+    "kind": "resource"
+  },
+  "nekopara-vol-1": {
+    "category": "thought",
+    "kind": "reflection"
+  },
+  "nilin": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "obs-vtube-studio-vtuber-guide": {
+    "category": "technology",
+    "kind": "tutorial"
+  },
+  "obsidian-yolo": {
+    "category": "technology",
+    "kind": "tutorial"
+  },
+  "panduola": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "pomodoro-agent-task-driven": {
+    "category": "technology",
+    "kind": "reflection"
+  },
+  "progressive-disclosure-and-novel-agent": {
+    "category": "technology",
+    "kind": "reflection"
+  },
+  "qingchun-tongrenzhi": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "rag-blog-graph": {
+    "category": "technology",
+    "kind": "reflection"
+  },
+  "resposne-vs-chat_completion": {
+    "category": "technology",
+    "kind": "learning-note"
+  },
+  "RRF-vs-Hybrid-Search": {
+    "category": "technology",
+    "kind": "learning-note"
+  },
+  "ruhuashuban-de-lianai": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "sahara-stories": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "shaonian-babilun": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "shijie-jintou-de-nvyou": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "shishen": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "snow-rabbit-shawshank": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "sparsing-and-densing-embeddings": {
+    "category": "technology",
+    "kind": "learning-note"
+  },
+  "talking-about-running": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "tangdao-zhi-lian": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "termix-web-ssh-guide": {
+    "category": "technology",
+    "kind": "tutorial"
+  },
+  "tf-idf-and-bm25": {
+    "category": "technology",
+    "kind": "learning-note"
+  },
+  "travellin-cats-in-germany": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "vampires-melody": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "weijin-zhi-hua": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "what-is-my-ability-in-llm-era": {
+    "category": "thought",
+    "kind": "reflection"
+  },
+  "wo-neng-you-shenme-huai-xinsi-ne": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "wo-yigerenlai": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "xianni-huafan": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "yandere-appearance": {
+    "category": "culture",
+    "kind": "note"
+  },
+  "yi-nian-yiwan-yuan": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "you-are-my-glory": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "yueguang-baohe": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "yumei-cao": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "zouzoutingting": {
+    "category": "culture",
+    "kind": "review"
+  },
+  "zuihou-qixian": {
+    "category": "culture",
+    "kind": "review"
+  }
+}

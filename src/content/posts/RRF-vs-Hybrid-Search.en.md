@@ -6,9 +6,10 @@ tags:
   - RAG
   - Hybrid Search
   - RRF
-  - Memory Systems
-  - Retrieval
-category: Learning as I Build
+  - 记忆系统
+  - 检索
+category: technology
+kind: learning-note
 featured: true
 series:
   - Long-Term Memory

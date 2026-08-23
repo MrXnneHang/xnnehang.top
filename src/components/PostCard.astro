@@ -4,6 +4,7 @@ import path from 'node:path'
 import { Icon } from 'astro-icon/components'
 import I18nKey from '../i18n/i18nKey'
 import { DEFAULT_LOCALE, ENGLISH_LOCALE, type Locale } from '../i18n/locales'
+import type { PostCategory, PostKind } from '../utils/post-taxonomy'
 import { createI18n } from '../i18n/translation'
 import { getDir } from '../utils/url-utils'
 import ImageWrapper from './misc/ImageWrapper.astro'
@@ -17,7 +18,8 @@ interface Props {
   published: Date
   updated?: Date
   tags: string[]
-  category: string | null
+  category: PostCategory
+  kind: PostKind
   image: string
   description: string
   draft: boolean
@@ -33,6 +35,7 @@ const {
   updated,
   tags,
   category,
+  kind,
   image,
   description,
   locale = DEFAULT_LOCALE,
@@ -142,6 +145,7 @@ const labels = locale === ENGLISH_LOCALE
       updated={updated}
       tags={tags}
       category={category}
+      kind={kind}
       locale={locale}
       hideTagsForMobile={true}
       hideUpdateDate={true}

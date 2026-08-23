@@ -1,13 +1,13 @@
 ---
 title: 'Single Image Does Not Equal Multiple Images: Why VLMs Hallucinate More with Multiple Images, and a Two-Stage Fix'
 published: 2026-02-08
-category: Learning as I Build
+category: technology
+kind: learning-note
 tags:
   - VLM
-  - Multimodal
-  - Multi-image Understanding
-  - LLM
-  - Engineering
+  - 多模态
+  - 多图理解
+  - 工程
 description: An investigation into why web and API results diverge during multi-image analysis, from Lost in the Middle to a two-stage approach based on per-image pre-summaries.
 series:
   - LLM

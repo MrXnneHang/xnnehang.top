@@ -1,9 +1,9 @@
 ---
 title: Termix —— 一个很酷的 Web-Based SSH 连接工具
 published: 2025-12-29
-category: 教程
+category: technology
+kind: tutorial
 tags:
-  - 教程
   - Docker
   - SSH
   - Termix

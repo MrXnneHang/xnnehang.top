@@ -2,14 +2,14 @@
 title: 'Go Build Long-Term Memory! A Review and Plan After Graduating with an AI Degree'
 published: 2026-06-28
 featured: true
-category: Reflections
+category: life
+kind: reflection
 tags:
-  - Reflections
-  - Graduation
+  - 毕业
   - AI
   - Agent
   - Memory
-  - Retrospective
+  - 回顾
 description: "A simple, ordinary story: an eighteen-year-old's dream inspired by Plastic Memories became a research topic at twenty-two—along with a technical survey of long-term memory, a plan for breaking down projects, and a look ahead at life."
 lang: en
 translationKey: long-term-memory-graduation-review-and-plan

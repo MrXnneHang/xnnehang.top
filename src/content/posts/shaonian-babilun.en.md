@@ -3,11 +3,10 @@ title: After Young Babylon
 published: 2024-07-15
 shelf: '书籍'
 subCategory: ['小说']
-category: Reviews
+category: culture
+kind: review
 tags:
-  - Reading
-  - Young Babylon
-  - Fiction
+  - 少年巴比伦
 description: Thoughts on Young Babylon, Bai Lan, interesting people, and being nineteen.
 series:
   - Reading

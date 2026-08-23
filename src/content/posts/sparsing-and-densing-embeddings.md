@@ -2,7 +2,8 @@
 title: Sparse vs Dense：从 BPE 到 Hybrid Search
 published: 2026-07-14
 featured: true
-category: 边写边学
+category: technology
+kind: learning-note
 series:
   - NLP
 tags:

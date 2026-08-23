@@ -2,9 +2,9 @@
 title: 大圣娶亲后
 published: 2024-09-01
 shelf: '电影'
-category: 观后
+category: culture
+kind: review
 tags:
-  - 电影
   - 大话西游
   - 影评
 description: 大话西游之大圣娶亲观后，关于失去才意识到的价值，以及孙悟空的凡人一面

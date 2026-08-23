@@ -2,16 +2,17 @@
 title: 'Sparse vs. Dense: From BPE to Hybrid Search'
 published: 2026-07-14
 featured: true
-category: Learning as I Build
+category: technology
+kind: learning-note
 series:
   - NLP
 tags:
-  - Embedding
+  - embedding
   - BPE
   - WordPiece
   - BM25
-  - Sparse Vectors
-  - Dense Vectors
+  - 稀疏向量
+  - 稠密向量
 description: 'Starting from the question of what sparse and dense really mean, this works through the embedding pipeline, subwords and vocabularies, input length, and their practical uses.'
 lang: en
 translationKey: sparsing-and-densing-embeddings

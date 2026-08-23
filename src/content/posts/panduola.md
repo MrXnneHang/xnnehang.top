@@ -3,9 +3,9 @@ title: 潘多拉的盒子
 published: 2024-08-04
 shelf: '书籍'
 subCategory: ['文学']
-category: 观后
+category: culture
+kind: review
 tags:
-  - 读书
   - 潘多拉的盒子
   - 太宰治
 description: 关于咯血、死亡意识与人格转变

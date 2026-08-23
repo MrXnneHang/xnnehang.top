@@ -1,10 +1,10 @@
 ---
 title: 如花束般的恋爱
 published: 2025-06-20
-category: 观后
+category: culture
+kind: review
 shelf: '电影'
 tags:
-  - 电影
   - 日影
   - 恋爱
 description: 一部关于文青恋爱、表面合拍与时间流逝的电影。

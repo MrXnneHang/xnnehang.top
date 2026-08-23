@@ -1,12 +1,12 @@
 ---
 title: 单图≠多图：多图理解时 VLM 为什么更容易"胡说"，以及一个两阶段解法
 published: 2026-02-08
-category: 边写边学
+category: technology
+kind: learning-note
 tags:
   - VLM
   - 多模态
   - 多图理解
-  - LLM
   - 工程
 description: 多图分析时网页端和 API 结果一致性差的问题拆解，从 Lost in the Middle 到逐图预摘要的两阶段解法。
 series:

@@ -2,8 +2,14 @@
 title: 'MoeChat：AI 角色如何记住你、感受情绪'
 published: 2026-07-15
 description: '深入剖析 MoeChat 如何为 AI 角色构建长期记忆，它的时间+语义混合检索——写给关注记忆系统的人。'
-tags: [AI, LLM, MoeChat, RAG, 记忆系统]
-category: 边写边学
+tags:
+  - AI
+  - LLM
+  - MoeChat
+  - RAG
+  - 记忆系统
+category: technology
+kind: learning-note
 draft: false
 featured: true
 series:

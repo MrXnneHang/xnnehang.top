@@ -11,6 +11,7 @@
     "type-check": "tsc --noEmit --isolatedDeclarations",
     "stats:fetch": "node scripts/fetch-ga4-statistics.mjs",
     "stats:test": "node --test scripts/statistics-lib.test.mjs",
+    "taxonomy:verify": "node scripts/verify-post-taxonomy.mjs",
     "todo:fetch": "node scripts/fetch-github-todo.mjs",
     "todo:test": "node --test scripts/todo-lib.test.mjs",
     "preinstall": "npx only-allow pnpm",

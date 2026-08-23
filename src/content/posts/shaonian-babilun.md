@@ -3,11 +3,10 @@ title: 少年巴比伦后
 published: 2024-07-15
 shelf: '书籍'
 subCategory: ['小说']
-category: 观后
+category: culture
+kind: review
 tags:
-  - 读书
   - 少年巴比伦
-  - 小说
 description: 少年巴比伦读后，关于白蓝，关于有趣的人，关于十九岁
 series:
   - 阅读

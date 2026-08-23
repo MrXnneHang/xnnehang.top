@@ -3,9 +3,9 @@ title: 没有明天的我们，在昨天相恋
 published: 2024-06-25
 shelf: '书籍'
 subCategory: ['小说']
-category: 观后
+category: thought
+kind: review
 tags:
-  - 读书
   - 轻小说
   - 三秋缒
 description: 寒假结束时的胡思乱想，关于死亡、期限与改变

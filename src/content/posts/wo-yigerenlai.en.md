@@ -2,12 +2,12 @@
 title: I Come Alone, I Leave Alone
 published: 2024-08-17
 shelf: '动漫'
-category: Reviews
+category: culture
+kind: review
 tags:
-  - Slice of Life
-  - Film
-  - Frieren
-  - Reflections
+  - 日常
+  - 电影
+  - 芙莉莲
 description: On Frieren’s sense of time, and whether what passes is insignificant or precious.
 series:
   - Film and Television

@@ -3,9 +3,13 @@ title: Things Pass Like Spring Dreams, Leaving No Trace; Yet Then, I Knew Only J
 published: 2026-06-13
 featured: true
 description: From my mother's embroidery and my copying of classical Chinese to fishing in a game—repetitive activities hold something we cannot quite explain, yet know is there.
-category: Reflections
+category: thought
+kind: reflection
 shelf: '游戏'
-tags: [Essays, Flow, Life]
+tags:
+  - 随笔
+  - 心流
+  - 生活
 image: ../../assets/img/covers/cover6-13.jpg
 draft: false
 lang: en

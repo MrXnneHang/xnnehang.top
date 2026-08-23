@@ -1,10 +1,10 @@
 ---
 title: 我的找书渠道
 published: 2026-06-14
-category: 资源
+category: culture
+kind: resource
 tags:
   - 找书
-  - 资源
 description: 常用的几个找书网站，Zlibrary、Anna's Archive 和 Kox.moe。
 ---
 

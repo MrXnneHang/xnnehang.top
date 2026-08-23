@@ -1,0 +1,29 @@
+---
+import type { GetStaticPaths } from 'astro'
+import LocalizedCollectionPage from '../../../components/LocalizedCollectionPage.astro'
+import { ENGLISH_LOCALE } from '../../../i18n/locales'
+import { getCategoryPosts } from '../../../utils/content-utils'
+import {
+  getCategoryDescription,
+  getCategoryLabel,
+  POST_CATEGORY_KEYS,
+  type PostCategory,
+} from '../../../utils/post-taxonomy'
+
+export const getStaticPaths = (async () =>
+  Promise.all(
+    POST_CATEGORY_KEYS.map(async (category) => ({
+      params: { category },
+      props: { category, posts: await getCategoryPosts(category, ENGLISH_LOCALE) },
+    }))
+  )) satisfies GetStaticPaths
+
+const { category, posts } = Astro.props as { category: PostCategory; posts: Awaited<ReturnType<typeof getCategoryPosts>> }
+---
+
+<LocalizedCollectionPage
+  locale={ENGLISH_LOCALE}
+  title={getCategoryLabel(category, ENGLISH_LOCALE)}
+  description={getCategoryDescription(category, ENGLISH_LOCALE)}
+  posts={posts}
+/>

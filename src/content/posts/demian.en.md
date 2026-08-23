@@ -2,7 +2,9 @@
 title: Demian
 published: 2024-04-01
 featured: true
-category: Reviews
+tags: []
+category: culture
+kind: review
 shelf: '书籍'
 description: The turning point Hesse explores through Frau Eva is worth revisiting again and again.
 series: [Reading]

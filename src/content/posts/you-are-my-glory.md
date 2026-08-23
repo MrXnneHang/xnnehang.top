@@ -2,10 +2,10 @@
 title: 你是我的荣耀
 published: 2025-01-15
 shelf: '电视剧'
-category: 观后
+category: culture
+kind: review
 tags:
   - 影评
-  - 电视剧
 description: 关于《你是我的荣耀》的一封信
 series:
   - 观影

@@ -3,11 +3,11 @@ title: Existentialist Reading Notes
 published: 2024-06-20
 shelf: '书籍'
 subCategory: ['Psychology']
-category: Reflections
+category: thought
+kind: reflection
 tags:
-  - Reading
-  - Existentialism
-  - Philosophy
+  - 存在主义
+  - 哲学
 description: Thoughts on death, memory, and compulsion in existentialism.
 image: ../../assets/img/covers/存在主义.jpg
 series:

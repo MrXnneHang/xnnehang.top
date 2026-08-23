@@ -3,9 +3,10 @@ title: What Does It Mean When Someone Looks Like a Yandere?
 published: 2026-08-23
 description: I started experimenting with SeedVR2 just to upscale a manhua-drama character I liked.
 tags:
-  - Yandere
-  - Image Upscaling
-category: Reflections
+  - 病娇
+  - 图像超分
+category: culture
+kind: note
 draft: false
 featured: true
 lang: en

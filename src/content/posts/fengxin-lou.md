@@ -2,9 +2,9 @@
 title: 风信，是个好名字。
 published: 2022-10-17
 shelf: '游戏'
-category: 观后
+category: culture
+kind: review
 tags:
-  - 游戏
   - 风信楼
   - galgame
 description: 十年一觉扬州梦，风信楼里的那些人和事

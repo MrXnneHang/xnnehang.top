@@ -3,10 +3,11 @@ title: 'The Long Ballad: Even After a Thousand-Li Farewell, We Must Part at Last
 published: 2025-02-16
 shelf: '电视剧'
 shelfCover: '../../assets/img/covers/changge-xing-shelf.jpg'
-category: Reviews
+category: culture
+kind: review
 tags:
-  - Anime
-  - Reviews
+  - 动漫
+  - 影评
 description: Reflections on the manga and television adaptation of The Long Ballad
 series:
   - Film and Television

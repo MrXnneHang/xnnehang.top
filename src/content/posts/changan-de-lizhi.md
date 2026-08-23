@@ -2,7 +2,9 @@
 title: 长安的荔枝
 published: 2026-08-08
 featured: true
-category: 观后
+tags: []
+category: culture
+kind: review
 shelf: '书籍'
 description: 长期地追求一样东西，即便它是一场不切实际的幻梦，也是一种不错的选择。
 series: [阅读]

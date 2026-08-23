@@ -3,9 +3,9 @@ title: 最后期限
 published: 2024-07-10
 shelf: '书籍'
 subCategory: ['小说', '心理学']
-category: 观后
+category: culture
+kind: review
 tags:
-  - 读书
   - 最后期限
   - 项目管理
   - 软件工程

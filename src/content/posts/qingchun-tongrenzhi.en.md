@@ -2,11 +2,11 @@
 title: Fanfic
 published: 2024-07-08
 shelf: '电影'
-category: Reviews
+category: culture
+kind: review
 tags:
-  - Film
-  - Fanfic
-  - Film Review
+  - 青春同人志
+  - 影评
 description: 'Thoughts on Fanfic: androgynous beauty, flaws, and resonance.'
 series:
   - Film and Television

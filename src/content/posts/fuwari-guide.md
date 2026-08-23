@@ -1,11 +1,11 @@
 ---
 title: Fuwari 博客主题使用指南
 published: 2024-07-01
-category: 教程
+category: technology
+kind: tutorial
 tags:
   - Fuwari
   - Blogging
-  - 教程
 description: 本博客基于 Fuwari 主题搭建。这篇指南涵盖 Front-matter 配置、Markdown
   语法、扩展功能（GitHub 卡片、Admonitions）、代码高亮及视频嵌入。
 series:
