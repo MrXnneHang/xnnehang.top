@@ -1,9 +1,9 @@
 ---
 title: OBS和VTube Studio的联合使用：Be a Vtuber
 published: 2024-01-30
-category: 教程
+category: technology
+kind: tutorial
 tags:
-  - 教程
   - OBS
   - VTube Studio
   - Vtuber

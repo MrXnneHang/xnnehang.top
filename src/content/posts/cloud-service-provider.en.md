@@ -1,11 +1,10 @@
 ---
 title: 'When My Cloud Provider Disappeared: Rethinking the Shape of a Personal Blog and What Is Worth Recording'
 published: 2026-06-01
-category: Reflections
+category: thought
+kind: reflection
 tags:
-  - Blogging
-  - Reflections
-  - Archiving
+  - 存档
 description: Rethinking the shape of a blog and what it should record after a cloud provider's disappearance caused data loss.
 series:
   - Blogging

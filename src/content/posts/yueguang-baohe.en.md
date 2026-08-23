@@ -3,12 +3,12 @@ title: "After A Chinese Odyssey Part One: Pandora's Box"
 published: 2024-08-29
 shelf: '电影'
 shelfCover: '../../assets/img/covers/yueguang-baohe-shelf.jpg'
-category: Reviews
+category: culture
+kind: review
 tags:
-  - Film
-  - A Chinese Odyssey
-  - Stephen Chow
-  - Film Review
+  - 大话西游
+  - 周星驰
+  - 影评
 description: "Thoughts after Pandora's Box: love as a theme, smallness, and the scope of a work."
 series:
   - Film and Television

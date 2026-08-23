@@ -1,13 +1,12 @@
 ---
 title: 从 NEKOPARA 的一篇评测开始
 published: 2025-05-15
-category: 思考
+category: thought
+kind: reflection
 shelf: '游戏'
 subCategory: ['galgame']
 tags:
-  - galgame
   - NEKOPARA
-  - 思考
 description: 从 NEKOPARA 下一条 Steam 评测引发的思考——活着想要什么，该做什么。
 image: ../../assets/img/covers/nekopra2.jpg
 ---

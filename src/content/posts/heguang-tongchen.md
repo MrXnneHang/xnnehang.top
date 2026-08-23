@@ -1,11 +1,11 @@
 ---
 title: 和光同尘——从韩立说起
 published: 2026-06-30
-category: 观后
+category: culture
+kind: review
 tags:
   - 凡人修仙传
   - 道德经
-  - 思考
 description: 从一个和光同尘的视频说起，聊韩立的道心、凡人修仙传的角色塑造、以及去我
 image: ../../assets/img/heguang-tongchen/cover.png
 shelf: '动漫'

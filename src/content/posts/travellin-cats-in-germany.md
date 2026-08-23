@@ -4,9 +4,9 @@ published: 2026-07-14
 description: 一个在静态图上找出一百只隐藏猫猫的游戏，猫猫可能是各种形状的，找出后会高亮并且喵~，音乐和喵喵叫超治愈。
 shelf: 游戏
 tags:
-  - 游戏
   - 猫
-category: 观后
+category: culture
+kind: review
 shelfCover: ../../assets/img/covers/travellin-cats-shelf.jpg
 ---
 

@@ -1,7 +1,5 @@
 ---
-import I18nKey from '../../i18n/i18nKey'
 import { DEFAULT_LOCALE, type Locale } from '../../i18n/locales'
-import { createI18n } from '../../i18n/translation'
 import { getCategoryList } from '../../utils/content-utils'
 import ButtonLink from '../control/ButtonLink.astro'
 import WidgetLayout from './WidgetLayout.astro'
@@ -12,19 +10,19 @@ interface Props {
   locale?: Locale
 }
 const { class: className, style, locale = DEFAULT_LOCALE } = Astro.props
-const t = createI18n(locale)
+const labels =
+  locale === 'en'
+    ? { title: 'Collections', view: 'View all posts in' }
+    : { title: '文集', view: '查看文集' }
 const categories = await getCategoryList(locale)
 
-const COLLAPSED_HEIGHT = '7.5rem'
-const COLLAPSE_THRESHOLD = 5
-const isCollapsed = categories.length >= COLLAPSE_THRESHOLD
+const isCollapsed = false
 ---
 
 <WidgetLayout
-  name={t(I18nKey.categories)}
+  name={labels.title}
   id="categories"
   isCollapsed={isCollapsed}
-  collapsedHeight={COLLAPSED_HEIGHT}
   class={className}
   style={style}
   locale={locale}
@@ -34,7 +32,7 @@ const isCollapsed = categories.length >= COLLAPSE_THRESHOLD
       <ButtonLink
         url={c.url}
         badge={String(c.count)}
-        label={`View all posts in the ${c.name.trim()} category`}
+        label={`${labels.view} ${c.name.trim()}`}
       >
         {c.name.trim()}
       </ButtonLink>

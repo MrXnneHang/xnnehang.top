@@ -2,8 +2,14 @@
 title: 'MoeChat: How AI Characters Remember You and Feel Emotions'
 published: 2026-07-15
 description: 'An in-depth look at how MoeChat builds long-term memory for AI characters, including its time-and-semantic hybrid retrieval—written for people interested in memory systems.'
-tags: [AI, LLM, MoeChat, RAG, Memory Systems]
-category: Learning as I Build
+tags:
+  - AI
+  - LLM
+  - MoeChat
+  - RAG
+  - 记忆系统
+category: technology
+kind: learning-note
 draft: false
 featured: true
 series:

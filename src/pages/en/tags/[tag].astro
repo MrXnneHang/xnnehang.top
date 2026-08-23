@@ -1,0 +1,28 @@
+---
+import type { GetStaticPaths } from 'astro'
+import LocalizedCollectionPage from '../../../components/LocalizedCollectionPage.astro'
+import { ENGLISH_LOCALE } from '../../../i18n/locales'
+import { getTagList, getTagPosts } from '../../../utils/content-utils'
+import { getTagsIndexUrl } from '../../../utils/url-utils'
+
+export const getStaticPaths = (async () => {
+  const tags = await getTagList(ENGLISH_LOCALE)
+  return Promise.all(
+    tags.map(async (tag) => ({
+      params: { tag: tag.name },
+      props: { tag: tag.name, posts: await getTagPosts(tag.name, ENGLISH_LOCALE) },
+    }))
+  )
+}) satisfies GetStaticPaths
+
+const { tag, posts } = Astro.props as { tag: string; posts: Awaited<ReturnType<typeof getTagPosts>> }
+---
+
+<LocalizedCollectionPage
+  locale={ENGLISH_LOCALE}
+  title={`#${tag}`}
+  description="Posts connected by this tag."
+  posts={posts}
+  secondaryUrl={getTagsIndexUrl(ENGLISH_LOCALE)}
+  secondaryLabel="View all tags"
+/>

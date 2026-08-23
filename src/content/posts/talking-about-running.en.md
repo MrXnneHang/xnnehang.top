@@ -3,10 +3,10 @@ title: 'What I Talk About When I Talk About Running: Reading Notes'
 published: 2024-10-15
 shelf: '书籍'
 subCategory: ['散文']
-category: Reviews
+category: culture
+kind: review
 tags:
-  - Reading
-  - Haruki Murakami
+  - 村上春树
 description: On running, focus, freedom, and resistance.
 series:
   - Reading

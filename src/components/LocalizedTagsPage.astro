@@ -1,0 +1,26 @@
+---
+import type { Locale } from '../i18n/locales'
+import MainGridLayout from '../layouts/MainGridLayout.astro'
+import { getTagList } from '../utils/content-utils'
+import TagIndex from './TagIndex.svelte'
+
+interface Props {
+  locale: Locale
+}
+
+const { locale } = Astro.props
+const tags = await getTagList(locale)
+const labels = locale === 'en'
+  ? { title: 'Tags', description: 'Free-form names that connect specific works, technologies, and concepts.' }
+  : { title: '标签', description: '连接具体作品、技术与概念的自由索引。' }
+---
+
+<MainGridLayout locale={locale} title={labels.title} description={labels.description} hideSidebar={true}>
+  <section class="card-base rounded-[var(--radius-large)] p-6 md:p-8">
+    <header class="mb-6">
+      <h1 class="text-3xl font-bold tracking-tight text-black/90 dark:text-white/90">{labels.title}</h1>
+      <p class="mt-3 max-w-2xl text-sm leading-6 text-black/50 dark:text-white/50">{labels.description}</p>
+    </header>
+    <TagIndex tags={tags} locale={locale} client:load />
+  </section>
+</MainGridLayout>

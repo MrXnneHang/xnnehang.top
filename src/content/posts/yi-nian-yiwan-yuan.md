@@ -2,9 +2,9 @@
 title: 《以一年一萬元的價格》后
 published: 2024-07-08
 shelf: '漫画'
-category: 观后
+category: culture
+kind: review
 tags:
-  - 读书
   - 轻小说
   - 三秋缒
 description: 关于《三日间的幸福》的思考，死亡、邂逅与最终关怀

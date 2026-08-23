@@ -3,10 +3,10 @@ title: 'Sahara Stories: Reading Notes'
 published: 2024-10-10
 shelf: '书籍'
 subCategory: ['散文']
-category: Reviews
+category: culture
+kind: review
 tags:
-  - Reading
-  - Sanmao
+  - 三毛
 description: Sanmao and José, a desert restaurant, and a record of their marriage.
 series:
   - Reading

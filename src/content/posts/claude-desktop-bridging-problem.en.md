@@ -6,8 +6,9 @@ tags:
   - Claude Desktop
   - memU
   - bridging
-  - Scheduled Tasks
-category: Learning as I Build
+  - 定时任务
+category: technology
+kind: learning-note
 featured: true
 lang: en
 translationKey: claude-desktop-bridging-problem

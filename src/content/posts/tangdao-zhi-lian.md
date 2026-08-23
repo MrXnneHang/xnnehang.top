@@ -3,9 +3,9 @@ title: 《汤岛之恋》
 published: 2024-07-15
 shelf: '书籍'
 subCategory: ['文学']
-category: 观后
+category: culture
+kind: review
 tags:
-  - 读书
   - 汤岛之恋
   - 泉镜花
   - 雪国

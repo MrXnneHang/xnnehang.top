@@ -2,7 +2,9 @@
 title: 世界尽头的女友
 published: 2024-03-26
 featured: true
-category: 观后
+tags: []
+category: culture
+kind: review
 shelf: '书籍'
 description: 非常喜欢的风格，让我意识到中国二十一世纪文学除了伤痛文学和现实主义之外还有一些别的东西，比如物哀。
 series: [阅读]

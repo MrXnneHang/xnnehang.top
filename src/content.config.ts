@@ -1,6 +1,7 @@
 import { defineCollection } from 'astro:content'
 import { file, glob } from 'astro/loaders'
 import { z } from 'astro/zod'
+import { POST_CATEGORY_KEYS, POST_KIND_KEYS } from './utils/post-taxonomy'
 
 const shelfCategories = ['电影', '电视剧', '动漫', '书籍', '漫画', '游戏', '论文'] as const
 
@@ -40,7 +41,8 @@ const postsCollection = defineCollection({
     description: z.string().optional().default(''),
     image: z.string().optional().default(''),
     tags: z.array(z.string()).optional().default([]),
-    category: z.string().optional().nullable().default(''),
+    category: z.enum(POST_CATEGORY_KEYS),
+    kind: z.enum(POST_KIND_KEYS),
     series: z.array(z.string()).optional().default([]),
     lang: z.enum(['zh-CN', 'en']).optional().default('zh-CN'),
     translationKey: z.string().optional().default(''),

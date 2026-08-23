@@ -2,11 +2,12 @@
 title: 'Reconciling the Pomodoro Technique with Waiting on Agents: Task-Driven, Not Conversation-Driven'
 published: 2026-08-17
 featured: true
-category: Reflections
+category: technology
+kind: reflection
 tags:
   - Agent
-  - Pomodoro Technique
-  - Workflow
+  - 番茄工作法
+  - 工作流
 description: 'When waiting, polling, and switching between Agent sessions keep breaking our focus, task-driven work offers another way: let machines execute asynchronously while humans think one thing at a time.'
 lang: en
 translationKey: pomodoro-agent-task-driven

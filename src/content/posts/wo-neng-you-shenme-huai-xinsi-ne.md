@@ -2,7 +2,9 @@
 title: 我能有什么坏心思呢
 published: 2025-09-07
 featured: true
-category: 观后
+tags: []
+category: culture
+kind: review
 shelf: '书籍'
 description: 在返校路上的焦虑里，动物的视角给了我一场好梦。
 series: [阅读]

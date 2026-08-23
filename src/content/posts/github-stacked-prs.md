@@ -2,8 +2,13 @@
 title: GitHub Stacked PRs 使用初体验
 published: 2026-08-05
 description: 从实际重构项目出发，记录 GitHub Stacked PRs 的线性依赖、分层合并、多级同步与本地 branch 关系。
-tags: [GitHub, Git, Stacked PRs, 开发工具]
-category: 边写边学
+tags:
+  - GitHub
+  - Git
+  - Stacked PRs
+  - 开发工具
+category: technology
+kind: learning-note
 draft: false
 featured: true
 ---

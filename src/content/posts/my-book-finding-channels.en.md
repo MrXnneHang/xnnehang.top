@@ -1,10 +1,10 @@
 ---
 title: How I Find Books
 published: 2026-06-14
-category: Resources
+category: culture
+kind: resource
 tags:
-  - Book Finding
-  - Resources
+  - 找书
 description: "A few book-finding sites I use regularly: Z-Library, Anna's Archive, and Kox.moe."
 lang: en
 translationKey: my-book-finding-channels

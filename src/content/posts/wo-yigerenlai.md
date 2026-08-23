@@ -2,12 +2,12 @@
 title: 我一个人来，一个人走
 published: 2024-08-17
 shelf: '动漫'
-category: 观后
+category: culture
+kind: review
 tags:
   - 日常
   - 电影
   - 芙莉莲
-  - 思考
 description: 关于芙莉莲的时间观念，以及逝去是微不足道还是弥足珍贵
 series:
   - 观影

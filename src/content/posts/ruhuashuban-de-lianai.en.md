@@ -1,12 +1,12 @@
 ---
 title: We Made a Beautiful Bouquet
 published: 2025-06-20
-category: Reviews
+category: culture
+kind: review
 shelf: '电影'
 tags:
-  - Film
-  - Japanese Film
-  - Romance
+  - 日影
+  - 恋爱
 description: A film about literary romance, surface-level compatibility, and the passage of time.
 image: ../../assets/img/covers/202510301059519.jpeg
 series:

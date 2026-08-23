@@ -3,10 +3,10 @@ title: A Maverick Pig
 published: 2024-10-12
 shelf: '书籍'
 subCategory: ['散文']
-category: Reviews
+category: culture
+kind: review
 tags:
-  - Reading
-  - Wang Xiaobo
+  - 王小波
 description: Reading notes on Wang Xiaobo's A Maverick Pig
 image: ../../assets/img/covers/一只特立独行的猪.jpg
 series:

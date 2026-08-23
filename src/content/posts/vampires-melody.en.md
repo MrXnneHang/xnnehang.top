@@ -3,11 +3,11 @@ title: "After Vampires' Melody"
 published: 2024-09-01
 shelf: '游戏'
 shelfCover: '../../assets/img/covers/vampires-melody-shelf.jpg'
-category: Reviews
+category: culture
+kind: review
 tags:
-  - Galgame
-  - Vampires' Melody
-  - Games
+  - galgame
+  - 吸血鬼的旋律
 description: "Thoughts after finishing Vampires' Melody: romanticism at its most extreme."
 series:
   - Games

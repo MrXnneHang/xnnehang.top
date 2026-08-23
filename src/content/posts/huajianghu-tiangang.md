@@ -1,12 +1,12 @@
 ---
 title: 《画江湖之天罡》后——也许真正的完满并不存在
 published: 2025-03-15
-category: 观后
+category: culture
+kind: review
 shelf: '电影'
 series:
   - 观影
 tags:
-  - 电影
   - 动漫
   - 完满
 description: 从《画江湖之天罡》出发，讨论什么样的故事才算完满。

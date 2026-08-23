@@ -2,9 +2,9 @@
 title: 关于仙逆与凡人修仙传中的化凡
 published: 2025-02-18
 shelf: '动漫'
-category: 观后
+category: culture
+kind: review
 tags:
-  - 动漫
   - 仙逆
   - 凡人修仙传
 description: 仙逆的化凡与凡人修仙传的隐居，两种修仙中的凡心

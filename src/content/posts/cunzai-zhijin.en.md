@@ -1,11 +1,12 @@
 ---
 title: Near Being, Far Being
 published: 2024-06-29
-category: Reflections
+category: thought
+kind: reflection
 tags:
-  - Philosophy
-  - Existentialism
-  - Death
+  - 哲学
+  - 存在主义
+  - 死亡
 description: Changes brought by an urgent experience of death, and the meaning of small happinesses.
 series:
   - Philosophical Reflections

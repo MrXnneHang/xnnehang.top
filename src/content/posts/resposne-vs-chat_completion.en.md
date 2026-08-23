@@ -3,13 +3,13 @@ title: 'The Shape of a Protocol Determines Its Capabilities: Why Codex Removed c
 published: 2026-07-28
 description: "From Codex's hard removal of chat/completions to the migration damage it caused in new-api, this examines the real tool-flow differences between Anthropic Messages and OpenAI protocols—why my long-chain silence is not the protocol's fault, and what truly counts as talking while working."
 tags:
-  - LLM
   - Agent
   - OpenAI
   - Anthropic
-  - Protocol
+  - 协议
   - Tool Call
-category: Learning as I Build
+category: technology
+kind: learning-note
 featured: true
 series:
   - LLM

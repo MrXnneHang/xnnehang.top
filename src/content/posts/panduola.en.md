@@ -3,11 +3,11 @@ title: Pandora's Box
 published: 2024-08-04
 shelf: '书籍'
 subCategory: ['文学']
-category: Reviews
+category: culture
+kind: review
 tags:
-  - Reading
-  - Pandora's Box
-  - Osamu Dazai
+  - 潘多拉的盒子
+  - 太宰治
 description: On coughing up blood, awareness of death, and personality change.
 series:
   - Reading

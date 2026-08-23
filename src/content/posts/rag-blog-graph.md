@@ -1,12 +1,11 @@
 ---
 title: 做过长期系统项目再看：RAG 怪兽是否适用于个人博客系统的图谱构建？
 published: 2026-06-06
-category: 思考
+category: technology
+kind: reflection
 tags:
-  - LLM
   - RAG
   - 记忆系统
-  - 博客
 description: 从 AI 桌宠长期记忆系统的实践出发，横向对比三种 LLM 长期记忆方案，探讨 RAG 是否适合作为个人博客的关系图谱展示方案。
 series:
   - LLM

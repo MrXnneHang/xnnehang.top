@@ -1,6 +1,5 @@
-import I18nKey from '../i18n/i18nKey'
 import { DEFAULT_LOCALE, localizePath, type Locale } from '../i18n/locales'
-import { i18n } from '../i18n/translation'
+import { type PostCategory, type PostKind } from './post-taxonomy'
 
 export function pathsEqual(path1: string, path2: string) {
   const normalizedPath1 = path1.replace(/^\/|\/$/g, '').toLowerCase()
@@ -18,18 +17,20 @@ export function getPostUrlBySlug(slug: string, locale: Locale = DEFAULT_LOCALE):
 }
 
 export function getTagUrl(tag: string, locale: Locale = DEFAULT_LOCALE): string {
-  if (!tag) return url('/archive/', locale)
-  return url(`/archive/?tag=${encodeURIComponent(tag.trim())}`, locale)
+  if (!tag) return url('/tags/', locale)
+  return url(`/tags/${encodeURIComponent(tag.trim())}/`, locale)
 }
 
-export function getCategoryUrl(category: string | null, locale: Locale = DEFAULT_LOCALE): string {
-  if (
-    !category ||
-    category.trim() === '' ||
-    category.trim().toLowerCase() === i18n(I18nKey.uncategorized, locale).toLowerCase()
-  )
-    return url('/archive/?uncategorized=true', locale)
-  return url(`/archive/?category=${encodeURIComponent(category.trim())}`, locale)
+export function getCategoryUrl(category: PostCategory, locale: Locale = DEFAULT_LOCALE): string {
+  return url(`/categories/${category}/`, locale)
+}
+
+export function getKindUrl(kind: PostKind, locale: Locale = DEFAULT_LOCALE): string {
+  return url(`/archive/?kind=${encodeURIComponent(kind)}`, locale)
+}
+
+export function getTagsIndexUrl(locale: Locale = DEFAULT_LOCALE): string {
+  return url('/tags/', locale)
 }
 
 export function getSeriesUrl(name: string, locale: Locale = DEFAULT_LOCALE): string {

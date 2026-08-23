@@ -1,4 +1,5 @@
 import type { Locale } from '@/i18n/locales'
+import type { PostCategory, PostKind } from '@/utils/post-taxonomy'
 
 export type StatisticsRange = '7d' | '30d' | '90d' | 'all'
 
@@ -44,7 +45,7 @@ export interface StatisticsMonthlyOutput {
 }
 
 export interface StatisticsCategoryValue {
-  category: string
+  category: PostCategory
   count: number
   share: number
 }
@@ -56,7 +57,7 @@ export interface StatisticsCategoryMonth {
 }
 
 export interface StatisticsCategoryEvolution {
-  categories: string[]
+  categories: PostCategory[]
   months: StatisticsCategoryMonth[]
 }
 
@@ -109,7 +110,8 @@ export interface StatisticsData {
 
 export interface StatisticsContentPost extends StatisticsTrailPost {
   estimatedMinutes: number
-  category: string
+  category: PostCategory
+  kind: PostKind
   series: string[]
   editCount: number
   lastModified: string | null

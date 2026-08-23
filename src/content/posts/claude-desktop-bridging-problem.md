@@ -7,7 +7,8 @@ tags:
   - memU
   - bridging
   - 定时任务
-category: 边写边学
+category: technology
+kind: learning-note
 featured: true
 ---
 

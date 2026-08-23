@@ -2,8 +2,10 @@ import { describe, expect, test } from 'vite-plus/test'
 import { DEFAULT_LOCALE, ENGLISH_LOCALE } from '../i18n/locales'
 import {
   getCategoryUrl,
+  getKindUrl,
   getPostUrlBySlug,
   getSeriesUrl,
+  getTagsIndexUrl,
   getTagUrl,
   pathsEqual,
   url,
@@ -22,13 +24,11 @@ describe('locale-aware URL utilities', () => {
     expect(getSeriesUrl('Long-Term Memory', ENGLISH_LOCALE)).toBe('/en/series/Long-Term%20Memory/')
   })
 
-  test('preserves locale-aware archive query URLs', () => {
-    expect(getTagUrl('Long Term Memory', ENGLISH_LOCALE)).toBe(
-      '/en/archive/?tag=Long%20Term%20Memory'
-    )
-    expect(getCategoryUrl('Tutorials', ENGLISH_LOCALE)).toBe('/en/archive/?category=Tutorials')
-    expect(getCategoryUrl('Uncategorized', ENGLISH_LOCALE)).toBe('/en/archive/?uncategorized=true')
-    expect(getCategoryUrl('未分类', DEFAULT_LOCALE)).toBe('/archive/?uncategorized=true')
+  test('builds locale-aware collection and archive URLs', () => {
+    expect(getTagUrl('Long Term Memory', ENGLISH_LOCALE)).toBe('/en/tags/Long%20Term%20Memory/')
+    expect(getCategoryUrl('technology', ENGLISH_LOCALE)).toBe('/en/categories/technology/')
+    expect(getKindUrl('tutorial', DEFAULT_LOCALE)).toBe('/archive/?kind=tutorial')
+    expect(getTagsIndexUrl(ENGLISH_LOCALE)).toBe('/en/tags/')
   })
 
   test('does not duplicate an existing locale prefix', () => {

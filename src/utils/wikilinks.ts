@@ -1,5 +1,6 @@
 import { getCollection } from 'astro:content'
 import { DEFAULT_LOCALE, type Locale } from '../i18n/locales'
+import type { PostCategory, PostKind } from './post-taxonomy'
 import { filterPostsByLocale, getPostRouteSlug } from './post-locale'
 import { getPostCoverSource } from './cover'
 import { optimizePostCover } from './cover-optimize'
@@ -19,7 +20,8 @@ export type WikiGraphMetadata = {
   title: string
   description: string
   published: string
-  category: string
+  category: PostCategory
+  kind: PostKind
   tags: string[]
   cover: string
 }
@@ -62,7 +64,8 @@ export async function buildWikiGraphWithTitles(
         title,
         description: post.data.description,
         published: post.data.published.toISOString().slice(0, 10),
-        category: post.data.category?.trim() || (locale === 'en' ? 'Uncategorized' : '未分类'),
+        category: post.data.category,
+        kind: post.data.kind,
         tags: post.data.tags,
         cover: await optimizePostCover(getPostCoverSource(post.data.image, post.body), post.id),
       })

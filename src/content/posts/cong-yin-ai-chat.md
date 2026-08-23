@@ -1,12 +1,11 @@
 ---
 title: 《放松时光：与你共享 lofi 故事》——给聪音接入 AI Chat
 published: 2025-11-15
-category: 资源
+category: culture
+kind: resource
 tags:
-  - 游戏
   - Mod
   - AI
-  - LLM
 description: 给 Steam 番茄钟游戏《放松时光》的主角聪音接入 AI 对话功能的 Mod 探索记录。
 shelf: '游戏'
 series:

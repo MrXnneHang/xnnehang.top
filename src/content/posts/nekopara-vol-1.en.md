@@ -1,13 +1,12 @@
 ---
 title: 'Starting from a NEKOPARA Review'
 published: 2025-05-15
-category: Reflections
+category: thought
+kind: reflection
 shelf: '游戏'
 subCategory: ['galgame']
 tags:
-  - Galgame
   - NEKOPARA
-  - Reflections
 description: 'Reflections sparked by a Steam review under NEKOPARA: what we want from life, and what we should do.'
 image: ../../assets/img/covers/nekopra2.jpg
 lang: en

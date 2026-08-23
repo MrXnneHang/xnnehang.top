@@ -3,11 +3,11 @@ title: 'Reading Notes on Rashomon'
 published: 2024-09-26
 shelf: 书籍
 subCategory: ['文学']
-category: Reviews
+category: culture
+kind: review
 tags:
-  - Reading
-  - Ryūnosuke Akutagawa
-  - Short Stories
+  - 芥川龙之介
+  - 短篇小说
 description: "Reading notes on Ryūnosuke Akutagawa's short-story collection, recording passages and impressions worth returning to."
 series:
   - Reading

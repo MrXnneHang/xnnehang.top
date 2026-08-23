@@ -2,11 +2,11 @@
 title: 'After Forbidden City Cop'
 published: 2024-09-07
 shelf: 电影
-category: Reviews
+category: culture
+kind: review
 tags:
-  - Films
-  - Stephen Chow
-  - Film Reviews
+  - 周星驰
+  - 影评
 description: 'Notes on Forbidden City Cop: its familiar kind of love and its use of light and composition.'
 series:
   - Film Watching

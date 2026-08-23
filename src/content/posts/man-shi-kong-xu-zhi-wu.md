@@ -2,10 +2,9 @@
 title: 满是空虚之物
 published: 2026-08-16
 shelf: '漫画'
-category: 观后
+category: culture
+kind: review
 tags:
-  - 读书
-  - 漫画
   - 阿伏伽德六
 description: 巧妙串联的时间线，以及关于死亡与寿命略显浅薄的讨论。
 series:

@@ -3,9 +3,13 @@ title: 事如春夢了無痕，当时却只觉欢喜。
 published: 2026-06-13
 featured: true
 description: 从母亲刺绣、抄写文言到游戏里钓鱼——重复性活动里藏着一种我们说不清但确实存在的东西
-category: 思考
+category: thought
+kind: reflection
 shelf: '游戏'
-tags: [随笔, 心流, 生活]
+tags:
+  - 随笔
+  - 心流
+  - 生活
 image: ../../assets/img/covers/cover6-13.jpg
 draft: false
 ---

@@ -3,9 +3,9 @@ title: 《罗生门》阅读手记
 published: 2024-09-26
 shelf: '书籍'
 subCategory: ['文学']
-category: 观后
+category: culture
+kind: review
 tags:
-  - 读书
   - 芥川龙之介
   - 短篇小说
 description: 芥川龙之介短篇小说集阅读笔记，记录一些值得回味的片段和感受

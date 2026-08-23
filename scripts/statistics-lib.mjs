@@ -8,10 +8,11 @@ export const STATISTICS_RANGES = {
 const DAY_MS = 24 * 60 * 60 * 1000
 export const STATISTICS_LOCALES = ['zh-CN', 'en']
 export const ENGLISH_PATH_REGEX = '^/en(?:/.*)?$'
+export const POST_CATEGORY_KEYS = ['technology', 'culture', 'thought', 'life']
 
 const CONTENT_OPTIONS = {
-  'zh-CN': { uncategorized: '未分类', otherCategory: '其他', sortLocale: 'zh-CN' },
-  en: { uncategorized: 'Uncategorized', otherCategory: 'Other', sortLocale: 'en' },
+  'zh-CN': { sortLocale: 'zh-CN' },
+  en: { sortLocale: 'en' },
 }
 
 function contentOptions(locale = 'zh-CN') {
@@ -156,7 +157,7 @@ function buildRhythm(dailyPublications) {
 }
 
 export function buildContentTotals(inputPosts = [], locale = 'zh-CN') {
-  const { uncategorized, otherCategory, sortLocale } = contentOptions(locale)
+  const { sortLocale } = contentOptions(locale)
   const posts = [...inputPosts].sort(
     (a, b) => a.published.localeCompare(b.published) || a.path.localeCompare(b.path)
   )
@@ -168,8 +169,9 @@ export function buildContentTotals(inputPosts = [], locale = 'zh-CN') {
   const monthlyMap = new Map(
     months.map((month) => [month, { month, postCount: 0, words: 0, estimatedMinutes: 0 }])
   )
-  const categoryCounts = new Map()
-  const categoryMonthMaps = new Map(months.map((month) => [month, new Map()]))
+  const categoryMonthMaps = new Map(
+    months.map((month) => [month, new Map(POST_CATEGORY_KEYS.map((category) => [category, 0]))])
+  )
   const seriesMap = new Map()
 
   for (const post of posts) {
@@ -187,10 +189,11 @@ export function buildContentTotals(inputPosts = [], locale = 'zh-CN') {
       monthly.estimatedMinutes += numeric(post.estimatedMinutes)
     }
 
-    const category = String(post.category || '').trim() || uncategorized
-    categoryCounts.set(category, (categoryCounts.get(category) ?? 0) + 1)
-    const monthCategories = categoryMonthMaps.get(month)
-    monthCategories?.set(category, (monthCategories.get(category) ?? 0) + 1)
+    const category = String(post.category || '').trim()
+    if (POST_CATEGORY_KEYS.includes(category)) {
+      const monthCategories = categoryMonthMaps.get(month)
+      monthCategories?.set(category, (monthCategories.get(category) ?? 0) + 1)
+    }
 
     for (const rawSeries of Array.isArray(post.series) ? post.series : []) {
       const name = String(rawSeries).trim()
@@ -203,27 +206,12 @@ export function buildContentTotals(inputPosts = [], locale = 'zh-CN') {
 
   const dailyPublications = [...dailyMap.values()]
   const monthlyOutput = [...monthlyMap.values()]
-  const rankedCategories = [...categoryCounts]
-    .sort(
-      ([nameA, countA], [nameB, countB]) =>
-        countB - countA || nameA.localeCompare(nameB, sortLocale)
-    )
-    .map(([name]) => name)
-  const categories =
-    rankedCategories.length > 8
-      ? [...rankedCategories.slice(0, 7), otherCategory]
-      : rankedCategories
-  const visibleCategorySet = new Set(categories)
+  const categories = [...POST_CATEGORY_KEYS]
   const categoryMonths = months.map((month) => {
     const rawValues = categoryMonthMaps.get(month) ?? new Map()
-    const mappedValues = new Map(categories.map((category) => [category, 0]))
-    for (const [category, count] of rawValues) {
-      const target = visibleCategorySet.has(category) ? category : otherCategory
-      mappedValues.set(target, (mappedValues.get(target) ?? 0) + count)
-    }
-    const total = [...mappedValues.values()].reduce((sum, count) => sum + count, 0)
+    const total = [...rawValues.values()].reduce((sum, count) => sum + count, 0)
     const values = categories.map((category) => {
-      const count = mappedValues.get(category) ?? 0
+      const count = rawValues.get(category) ?? 0
       return { category, count, share: average(count * 100, total) }
     })
     if (total > 0 && values.length > 0) {

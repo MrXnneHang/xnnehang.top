@@ -1,7 +1,8 @@
 ---
 title: Obsidian-YOLO 使用初体验
 published: 2026-06-18
-category: 教程
+category: technology
+kind: tutorial
 tags:
   - Obsidian
   - YOLO

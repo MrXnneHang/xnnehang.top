@@ -1,12 +1,11 @@
 ---
 title: 'Bringing AI Chat to Congyin in Chill with You: Lo-Fi Story'
 published: 2025-11-15
-category: Resources
+category: culture
+kind: resource
 tags:
-  - Games
   - Mod
   - AI
-  - LLM
 description: 'Notes from exploring a mod that adds AI chat to Congyin, the protagonist of the Steam Pomodoro game Chill with You: Lo-Fi Story.'
 shelf: 游戏
 series:

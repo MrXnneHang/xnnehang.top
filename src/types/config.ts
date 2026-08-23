@@ -84,7 +84,8 @@ export type BlogPostData = {
   tags: string[]
   draft?: boolean
   image?: string
-  category?: string
+  category?: import('../utils/post-taxonomy').PostCategory
+  kind?: import('../utils/post-taxonomy').PostKind
   prevTitle?: string
   prevSlug?: string
   nextTitle?: string

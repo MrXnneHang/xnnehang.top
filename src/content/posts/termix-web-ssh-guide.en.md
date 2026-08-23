@@ -1,9 +1,9 @@
 ---
 title: 'Termix: A Very Cool Web-Based SSH Client'
 published: 2025-12-29
-category: Tutorials
+category: technology
+kind: tutorial
 tags:
-  - Tutorial
   - Docker
   - SSH
   - Termix

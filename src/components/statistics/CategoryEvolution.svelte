@@ -2,6 +2,7 @@
   import { DEFAULT_LOCALE, type Locale } from '@/i18n/locales'
   import type { StatisticsCategoryEvolution, StatisticsMonthlyOutput } from '@/types/statistics'
   import { getStatisticsLabels } from '@/utils/statistics-locale'
+  import { getCategoryLabel, type PostCategory } from '@/utils/post-taxonomy'
   import { compressQuietMonths, filterMonths, formatMonth, type TrailRange } from './writing-trail-utils'
 
   export let evolution: StatisticsCategoryEvolution = undefined!
@@ -13,14 +14,21 @@
   $: labels = getStatisticsLabels(locale)
   let mode: Mode = 'count'
   let activeMonth = ''
-  let activeCategory = ''
+  let activeCategory: PostCategory | '' = ''
+  let showTable = false
   $: visibleMonths = filterMonths(months, range)
   $: visibleMonthSet = new Set(visibleMonths.map((item) => item.month))
   $: categoryMonths = evolution.months.filter((month) => visibleMonthSet.has(month.month))
   $: categoryByMonth = new Map(categoryMonths.map((month) => [month.month, month]))
   $: displayItems = range === 'all' ? compressQuietMonths(visibleMonths) : visibleMonths.map((item) => ({ kind: 'month' as const, item }))
   $: maxTotal = Math.max(1, ...categoryMonths.map((month) => month.total))
-  $: activeValue = categoryByMonth.get(activeMonth)?.values.find((value) => value.category === activeCategory)
+  $: activeValue = activeCategory
+    ? categoryByMonth.get(activeMonth)?.values.find((value) => value.category === activeCategory)
+    : undefined
+
+  function categoryColor(category: PostCategory): string {
+    return `var(--category-${category})`
+  }
 </script>
 
 <section class="time-part category-viz" aria-labelledby="category-evolution-title">
@@ -38,7 +46,7 @@
 
   <ul class="legend mb-5" aria-label={labels.categoryLegendAria}>
     {#each evolution.categories as category, index}
-      <li><span class="legend-mark" style={`--series-color: var(--series-${index})`}></span><span>{category}</span></li>
+      <li><span class="legend-mark" style={`--series-color: ${categoryColor(category)}`}></span><span>{getCategoryLabel(category, locale)}</span></li>
     {/each}
   </ul>
 
@@ -60,9 +68,9 @@
                       type="button"
                       class="segment"
                       class:data-end={categoryIndex === month.values.findLastIndex((item) => item.count > 0)}
-                      style={`height: ${mode === 'share' ? value.share : value.count / month.total * 100}%; --series-color: var(--series-${categoryIndex})`}
-                      aria-label={labels.categoryValue(formatMonth(month.month, locale), value.category, value.count, value.share)}
-                      title={`${formatMonth(month.month, locale)} · ${value.category}\n${labels.postUnit(value.count)} · ${value.share}%`}
+                      style={`height: ${mode === 'share' ? value.share : value.count / month.total * 100}%; --series-color: ${categoryColor(value.category)}`}
+                      aria-label={labels.categoryValue(formatMonth(month.month, locale), getCategoryLabel(value.category, locale), value.count, value.share)}
+                      title={`${formatMonth(month.month, locale)} · ${getCategoryLabel(value.category, locale)}\n${labels.postUnit(value.count)} · ${value.share}%`}
                       onmouseenter={() => { activeMonth = month.month; activeCategory = value.category }}
                       onfocus={() => { activeMonth = month.month; activeCategory = value.category }}
                       onclick={() => { activeMonth = month.month; activeCategory = value.category }}
@@ -79,14 +87,26 @@
   </div>
 
   {#if activeValue}
-    <p class="mt-3 text-sm text-black/60 dark:text-white/60" aria-live="polite"><strong>{formatMonth(activeMonth, locale)} · {activeValue.category}</strong>: {labels.postUnit(activeValue.count)}, {activeValue.share}%</p>
+    <p class="mt-3 text-sm text-black/60 dark:text-white/60" aria-live="polite"><strong>{formatMonth(activeMonth, locale)} · {getCategoryLabel(activeValue.category, locale)}</strong>: {labels.postUnit(activeValue.count)}, {activeValue.share}%</p>
+  {/if}
+
+  <button type="button" class="table-toggle mt-3" aria-expanded={showTable} onclick={() => showTable = !showTable}>
+    {locale === 'en' ? (showTable ? 'Hide data table' : 'Show data table') : (showTable ? '收起数据表' : '查看数据表')}
+  </button>
+  {#if showTable}
+    <div class="mt-3 overflow-x-auto">
+      <table class="w-full min-w-[28rem] border-collapse text-xs">
+        <thead><tr><th>{locale === 'en' ? 'Month' : '月份'}</th>{#each evolution.categories as category}<th>{getCategoryLabel(category, locale)}</th>{/each}</tr></thead>
+        <tbody>{#each categoryMonths as month}<tr><th>{month.month}</th>{#each month.values as value}<td>{value.count} · {value.share}%</td>{/each}</tr>{/each}</tbody>
+      </table>
+    </div>
   {/if}
 </section>
 
 <style>
   .part-kicker { color: var(--primary); font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
-  .category-viz { --series-0: #2a78d6; --series-1: #eb6834; --series-2: #1baf7a; --series-3: #eda100; --series-4: #e87ba4; --series-5: #008300; --series-6: #4a3aa7; --series-7: #e34948; }
-  :global(.dark) .category-viz { --series-0: #3987e5; --series-1: #d95926; --series-2: #199e70; --series-3: #c98500; --series-4: #d55181; --series-5: #008300; --series-6: #9085e9; --series-7: #e66767; }
+  .category-viz { --category-technology: #2a78d6; --category-culture: #eda100; --category-thought: #e87ba4; --category-life: #008300; }
+  :global(.dark) .category-viz { --category-technology: #3987e5; --category-culture: #c98500; --category-thought: #d55181; --category-life: #008300; }
   .mode-controls { display: flex; gap: .25rem; }
   .mode-controls button { border-radius: .65rem; padding: .45rem .75rem; color: color-mix(in oklab, black 55%, transparent); font-size: .75rem; transition: 150ms ease; }
   :global(.dark) .mode-controls button { color: color-mix(in oklab, white 55%, transparent); }
@@ -110,12 +130,17 @@
   :global(.dark) .quiet-gap { color: color-mix(in oklab, white 35%, transparent); }
   .quiet-gap span { padding-bottom: .35rem; font-size: 1.1rem; letter-spacing: .2rem; }
   .quiet-gap small { position: absolute; top: calc(100% + .45rem); white-space: nowrap; font-size: .6rem; }
+  .table-toggle { border-radius: .55rem; padding: .35rem .6rem; color: var(--primary); font-size: .7rem; transition: 150ms ease; }
+  .table-toggle:hover { background: var(--btn-plain-bg-hover); }
+  table th, table td { border-bottom: 1px solid var(--line-divider); padding: .5rem .6rem; text-align: right; color: color-mix(in oklab, currentColor 55%, transparent); }
+  table th:first-child { text-align: left; }
+  table thead th { font-weight: 650; color: color-mix(in oklab, currentColor 75%, transparent); }
   button:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
   @media (max-width: 640px) {
     .axis-label { display: none; }
     .stacked-chart { height: 8rem; }
     .quiet-gap small { writing-mode: vertical-rl; top: calc(100% + .25rem); }
   }
-  @media (prefers-reduced-motion: reduce) { .segment, .mode-controls button { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .segment, .mode-controls button, .table-toggle { transition: none; } }
   @media (forced-colors: active) { .segment, .legend-mark { border: 1px solid CanvasText; background: Canvas; background-image: repeating-linear-gradient(45deg, transparent 0 3px, CanvasText 3px 5px); } }
 </style>

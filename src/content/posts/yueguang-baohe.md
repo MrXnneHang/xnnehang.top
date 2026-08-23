@@ -3,9 +3,9 @@ title: 月光宝盒后
 published: 2024-08-29
 shelf: '电影'
 shelfCover: '../../assets/img/covers/yueguang-baohe-shelf.jpg'
-category: 观后
+category: culture
+kind: review
 tags:
-  - 电影
   - 大话西游
   - 周星驰
   - 影评

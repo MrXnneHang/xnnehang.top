@@ -3,10 +3,9 @@ title: 妹妹人生
 published: 2024-10-18
 shelf: '书籍'
 subCategory: ['轻小说']
-category: 观后
-tags:
-  - 读书
-  - 轻小说
+category: culture
+kind: review
+tags: []
 description: 关于情感的淡化、新的邂逅与维持
 series:
   - 阅读

@@ -2,10 +2,10 @@
 title: 'Rebuilding My Blog: Where My Inspirations Came From'
 published: 2026-06-07
 updated: 2026-08-23
-category: Learning as I Build
+category: technology
+kind: learning-note
 tags:
-  - Blogging
-  - Open Source
+  - 开源
 description: Tracing the inspirations behind each page and module throughout the blog's rebuild and continuing evolution.
 pin: true
 series:
@@ -41,23 +41,19 @@ Fuwari provides an Astro blog theme that works out of the box, and nyakku.moe ma
 
 The rebuild was not just a switch to a different framework. More importantly, it was an opportunity to rethink how the content itself should be organized.
 
-Previously, Xnne used categories as though they were series, which left the categories extremely disordered. The rule now is: **Each post has exactly one category, but may belong to multiple series.**
+Previously, Xnne put concepts from several different levels into a single category field, which left the content organization extremely disordered. The current structure separates those questions again: **Each post has one collection and one writing form, may belong to multiple series, and may use multiple tags to connect to specific subjects.**
 
-## Categories
+## Collections, Forms, and Tags
 
-A category describes the nature of a post, answering, “What kind of content is this?”
+A collection answers where an article ultimately arrives: Technology contains tools and engineering practice; Arts & Culture contains books, films, television, animation, comics, and games; Thought contains philosophy and self-examination; Life preserves experiences and stages of everyday life. The writing form answers what the reader is about to encounter: a Tutorial, Review, Reflection, Learning Note, Resource, or Note.
 
-- **Resources** — Straightforward recommendations of sources, applications, or information, such as websites for finding books and manga.
-- **Reviews** — A display case for memories and a magnet for kindred spirits: things written after finishing a book or series.
-- **Tutorials** — Process-oriented records, such as a guide to using an application or configuring a piece of software.
-- **Reflections** — Deeper thoughts prompted by an event or an object, along with the actions those thoughts set in motion. They may not be correct, but they help Xnne arrive at a coherent view.
-- **Learning as I Build** — Meandering explorations with little nutritional value. If readers cannot find a suitable tutorial or example elsewhere, perhaps they can still find what they need among Xnne's experiments.
+Tags preserve only the specific works, technologies, and concepts involved, providing an open path for tag wandering. The complete principle is described in [[Can an Article Belong in Only One Drawer? Rethinking Category, Kind, and Tags]].
 
 ## Series
 
-A series describes a post's subject, answering, “What is this post about?” Examples include LLMs, blogging, reading, and film. A post discussing the construction of a graph for a blog might be categorized under Reflections while belonging to both the LLM and Blogging series.
+A series is a continuing line of writing deliberately arranged by the author, such as LLMs, Blogging, Reading, or Film. One post can enter a collection while belonging to multiple series. Series no longer acts as a global classification system; it appears around related articles as a route for further reading.
 
-This division grew out of reflecting on the old, chaotic organization. Categories became focused, series became flexible, and the two became orthogonal.
+Collections provide a primary home, Forms set reading expectations, Tags create open associations, and Series arrange reading paths. Each field answers one kind of question.
 
 # The Homepage and Reading Experience
 

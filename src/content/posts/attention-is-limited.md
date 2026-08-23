@@ -3,12 +3,11 @@ title: Attention is Limited - Lost in the Middle
 published: 2025-07-06
 shelf: '论文'
 arxiv: 'https://arxiv.org/abs/2307.03172'
-category: 思考
+category: technology
+kind: reflection
 tags:
-  - LLM
   - Attention
   - Transformer
-  - 论文
 description: LLM 的注意力是有限的。从 system prompt 与 user prompt 的权重差异出发，探讨 Lost in the Middle 现象及其启示。
 series:
   - LLM

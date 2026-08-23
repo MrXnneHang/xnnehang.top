@@ -2,9 +2,9 @@
 title: '去做 Long-Term Memory！AI 本科毕业后的回顾与计划'
 published: 2026-06-28
 featured: true
-category: 思考
+category: life
+kind: reflection
 tags:
-  - 思考
   - 毕业
   - AI
   - Agent

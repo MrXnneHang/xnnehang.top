@@ -2,7 +2,9 @@
 title: 德米安
 published: 2024-04-01
 featured: true
-category: 观后
+tags: []
+category: culture
+kind: review
 shelf: '书籍'
 description: 黑塞在夏娃太太里面谈到的契机，可以反复读。
 series: [阅读]

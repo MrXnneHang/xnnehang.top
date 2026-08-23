@@ -2,7 +2,8 @@
 title: 番茄钟工作法与依赖 Agent 工作等待的冲突与折衷解法：任务驱动而非对话驱动
 published: 2026-08-17
 featured: true
-category: 思考
+category: technology
+kind: reflection
 tags:
   - Agent
   - 番茄工作法

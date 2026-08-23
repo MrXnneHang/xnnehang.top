@@ -4,6 +4,12 @@
   import { forceCenter, forceCollide, forceLink, forceManyBody, forceSimulation } from 'd3-force'
   import type { GraphNode, SerializedGraph } from '@/types/graph'
   import { getGraphCategoryOrder, getGraphLabels } from '@/utils/graph-locale'
+  import {
+    CATEGORY_COLORS,
+    getCategoryLabel,
+    getKindLabel,
+    type PostCategory,
+  } from '@/utils/post-taxonomy'
   import { getPostUrlBySlug } from '@/utils/url-utils'
   import { getStatisticsGraphPath } from '@/utils/statistics-locale'
   import {
@@ -33,18 +39,11 @@
     target: SimNode
   }
 
-  const categoryColors: Record<string, [string, string]> = {
-    观后: ['#2a78d6', '#3987e5'], Reviews: ['#2a78d6', '#3987e5'],
-    思考: ['#eb6834', '#d95926'], Reflections: ['#eb6834', '#d95926'],
-    边写边学: ['#1baf7a', '#199e70'], 'Learning as I Build': ['#1baf7a', '#199e70'],
-    教程: ['#4a3aa7', '#9085e9'], Tutorials: ['#4a3aa7', '#9085e9'],
-    资源: ['#e87ba4', '#d55181'], Resources: ['#e87ba4', '#d55181'],
-  }
   const fallbackCategoryColor = ['#64748b', '#94a3b8'] as const
 
   let { mode = 'full', currentSlug = '', graphData = null, locale = 'zh-CN' }: Props = $props()
   let labels = $derived(getGraphLabels(locale))
-  let categoryOrder = $derived(getGraphCategoryOrder(locale))
+  let categoryOrder = $derived(getGraphCategoryOrder() as PostCategory[])
 
   let explorer: HTMLElement | undefined = $state(undefined)
   let container: HTMLDivElement | undefined = $state(undefined)
@@ -84,12 +83,12 @@
     categoryOrder.filter((category) => rawGraph?.nodes.some((node) => node.category === category))
   )
 
-  function categoryColor(category: string): string {
-    const colors = categoryColors[category] ?? fallbackCategoryColor
-    return colors[dark ? 1 : 0]
+  function categoryColor(category: PostCategory): string {
+    const colors = CATEGORY_COLORS[category]
+    return colors ? colors[dark ? 'dark' : 'light'] : fallbackCategoryColor[dark ? 1 : 0]
   }
 
-  function categoryStroke(category: string): string {
+  function categoryStroke(category: PostCategory): string {
     return `color-mix(in oklab, ${categoryColor(category)} 78%, ${dark ? 'white' : 'black'})`
   }
 
@@ -451,7 +450,7 @@
                     <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[var(--primary)]"></span>
                     <span class="min-w-0">
                       <span class="block truncate text-sm font-medium text-black/80 dark:text-white/80">{node.title}</span>
-                      <span class="mt-0.5 block truncate text-xs text-black/40 dark:text-white/40">{node.category} · {node.linkCount ? labels.relationshipCount(node.linkCount) : labels.noRelationships}</span>
+                      <span class="mt-0.5 block truncate text-xs text-black/40 dark:text-white/40">{getCategoryLabel(node.category, locale)} · {getKindLabel(node.kind, locale)} · {node.linkCount ? labels.relationshipCount(node.linkCount) : labels.noRelationships}</span>
                     </span>
                   </button>
                 {/each}
@@ -496,7 +495,7 @@
             {:else if visibleCategories.length}
               <ul class="absolute top-3 left-3 z-10 flex max-w-[calc(100%-5rem)] flex-wrap gap-x-3 gap-y-1.5 rounded-xl bg-[var(--card-bg)]/88 px-3 py-2 text-[0.65rem] text-black/55 shadow-sm ring-1 ring-black/[0.05] backdrop-blur dark:text-white/55 dark:ring-white/[0.07]" aria-label={labels.categoryLegendAria}>
                 {#each visibleCategories as category}
-                  <li class="flex items-center gap-1.5"><span class="h-2.5 w-2.5 rounded-full ring-2 ring-[var(--card-bg)]" style={`background: ${categoryColor(category)}`}></span>{category}</li>
+                  <li class="flex items-center gap-1.5"><span class="h-2.5 w-2.5 rounded-full ring-2 ring-[var(--card-bg)]" style={`background: ${categoryColor(category)}`}></span>{getCategoryLabel(category, locale)}</li>
                 {/each}
               </ul>
             {/if}
@@ -600,7 +599,7 @@
                     <Icon icon="material-symbols:image-outline-rounded" class="text-3xl" />
                   </div>
                 {/if}
-                <p class="flex items-center gap-1.5 text-xs font-medium text-[var(--primary)]"><span class="h-2 w-2 rounded-full" style={`background: ${categoryColor(selectedNode.category)}`}></span>{selectedNode.category}</p>
+                <p class="flex items-center gap-1.5 text-xs font-medium text-[var(--primary)]"><span class="h-2 w-2 rounded-full" style={`background: ${categoryColor(selectedNode.category)}`}></span>{getCategoryLabel(selectedNode.category, locale)} · {getKindLabel(selectedNode.kind, locale)}</p>
                 <h3 class="mt-2 text-xl font-semibold leading-snug text-black/85 dark:text-white/85">{selectedNode.title}</h3>
                 <p class="mt-2 text-xs text-black/40 dark:text-white/40">{formatPublished(selectedNode.published)}</p>
                 {#if selectedNode.description}

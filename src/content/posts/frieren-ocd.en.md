@@ -2,11 +2,11 @@
 title: "From Frieren: Beyond Journey's End to Psychological Compulsion"
 published: 2024-09-09
 shelf: 动漫
-category: Reflections
+category: thought
+kind: reflection
 tags:
-  - Daily Life
-  - Anime
-  - Psychology
+  - 日常
+  - 心理
 description: 'On viewing rituals and procrastination, and the compulsive resistance that keeps one from beginning.'
 series:
   - Film Watching

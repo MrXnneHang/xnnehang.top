@@ -2,12 +2,13 @@
 title: What We Built When Mainstream Agent Frameworks Could Not Fit Our Needs
 published: 2026-06-23
 featured: true
-category: Learning as I Build
+category: technology
+kind: learning-note
 tags:
   - Agent
   - LLM
-  - Framework Design
-  - Real-Time Systems
+  - 框架设计
+  - 实时系统
 description: Drawing on our experience building an AI companionship engine, this article compares the limitations of mainstream Agent frameworks such as LangChain, Dify, LangGraph, and Coze, and documents the core design ideas and trade-offs behind the low-level framework we built for real-time companionship.
 image: ../../assets/img/agent-framework-exploration/hero-bg-1.png
 lang: en

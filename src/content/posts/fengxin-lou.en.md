@@ -2,11 +2,11 @@
 title: Fengxin Is a Good Name
 published: 2022-10-17
 shelf: '游戏'
-category: Reviews
+category: culture
+kind: review
 tags:
-  - Gaming
-  - Fengxin Tower
-  - Galgame
+  - 风信楼
+  - galgame
 description: 'A ten-year dream of Yangzhou: the people and moments in Fengxin Tower.'
 series:
   - Gaming

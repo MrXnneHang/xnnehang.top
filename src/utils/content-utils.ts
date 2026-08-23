@@ -1,8 +1,7 @@
 import { type CollectionEntry, getCollection } from 'astro:content'
-import I18nKey from '@i18n/i18nKey'
-import { i18n } from '@i18n/translation'
 import { DEFAULT_LOCALE, type Locale } from '@i18n/locales'
 import { filterPostsByLocale, getPostRouteSlug, linkPostNeighbors } from '@utils/post-locale'
+import { getCategoryLabel, POST_CATEGORY_KEYS, type PostCategory } from '@utils/post-taxonomy'
 import { getCategoryUrl } from '@utils/url-utils.ts'
 
 // // Retrieve posts and sort them by publication date
@@ -48,28 +47,33 @@ export async function getSortedPostsList(locale: Locale = DEFAULT_LOCALE): Promi
 export type Tag = {
   name: string
   count: number
+  latestPublished: Date
 }
 
 export async function getTagList(locale: Locale = DEFAULT_LOCALE): Promise<Tag[]> {
   const allBlogPosts = await getRawSortedPosts(locale)
+  const tags = new Map<string, { count: number; latestPublished: Date }>()
 
-  const countMap: { [key: string]: number } = {}
   allBlogPosts.forEach((post: CollectionEntry<'posts'>) => {
     post.data.tags.forEach((tag: string) => {
-      if (!countMap[tag]) countMap[tag] = 0
-      countMap[tag]++
+      const current = tags.get(tag)
+      tags.set(tag, {
+        count: (current?.count ?? 0) + 1,
+        latestPublished:
+          !current || post.data.published > current.latestPublished
+            ? post.data.published
+            : current.latestPublished,
+      })
     })
   })
 
-  // sort tags
-  const keys: string[] = Object.keys(countMap).sort((a, b) => {
-    return a.toLowerCase().localeCompare(b.toLowerCase())
-  })
-
-  return keys.map((key) => ({ name: key, count: countMap[key] }))
+  return [...tags.entries()]
+    .map(([name, value]) => ({ name, ...value }))
+    .sort((left, right) => left.name.localeCompare(right.name, locale))
 }
 
 export type Category = {
+  key: PostCategory
   name: string
   count: number
   url: string
@@ -82,35 +86,32 @@ export type Series = {
 
 export async function getCategoryList(locale: Locale = DEFAULT_LOCALE): Promise<Category[]> {
   const allBlogPosts = await getRawSortedPosts(locale)
-  const count: { [key: string]: number } = {}
-  allBlogPosts.forEach((post: CollectionEntry<'posts'>) => {
-    if (!post.data.category) {
-      const ucKey = i18n(I18nKey.uncategorized, locale)
-      count[ucKey] = count[ucKey] ? count[ucKey] + 1 : 1
-      return
-    }
+  const counts = new Map<PostCategory, number>(POST_CATEGORY_KEYS.map((key) => [key, 0]))
 
-    const categoryName =
-      typeof post.data.category === 'string'
-        ? post.data.category.trim()
-        : String(post.data.category).trim()
-
-    count[categoryName] = count[categoryName] ? count[categoryName] + 1 : 1
+  allBlogPosts.forEach((post) => {
+    counts.set(post.data.category, (counts.get(post.data.category) ?? 0) + 1)
   })
 
-  const lst = Object.keys(count).sort((a, b) => {
-    return a.toLowerCase().localeCompare(b.toLowerCase())
-  })
+  return POST_CATEGORY_KEYS.map((key) => ({
+    key,
+    name: getCategoryLabel(key, locale),
+    count: counts.get(key) ?? 0,
+    url: getCategoryUrl(key, locale),
+  }))
+}
 
-  const ret: Category[] = []
-  for (const c of lst) {
-    ret.push({
-      name: c,
-      count: count[c],
-      url: getCategoryUrl(c, locale),
-    })
-  }
-  return ret
+export async function getCategoryPosts(
+  category: PostCategory,
+  locale: Locale = DEFAULT_LOCALE
+): Promise<CollectionEntry<'posts'>[]> {
+  return (await getRawSortedPosts(locale)).filter((post) => post.data.category === category)
+}
+
+export async function getTagPosts(
+  tag: string,
+  locale: Locale = DEFAULT_LOCALE
+): Promise<CollectionEntry<'posts'>[]> {
+  return (await getRawSortedPosts(locale)).filter((post) => post.data.tags.includes(tag))
 }
 
 export async function getSeriesList(locale: Locale = DEFAULT_LOCALE): Promise<Series[]> {

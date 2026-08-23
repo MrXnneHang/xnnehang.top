@@ -4,9 +4,9 @@ published: 2026-07-14
 description: A game about finding one hundred hidden cats in a still illustration. They come in all shapes and sizes; each one lights up when found and answers with its own soothing meow.
 shelf: 游戏
 tags:
-  - Games
-  - Cats
-category: Reviews
+  - 猫
+category: culture
+kind: review
 shelfCover: ../../assets/img/covers/travellin-cats-shelf.jpg
 lang: en
 translationKey: travellin-cats-in-germany

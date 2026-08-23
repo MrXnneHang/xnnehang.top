@@ -1,0 +1,28 @@
+---
+import type { GetStaticPaths } from 'astro'
+import LocalizedCollectionPage from '../../components/LocalizedCollectionPage.astro'
+import { DEFAULT_LOCALE } from '../../i18n/locales'
+import { getTagList, getTagPosts } from '../../utils/content-utils'
+import { getTagsIndexUrl } from '../../utils/url-utils'
+
+export const getStaticPaths = (async () => {
+  const tags = await getTagList(DEFAULT_LOCALE)
+  return Promise.all(
+    tags.map(async (tag) => ({
+      params: { tag: tag.name },
+      props: { tag: tag.name, posts: await getTagPosts(tag.name, DEFAULT_LOCALE) },
+    }))
+  )
+}) satisfies GetStaticPaths
+
+const { tag, posts } = Astro.props as { tag: string; posts: Awaited<ReturnType<typeof getTagPosts>> }
+---
+
+<LocalizedCollectionPage
+  locale={DEFAULT_LOCALE}
+  title={`#${tag}`}
+  description="共享这个标签的文章。"
+  posts={posts}
+  secondaryUrl={getTagsIndexUrl(DEFAULT_LOCALE)}
+  secondaryLabel="查看全部标签"
+/>

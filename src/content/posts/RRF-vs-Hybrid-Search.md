@@ -8,7 +8,8 @@ tags:
   - RRF
   - 记忆系统
   - 检索
-category: 边写边学
+category: technology
+kind: learning-note
 featured: true
 series:
   - Long-Term Memory

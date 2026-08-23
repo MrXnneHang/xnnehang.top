@@ -2,9 +2,9 @@
 title: 《大内密探零零发》后
 published: 2024-09-07
 shelf: '电影'
-category: 观后
+category: culture
+kind: review
 tags:
-  - 电影
   - 周星驰
   - 影评
 description: 大内密探零零发观影记录，关于俗套的爱情和光影构图

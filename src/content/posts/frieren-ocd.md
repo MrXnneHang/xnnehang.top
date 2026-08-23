@@ -2,10 +2,10 @@
 title: 从《葬送的芙莉莲》到心理强迫
 published: 2024-09-09
 shelf: '动漫'
-category: 思考
+category: thought
+kind: reflection
 tags:
   - 日常
-  - 动漫
   - 心理
 description: 关于观影时的仪式感与拖延，以及一种强迫性的心理阻力
 series:

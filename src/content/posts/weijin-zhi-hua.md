@@ -2,10 +2,9 @@
 title: 未尽之花
 published: 2024-06-25
 shelf: '漫画'
-category: 观后
+category: culture
+kind: review
 tags:
-  - 读书
-  - 漫画
   - 子不语
 description: 关于《未尽之花》的阅读感受，与《子不语》的意象互补
 series:

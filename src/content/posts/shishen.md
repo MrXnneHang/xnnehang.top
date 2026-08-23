@@ -2,9 +2,9 @@
 title: 《食神》后
 published: 2024-08-13
 shelf: '电影'
-category: 观后
+category: culture
+kind: review
 tags:
-  - 电影
   - 周星驰
   - 食神
   - 影评

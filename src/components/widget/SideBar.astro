@@ -4,7 +4,6 @@ import { DEFAULT_LOCALE, type Locale } from '../../i18n/locales'
 import Categories from './Categories.astro'
 import Profile from './Profile.astro'
 import Series from './Series.astro'
-import Tag from './Tags.astro'
 
 interface Props {
   class?: string
@@ -26,6 +25,5 @@ const { class: className, style, locale = DEFAULT_LOCALE } = Astro.props
   >
     <Categories locale={locale} class="onload-animation" style="animation-delay: 150ms" />
     <Series locale={locale} class="onload-animation" style="animation-delay: 180ms" />
-    <Tag locale={locale} class="onload-animation" style="animation-delay: 200ms" />
   </div>
 </div>

@@ -2,11 +2,11 @@
 title: 'After A Chinese Odyssey Part Two: Cinderella'
 published: 2024-09-01
 shelf: '电影'
-category: Reviews
+category: culture
+kind: review
 tags:
-  - Film
-  - A Chinese Odyssey
-  - Film Review
+  - 大话西游
+  - 影评
 description: "Thoughts after A Chinese Odyssey Part Two: Cinderella: the value recognized only after loss, and Sun Wukong's human side."
 series:
   - Film and Television

@@ -2,11 +2,12 @@
 title: 'Starting with How We Use Skills: What Are Progressive Disclosure and Task Decomposition, and What Do I Want to Explore?'
 published: 2026-07-03
 featured: true
-category: Reflections
+category: technology
+kind: reflection
 tags:
-  - Progressive Disclosure
+  - 渐进式披露
   - Skills
-  - Symbolic Language
+  - 符号语言
 description: 'Reading notes on How We Use Skills: when you cannot put everything in front of an Agent at once, how do you keep it effective? Progressive Disclosure and Task Decomposition.'
 image: ../../assets/img/progressive-disclosure/cover.png
 lang: en

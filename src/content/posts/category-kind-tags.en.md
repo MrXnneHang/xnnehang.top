@@ -2,11 +2,11 @@
 title: Can an Article Belong in Only One Drawer? Rethinking Category, Kind, and Tags
 published: 2026-08-23
 description: When technology, reviews, and reflection keep converging in the same post, I have to reconsider what a blog category is actually supposed to answer.
-category: Reflections
+category: thought
+kind: reflection
 tags:
-  - Blogging
-  - Writing
-  - Content Taxonomy
+  - 写作
+  - 内容分类
 series:
   - Blogging
 draft: false
@@ -134,7 +134,7 @@ Good Tags include:
 
 Tutorial, Review, Reflection, Learning as I Build, and Technology no longer make good Tags. They describe the article's structure or primary home, responsibilities already handled by Kind and Category.
 
-Tags remain open and multi-valued, but should usually be nouns that can stand on their own as subjects of retrieval. This keeps Tags from collapsing into another Category or repeating what Kind already says.
+Tags remain open and multi-valued, but should usually be nouns that can stand on their own as subjects of retrieval. Chinese and English versions share the same Tags: technologies and products keep their official names, while works, people, and concepts use their original or most recognizable names on this site. Translation should not create two disconnected indexes for the same subject. This keeps Tags from collapsing into another Category or repeating what Kind already says.
 
 # The Other Fields Keep Their Own Roles
 
