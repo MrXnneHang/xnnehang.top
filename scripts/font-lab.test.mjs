@@ -44,10 +44,10 @@ test('localizes controls without translating candidate identities', () => {
 test('ships Smiley Sans as licensed unicode-range chunks', async () => {
   const directory = resolve('public/fonts/smiley-sans-v2')
   const css = await readFile(resolve(directory, 'result.css'), 'utf8')
-  const chunks = [...css.matchAll(/url\("\.\/(.+?\.woff2)"\)/g)].map((match) => match[1])
+  const chunks = [...css.matchAll(/url\(['"]\.\/(.+?\.woff2)['"]\)/g)].map((match) => match[1])
   const files = await readdir(directory)
 
-  assert.match(css, /font-family:"Smiley Sans Lab"/)
+  assert.match(css, /font-family:\s*['"]Smiley Sans Lab['"]/)
   assert.match(css, /unicode-range:/)
   assert.ok(chunks.length > 1)
   assert.ok(chunks.every((chunk) => files.includes(chunk)))

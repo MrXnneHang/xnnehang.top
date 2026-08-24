@@ -31,8 +31,7 @@ const CANDIDATES = [
     key: 'current',
     name: '本站当前',
     nameEn: 'Current site',
-    family:
-      "Roboto, 'PingFang SC', 'Microsoft YaHei', 'Source Han Sans CN', system-ui, sans-serif",
+    family: "Roboto, 'PingFang SC', 'Microsoft YaHei', 'Source Han Sans CN', system-ui, sans-serif",
     note: 'Roboto + 系统中文回退',
     noteEn: 'Roboto + system CJK fallback',
   },
@@ -129,10 +128,16 @@ export function FontLabComponent(properties, children) {
               dataError: copy.error,
             },
             [
-              h('span', { class: 'font-lab__choice-name' },
-                locale === 'en' ? candidate.nameEn : candidate.name),
-              h('span', { class: 'font-lab__choice-note' },
-                locale === 'en' ? candidate.noteEn : candidate.note),
+              h(
+                'span',
+                { class: 'font-lab__choice-name' },
+                locale === 'en' ? candidate.nameEn : candidate.name
+              ),
+              h(
+                'span',
+                { class: 'font-lab__choice-note' },
+                locale === 'en' ? candidate.noteEn : candidate.note
+              ),
             ]
           )
         )

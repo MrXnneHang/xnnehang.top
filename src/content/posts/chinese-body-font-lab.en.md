@@ -15,6 +15,7 @@ featured: false
 lang: en
 translationKey: chinese-body-font-lab
 ---
+
 ![A pink-haired girl standing by a window at dusk](../../assets/img/chinese-body-font-lab/PixPin_2026-08-24_11-05-59.jpg)
 
 On blogs with more mature long-form typography, Chinese text often feels heavier and more orderly than it does here. At first I wondered whether I was simply tired of seeing my own site. A closer inspection showed that the difference is not merely novelty.
@@ -24,6 +25,7 @@ This site explicitly loads only Roboto, which has no Chinese glyphs. In practice
 Rather than declaring a winner immediately, this page puts several candidates in one type lab. Every face receives the same headings, prose, punctuation, mixed Chinese and Latin text, and weight tests, so the decision can rest on actual reading rather than a first impression.
 
 :::fontlab{locale="en" label="Chinese body candidates · same-text proof"}
+
 ## 字的重量，也是阅读的呼吸
 
 黄昏从窗外慢慢落进房间。屏幕上的文字并没有发出声音，却在一行一行之间维持着自己的节奏。好的正文字体不该不断提醒读者“你正在看一款字体”；它更像一条平整的路，让目光自然地向前走。
