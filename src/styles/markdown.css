@@ -1,5 +1,12 @@
 @reference "./main.css";
 
+@keyframes font-lab-pulse {
+  50% {
+    opacity: 0.35;
+    transform: scale(0.75);
+  }
+}
+
 .custom-md {
   h1 {
     @apply text-3xl;
@@ -57,6 +64,214 @@
   a.wikilink::after {
     content: ']]';
     @apply text-xs text-neutral-400 opacity-60;
+  }
+
+  .font-lab {
+    display: block;
+    overflow: hidden;
+    margin: 1.75rem 0;
+    border: 1px solid var(--line-divider);
+    border-radius: var(--radius-large);
+    background: var(--card-bg);
+    box-shadow: 0 1rem 3rem rgb(0 0 0 / 0.06);
+  }
+
+  .font-lab__topbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 1px solid var(--line-divider);
+    padding: 1rem 1.15rem;
+  }
+
+  .font-lab__identity {
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .font-lab__eyebrow {
+    color: var(--primary);
+    font-family: 'JetBrains Mono Variable', ui-monospace, monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .font-lab__title {
+    color: var(--text-90);
+    font-size: 1rem;
+    line-height: 1.35;
+  }
+
+  .font-lab__status {
+    position: relative;
+    max-width: 15rem;
+    padding-left: 1rem;
+    color: var(--text-50);
+    font-size: 0.75rem;
+    line-height: 1.35;
+    text-align: right;
+  }
+
+  .font-lab__status::before {
+    content: '';
+    position: absolute;
+    top: 0.38em;
+    left: 0;
+    width: 0.48rem;
+    height: 0.48rem;
+    border-radius: 999px;
+    background: var(--primary);
+    box-shadow: 0 0 0 0.22rem color-mix(in oklab, var(--primary) 16%, transparent);
+  }
+
+  .font-lab__status[data-state='loading']::before {
+    animation: font-lab-pulse 1s ease-in-out infinite;
+  }
+
+  .font-lab__status[data-state='unavailable']::before,
+  .font-lab__status[data-state='error']::before {
+    background: var(--admonitions-color-warning);
+    box-shadow: 0 0 0 0.22rem color-mix(in oklab, var(--admonitions-color-warning) 16%, transparent);
+  }
+
+  .font-lab__controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr));
+    gap: 0.55rem;
+    border-bottom: 1px solid var(--line-divider);
+    background: color-mix(in oklab, var(--card-bg) 92%, var(--primary));
+    padding: 0.75rem;
+  }
+
+  .font-lab__choice {
+    display: grid;
+    gap: 0.16rem;
+    min-width: 0;
+    border: 1px solid transparent;
+    border-radius: 0.75rem;
+    background: transparent;
+    padding: 0.65rem 0.7rem;
+    color: var(--text-75);
+    font: inherit;
+    line-height: 1.3;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .font-lab__choice:hover:not(:disabled) {
+    background: var(--btn-regular-bg-hover);
+  }
+
+  .font-lab__choice:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  .font-lab__choice.is-active {
+    border-color: color-mix(in oklab, var(--primary) 45%, transparent);
+    background: color-mix(in oklab, var(--primary) 11%, var(--card-bg));
+    color: var(--text-90);
+  }
+
+  .font-lab__choice:disabled {
+    cursor: wait;
+    opacity: 0.66;
+  }
+
+  .font-lab__choice-name {
+    overflow: hidden;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .font-lab__choice-note {
+    overflow: hidden;
+    color: var(--text-50);
+    font-size: 0.67rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .font-lab__specimen {
+    padding: clamp(1.3rem, 4vw, 2.4rem);
+    transition: opacity 0.18s ease;
+  }
+
+  .font-lab__specimen > :first-child {
+    margin-top: 0;
+  }
+
+  .font-lab__specimen > :last-child {
+    margin-bottom: 0;
+  }
+
+  .font-lab__specimen h2,
+  .font-lab__specimen h3,
+  .font-lab__specimen p,
+  .font-lab__specimen blockquote,
+  .font-lab__specimen strong {
+    font-family: inherit;
+  }
+
+  .font-lab__specimen h2 {
+    max-width: 16ch;
+    margin-bottom: 0.8rem;
+    font-size: clamp(1.85rem, 6vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.18;
+    text-wrap: balance;
+  }
+
+  .font-lab__specimen h3 {
+    margin-top: 1.6rem;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .font-lab__specimen p,
+  .font-lab__specimen blockquote {
+    font-size: clamp(1rem, 2.2vw, 1.08rem);
+    line-height: 1.95;
+  }
+
+  .font-lab__specimen blockquote {
+    margin: 1.25rem 0;
+  }
+
+  @media (max-width: 48rem) {
+    .font-lab__topbar {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .font-lab__status {
+      max-width: none;
+      text-align: left;
+    }
+
+    .font-lab__controls {
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+    }
+  }
+
+  @media (max-width: 28rem) {
+    .font-lab__controls {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .font-lab__status[data-state='loading']::before {
+      animation: none;
+    }
   }
 
   code {
