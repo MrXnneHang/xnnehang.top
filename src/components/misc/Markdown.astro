@@ -135,4 +135,111 @@ const className = Astro.props.class
   if (!customElements.get('image-compare')) {
     customElements.define('image-compare', ImageCompare)
   }
+
+  const fontStylesheetLoaders = {
+    'noto-sans-sc': () => import('@fontsource-variable/noto-sans-sc/index.css?inline'),
+    'lxgw-neo-xihei': () =>
+      import('cn-fontsource-lxgw-neo-xi-hei-regular/font.css?inline'),
+    'smiley-sans': async () => {
+      const response = await fetch('/fonts/smiley-sans-v2/result.css')
+      if (!response.ok) throw new Error('Failed to load Smiley Sans CSS')
+      return {
+        default: (await response.text()).replaceAll(
+          'url("./',
+          'url("/fonts/smiley-sans-v2/'
+        ),
+      }
+    },
+    'lxgw-wenkai-screen': () =>
+      import('lxgw-wenkai-screen-web/lxgwwenkaiscreen/result.css?inline'),
+  }
+
+  function loadFontStylesheet(font: string, css: string) {
+    const id = `font-lab-${font}`
+    if (document.getElementById(id)) return
+
+    const style = document.createElement('style')
+    style.id = id
+    style.textContent = css
+    document.head.appendChild(style)
+  }
+
+  class FontLab extends HTMLElement {
+    private specimen?: HTMLElement
+    private status?: HTMLOutputElement
+    private buttons: HTMLButtonElement[] = []
+    private activeButton?: HTMLButtonElement
+
+    connectedCallback() {
+      this.specimen = this.querySelector<HTMLElement>('[data-font-specimen]') ?? undefined
+      this.status = this.querySelector<HTMLOutputElement>('[data-font-status]') ?? undefined
+      this.buttons = Array.from(this.querySelectorAll<HTMLButtonElement>('[data-font]'))
+      if (!this.specimen || !this.status || this.buttons.length === 0) return
+
+      this.buttons.forEach((button) => {
+        button.disabled = false
+        button.addEventListener('click', this.selectFont)
+      })
+      this.activeButton = this.buttons.find((button) => button.classList.contains('is-active'))
+    }
+
+    disconnectedCallback() {
+      this.buttons.forEach((button) => button.removeEventListener('click', this.selectFont))
+    }
+
+    private setStatus(button: HTMLButtonElement, key: 'loading' | 'loaded' | 'unavailable' | 'error') {
+      if (!this.status) return
+      this.status.textContent = button.dataset[key] ?? ''
+      this.status.dataset.state = key
+    }
+
+    private activate(button: HTMLButtonElement) {
+      if (!this.specimen) return
+      this.buttons.forEach((candidate) => {
+        const active = candidate === button
+        candidate.classList.toggle('is-active', active)
+        candidate.setAttribute('aria-pressed', String(active))
+      })
+      this.activeButton = button
+      this.specimen.style.fontFamily = button.dataset.fontFamily ?? ''
+      this.dataset.activeFont = button.dataset.font ?? 'current'
+    }
+
+    private selectFont = async (event: Event) => {
+      const button = event.currentTarget as HTMLButtonElement
+      const font = button.dataset.font
+      this.activate(button)
+
+      if (font === 'current') {
+        if (this.status) {
+          this.status.textContent = this.status.defaultValue
+          this.status.dataset.state = 'ready'
+        }
+        return
+      }
+
+      this.setStatus(button, 'loading')
+      button.disabled = true
+      try {
+        const loader = fontStylesheetLoaders[font as keyof typeof fontStylesheetLoaders]
+        if (loader) {
+          const { default: css } = await loader()
+          loadFontStylesheet(font ?? '', css)
+        }
+        const family = (button.dataset.fontFamily ?? '').split(',')[0]
+        await document.fonts.load(`400 1em ${family}`, this.specimen?.textContent ?? '')
+        this.setStatus(button, 'loaded')
+      } catch {
+        if (this.activeButton === button) {
+          this.setStatus(button, 'error')
+        }
+      } finally {
+        button.disabled = false
+      }
+    }
+  }
+
+  if (!customElements.get('font-lab')) {
+    customElements.define('font-lab', FontLab)
+  }
 </script>
