@@ -83,6 +83,9 @@ importers:
       astro-icon:
         specifier: ^1.1.5
         version: 1.2.0
+      cn-fontsource-lxgw-neo-xi-hei-regular:
+        specifier: 1.0.1
+        version: 1.0.1
       d3-force:
         specifier: ^3.0.0
         version: 3.0.0
