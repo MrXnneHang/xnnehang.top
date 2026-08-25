@@ -4,7 +4,7 @@ draft: false
 published: 2026-08-21
 description: Before changing the blog's body typeface, compare five candidates using the same headings, long-form prose, punctuation, mixed scripts, and weights.
 category: technology
-kind: learning-note
+kind: note
 tags:
   - 字体
   - Web Font

@@ -4,7 +4,7 @@ draft: false
 published: 2026-08-21
 description: 在真正替换博客正文字体之前，先用同一组标题、长文、标点与中英文混排样本比较五套候选方案。
 category: technology
-kind: learning-note
+kind: note
 tags:
   - 字体
   - Web Font
