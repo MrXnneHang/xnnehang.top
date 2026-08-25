@@ -12,7 +12,6 @@ tags:
    - MiniCPM
 series:
    - LLM
-draft: true
 featured: true
 lang: en
 translationKey: from-single-frame-to-real-time-video-conversation

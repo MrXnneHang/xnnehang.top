@@ -12,7 +12,6 @@ tags:
    - MiniCPM
 series:
    - LLM
-draft: true
 featured: true
 ---
 
