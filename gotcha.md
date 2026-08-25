@@ -12,9 +12,7 @@ Astro's markdown compiler does not resolve or hash relative paths of local image
 To resize or style an image (e.g., limit its width or center it), DO NOT use HTML `<img>` tags. Instead, wrap a standard Markdown image tag inside a block-level HTML element (such as `<div class="img-center" style="max-width: 24rem; margin: 0 auto;">`) and leave blank lines around the Markdown image so the parser parses it correctly:
 
 ```html
-<div class="img-center" style="max-width: 24rem; margin: 0 auto;">
-   ![alt](../../assets/img/...)
-</div>
+<div class="img-center" style="max-width: 24rem; margin: 0 auto;">![alt](../../assets/img/...)</div>
 ```
 
 ## Markdown Heading Depths for TOC
@@ -101,8 +99,8 @@ Use `:::note[Title]` (directive syntax) instead of `> [!NOTE] Title` (GitHub syn
 Always write article `title` and `description` frontmatter values as double-quoted YAML strings. Do this even when the value currently looks safe: translated prose can acquire a colon or another YAML-significant character during editing, and unquoted values can prevent Astro from loading the entire content collection.
 
 ```yaml
-title: "Bringing AI Chat to Congyin in Chill with You: Lo-Fi Story"
-description: "Notes from exploring a mod that adds AI chat to Congyin."
+title: 'Bringing AI Chat to Congyin in Chill with You: Lo-Fi Story'
+description: 'Notes from exploring a mod that adds AI chat to Congyin.'
 ```
 
 Never use a plain scalar for `title` or `description`. Other scalar frontmatter values must also be quoted if they contain YAML-significant characters such as `:`, `#`, `{`, `}`, `[`, `]`, `,`, `&`, `*`, `!`, `|`, `>`, `'`, `"`, `%`, `@`, or a leading `-`, `?`, or `:`.
@@ -112,9 +110,9 @@ Never use a plain scalar for `title` or `description`. Other scalar frontmatter 
 The post taxonomy uses stable internal keys shared by every locale. The executable source of truth is `src/utils/post-taxonomy.ts`; the design rationale is documented in [`src/content/posts/category-kind-tags.md`](./src/content/posts/category-kind-tags.md).
 
 - **`category` is a required single-value enum:** `technology`, `culture`, `thought`, or `life`.
-   - Choose it by where the article ultimately belongs: technology and engineering; arts and culture; thought and self-examination; or lived experience.
+  - Choose it by where the article ultimately belongs: technology and engineering; arts and culture; thought and self-examination; or lived experience.
 - **`kind` is a required single-value enum:** `tutorial`, `review`, `reflection`, `learning-note`, `resource`, or `note`.
-   - Choose it by the article's writing form and promise to the reader: reproducible steps; response to a work; a developed thought; an exploration/testing/correction process; a useful collection; or a fragment/discovery/demonstration.
+  - Choose it by the article's writing form and promise to the reader: reproducible steps; response to a work; a developed thought; an exploration/testing/correction process; a useful collection; or a fragment/discovery/demonstration.
 - **Never invent a new Category or Kind while publishing or translating one article.** A new value requires a deliberate taxonomy/schema change, not an ad hoc frontmatter label.
 - **Chinese and English counterparts use the same internal `category` and `kind` keys.** The UI localizes their display labels.
 - **Tags remain open and multi-valued**, but should describe concrete subjects rather than duplicate structural values such as Technology, Tutorial, or Reflection.

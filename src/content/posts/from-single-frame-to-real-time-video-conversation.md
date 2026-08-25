@@ -5,13 +5,13 @@ description: 从 DeepSeek 的视觉原语、MiniMax-M3 的图片首字延迟，�
 category: technology
 kind: learning-note
 tags:
-   - VLM
-   - 多模态
-   - 视觉推理
-   - 实时交互
-   - MiniCPM
+  - VLM
+  - 多模态
+  - 视觉推理
+  - 实时交互
+  - MiniCPM
 series:
-   - LLM
+  - LLM
 featured: true
 ---
 

@@ -1,17 +1,17 @@
 ---
-title: "From Single-Frame Vision to Real-Time Video Conversation: The Multimodal Architecture Paths of DeepSeek, MiniCPM, and MiniMax"
+title: 'From Single-Frame Vision to Real-Time Video Conversation: The Multimodal Architecture Paths of DeepSeek, MiniCPM, and MiniMax'
 published: 2026-08-25
-description: "From DeepSeek visual primitives and MiniMax-M3 image TTFT to how MiniCPM-o sustains local video understanding and full-duplex speech interaction."
+description: 'From DeepSeek visual primitives and MiniMax-M3 image TTFT to how MiniCPM-o sustains local video understanding and full-duplex speech interaction.'
 category: technology
 kind: learning-note
 tags:
-   - VLM
-   - 多模态
-   - 视觉推理
-   - 实时交互
-   - MiniCPM
+  - VLM
+  - 多模态
+  - 视觉推理
+  - 实时交互
+  - MiniCPM
 series:
-   - LLM
+  - LLM
 featured: true
 lang: en
 translationKey: from-single-frame-to-real-time-video-conversation
