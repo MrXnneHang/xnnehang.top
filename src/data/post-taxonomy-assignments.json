@@ -21,7 +21,7 @@
   },
   "chinese-body-font-lab": {
     "category": "technology",
-    "kind": "learning-note"
+    "kind": "note"
   },
   "changan-de-lizhi": {
     "category": "culture",
@@ -78,6 +78,10 @@
   "frieren-ocd": {
     "category": "thought",
     "kind": "reflection"
+  },
+  "from-single-frame-to-real-time-video-conversation": {
+    "category": "technology",
+    "kind": "learning-note"
   },
   "fuwari-guide": {
     "category": "technology",

@@ -105,13 +105,18 @@ description: 'Notes from exploring a mod that adds AI chat to Congyin.'
 
 Never use a plain scalar for `title` or `description`. Other scalar frontmatter values must also be quoted if they contain YAML-significant characters such as `:`, `#`, `{`, `}`, `[`, `]`, `,`, `&`, `*`, `!`, `|`, `>`, `'`, `"`, `%`, `@`, or a leading `-`, `?`, or `:`.
 
-## Bilingual Taxonomy Fields
+## Fixed Post Taxonomy
 
-Treat `category`, `shelf`, and `subCategory` differently in bilingual posts:
+The post taxonomy uses stable internal keys shared by every locale. The executable source of truth is `src/utils/post-taxonomy.ts`; the design rationale is documented in [`src/content/posts/category-kind-tags.md`](./src/content/posts/category-kind-tags.md).
 
-- **`category`:** localize it to the article language using the existing five-category taxonomy. Chinese posts keep their Chinese category (`观后`, `思考`, `边写边学`, `教程`, or `资源`); English translations use the corresponding established English category (`Reviews`, `Reflections`, `Learning as I Build`, `Tutorials`, or `Resources`). Do not invent category values.
-- **`shelf`:** always preserve the Chinese value from the source post, including in English translations. This field is validated by the content schema against the fixed enum `电影`, `电视剧`, `动漫`, `书籍`, `漫画`, `游戏`, or `论文`; for example, use `shelf: 电影`, not `shelf: Movies`.
-- **`subCategory`:** also preserve the Chinese source keys, such as `['轻小说']` rather than `['Light Novels']`. The shelf localization layer translates both `shelf` and `subCategory` labels for each locale.
+- **`category` is a required single-value enum:** `technology`, `culture`, `thought`, or `life`.
+  - Choose it by where the article ultimately belongs: technology and engineering; arts and culture; thought and self-examination; or lived experience.
+- **`kind` is a required single-value enum:** `tutorial`, `review`, `reflection`, `learning-note`, `resource`, or `note`.
+  - Choose it by the article's writing form and promise to the reader: reproducible steps; response to a work; a developed thought; an exploration/testing/correction process; a useful collection; or a fragment/discovery/demonstration.
+- **Never invent a new Category or Kind while publishing or translating one article.** A new value requires a deliberate taxonomy/schema change, not an ad hoc frontmatter label.
+- **Chinese and English counterparts use the same internal `category` and `kind` keys.** The UI localizes their display labels.
+- **Tags remain open and multi-valued**, but should describe concrete subjects rather than duplicate structural values such as Technology, Tutorial, or Reflection.
+- **`shelf` and `subCategory` remain Chinese internal keys in every locale.** `shelf` is validated against `电影`, `电视剧`, `动漫`, `书籍`, `漫画`, `游戏`, or `论文`; the shelf localization layer translates these fields for display.
 
 ## Git-Derived Metadata Needs a Full Clone in CI
 
