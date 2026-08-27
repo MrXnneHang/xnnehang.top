@@ -20,6 +20,7 @@ import {
   satteriFirstImage,
   satteriKatexDisplay,
   satteriKatexInline,
+  satteriMermaid,
   satteriReadingTime,
   satteriSectionize,
   satteriWikiLinkClass,
@@ -117,6 +118,7 @@ export default defineConfig({
         satteriExcerpt,
         satteriFirstImage,
         satteriWikiLinks,
+        satteriMermaid,
       ],
       hastPlugins: [
         satteriKatexDisplay,

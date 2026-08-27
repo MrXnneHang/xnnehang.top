@@ -225,6 +225,21 @@ series:
 
 支持语法高亮、终端框、行标记、差异对比、自动换行、可折叠代码、行号等。详见 [Expressive Code 官方文档](https://expressive-code.com/)。
 
+### Mermaid 图表
+
+使用语言标记为 `mermaid` 的标准 fenced code block，页面会直接渲染为图表：
+
+````markdown
+```mermaid
+flowchart LR
+    A[开始] --> B{是否完成？}
+    B -->|是| C[结束]
+    B -->|否| A
+```
+````
+
+图表会跟随站点的明暗主题切换；语法错误时页面保留 Mermaid 源码，便于排查。
+
 ### 数学公式
 
 ```

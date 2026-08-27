@@ -156,6 +156,20 @@ export function satteriDirectiveToHast() {
   }
 }
 
+export function satteriMermaid() {
+  return {
+    name: 'nyakku-mermaid',
+    code(node) {
+      if (node.lang?.toLowerCase() !== 'mermaid') return
+
+      return {
+        type: 'html',
+        value: `<mermaid-diagram data-pagefind-ignore><pre class="mermaid">${escapeHtml(node.value)}</pre></mermaid-diagram>`,
+      }
+    },
+  }
+}
+
 // --- wikilinks ---
 
 let titleToSlug = null
