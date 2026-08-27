@@ -367,15 +367,8 @@
     padding: 0;
     color: var(--text-75);
     font-family:
-      'JetBrains Mono Variable',
-      ui-monospace,
-      SFMono-Regular,
-      Menlo,
-      Monaco,
-      Consolas,
-      'Liberation Mono',
-      'Courier New',
-      monospace;
+      'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      'Liberation Mono', 'Courier New', monospace;
     white-space: pre;
     place-content: center;
   }

@@ -1,12 +1,11 @@
-type Mermaid = typeof import('mermaid')['default']
+type Mermaid = (typeof import('mermaid'))['default']
 
 type MermaidTheme = {
   signature: string
   variables: Record<string, string | boolean>
 }
 
-const MERMAID_FONT_FAMILY =
-  "Roboto, 'Noto Sans SC', ui-sans-serif, system-ui, sans-serif"
+const MERMAID_FONT_FAMILY = "Roboto, 'Noto Sans SC', ui-sans-serif, system-ui, sans-serif"
 const THEME_RENDER_DELAY = 120
 const DEFAULT_HUE = 210
 const MERMAID_HUE_OFFSET = -25
@@ -118,9 +117,7 @@ function loadMermaid(): Promise<Mermaid> {
 }
 
 function enqueueRender(diagram: MermaidDiagram): void {
-  renderQueue = renderQueue
-    .catch(() => undefined)
-    .then(() => diagram.render())
+  renderQueue = renderQueue.catch(() => undefined).then(() => diagram.render())
 }
 
 function enqueueAllDiagrams(): void {
