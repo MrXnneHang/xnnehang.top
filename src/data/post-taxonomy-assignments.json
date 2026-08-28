@@ -183,6 +183,10 @@
     "category": "technology",
     "kind": "reflection"
   },
+  "repository-split-cherry-pick-debt": {
+    "category": "technology",
+    "kind": "reflection"
+  },
   "resposne-vs-chat_completion": {
     "category": "technology",
     "kind": "learning-note"
