@@ -3,15 +3,15 @@ title: 拆仓不等于解耦：复制公共代码会让跨仓 cherry-pick 成为
 published: 2026-08-27
 description: 从三个 Lab 与三个 Launcher 的真实维护经历出发，讨论为什么复制仍在演进的公共代码，会把跨仓 cherry-pick 变成长期维护债务。
 tags:
-   - Git
-   - 架构设计
-   - 代码治理
-   - XnneHangLab
+  - Git
+  - 架构设计
+  - 代码治理
+  - XnneHangLab
 category: technology
 kind: reflection
 featured: true
 series:
-   - 架构设计
+  - 架构设计
 ---
 
 ![白发精灵坐在浅水与花丛之间](../../assets/img/repository-split-cherry-pick-debt/cover.jpg)

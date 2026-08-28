@@ -1,17 +1,17 @@
 ---
-title: "Splitting Repositories Is Not Decoupling: How Copied Shared Code Turns Cross-Repo Cherry-Picks into Maintenance Debt"
+title: 'Splitting Repositories Is Not Decoupling: How Copied Shared Code Turns Cross-Repo Cherry-Picks into Maintenance Debt'
 published: 2026-08-27
-description: "A maintenance retrospective across three Labs and three Launchers, and why copying shared code that still evolves turns cross-repository cherry-picks into long-term debt."
+description: 'A maintenance retrospective across three Labs and three Launchers, and why copying shared code that still evolves turns cross-repository cherry-picks into long-term debt.'
 tags:
-   - Git
-   - 架构设计
-   - 代码治理
-   - XnneHangLab
+  - Git
+  - 架构设计
+  - 代码治理
+  - XnneHangLab
 category: technology
 kind: reflection
 featured: true
 series:
-   - Architecture Design
+  - Architecture Design
 lang: en
 translationKey: repository-split-cherry-pick-debt
 ---
