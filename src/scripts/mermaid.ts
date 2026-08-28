@@ -33,6 +33,10 @@ const MERMAID_THEME_CSS = `
     stroke-linecap: round;
     stroke-linejoin: round;
   }
+
+  .flowchart-link.edge-pattern-dotted {
+    stroke-dasharray: 8 6;
+  }
 `
 
 let mermaidPromise: Promise<Mermaid> | undefined
