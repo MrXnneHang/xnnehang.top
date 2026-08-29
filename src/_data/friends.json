@@ -63,5 +63,13 @@
     "siteDesc": "The world's end begins.",
     "siteDescEn": "The world's end begins.",
     "siteback": "https://dreaife.tokyo/friends/"
+  },
+  {
+    "siteTitle": "Noospic's blog",
+    "siteUrl": "https://noospic.github.io/",
+    "siteIcon": "https://noospic.github.io/noospic.jpeg",
+    "siteDesc": "Noospic の 闲言碎语 - 虽然现实没有星露谷，但每一篇blog都可以看作我的耕作log",
+    "siteDescEn": "Reality has no Stardew Valley — yet every blog is my tillage log.",
+    "siteback": "https://noospic.github.io/link"
   }
 ]
