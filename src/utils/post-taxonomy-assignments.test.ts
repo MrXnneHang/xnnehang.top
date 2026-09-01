@@ -6,7 +6,7 @@ const entries = Object.values(assignments)
 
 describe('post taxonomy migration fixture', () => {
   test('covers all bilingual source posts', () => {
-    expect(Object.keys(assignments)).toHaveLength(71)
+    expect(Object.keys(assignments)).toHaveLength(75)
   })
 
   test('uses only supported category and kind keys', () => {

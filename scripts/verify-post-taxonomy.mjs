@@ -55,9 +55,9 @@ const chinese = filenames.filter((name) => !name.endsWith('.en.md'))
 const english = filenames.filter((name) => name.endsWith('.en.md'))
 const errors = []
 
-if (filenames.length !== 148 || chinese.length !== 74 || english.length !== 74) {
+if (filenames.length !== 150 || chinese.length !== 75 || english.length !== 75) {
   errors.push(
-    `expected 74 bilingual pairs / 148 files, got ${chinese.length} Chinese, ${english.length} English, ${filenames.length} total`
+    `expected 75 bilingual pairs / 150 files, got ${chinese.length} Chinese, ${english.length} English, ${filenames.length} total`
   )
 }
 
@@ -110,4 +110,4 @@ if (errors.length > 0) {
   throw new Error(errors.map((error) => `- ${error}`).join('\n'))
 }
 
-console.log('Validated 74 bilingual taxonomy pairs (148 frontmatter blocks).')
+console.log('Validated 75 bilingual taxonomy pairs (150 frontmatter blocks).')
