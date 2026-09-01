@@ -1,5 +1,5 @@
 ---
-title: "Re-Reading memU: Multi-Host Worktrees, Run Isolation, and Proactive Memorization"
+title: 'Re-Reading memU: Multi-Host Worktrees, Run Isolation, and Proactive Memorization'
 published: 2026-09-01
 category: technology
 kind: learning-note
@@ -12,6 +12,7 @@ tags:
 description: "Starting from a five-minute trigger and a ten-minute execution time, this article re-examines memU's multi-host worktrees, marker lifecycles, Recall File mirrors, and per-run isolation for proactive memorization."
 series:
   - Long-Term Memory
+  - Architecture Design
 lang: en
 translationKey: memu-multi-host-run-isolation
 ---

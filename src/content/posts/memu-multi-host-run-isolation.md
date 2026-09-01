@@ -1,5 +1,5 @@
 ---
-title: "重读 memU：多 Host 工作树、运行隔离与主动 Memorize"
+title: '重读 memU：多 Host 工作树、运行隔离与主动 Memorize'
 published: 2026-09-01
 category: technology
 kind: learning-note
@@ -9,9 +9,10 @@ tags:
   - Agent
   - Memory
   - 并发
-description: "从一个五分钟触发、十分钟执行的频率问题出发，重新梳理 memU 的多 Host 工作树、marker 生命周期、Recall Files 镜像，以及主动 memorize 的 per-run 隔离方案。"
+description: '从一个五分钟触发、十分钟执行的频率问题出发，重新梳理 memU 的多 Host 工作树、marker 生命周期、Recall Files 镜像，以及主动 memorize 的 per-run 隔离方案。'
 series:
   - Long-Term Memory
+  - 架构设计
 ---
 
 ![重读 memU：多 Host 工作树、运行隔离与主动 Memorize](../../assets/img/memu-multi-host-run-isolation/PixPin_2026-09-01_17-48-12.jpg)
