@@ -1,7 +1,7 @@
 ---
 title: "What Is memU? Let's Break It Down (An Ongoing Series)"
 published: 2026-06-29
-updated: 2026-07-14
+updated: 2026-09-02
 category: technology
 kind: learning-note
 tags:
@@ -396,3 +396,392 @@ It is worth noting that every one of our adapters triggers retrieval through Ski
 Whether `CLAUDE.md` or `AGENTS.md`, they are not “absolutely safe.” Forgetting, laziness, and hallucination still happen in long documents.
 
 We added a [simple A/B test](https://github.com/NevaMind-AI/memU/issues/507) then.
+
+## Returning to memU 26.9.1 after a long time
+
+Some of what I wrote above has apparently become outdated again =-=. It is hard to correct every detail one by one: I am not good at organizing documentation, but handing all of it to AI is not very interesting either.
+
+Earlier I mentioned that once I understand how something is put together, I become reluctant to document it completely. I have been in that state lately, and it is not a good sign. But at least there is now something worth discussing—an architectural decision, I suppose.
+
+### Background
+
+Previously, memorization was passive and timer-driven. Every hour, each host would start a session, send an evolve prompt, and modify its Recall Files.
+
+The first difficulty was that if a user had several hosts locally, the scheduled `prepare` tasks starting on the hour would contend for the workspace. Since evolve is time-consuming, that contention could become frightening.
+
+To prevent contention, a marker was added to indicate whether a task had finished. If it had not, a new task was not allowed to prepare.
+
+#### Q1. How does the marker prevent a new task from starting, and what is its lifecycle?
+
+Separate workspaces were then provided for different hosts, yielding `~/.memu/hosts/*`.
+
+Even now, though, the bug could be described as merely hidden rather than gone. A simple reproduction would be to change the scheduled interval to five minutes while each run takes roughly ten minutes. Then, after a scheduled task starts, `prepare` appears to be blocked around 50% of the time.
+
+#### Q2. Is that reproduction theoretically sound? Is this fundamentally about the marker's lifecycle and behavior—does it always reject multiple tasks in one workspace?
+
+Also, each host has an isolated full memory snapshot. Is `~/.memu/memory` a retrieval-only snapshot, while the memory under each host is what actually gets updated?
+
+#### Q3. When does a host take that snapshot, and when does it feed the snapshot back into the root directory?
+
+Even now, separate snapshots across hosts can still cause memories to be lost through overwrites by `(track, name)`. But that atomic overwrite seems to be the most workable option. The ideal design would be:
+
+A central worker would queue every task. Once one completes, it would synchronize the latest snapshot before the next begins. That would eliminate the need to distinguish read-only and writable snapshots.
+
+Why is that not feasible? Even restoring a `memu-server` would not contain the scheduled-task behavior of all our hosts, and it would damage the original design.
+
+We expect coding agents to use their own agent to evolve memories—through a Skill. We cannot realistically ask a Skill to connect to a local server: it cannot guarantee that the local server remains online. In addition, `memu-server` expects to run an independent LLM service inside the server, which conflicts with our hope of using each agent's own token budget. We would need something like EverMem: an MCP server that handles retrieval and memorization. That is a very heavy rewrite, and aside from making the memorize queue controllable, it does not solve much substantive—for example, the Codex sandbox problem.
+
+The cost is enormous, because where the MCP server belongs becomes another question. By convention, it would usually end up in a closed-source repository as a cloud service. That would reduce the completeness of open-source memU and deepen the functional gap between its cloud and local versions.
+
+Against that cost, atomically overwriting memories by `(track, name)` is already exceptionally friendly.
+
+So the decision is to keep atomic `(track, name)` overwrites and retain the CLI.
+
+That leaves a deeper question. Once active memorization is introduced, the old five-minute-versus-ten-minute problem returns: frequency must be resolved.
+
+We must allow atomic overwrites produced across hosts, and also allow atomic overwrites produced within one host. In other words, we need to remove the marker restriction on evolve.
+
+This is not an invitation to open everything completely. For hosts, we can keep the current behavior for now; changing it would be heavy and complicated.
+
+Because the tentative plan is to use the recently added `memu memorize` CLI for active memorization, the memory snapshots and jobs created through that CLI should all live under `~/.memu/developer`. Ignoring the naming semantics for now, it seems we can put every active-memorize operation in that workspace and lift its marker restriction.
+
+Create `~/.memu/developer/runs`, where every run is a complete workspace snapshot of the former kind. They do not share a marker.
+
+![A proposed layout for isolated proactive-memorize runs](../../assets/img/memu-multi-host-run-isolation/PixPin_2026-09-01_17-48-12.jpg)
+
+### Opus's first interpretation
+
+We first need to separate three things that are easy to conflate:
+
+1. `~/.memu/hosts/<host>/memory` and `skill` are **working mirrors** of Recall Files for an agent to operate on.
+2. `.memory_manifest.json` is the **content-hash baseline** for that working mirror at the last successful commit.
+3. `.bridging_run.<host>.json` is only a **timing marker** for a bridging cycle. The scheduler or wrapper outside it is what actually enforces a single running instance.
+
+Therefore, the earlier ideas that “the marker blocks a new prepare” and “a host feeds its snapshot back into `~/.memu/memory`” do not describe the current implementation.
+
+### Q1
+
+The current `.bridging_run.<host>.json` **does not prevent a new task from starting**. It is not a lock, and nothing checks “the file exists, so reject `prepare`.”
+
+At the start of every `prepare`, it writes directly:
+
+```json
+{ "started_at": 1234567890.0 }
+```
+
+If an older marker exists, a new `prepare` overwrites it. This write is best-effort: a failure only loses cycle observability and does not fail the task. `commit` uses the marker to decide whether that commit closes a cycle opened by `prepare`, and to calculate the total duration across prepare, agent evolve, and commit. A successful commit deletes the marker; a failed commit or a mid-process crash leaves it for a retrying commit to close the same cycle. The marker has no timeout cleanup. The 24-hour cap in the code only means that a duration beyond that is no longer trusted; it does not unlock anything after 24 hours.
+
+The real mutual exclusion happens before the agent is started:
+
+- When Windows Task Scheduler registers a task, it uses `-MultipleInstances IgnoreNew`. While an old instance is still running, the scheduler discards a new trigger before a second bridging process even starts.
+- The Unix cron wrapper obtains an atomic directory lock with `mkdir ~/.memu/hosts/<host>/.bridge.lock`. While the lock exists and is less than 180 minutes old, a new trigger records `skipped: another bridging run is in progress` and exits with 0; a `trap` removes the lock when the process exits. A lock older than three hours is reclaimed as a crash remnant. That is an explicit trade-off between preventing one crash from permanently stopping scheduled work and allowing an extremely long job to be launched twice.
+
+So the marker lifecycle is “written by prepare, deleted by a successful commit, retained after failure,” while the lock lifecycle is “acquired at the beginning of a scheduled task and released when the agent exits.” They are separate mechanisms.
+
+#### Q1.1 Does the bridging task itself, rather than the marker, determine mutual exclusion?
+
+That is: the marker is merely a hash identifier and has no locking role.
+
+The actual lock depends on the scheduled task of each host. The conclusion therefore remains the same, and is even simpler: scheduled tasks are mutually exclusive within each host, but not across hosts.
+
+Also, the newly added `memorize` interface's `prepare` does not introduce mutual exclusion either, right?
+
+### Q2
+
+The observed outcome—“trigger every five minutes, each run takes around ten minutes, and around half the triggers do not run”—is **theoretically mostly correct**, but it is not `prepare` being blocked by a marker, nor is it a random 50% probability.
+
+On Windows, a trigger that arrives while the old instance is running is discarded by `IgnoreNew`; on Unix, the wrapper immediately skips it after failing to acquire `.bridge.lock`. Both happen before the second `prepare`, so the precise statement is “that scheduled trigger is skipped,” not “prepare blocks there.” If a run reliably takes slightly less than or about ten minutes, the trigger at five minutes is skipped, so over time roughly one in two triggers runs. If it takes slightly more than ten minutes, the trigger at ten minutes can also arrive before the old run exits, so the rate need not be exactly 50%.
+
+The marker also **does not always reject multiple tasks in one workspace**. If the official scheduling entry point is bypassed—for example, by starting `prepare` manually while the scheduled task is running—both processes can enter; the later `prepare` merely overwrites the timing marker. This overlap is unsafe because `prepare` regenerates and clears old `jobs/*.txt` and `sessions/*.jsonl`, while a successful commit also cleans up those temporary files. On Unix, a run exceeding three hours may have its lock reclaimed as stale, creating another boundary where two runs can genuinely overlap.
+
+That means “removing the marker's evolve restriction” cannot solve active-memorize concurrency, because the current restriction does not exist. To permit simultaneous runs within one host, the real change would be to remove or bypass the scheduler's single-instance policy and isolate mutable state—including `jobs`, `sessions`, the manifest, and the pending cursor—per run. The proposed `developer/runs/<run-id>` is actually addressing that problem.
+
+#### Q2.1 Is the best approach to leave the existing scheduled tasks alone?
+
+Following 1.1, does the `memu memorize` CLI itself currently have no mutual exclusion, so isolating its workspace would be enough to achieve what we want? That also matches my original expectation, and explains why I wanted to isolate `developer` outside hosts: it does not carry all the machinery of scheduled tasks.
+
+### Q3
+
+Here we must again distinguish a working mirror from a snapshot baseline. For Claude Code, Cursor, Pi, and hosts added later, the working root is `~/.memu/hosts/<host>`; Codex, for backward compatibility, still uses `~/.memu` directly. Therefore, `~/.memu/memory` **is not a retrieval-only root snapshot shared by all hosts**. It is effectively Codex's `memory` working mirror. The authoritative state shared by all hosts is the persistent store indicated by `~/.memu/config.env`: memU's database in local mode, or a remote service in Cloud mode.
+
+A complete flow is:
+
+1. `prepare` pages through `list_all_recall_files` from the shared store and mirrors every current Recall File by track into that host's `memory/` and `skill/`. Each Markdown file is replaced wholesale with a same-directory temporary file plus `os.replace`, preventing concurrent readers from seeing a partial write.
+2. If this is the workspace's first prepare, the program creates `.memory_manifest.json` after mirroring and records the SHA-256 of every file. Later prepares do not rebuild this baseline; it should always represent the state after the last successful commit.
+3. The agent works from `sessions/` and `jobs/`, directly modifying `memory/*.md` and `skill/*.md` in the host workspace.
+4. `commit` compares the current files with `.memory_manifest.json`, reads only added or changed files, and writes through `commit_results` to the shared store. A Recall File's identity key is `(track, name)`, so an existing record with that key receives the whole new content rather than a text-level merge.
+5. Only after the store accepts the commit does the program resnapshot `.memory_manifest.json`, advance the pending-session cursor, and clear that round's jobs and session slices. If the commit fails, none of those states advance, leaving them for a retry.
+
+So there is no step where a host “feeds a snapshot back to `~/.memu/memory`.” The data path is:
+
+```text
+shared store
+  ├─ prepare/retrieve → host A's working mirror
+  ├─ prepare/retrieve → host B's working mirror
+  └─ prepare/retrieve → Codex's ~/.memu/{memory,skill}
+
+host working mirror ── commit → shared store
+```
+
+After one host commits successfully, another host will not see the new version in its on-disk workspace until its next prepare or retrieval-mirroring action. Thus stale snapshots can indeed create cross-host last-writer-wins behavior: if A and B begin from the same old version and both change the same `(track, name)`, the later commit overwrites the former in full. There is no three-way merge, version check, or compare-and-swap. “Atomic” here means only local replacement of a single mirrored file; `commit_results` behaves as create-or-update by `(track, name)`, not as a global atomic transaction across multiple files.
+
+There is another boundary: the current diff submits only added and changed files. Deleting a Recall File on disk does not propagate a deletion to the store, because the commit API has no removal path yet.
+
+#### Q3.1 Are all local Recall File trees actually snapshots, with only the database as the authoritative source?
+
+Then each local Recall File tree aligns to the newest snapshot during prepare, and feeds changes back to the authoritative snapshot during commit, right?
+
+## Opus's second interpretation: the follow-up questions
+
+This round requires separating two different kinds of markers again:
+
+- A host bridge's `.bridging_run.<host>.json` is a cycle-timing marker and does not enforce mutual exclusion.
+- A developer memorize run's `.memorize_run.json` is an active-run marker and does participate in gating a workspace lifecycle.
+
+They are both called markers, but their semantics differ.
+
+### Q1.1
+
+The direction—“the bridging task itself provides the real mutual exclusion”—is right, but its scope is more precisely: **each host's official scheduled task remains single-instance; different hosts are not mutually exclusive.**
+
+On Windows, every host has its own Scheduled Task, and `IgnoreNew` blocks only a second instance of that same task. On Unix, every host's wrapper locks `.bridge.lock` below that host's working root. Thus Claude Code's bridging and Cursor's bridging can run at the same time because their tasks, lock directories, and working trees differ; but a second trigger of the same Claude Code scheduled task is skipped if the first has not ended.
+
+So it is not “scheduled tasks are mutually exclusive across hosts,” but:
+
+```text
+one host's official bridging runs: mutually exclusive
+different hosts' bridging runs: not mutually exclusive
+manual prepare bypassing the wrapper: not protected by that exclusion
+```
+
+Also, `.bridging_run.<host>.json` is not a hash identifier. It stores only a `started_at` timestamp; `.memory_manifest.json` stores the Recall Files' content hashes.
+
+`memu memorize prepare` follows a separate lifecycle. It is neither started by the OS scheduler nor uses `.bridge.lock` or `IgnoreNew`, but the current implementation is not completely ungated: its default workspace is `~/.memu/developer`, where it has `.memorize_run.json`. If `prepare` finds that file already present, it fails directly with:
+
+```text
+memorize workspace already has an active run
+```
+
+A successful prepare creates the file; `commit` requires it to exist; a successful commit deletes it; and a failed commit retains it for a retry. It is closer to a state marker for “this workspace has a round not yet committed” than to bridging's timing marker.
+
+It is still not a strict concurrency lock. The code first checks whether `.memorize_run.json` exists, then materializes input, mirrors the store, generates jobs, and only finally writes the marker. Two near-simultaneous prepares can both pass the check before the marker exists, then overwrite each other's `input/`, `jobs/`, `memory/`, manifest, and other files. It can reject the ordinary case of opening a new round while the previous one is unfinished, but cannot safely resolve a TOCTOU race between two processes starting together.
+
+#### Q1.2 We currently have two separate protections for single-instance execution and workspace contention
+
+One comes from a host's scheduled task and is bound to that task.
+
+The other is the `.memorize_run.json` check that blocks `memu memorize` preparation. I had not noticed it before, which is why I conflated it with the host mechanism.
+
+What we should now do is change the `memu memorize` workspace to runs only, allowing multiple hosts to reuse that workspace through the interface to create their own runs. `.memorize_run.json` would no longer block another prepare; it would become a sign that this workspace's responsibility has ended and it can be cleaned up.
+
+Keep the host scheduled tasks' single-instance strategy unchanged.
+
+### Q2.1
+
+Yes, **the best approach is to leave the existing host scheduled tasks' single-instance strategy unchanged**. Host bridging shares a long-lived working tree within a host: `jobs/`, `sessions/`, the pending cursor, the manifest, and the resource log. It also handles the scheduled task's own session identity, crash leftovers, and cursor advancement. Allowing overlapping scheduled tasks for one host would reintroduce cleared jobs, duplicate or missed session consumption, and other complexity that active memorization does not need to take on.
+
+Active memorization should solve concurrency under the developer path. Your “a complete isolated workspace for every run” direction hits the existing seam exactly, because `MemorizeWorkspace` already keeps every piece of mutable local state for one round below a replaceable `base`:
+
+```text
+<workspace>/
+  input/
+  jobs/
+  memory/
+  skill/
+  .memorize_manifest.json
+  .memorize_run.json
+  .resource.tmp
+  resources.md
+```
+
+The CLI already supports `--workspace`, so mechanically each run can be isolated by pointing it at a different directory, such as:
+
+```text
+~/.memu/developer/runs/<run-id>/
+```
+
+But the default is still the shared `~/.memu/developer`, and the CLI does not automatically create a run ID. So “isolating the workspace is enough” is the right implementation direction, but is not yet the default behavior: a caller must pass a unique `--workspace` every time, or the CLI itself must allocate `runs/<run-id>` and carry that path through the later verify and commit commands.
+
+Nor does every run need to have no marker. A safer definition is: **every run owns its own marker, and sibling runs do not share one.** Then `.memorize_run.json` can still constrain the prepare → agent → commit state machine inside a single round without restricting another run from proceeding. To prevent two processes from preparing the same run directory, the check-and-create of its marker should be an atomic exclusive creation rather than the current `exists()` check followed by creating it only at the end of prepare.
+
+Workspace isolation resolves local file contention; it does not isolate the shared store. Multiple runs may still start from the same old version and submit different results to the same `(track, name)`, leaving the later submission to overwrite the former in full. As long as we accept last-writer-wins for `(track, name)`, that is expected semantics rather than a problem `runs/` can eliminate. In other words:
+
+```text
+per-run workspaces solve local concurrency safety
+(track, name) overwrites determine shared-store conflicts
+```
+
+This also explains why `developer` should stay separate from hosts: it needs only input materialization, Recall File mirroring, jobs, a diff baseline, and a commit lifecycle. It does not need to replicate host bridging's session cursor, self-session detection, or scheduler state.
+
+### Q3.1
+
+The high-level understanding is right: **the shared persistent store is authoritative, while every local file tree is a working copy built around it.** Strictly speaking, local `memory/` and `skill/` are not immutable “snapshots”; they are mutable **working mirrors** that the agent edits directly. The manifests' content-hash baselines are what represent a moment-in-time snapshot.
+
+The three objects should therefore be named separately:
+
+```text
+shared store                         authoritative state
+local memory/ and skill/             mutable working mirrors
+.memory_manifest.json
+or .memorize_manifest.json           diff snapshot baseline
+```
+
+“Prepare aligns and commit feeds back” is also broadly correct, but the more precise flow is:
+
+1. `prepare` fetches the current Recall Files from the shared store into the current working mirror;
+2. the program records a hash baseline for that mirror;
+3. the agent modifies the mirror;
+4. `commit` diffs the current content against the baseline and submits only added or changed Recall Files to the shared store;
+5. after the store accepts the submission, the program updates the local baseline and clears the round's temporary state.
+
+This does not feed files back into an “authoritative snapshot”; it submits changes to the **current state of the authoritative store**. Other workspaces do not hot-sync automatically after the store changes; they see new content at their next prepare or retrieval-mirroring action.
+
+There is also a small difference in baseline timing between host bridging and developer memorization:
+
+- developer memorization creates `.memorize_manifest.json` after mirroring the store during every new run's prepare, because every input and lifecycle is independent;
+- host bridging creates `.memory_manifest.json` only when its workspace is first prepared, then mainly resnapshots after successful commits, ensuring failed-run changes are still detected during a later retry.
+
+Therefore, the proposed `developer/runs/<run-id>` can be understood as each run branching from the same authoritative store into an independent mutable working mirror at startup, then merging back into the store by `(track, name)` at commit time. It is not a database-transaction-style branch merge; it is last-writer-wins submission from independent working copies.
+
+#### Q3.2 Why does Codex retain `hosts/codex` even though it already uses `~/.memu/memory`?
+
+Can we stop treating Codex as special and return it to `hosts/`? That would make the root directory truly read-only: something readable from the database source, rather than a strange place that is both readable and writable.
+
+## Opus's third interpretation: Q1.2 and Q3.2
+
+### Q1.2
+
+Yes, we can now clearly separate the two layers of single-instance protection:
+
+```text
+host bridging
+  └─ scheduler-level single instance: protects one host's long-lived shared working tree
+
+memu memorize
+  └─ workspace active run: protects one active-memorize local state machine
+```
+
+The target architecture is essentially as you described: **leave host bridging as it is; change only how developer memorization allocates workspaces.**
+
+One phrase needs a small adjustment. `.memorize_run.json` should not entirely “stop blocking prepare”; rather, it should **stop blocking prepares for other runs**. A single run directory still must not be prepared twice, because even after different runs are isolated, a second prepare in the same run would overwrite its `input/`, `jobs/`, manifest, and working mirror.
+
+The more precise layout and responsibilities should be:
+
+```text
+~/.memu/developer/
+  runs/
+    <run-id-a>/
+      input/
+      jobs/
+      memory/
+      skill/
+      .memorize_manifest.json
+      .memorize_run.json
+      .resource.tmp
+      resources.md
+    <run-id-b>/
+      ...
+```
+
+Here:
+
+- `~/.memu/developer` is only a namespace for runs, no longer the workspace of a single round;
+- every `memu memorize prepare` atomically allocates a new `<run-id>`;
+- different hosts and sessions can use the same CLI to create runs, without another per-host partition;
+- prepare returns the run ID and concrete path, and later agent, `verify-resources`, and `commit` commands explicitly bind to that run;
+- `.memorize_run.json` constrains only the run that contains it, never a sibling run.
+
+Its role therefore narrows from a global gate for the entire developer workspace to a **per-run lifecycle marker**. But “can be cleaned up” should be understood the other way around: the presence of the marker means that round is still active and usually cannot be removed. A successful commit deletes the marker, or records an explicit completed state, after which the run can be collected. A failed commit leaves the active state and working files in place for retry.
+
+An active marker alone cannot determine whether a long-inactive run was abandoned or awaits manual recovery. If automatic GC is ever added, it should record a `run_id`, creation time, and state, then provide an explicit abandon or clean command. It should not delete solely because a marker is old: it may contain Recall Files from a failed but not-yet-committed run.
+
+The current `exists()` check for `.memorize_run.json` also has a TOCTOU window before the final creation. With per-run workspaces, the natural fix is not a global lock for all runs, but:
+
+1. atomically allocate a unique run directory with an exclusive `mkdir` or equivalent;
+2. atomically create the run's state file before materializing any input or mirroring the store;
+3. perform all later state transitions only inside that directory.
+
+This lets multiple hosts create different runs concurrently while preventing a single run from being prepared twice. The shared store still accepts concurrent commits with last-writer-wins behavior by `(track, name)`, but that is the accepted submission-conflict semantic, rather than workspaces corrupting one another.
+
+The final boundary can therefore be compressed to:
+
+```text
+host scheduled tasks: remain single-instance
+memorize prepare: permits concurrent creation of different runs
+the same run: remains single-owner / single lifecycle
+shared store: permits concurrent commits; conflicts are later-writer-wins by (track, name)
+```
+
+### Q3.2
+
+First, an earlier conclusion based on an old comment needs correcting: **Codex no longer uses `~/.memu` as its bridging working tree; it has already moved to `~/.memu/hosts/codex`.**
+
+Codex's current `HostSpec` does not override `base_dir`, so it uses the unified default `~/.memu/hosts/<host>`. Its guide explicitly places jobs, sessions, memory, skill, the manifest, and resources under:
+
+```text
+~/.memu/hosts/codex/
+```
+
+That migration was completed as part of the fix for different hosts trampling a shared working tree when memorizing simultaneously. References in `host_cli.py` and the older ADR saying “Codex keeps `~/.memu`” were historical documentation that was not cleaned up, not current runtime behavior.
+
+Also, `hosts/codex` can refer to two different things:
+
+- `src/memu/hosts/codex` is the Codex adapter package in the source tree, containing the session parser, HostSpec, and installation guide;
+- `~/.memu/hosts/codex` is the Codex bridging working tree on a user's machine.
+
+The former organizes source code; the latter is runtime state. Whether Codex uses the root directory has no relationship to why the source package exists.
+
+The actual layering now mostly matches what you wanted:
+
+```text
+shared store                         authoritative source
+
+~/.memu/memory and skill             shared derived retrieval mirror
+
+~/.memu/hosts/codex/...              Codex's writable evolve working tree
+~/.memu/hosts/claude-code/...        Claude Code's writable evolve working tree
+~/.memu/hosts/cursor/...             Cursor's writable evolve working tree
+
+~/.memu/developer/runs/<run-id>/     active-memorize writable working tree (target layout)
+```
+
+The root `memory/` and `skill/` are no longer written by Codex either. Once the retrieve hook receives matching Recall Files from the store, it atomically writes them to `~/.memu/<track>/<name>.md` and returns an openable `path` to the agent. All evolve writes happen in a host's or developer's own working tree.
+
+From an **ownership-semantics** perspective, the root mirror should already be considered read-only: an agent reads it but cannot commit edits to it back into the store. The only legitimate writer is memU's own retrieval/materialization code. “Read-only” here is a consumer contract, not a filesystem permission.
+
+If we also made it unwritable at the OS-permission level, the current implementation could not work unchanged, because retrieve needs to:
+
+- create the mirror for an initial hit;
+- refresh a file with current store content on every hit;
+- regenerate a file a user has deleted by mistake;
+- use atomic replacement so an agent never sees a partially written file.
+
+More importantly, the root mirror is currently only a **lazily generated, read-through cache of retrieval hits**, not a complete materialized view of the database. Files never hit by retrieval may not exist, and records already gone from the store may leave old local files behind because there is no full sweep or deletion reconciliation. So `~/.memu/memory` cannot yet be defined as a complete readable representation of the database.
+
+A strict, complete, read-only materialized view would require a dedicated producer that:
+
+1. reads every record from the store with full pagination;
+2. generates all memory and skill files in a temporary directory;
+3. removes local remnants of store-deleted records;
+4. publishes a new view by switching a directory version or index;
+5. makes retrieval read that view rather than writing it itself.
+
+That would introduce another global synchronization task and its refresh policy: who refreshes, when, and which version remains after failure. The current read-through cache avoids those concerns with a much smaller mechanism.
+
+The more appropriate conclusion for now is:
+
+- Codex does not need another migration; it is already under `hosts/codex`;
+- root `memory/skill` should be described explicitly as a **memU-owned, agent-read-only shared retrieval cache**;
+- memU may write it and every host may read it without muddling responsibilities; the key is that ordinary agent edits there cannot enter commit;
+- if the directory name makes it look authoritative, it can eventually move to `~/.memu/cache/recall-files/<track>`, but that is a path migration rather than a necessary concurrency-model change;
+- a dedicated producer is worth adding only when the product genuinely needs a complete, enumerable, version-consistent materialized database view—not merely to make filesystem permissions read-only.
+
+In other words, the read/write split you want already exists. Its accurate form is not “the root directory is never written,” but:
+
+```text
+store is the only authoritative write target
+host/run mirrors can be modified by agents and written back through commit
+root retrieval mirrors can be refreshed only by memU; agents read them and cannot write back from them
+```
+
+That makes much more sense.
