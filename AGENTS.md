@@ -71,8 +71,9 @@ These commands map to their corresponding tools. For example, `vp dev --port 300
 
 ## Review Checklist for Agents
 
-- [ ] Run `vp install` after pulling remote changes and before getting started.
-- [ ] Run `vp check` and `vp test` to validate changes.
+- [ ] Run `vp install` after pulling remote changes and before getting started. The install lifecycle runs `vp config --no-agent`, which enables the repository's Vite+ Git hooks for this clone.
+- [ ] Commits run `.vite-hooks/pre-commit` → `vp staged` and automatically apply `vp check --fix` to staged files. If this does not run, inspect `vp hooks status` and restore it with `vp hooks enable`.
+- [ ] Run the full `vp check` and `vp test` before pushing or opening a PR; the staged hook only validates files included in a commit.
 
 <!--VITE PLUS END-->
 
