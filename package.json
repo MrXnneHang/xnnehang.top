@@ -15,6 +15,7 @@
     "todo:fetch": "node scripts/fetch-github-todo.mjs",
     "todo:test": "node --test scripts/todo-lib.test.mjs",
     "preinstall": "npx only-allow pnpm",
+    "prepare": "vp config --no-agent",
     "img:upload": "bash scripts/upload-img.sh",
     "case-police": "case-police . --fix",
     "case-police:check": "case-police ."
