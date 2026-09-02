@@ -466,7 +466,7 @@ The current `.bridging_run.<host>.json` **does not prevent a new task from start
 At the start of every `prepare`, it writes directly:
 
 ```json
-{"started_at": 1234567890.0}
+{ "started_at": 1234567890.0 }
 ```
 
 If an older marker exists, a new `prepare` overwrites it. This write is best-effort: a failure only loses cycle observability and does not fail the task. `commit` uses the marker to decide whether that commit closes a cycle opened by `prepare`, and to calculate the total duration across prepare, agent evolve, and commit. A successful commit deletes the marker; a failed commit or a mid-process crash leaves it for a retrying commit to close the same cycle. The marker has no timeout cleanup. The 24-hour cap in the code only means that a duration beyond that is no longer trusted; it does not unlock anything after 24 hours.
