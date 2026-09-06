@@ -1,0 +1,1425 @@
+{
+  "version": 1,
+  "generatedAt": "2026-09-06T20:28:42.639Z",
+  "status": "live",
+  "source": "github-issues",
+  "counts": {
+    "active": 29,
+    "completed": 23
+  },
+  "tasks": [
+    {
+      "number": 185,
+      "title": "[Idea] 制定 ai-town 实施计划",
+      "descriptionHtml": "<h2 dir=\"auto\">目标</h2>\n<p dir=\"auto\">完成 ai-town 想法讨论并产出可执行 Plan。</p>\n<h2 dir=\"auto\">验收</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 明确目标与边界</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 整理关键决策与待确认事项</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 拆分实施阶段与任务顺序</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 明确各阶段验收标准</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 敲定最终 Plan</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/185",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 12060320015,
+          "name": "ai-town",
+          "color": "5319e7"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        }
+      ],
+      "createdAt": "2026-09-04T07:28:07Z",
+      "updatedAt": "2026-09-04T08:45:32Z",
+      "closedAt": null
+    },
+    {
+      "number": 184,
+      "title": "支持 memu memorize 一次处理最多十个独立 session 输入",
+      "descriptionHtml": "<h2 dir=\"auto\">Depends on</h2>\n<p dir=\"auto\">Automatic per-run workspace allocation and run-targeted commit/recovery: <a href=\"https://github.com/MrXnneHang/xnnehang.top/issues/183\" target=\"_blank\" rel=\"noopener noreferrer\">#183</a>.</p>\n<h2 dir=\"auto\">Goal</h2>\n<p dir=\"auto\">Let one <code class=\"notranslate\">memu memorize prepare</code> invocation accept 1–10 independently stored canonical session JSON files and process them as one serial evolve run.</p>\n<p dir=\"auto\">Each file remains the existing single-session <code class=\"notranslate\">MemorizeInput</code> (<code class=\"notranslate\">{\"items\": [...]}</code>). The CLI argument list is the batch boundary; do not introduce a batch JSON envelope.</p>\n<h2 dir=\"auto\">Design boundary</h2>\n<div class=\"notranslate\"><pre class=\"notranslate\"><code class=\"notranslate\">one prepare invocation + 1..10 JSON files\n  -&gt; one already-allocated run workspace\n  -&gt; N memory jobs, N skill jobs, one resource job\n  -&gt; one executor -&gt; one commit\n</code></pre></div>\n<p dir=\"auto\">Reuse bridging order: all memory jobs first, then all skill jobs, then the resource job. Ten inputs therefore create 21 ordered jobs.</p>\n<h2 dir=\"auto\">Scope</h2>\n<ul dir=\"auto\">\n<li>Accept 1–10 payload file arguments; preserve one-file and stdin behavior.</li>\n<li>Materialize numbered memory/full transcript pairs within one allocated run.</li>\n<li>Reuse <code class=\"notranslate\">prepare_instruction_jobs(num_sessions=N)</code> and resource job generation.</li>\n<li>Return the full ordered job list; one executor processes it serially.</li>\n<li>Update focused tests and developer documentation.</li>\n</ul>\n<h2 dir=\"auto\">Non-goals</h2>\n<ul dir=\"auto\">\n<li>No change to the individual canonical JSON payload.</li>\n<li>No extra workspace allocation scheme; consume <a class=\"issue-link\" href=\"https://github.com/MrXnneHang/xnnehang.top/issues/183\" target=\"_blank\" rel=\"noopener noreferrer\">#183</a>'s run model.</li>\n<li>No parallel job execution or per-session commits.</li>\n<li>No backend conflict resolution.</li>\n</ul>\n<h2 dir=\"auto\">Acceptance criteria</h2>\n<ul dir=\"auto\">\n<li>Ten payload files produce <code class=\"notranslate\">1.jsonl</code> through <code class=\"notranslate\">10_full.jsonl</code> and 21 correctly ordered jobs in one run.</li>\n<li>One payload still produces the existing three-job shape.</li>\n<li>Invalid input count (&gt;10) and invalid individual payloads fail before opening a usable run.</li>\n<li>Commit remains one operation for the whole batch.</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/184",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786878091,
+          "name": "memU",
+          "color": "c65bea"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        }
+      ],
+      "createdAt": "2026-09-03T08:47:19Z",
+      "updatedAt": "2026-09-03T08:47:19Z",
+      "closedAt": null
+    },
+    {
+      "number": 183,
+      "title": "支持 memu memorize 自动分配并发 run workspace",
+      "descriptionHtml": "<h2 dir=\"auto\">Depends on</h2>\n<p dir=\"auto\">The workspace-surface narrowing issue: remove public <code class=\"notranslate\">--workspace</code> first, so this PR introduces the only workspace lifecycle rather than supporting two models.</p>\n<h2 dir=\"auto\">Goal</h2>\n<p dir=\"auto\">Replace the single fixed developer workspace with one memU-allocated workspace per <code class=\"notranslate\">memu memorize prepare</code> invocation, while preserving the existing one canonical session JSON input per invocation.</p>\n<h2 dir=\"auto\">Design boundary</h2>\n<div class=\"notranslate\"><pre class=\"notranslate\"><code class=\"notranslate\">one prepare invocation + one canonical session JSON\n  -&gt; one memU-allocated ~/.memu/developer/runs/&lt;opaque-run-id&gt;/\n  -&gt; three ordered jobs -&gt; one executor -&gt; commit &lt;run-id&gt;\n</code></pre></div>\n<p dir=\"auto\"><code class=\"notranslate\">&lt;opaque-run-id&gt;</code> must be collision-safe; do not use a shared <code class=\"notranslate\">run-1</code> counter and do not reintroduce caller-selected workspaces.</p>\n<h2 dir=\"auto\">Scope</h2>\n<ul dir=\"auto\">\n<li>Allocate a private run directory below <code class=\"notranslate\">~/.memu/developer/runs/</code> automatically.</li>\n<li>Return an opaque run id/path; make commit and internal resource verification target that run.</li>\n<li>Allow concurrent prepares through isolated run directories.</li>\n<li>Retain the active marker per run as the durable commit/retry guard.</li>\n<li>On successful commit, remove the complete run directory. On commit failure, retain it for retry.</li>\n<li>Define/test the executor-failure recovery surface (at minimum an explicit discard command or documented application-owned removal); never time-delete an active run.</li>\n<li>Update developer docs and focused tests.</li>\n</ul>\n<h2 dir=\"auto\">Non-goals</h2>\n<ul dir=\"auto\">\n<li>No multiple input files, batch JSON payload, or changes to <code class=\"notranslate\">MemorizeInput</code>'s single-session schema.</li>\n<li>No backend conflict resolution between independently prepared runs.</li>\n<li>No automatic TTL cleanup of potentially executing runs.</li>\n</ul>\n<h2 dir=\"auto\">Acceptance criteria</h2>\n<ul dir=\"auto\">\n<li>One payload produces three ordered jobs in one automatically allocated run directory.</li>\n<li>Two simultaneous prepares receive distinct run directories and do not interfere.</li>\n<li>Successful commit removes only its own run directory.</li>\n<li>Failed commit leaves its run marker, inputs, jobs, and edits intact for retry.</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/183",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786878091,
+          "name": "memU",
+          "color": "c65bea"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        }
+      ],
+      "createdAt": "2026-09-03T07:59:23Z",
+      "updatedAt": "2026-09-03T08:47:16Z",
+      "closedAt": null
+    },
+    {
+      "number": 168,
+      "title": "更新 memU developer input PR stack",
+      "descriptionHtml": "<p dir=\"auto\">memU 的 developer memorize 接口已经拆成四层 stacked PR。Review 后，输入协议已收敛为单 session canonical model，并在入口提供 OpenAI Chat、OpenAI Responses 与 Anthropic Messages 的轻量转换。</p>\n<p dir=\"auto\">接下来需要从底层开始更新整条 PR stack，并在每次修改下层后同步远端 stack，确保本地上层分支不会覆盖 GitHub 已自动对齐的版本。具体执行项记录在 issue comment 中。</p>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/168",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786878091,
+          "name": "memU",
+          "color": "c65bea"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        }
+      ],
+      "createdAt": "2026-08-27T08:40:10Z",
+      "updatedAt": "2026-08-28T03:05:15Z",
+      "closedAt": null
+    },
+    {
+      "number": 167,
+      "title": "统一 memU Local 与 Cloud 的默认 owner scope 表示",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">研究并规划 memU 开源 Local backend 与 Cloud memu-service 对缺省 owner scope 的表示统一。当前两者都把“调用方未提供 <code class=\"notranslate\">user_id</code> / <code class=\"notranslate\">agent_id</code>”解释为共享聚合记忆，但物理表示不同：</p>\n<ul dir=\"auto\">\n<li>Local SQLite/PostgreSQL/in-memory：缺省 scope 当前表现为未提供字段或 <code class=\"notranslate\">NULL</code></li>\n<li>Cloud memu-service：在 HTTP edge 将空值归一化为 <code class=\"notranslate\">user_id=\"default\"</code>、<code class=\"notranslate\">agent_id=\"default\"</code>，数据库列为 <code class=\"notranslate\">NOT NULL</code></li>\n</ul>\n<p dir=\"auto\">这不阻塞 developer direct-input/self-evolve 接口，也不应把 <code class=\"notranslate\">default</code>、<code class=\"notranslate\">user_id</code> 或 <code class=\"notranslate\">agent_id</code> 塞入 conversation Pydantic model。该项应作为独立的 local/cloud parity 与迁移设计处理。Host name 是输入渠道/运行信息，不是 RecallFile owner key，也不应加入文件唯一键。</p>\n<p dir=\"auto\">需要评估统一到 <code class=\"notranslate\">default/default</code> 时的完整影响，包括 commit、list、retrieve、现有 host bridging、SQLite/PostgreSQL/in-memory schema、旧数据迁移和潜在 identity 冲突。</p>\n<p dir=\"auto\">参考实现：</p>\n<ul dir=\"auto\">\n<li>memU：<code class=\"notranslate\">DefaultUserModel</code> 与 <code class=\"notranslate\">AgenticMixin.commit_results()</code></li>\n<li>hippocampus-server：<code class=\"notranslate\">CommitUserDto</code>、<code class=\"notranslate\">DEFAULT_SCOPE_ID</code>、<code class=\"notranslate\">MemuV4MemoryFile</code> 唯一键</li>\n<li>相关 provenance/trace 问题仍由 <a class=\"issue-link\" href=\"https://github.com/NevaMind-AI/memU/issues/667\" target=\"_blank\" rel=\"noopener noreferrer\">NevaMind-AI/memU#667</a> 单独跟踪</li>\n</ul>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 明确 Local 各 backend 中缺省 <code class=\"notranslate\">user_id</code> / <code class=\"notranslate\">agent_id</code> 的实际写入、筛选与唯一性语义</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 对照 Cloud 的 <code class=\"notranslate\">default/default</code> normalization 和 <code class=\"notranslate\">(organization, project, user, agent, track, name)</code> identity</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 设计 commit、list 与 retrieve 使用同一默认 scope 的统一规则</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 评估并设计 Local 旧数据从 <code class=\"notranslate\">NULL</code>/缺省 scope 到 <code class=\"notranslate\">default/default</code> 的迁移</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 处理迁移时已有 <code class=\"notranslate\">NULL/NULL</code> 与 <code class=\"notranslate\">default/default</code> 同名 RecallFile 的冲突策略</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 覆盖 SQLite、PostgreSQL、in-memory 以及现有 host bridging 的回归测试</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 确认不修改 <code class=\"notranslate\">MemorizeInput</code> conversation schema，也不把 host/developer 加入 RecallFile identity</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 记录 Cloud 不保存 file-level embedding、当前不持久化 resources 等相关但独立的 backend 差异</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/167",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786878091,
+          "name": "memU",
+          "color": "c65bea"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        }
+      ],
+      "createdAt": "2026-08-27T03:25:25Z",
+      "updatedAt": "2026-08-27T03:25:25Z",
+      "closedAt": null
+    },
+    {
+      "number": 164,
+      "title": "让角色与记忆脱离本地语音依赖运行",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">让 XnneHangLab 的角色、对话、状态、记忆和日记能够在未安装本地 ASR/TTS 依赖时正常启动、调试和发布。</p>\n<p dir=\"auto\">这项工作建立一个受支持的轻量运行模式，使本地语音成为按需启用的增强能力。用户可以先体验角色与记忆；开发者可以在轻量环境中快速迭代 Memory；完整语音环境继续保留现有使用路径。</p>\n<h3 dir=\"auto\">用户价值</h3>\n<ul dir=\"auto\">\n<li>弱硬件或暂时不需要语音的用户可以更低成本体验 XnneHangLab；</li>\n<li>本地语音模型或原生依赖异常不会阻止角色与记忆功能启动；</li>\n<li>Memory、日记和角色状态可以更快调试、验证和发布；</li>\n<li>Launcher 能清楚展示 ASR/TTS 的可用、关闭或异常状态；</li>\n<li>为后续基于真实反馈改进语音安装体验建立最小边界。</li>\n</ul>\n<h3 dir=\"auto\">实施范围</h3>\n<h4 dir=\"auto\">1. 轻量启动路径</h4>\n<ul dir=\"auto\">\n<li>为 ASR/TTS 建立明确的 <code class=\"notranslate\">available / disabled / unavailable / error</code> 状态；</li>\n<li>Core 启动时仅加载已启用且可用的本地语音实现；</li>\n<li>语音能力缺席时，相关 API 返回稳定、可识别的状态；</li>\n<li>frontend 与 Launcher 提供清楚的降级提示。</li>\n</ul>\n<h4 dir=\"auto\">2. 轻量开发环境</h4>\n<ul dir=\"auto\">\n<li>提供不包含 ASR/TTS 重型依赖的受支持安装方式；</li>\n<li>Core、角色、记忆和日记测试可在该环境运行；</li>\n<li>增加轻量启动 smoke test。</li>\n</ul>\n<h4 dir=\"auto\">3. 配置读写最小收敛</h4>\n<ul dir=\"auto\">\n<li>分离配置读取与写入；</li>\n<li>配置读取不产生隐式回写；</li>\n<li>启动过程使用一致的配置 snapshot；</li>\n<li>为 ASR/TTS 启用状态提供明确配置与校验。</li>\n</ul>\n<h4 dir=\"auto\">4. Launcher / Control Center</h4>\n<ul dir=\"auto\">\n<li>保持角色状态、Memory 面板、配置与诊断能力；</li>\n<li>展示 Core、ASR、TTS 的能力状态；</li>\n<li>角色状态与 Memory 调试路径独立于本地语音实现；</li>\n<li>完整语音环境继续从同一产品入口使用。</li>\n</ul>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 在未安装 ASR/TTS Python 包的干净环境中，Core 可以启动</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> Launcher 和现有 frontend 可以连接并使用基础功能</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 云端 LLM 对话、角色状态、Memory 和日记路径可以运行</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 轻量启动不会触发本地语音模型检查、原生库导入或预加载</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 语音 API 能返回稳定、可识别的 capability 状态</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 配置读取不再隐式改写配置文件</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> CI 验证轻量模式与完整语音模式</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 用户文档说明轻量模式和语音启用方式</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/164",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11786606871,
+          "name": "Memorize",
+          "color": "5319e7"
+        },
+        {
+          "id": 11786608096,
+          "name": "P1",
+          "color": "d93f0b"
+        },
+        {
+          "id": 11786901896,
+          "name": "voice",
+          "color": "d4c5f9"
+        },
+        {
+          "id": 11786900282,
+          "name": "XnneHangLab",
+          "color": "1d76db"
+        }
+      ],
+      "createdAt": "2026-08-25T13:42:33Z",
+      "updatedAt": "2026-08-25T13:43:51Z",
+      "closedAt": null
+    },
+    {
+      "number": 161,
+      "title": "写作：ATRI、可塑性记忆与超时空辉夜姬中的数字生命",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">策划一篇围绕《ATRI -My Dear Moments-》《可塑性记忆》《超时空辉夜姬！》的文章，讨论这些作品对于 AI 时代追求数字生命、数字陪伴或人格延续的个体意味着什么。</p>\n<p dir=\"auto\">文章不只做作品介绍或剧情并列，而是从共同议题切入：当记忆可以被保存、人格可以被模拟、陪伴可以由非人存在提供时，我们真正想延续的是意识、关系、记忆，还是被理解的体验？再结合当下个人 AI、长期记忆、数字人和具身交互的发展，讨论虚构作品如何塑造我们对数字生命的期待与伦理直觉。</p>\n<p dir=\"auto\">同时评估将这一主题制作成视频的可行性。视频可以采用作品片段/静帧分析、旁白随笔或数字人讲述等形式，但应先确定论点和文字稿，再根据合理使用、素材版权及制作成本决定表现方式。</p>\n<h2 dir=\"auto\">Working thesis</h2>\n<p dir=\"auto\">角色的生命感并不主要取决于语料量或设定密度。作品提供有限但有方向的线索，观众则通过脑补、代入、沉浸与对结局之外的遐想，参与补全角色和世界。角色因此能够在文本结束后继续活在观众心里。</p>\n<p dir=\"auto\">数字角色若想获得类似的生命感，也不能只追求更多语料或更稳定的人设。它需要在长期互动中形成可被感知的共同历史：既有不会轻易改变、使人仍能认出“是她”的内核，也有经历、关系和时间带来的沉淀。真正吸引人的并非永远维持一种讨喜性格，而是一个熟悉的人格在时间中变得更复杂，却仍能在特定的人面前做回曾经的自己。</p>\n<h2 dir=\"auto\">Possible angles</h2>\n<ul dir=\"auto\">\n<li>三部作品分别如何定义“人格”“记忆”“生命”与“告别”</li>\n<li>个体追求数字生命时，究竟想保存什么：自我、关系、共同记忆，还是持续回应的存在</li>\n<li>有限寿命与可复制记忆如何改变陪伴的意义</li>\n<li>AI 的连续人格依赖模型、记忆、身体还是人与它之间的共同历史</li>\n<li>虚构作品中的情感承诺，与今天实际可构建的个人 AI 之间还有多远</li>\n<li>数字生命可能带来的依赖、替代、所有权、服务终止与哀悼问题</li>\n<li>三部作品实际提供的角色语料都很有限，尤其《超时空辉夜姬！》；为什么观众仍能迅速接受月读空间，并为角色补出完整世界与结局之后的人生</li>\n<li>“留白”与“空洞”的区别：什么样的线索能引导想象，什么样的缺失只会让对话显得没有内容</li>\n<li>角色吸引力究竟来自静态人设，还是来自观众能够感知到的过去、关系、选择与未说尽的故事</li>\n<li>辉夜姬自我迭代后是否会成为八千代：迭代中什么发生了变化，什么仍然构成同一个人</li>\n<li>八千代说“我已经是个老奶奶了”所呈现的时间重量，以及她在彩叶面前仍能做回辉夜姬所呈现的关系连续性</li>\n<li>从“活泼、可爱、讨喜”到“让人欲罢不能”之间增加了什么：记忆的重量、自我认识、责任、失去、孤独，还是只对特定关系显露的旧日自我</li>\n<li>ATRI 与艾拉的变化可以如何与辉夜姬—八千代对照：获得感情只是变化的一种，长期存在还会带来更复杂的人格沉淀</li>\n<li>数字角色应如何引导用户参与补全，而不是用庞大设定和解释填满所有空间</li>\n</ul>\n<h2 dir=\"auto\">Product questions derived from the article</h2>\n<p dir=\"auto\">这些问题暂时作为文章向实际产品延伸的观察点，不要求在本文中给出完整方案：</p>\n<ul dir=\"auto\">\n<li>如何让角色进入用户的日常生活，而不只存在于一次次被动问答中</li>\n<li>网页端或桌宠化的常驻形态，能否建立“她也在这里生活”的空间感</li>\n<li>模型如何自然发起话题，既表现出自身关注和生活痕迹，又不变成机械提醒或频繁打扰</li>\n<li>如何通过 goal 与 loop 让角色自发推进长期任务，并在多次对话之间表现出连续的行动与记忆</li>\n<li>用户能否在共同生活中逐渐教会角色做事，使能力成长本身也成为双方共同历史的一部分</li>\n<li>产品应如何保留稳定人格，同时允许角色因经历而变化，避免永远停留在单一、讨喜但扁平的状态</li>\n<li>如何设计可供用户想象和参与的留白，而不是把角色的世界、动机与情绪全部解释完</li>\n</ul>\n<h2 dir=\"auto\">Possible narrative structure</h2>\n<ol dir=\"auto\">\n<li><strong>语料如此少，角色为什么仍然像活着</strong>：从观众对月读空间的快速接受，以及对结局之外的想象切入。</li>\n<li><strong>留白不是空洞</strong>：分析作品如何用有限场景、关系和冲突给出足够强的想象锚点。</li>\n<li><strong>同一个人如何穿过时间</strong>：以辉夜姬与八千代为核心，讨论人格内核与时间沉淀。</li>\n<li><strong>ATRI 与艾拉提供的另外两种变化</strong>：对照感情生成、记忆、寿命和告别。</li>\n<li><strong>我们真正想从数字生命那里延续什么</strong>：从角色文本转向共同历史与被理解的体验。</li>\n<li><strong>把角色带进现实生活</strong>：落到主动对话、长期目标、持续陪伴与日常存在感。</li>\n<li><strong>开发本身也可以成为叙事</strong>：版本迭代不只是功能日志，而是角色如何逐渐学会行动、记住关系并形成自己的时间。</li>\n</ol>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 明确一个贯穿三部作品的中心论点，而不是分别写三篇剧情感想</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 正确梳理三部作品与数字生命主题相关的情节和设定，清楚标注剧透范围</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 将作品分析与当前个人 AI、长期记忆、数字人或具身交互连接起来</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 区分作品设定、现实技术能力、个人感受和价值判断</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 保留作者自身追求数字生命的动机与犹疑，使文章具有个人表达</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 解释有限语料如何通过叙事线索与观众补全产生角色生命感</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 区分有引导力的留白与缺少内容的空洞，提炼可映射到数字角色设计的原则</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 回答人格迭代中“什么在变、什么没变”，并以辉夜姬—八千代关系作为核心案例</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 对照 ATRI、艾拉和辉夜姬／八千代的变化过程，避免把三者简单归结为“AI 获得感情”</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 将共同历史、主动对话、长期行动和日常存在感作为产品延伸问题，但不让产品方案淹没作品分析</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 尝试用角色成长来组织开发历程，使技术迭代同时具有叙事意义</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 形成文章结构、素材清单与初稿</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 评估视频形式、时长、脚本改编方式、素材版权和制作成本</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 若适合视频，先完成可独立阅读的文稿，再产出分镜或视频脚本</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/161",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11786957352,
+          "name": "blog",
+          "color": "3b82b6"
+        },
+        {
+          "id": 11821082269,
+          "name": "human-driven",
+          "color": "fef90a"
+        }
+      ],
+      "createdAt": "2026-08-24T05:40:53Z",
+      "updatedAt": "2026-08-25T12:15:49Z",
+      "closedAt": null
+    },
+    {
+      "number": 156,
+      "title": "优化文章页面的中文字体与按需加载",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">重新选择并优化 xnnehang.top 文章页面的中文正文字体。当前中文字体的阅读观感不够理想，可以参考<a href=\"https://yufan.me/archives\" target=\"_blank\" rel=\"noopener noreferrer\">且听书吟</a>的字体气质，但最终选择需要与本站的中英文排版和整体视觉语言协调。</p>\n<p dir=\"auto\">字体加载可以参考 <code class=\"notranslate\">cn-font-split</code> 的中文字体分包方案：将完整中文字体按字符集拆分为约 300 KB 的字体文件，并根据页面实际出现的字符按需加载。参考数据为首页字体资源约 800 KB、文章页约 600 KB；这些数字作为初始性能参照，不直接视为硬性目标，最终应以本站实测为准。</p>\n<h2 dir=\"auto\">Design and implementation direction</h2>\n<ul dir=\"auto\">\n<li>对比适合长文阅读的中文字体，关注正文清晰度、字面、字重、标点和中英文混排</li>\n<li>标题、正文、代码、引用与 UI 可以使用不同但协调的字体角色</li>\n<li>评估 <code class=\"notranslate\">cn-font-split</code> 或等效的按字符集拆分与按需加载方案</li>\n<li>定义可靠的中文、拉丁文和系统字体 fallback，避免字体加载失败时版式明显跳变</li>\n<li>控制字体文件数量、请求并发、缓存策略和首屏阻塞，避免只追求字体效果而拖慢文章页</li>\n<li>确认字体许可证允许 Web 嵌入、拆分、子集化和项目分发</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/156",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821082269,
+          "name": "human-driven",
+          "color": "fef90a"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        },
+        {
+          "id": 11849982832,
+          "name": "xnnehang.top",
+          "color": "1d76db"
+        }
+      ],
+      "createdAt": "2026-08-23T09:29:07Z",
+      "updatedAt": "2026-08-23T12:50:22Z",
+      "closedAt": null
+    },
+    {
+      "number": 155,
+      "title": "参考且听书吟优化 Archive 页面的视觉表达",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">参考<a href=\"https://yufan.me/archives\" target=\"_blank\" rel=\"noopener noreferrer\">且听书吟的归档页面</a>，探索让 xnnehang.top 的 Archive 页面更轻盈、亲切和有辨识度的视觉表达。</p>\n<p dir=\"auto\">重点是借鉴它“可爱但仍然清晰”的页面气质，而不是直接简化现有归档内容。xnnehang.top 目前的信息陈列复杂度和检索价值应当保留，包括既有的时间层级、文章信息、统计或筛选能力；视觉调整不能以牺牲信息密度和浏览效率为代价。</p>\n<h2 dir=\"auto\">Design direction</h2>\n<ul dir=\"auto\">\n<li>提炼参考页中值得借鉴的版式节奏、装饰元素、圆润感、留白和轻量交互</li>\n<li>保留 xnnehang.top 现有 Archive 的信息层级与可扫描性</li>\n<li>用视觉分组、间距、色彩和小型装饰提升亲切感，而不是删除信息</li>\n<li>保持博客自身的视觉语言，不做参考站的像素级复刻</li>\n<li>同时考虑长标题、多语言、年份文章数量差异和移动端布局</li>\n</ul>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 先对参考页和现有 Archive 做结构对照，明确可借鉴的视觉元素与必须保留的信息</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 新方案保留现有归档页的核心信息、时间层级和浏览能力</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 页面具有更鲜明、可爱且与 xnnehang.top 一致的视觉气质</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 高信息密度下仍易于扫描，不因装饰增加阅读噪声</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 长标题、年份跨度大和文章数量多时布局保持稳定</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 桌面端与移动端均保持完整的信息访问能力</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 动效与装饰遵循可访问性设置，并避免影响页面性能</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/155",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821082269,
+          "name": "human-driven",
+          "color": "fef90a"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        },
+        {
+          "id": 11849982832,
+          "name": "xnnehang.top",
+          "color": "1d76db"
+        }
+      ],
+      "createdAt": "2026-08-23T09:26:30Z",
+      "updatedAt": "2026-08-23T09:26:30Z",
+      "closedAt": null
+    },
+    {
+      "number": 154,
+      "title": "将 XnneHangLab 默认模型切换为 DeepSeek V4 Flash Vision",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">将 XnneHangLab 的默认交互模型切换为 <code class=\"notranslate\">deepseek-v4-flash-vision-exp</code>，让图像与文本直接进入同一次多模态模型调用，消除现有“视觉模型先转写 → 文本 LLM 再回答”的串行中间层。</p>\n<p dir=\"auto\">目标是把包含视觉理解的交互链路从约两段模型等待收敛为 <strong>1 LLM delay</strong>：一次请求完成视觉理解、上下文推理和文本响应。这里的指标应以用户可感知的端到端延迟衡量，而不只看单个模型的首 token 时间。</p>\n<p dir=\"auto\">根据 <a href=\"https://api-docs.deepseek.com/zh-cn/quick_start/pricing\" target=\"_blank\" rel=\"noopener noreferrer\">DeepSeek 官方模型与价格文档</a>，当前模型 ID 为 <code class=\"notranslate\">deepseek-v4-flash-vision-exp</code>，版本为 DeepSeek-V4-Flash-Vision-Exp，支持 1M 上下文、Responses API、Anthropic API、Tool Calls，以及思考/非思考模式；图片会按尺寸折算为 token 并与文本一同计费。该模型带有 <code class=\"notranslate\">exp</code> 标识，接入时需要保留可回退的模型配置。</p>\n<h2 dir=\"auto\">Implementation direction</h2>\n<ul dir=\"auto\">\n<li>将视觉输入与用户文本组装为同一个多模态请求，不再先生成视觉描述再调用主 LLM</li>\n<li>默认使用非思考模式完成实时交互；需要复杂视觉推理时再按策略启用思考模式</li>\n<li>保留纯文本请求、无图请求和模型不支持场景的兼容路径</li>\n<li>记录图像预处理、上传、排队、首 token 和完整响应耗时，验证真正消除的是哪一段延迟</li>\n<li>将模型 ID、API 端点和回退模型配置化，避免实验模型变更时阻塞应用</li>\n</ul>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> XnneHangLab 的默认模型配置切换为 <code class=\"notranslate\">deepseek-v4-flash-vision-exp</code></li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 图像与文本通过一次多模态请求完成理解和回答，不再串行调用独立的视觉转文本模型与文本 LLM</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 视觉交互的模型调用关键路径收敛为一次 LLM 请求，即目标所称的 <code class=\"notranslate\">1 LLM delay</code></li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 分别测量并记录图像预处理、请求上传、API 排队、首 token、完整响应和端到端耗时</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 使用同一组视觉任务对比切换前后的延迟、回答质量、token 用量与成本</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 连续对话能够复用视觉上下文或摘要，避免每轮无必要地重复发送全部图像</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 纯文本、单图和多图请求均可正常工作，工具调用不受模型切换影响</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 模型或视觉接口失败时，可以回退到已配置的稳定模型，并明确记录回退原因</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> API Key、模型 ID、端点与思考模式均通过配置管理，不写死在客户端代码中</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 对实验模型的能力变化、限速和价格变动保留监控与替换入口</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/154",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11786900282,
+          "name": "XnneHangLab",
+          "color": "1d76db"
+        }
+      ],
+      "createdAt": "2026-08-23T08:15:34Z",
+      "updatedAt": "2026-08-23T08:15:34Z",
+      "closedAt": null
+    },
+    {
+      "number": 147,
+      "title": "调研 Codex CLI auto-review 审批与沙箱网络策略",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">从 <a href=\"https://github.com/openai/codex\" target=\"_blank\" rel=\"noopener noreferrer\">openai/codex</a> 源码追踪 Codex CLI 与 Desktop 中 auto-review 审批、命令执行和沙箱网络策略的实现，确认两端共享哪些核心逻辑、Desktop 额外承担哪些职责，以及“自动审批 reviewer 无法连接外部模型服务”这一问题有哪些受支持的解决路径。</p>\n<p dir=\"auto\">已知现象是审批阶段出现 <code class=\"notranslate\">codex-auto-review</code>，并尝试请求外部 <code class=\"notranslate\">/v1/responses</code> 模型端点；当该通道返回 503 或审批环境无法联网时，reviewer 无法完成判断，外部命令也不会执行。本调研需要区分：</p>\n<ul dir=\"auto\">\n<li>auto-review 模型请求本身失败</li>\n<li>被审批命令运行在禁止联网的 sandbox 中</li>\n<li>Desktop、app-server 或 exec-server 的审批路由问题</li>\n<li>用户配置与组织级 <code class=\"notranslate\">requirements.toml</code> 强制策略</li>\n</ul>\n<p dir=\"auto\">目标是找到官方支持的配置、降级或架构解法，例如切换人工 reviewer、调整允许的网络策略、配置可靠的 reviewer 模型通道，或让审批失败安全地回退到用户确认。<strong>不以修改源码绕过组织强制策略或削弱 sandbox 安全边界为目标。</strong></p>\n<h2 dir=\"auto\">Research questions</h2>\n<ul dir=\"auto\">\n<li><code class=\"notranslate\">approvals_reviewer = \"auto_review\"</code> 的解析、实例化和模型调用链位于哪些模块？</li>\n<li>CLI、TUI、Desktop、app-server 与 exec-server 如何共享和传递 approval request/decision？</li>\n<li>auto-review 的模型请求运行在哪个进程和网络环境中，是否受被审批命令的 sandbox network policy 影响？</li>\n<li>reviewer 超时、503、无网络或返回无效结果时，当前采用 fail-closed、重试还是人工回退？</li>\n<li><code class=\"notranslate\">approval_policy</code>、<code class=\"notranslate\">approvals_reviewer</code>、sandbox/network policy 与 <code class=\"notranslate\">requirements.toml</code> 的优先级和约束关系是什么？</li>\n<li>是否已有配置项、特性开关、CLI 参数或上游 Issue/PR 能解决这一场景？</li>\n<li>如果当前没有安全回退机制，最小上游改进应落在哪一层？</li>\n</ul>\n<h2 dir=\"auto\">Suggested source entry points</h2>\n<ul dir=\"auto\">\n<li><code class=\"notranslate\">approvals_reviewer</code></li>\n<li><code class=\"notranslate\">auto_review</code> / <code class=\"notranslate\">codex-auto-review</code></li>\n<li><code class=\"notranslate\">approval_policy</code></li>\n<li><code class=\"notranslate\">app-server</code> approval routing</li>\n<li><code class=\"notranslate\">exec-server</code></li>\n<li><code class=\"notranslate\">network policy</code> / Windows sandbox</li>\n<li><code class=\"notranslate\">requirements.toml</code></li>\n<li>reviewer retry、timeout 与 fallback</li>\n</ul>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 以源码路径和符号画出 auto-review 从配置到审批结果的完整调用链</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 明确 CLI 与 Desktop 共用和各自独有的审批、执行及 UI 代码边界</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 分别画出 reviewer 模型请求与被审批命令的进程、sandbox 和网络边界</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 用最小复现实验区分 503、reviewer 无网络、命令 sandbox 无网络和组织策略限制</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 验证 <code class=\"notranslate\">approvals_reviewer = \"user\"</code> 与 <code class=\"notranslate\">approval_policy = \"on-request\"</code> 是否能在 CLI 和 Desktop 中可靠降级为人工审批</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 说明本地配置、CLI 参数、项目配置与 <code class=\"notranslate\">requirements.toml</code> 的覆盖优先级及不可绕过约束</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 调查相关官方文档、上游 Issue、PR、测试和变更记录，并附原始链接</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 给出按优先级排列的解决方案：无需改源码的配置方案、可提交上游的安全改进、以及明确不应采用的绕过方式</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 若建议上游修改，包含失败语义、人工回退、审计记录和测试范围</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/147",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786609240,
+          "name": "P2",
+          "color": "fbca04"
+        },
+        {
+          "id": 11786903387,
+          "name": "research",
+          "color": "bfdadc"
+        }
+      ],
+      "createdAt": "2026-08-21T02:46:03Z",
+      "updatedAt": "2026-08-21T07:52:21Z",
+      "closedAt": null
+    },
+    {
+      "number": 146,
+      "title": "调研单帧/连续多帧视觉理解与多模块显存调度",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">围绕本地实时多模态交互开展定向 Survey，研究视觉输入如何进入语音交互链路，以及 TTS、VLM、ASR 多模块并发运行时如何分配显存并感知延迟。</p>\n<p dir=\"auto\">本轮以 <strong>DeepSeek 2026 年 4 月发布的视觉方案</strong>和 <strong>MiniCPM 系列</strong>为 baseline。先形成可比较、可验证的技术结论，再决定是否扩展到其他模型、实时视频生成或数字人方案。若验证需要付费 API、专用模型权限或额外 GPU，应先列出用途、预估成本和最小实验方案，再向用户申请。</p>\n<h2 dir=\"auto\">Survey themes</h2>\n<h3 dir=\"auto\">1. 单帧与连续多帧视觉理解</h3>\n<ul dir=\"auto\">\n<li>对比单帧、固定间隔采样、事件触发采样与连续多帧输入的能力边界</li>\n<li>研究连续多帧中的时序理解、画面去重、上下文复用、视觉记忆与遗漏问题</li>\n<li>测量首帧响应、持续理解延迟、吞吐、显存占用和单位时间推理成本</li>\n<li>确认 DeepSeek 视觉方案与 MiniCPM 在摄像头、屏幕和视频流场景中的可用接口及限制</li>\n<li>研究何时启用 VLM、何时只复用已有视觉摘要，以及如何避免持续视觉推理</li>\n</ul>\n<h3 dir=\"auto\">2. TTS、VLM、ASR 并发显存分配与延迟感知</h3>\n<ul dir=\"auto\">\n<li>以 MiniCPM 相关方案为重点，梳理 TTS、VLM、ASR 同机并发时的模型驻留与显存竞争</li>\n<li>对比常驻、按需加载、量化、卸载、分 GPU 和共享推理服务等策略</li>\n<li>建立延迟感知调度：根据 ASR 首包、VLM 推理、LLM 响应与 TTS 首音频延迟动态分配资源</li>\n<li>研究用户打断、语音活动检测、视觉任务抢占和显存不足时的降级路径</li>\n<li>识别峰值显存、碎片化、模型切换开销及不同并发策略对端到端体验的影响</li>\n</ul>\n<h2 dir=\"auto\">Baselines</h2>\n<ul dir=\"auto\">\n<li>DeepSeek 2026 年 4 月发布的视觉方案：作为视觉理解与多帧处理方向的最新 baseline</li>\n<li>MiniCPM：作为端侧/本地多模态能力，以及 TTS、VLM、ASR 组合运行与资源调度的 baseline</li>\n<li>其他开源或 API 方案仅作为必要对照，不在第一阶段无限扩展清单</li>\n</ul>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 明确 DeepSeek 视觉方案和 MiniCPM 的具体版本、发布日期、许可证、运行接口与硬件要求</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 建立单帧、离散多帧和连续多帧视觉理解的统一测试场景与评价指标</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 对比两条 baseline 在时序理解、响应延迟、吞吐、显存和成本方面的表现</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 给出画面采样、去重、缓存、视觉摘要与触发机制的推荐策略</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 测量 TTS、VLM、ASR 单独运行与并发运行时的常驻显存、峰值显存和延迟</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 给出至少一套可落地的显存分配、任务优先级、抢占与降级方案</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 形成“交互阶段 → 延迟预算 → 模型/GPU 资源 → 降级动作”对照表</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 调研采用相似方案的开源应用，并以源码、配置或技术文档作为证据</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 给出最小验证原型、测试矩阵，以及需要用户提供的 API 或硬件清单</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 所有关键结论注明信息日期，并区分实测结果、源码事实、官方宣称和待验证推断</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/146",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        },
+        {
+          "id": 11786903387,
+          "name": "research",
+          "color": "bfdadc"
+        }
+      ],
+      "createdAt": "2026-08-20T08:29:22Z",
+      "updatedAt": "2026-08-21T02:47:05Z",
+      "closedAt": null
+    },
+    {
+      "number": 145,
+      "title": "将 HEVC、AV1 与 AVC 加入 yutto-uiya 编码兼容列表",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">将 HEVC、AV1、AVC 三种视频编码完整加入 yutto-uiya 的兼容列表，使解析结果中的这些编码能够被正确识别、展示、选择并进入现有下载流程。</p>\n<p dir=\"auto\">应优先使用视频源实际提供的编码流，不因加入兼容列表而进行不必要的 FFmpeg 转码。AV1 相关需求与现有 Todo <a href=\"https://github.com/MrXnneHang/xnnehang.top/issues/134\" target=\"_blank\" rel=\"noopener noreferrer\">#134</a> 有部分重合，本任务覆盖三种编码的一致性支持。</p>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 兼容列表包含 HEVC、AV1 和 AVC，并与 yutto 返回的编码标识正确映射</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 解析结果存在对应编码流时，前端能够正确显示并允许选择</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 用户选择任一支持编码后，下载任务使用对应的原始视频流</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 不存在某种编码流时，不显示无效选项，也不影响其他编码的选择</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 编码名称在解析结果、下载选项和任务详情中的展示保持一致</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 加入兼容列表不会触发不必要的转码，也不会破坏现有画质与回退逻辑</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 为 HEVC、AV1、AVC 的标识映射和选择流程增加回归验证</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/145",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        },
+        {
+          "id": 11807757674,
+          "name": "yutto-uiya",
+          "color": "2acc2f"
+        }
+      ],
+      "createdAt": "2026-08-20T07:27:54Z",
+      "updatedAt": "2026-08-20T07:27:54Z",
+      "closedAt": null
+    },
+    {
+      "number": 144,
+      "title": "梳理 memU 开源版 PostgreSQL 与 Local 存储模式",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">梳理 memU 开源版中的 PostgreSQL、本地 SQLite 与 in-memory 存储分别承担什么角色，明确不同运行模式实际启用了哪些存储后端，以及数据查询链路如何工作。</p>\n<p dir=\"auto\">重点确认：</p>\n<ul dir=\"auto\">\n<li>PostgreSQL 在开源版中保存哪些数据、服务哪些模块，是否为必需组件</li>\n<li>PostgreSQL 是否会参与或转发本地 SQL 查询，还是与 Local 模式相互独立</li>\n<li>Local 版本具体包含哪些运行情形与配置组合</li>\n<li>SQLite 和 in-memory 是否都已实际使用，各自在什么条件下启用</li>\n<li>如果当前实际只有 SQLite 被使用，in-memory 是预留接口、测试实现还是已废弃路径</li>\n</ul>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 根据源码和官方配置说明 PostgreSQL 的职责、数据范围与调用链</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 明确 PostgreSQL 是否接入任何 Local SQL 查询链路，并说明边界</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 列出 Local 版本支持的运行模式、启用条件和对应存储后端</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 分别确认 SQLite 与 in-memory 实现是否会在生产运行路径中被使用</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 区分已验证的实际行为、仅存在的接口或代码，以及文档中的规划能力</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 给出一张简明的“运行模式 → 存储后端 → 查询路径”对照表</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/144",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786878091,
+          "name": "memU",
+          "color": "c65bea"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        }
+      ],
+      "createdAt": "2026-08-20T07:24:55Z",
+      "updatedAt": "2026-08-20T07:24:55Z",
+      "closedAt": null
+    },
+    {
+      "number": 110,
+      "title": "验证 yutto Core FFmpeg 混流是否压缩码率",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">关联 <a href=\"https://github.com/XnneHangLab/yutto-uiya/issues/80\" target=\"_blank\" rel=\"noopener noreferrer\">XnneHangLab/yutto-uiya#80</a>：确认 yutto Core 在 FFmpeg 混流视频与音频时，默认是否发生重编码或压缩码率，并产出可公开复核的结论。</p>\n<p dir=\"auto\">当前代码初查显示，默认规划使用 <code class=\"notranslate\">-vcodec copy</code> 与 <code class=\"notranslate\">-acodec copy</code>，未发现 <code class=\"notranslate\">-b:*</code>、<code class=\"notranslate\">-crf</code> 或 <code class=\"notranslate\">-q:*</code> 等质量/码率参数；仍需以实际命令和下载产物复核，并明确用户显式选择非 <code class=\"notranslate\">copy</code> 编码时的例外行为。</p>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 默认配置下记录最终 FFmpeg 命令，确认包含视频与音频的 <code class=\"notranslate\">copy</code> 编码。</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 默认配置下确认命令不含 <code class=\"notranslate\">-b:v</code>、<code class=\"notranslate\">-b:a</code>、<code class=\"notranslate\">-crf</code> 或 <code class=\"notranslate\">-q:*</code> 等码率/质量压缩参数。</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 对照源 m4s 与最终文件，确认默认混流不会改变音视频编码，且文件体积与源文件总和在容器开销范围内一致。</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 记录显式指定非 <code class=\"notranslate\">copy</code> 编码或单音频目标格式时的重编码例外。</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 将可复核结论同步回关联 RoadMap 条目或对应文档。</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/110",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        },
+        {
+          "id": 11807757674,
+          "name": "yutto-uiya",
+          "color": "2acc2f"
+        }
+      ],
+      "createdAt": "2026-08-12T01:56:34Z",
+      "updatedAt": "2026-08-20T05:34:16Z",
+      "closedAt": null
+    },
+    {
+      "number": 124,
+      "title": "调研 obsidian-yolo 审查小猫 Hook 与 OpenClaw 复现方案",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">调研 <a href=\"https://github.com/Lapis0x0/obsidian-yolo\" target=\"_blank\" rel=\"noopener noreferrer\">Lapis0x0/obsidian-yolo</a> 中“审查小猫”的实现方式，重点确认它通过什么事件、Hook 或任务链路触发审查，以及审查结果如何反馈。</p>\n<p dir=\"auto\">在此基础上，评估能否使用 OpenClaw 实现类似的“审查小猫”，并给出可落地的方案：包括心跳检测适合使用什么模型、选择依据、调用频率与成本考量，以及如何配置多模型分工和驱动流程。</p>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 找到并说明 obsidian-yolo“审查小猫”的触发 Hook 与完整调用链路</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 说明审查上下文、结果反馈方式及关键配置</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 评估 OpenClaw 复现该能力的可行性，并给出推荐架构</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 对心跳检测模型给出至少包含可靠性、延迟和成本的选型结论</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 给出多模型分工、路由、降级与配置示例</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 标注已验证事实、合理推断及仍需实验确认的部分</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/124",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786903387,
+          "name": "research",
+          "color": "bfdadc"
+        }
+      ],
+      "createdAt": "2026-08-16T12:47:27Z",
+      "updatedAt": "2026-08-16T12:47:27Z",
+      "closedAt": null
+    },
+    {
+      "number": 123,
+      "title": "优化文章列表的瀑布流与卡片流展示",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">参考 <a href=\"https://momonyako.ccwu.cc/\" target=\"_blank\" rel=\"noopener noreferrer\">https://momonyako.ccwu.cc/</a> 的展示思路，探索并实现文章列表的两种可选文字展示方式：瀑布流与卡片流。</p>\n<p dir=\"auto\">布局上，左侧卡片内容应持续排列到底部，避免因为当前排布方式留下很长的纵向空白。封面展示不应被标题或简介的长度挤压、拉伸或改变比例；较长文字可以考虑像英文 About 页面一样，通过 <code class=\"notranslate\">More</code> 展开查看。</p>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 用户可以在瀑布流与卡片流两种文章展示方式之间切换</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 左侧卡片能够自然续排到底部，不再出现明显的长段留白</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 标题和简介长度不会影响封面的尺寸、比例或可视区域</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 过长文字有清晰的截断与展开方式，可参考英文 About 页面的 <code class=\"notranslate\">More</code> 交互</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 桌面端与移动端的布局和展开交互均可正常使用</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/123",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821082269,
+          "name": "human-driven",
+          "color": "fef90a"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        },
+        {
+          "id": 11849982832,
+          "name": "xnnehang.top",
+          "color": "1d76db"
+        }
+      ],
+      "createdAt": "2026-08-16T12:39:47Z",
+      "updatedAt": "2026-08-16T12:39:47Z",
+      "closedAt": null
+    },
+    {
+      "number": 118,
+      "title": "探索面向 Agent 长期记忆的可迁移资源数据集",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">作为可能拆分为独立项目的前期思考，研究如何为 Agent 上下文沉淀一份可长期复用、可迁移、可恢复的「记忆资源」数据集。先不解决如何自动产生记忆或人格，而是判断：在未来形成长期记忆、人格与情感陪伴能力时，哪些信息真正重要，哪些可以被舍弃。</p>\n<p dir=\"auto\">目标是发掘可复用的信息单元、重要性标准与保留方式，并让这份 resource 在记忆格式、模型或系统迁移失败时，能作为较高保真的恢复来源。完整保存 JSONL 对话记录可能冗余、噪声过多或难以迁移；需要比较它与结构化摘要、关键事件、关系／偏好、决策与原始证据引用等材料的边界。</p>\n<p dir=\"auto\">该议题也用于反过来理解：什么经历、事实、表达与关系值得被记录，尤其是在情感陪伴场景中如何保留长期连续性，同时避免把短期噪声、过度推断或不应长期保留的信息固化下来。</p>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 明确该 resource 数据集的目标、非目标，以及与运行时记忆／人格生成模块的边界</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 提出信息重要性的可解释分类与判定标准：可复用、不可替代、易过期、噪声与敏感信息等</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 比较完整 JSONL、结构化事件、事实／偏好、关系变化、决策记录、摘要及原始来源引用的保留价值与迁移成本</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 设计最小可行的数据模型，使其能在记忆格式或系统无法直接迁移时支持重建</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 讨论情感陪伴场景的连续性需求、误记／过度人格化风险与数据最小化之间的取舍</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 输出一份可供后续独立项目或实验使用的研究结论与样例资源规范，不预设自动记忆生成方案</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/118",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821082269,
+          "name": "human-driven",
+          "color": "fef90a"
+        },
+        {
+          "id": 11786606871,
+          "name": "Memorize",
+          "color": "5319e7"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        }
+      ],
+      "createdAt": "2026-08-13T15:10:29Z",
+      "updatedAt": "2026-08-13T15:10:29Z",
+      "closedAt": null
+    },
+    {
+      "number": 116,
+      "title": "[Yasumi-Clock] 退出后出现 Chrome_WidgetWin 注销失败",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">记录 Yasumi-Clock 在 Windows 开发环境退出后出现的窗口类注销错误。需要复现并确认错误是否由 Tauri / WebView 关闭生命周期、窗口销毁顺序或开发模式重载行为触发；评估它是否会影响正常退出、后续启动或产生资源泄漏。</p>\n<p dir=\"auto\">已观察到的输出：</p>\n<div class=\"notranslate\"><pre class=\"notranslate\"><code class=\"notranslate\">[0813/214525.873:ERROR:ui\\gfx\\win\\window_impl.cc:172] Failed to unregister class Chrome_WidgetWin_0. Error = 1412\n</code></pre></div>\n<p dir=\"auto\">复现环境：在 <code class=\"notranslate\">D:\\lab\\Yasumi-Clock</code> 执行 <code class=\"notranslate\">npm run tauri dev</code>，启动完成后退出 Yasumi-Clock。</p>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 在 Windows 上确认稳定复现条件，并区分开发模式与打包产物的行为</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 确认错误的实际来源及与退出流程的关系</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 验证是否影响应用正常退出、重启或系统资源释放</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 若需修复，实施最小变更并验证退出时不再产生该错误或确认其为可安全忽略的上游日志</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/116",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11119148671,
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        },
+        {
+          "id": 11821769433,
+          "name": "Yasumi Clock",
+          "color": "29b7df"
+        }
+      ],
+      "createdAt": "2026-08-13T12:47:16Z",
+      "updatedAt": "2026-08-13T14:52:22Z",
+      "closedAt": null
+    },
+    {
+      "number": 87,
+      "title": "设计 Live2D 桌宠的事件式预录语音系统",
+      "descriptionHtml": "<h2 dir=\"auto\">构想</h2>\n<p dir=\"auto\">为 Live2D 桌宠增加事件式触发的预录语音，在常见互动事件发生时立即播放，获得接近零生成延迟的体验。</p>\n<h2 dir=\"auto\">为什么值得做</h2>\n<ul dir=\"auto\">\n<li>预先准备语音，不等待 TTS 或 LLM 在线生成。</li>\n<li>与 Live2D 桌宠的动作、表情和点击反馈保持一致。</li>\n<li>可以保留 LLM 生成作为低频补充，而不是每次互动的必经路径。</li>\n</ul>\n<h2 dir=\"auto\">调研与设计</h2>\n<ul dir=\"auto\">\n<li>定义点击、拖动、空闲、启动等事件与语音片段的映射。</li>\n<li>设计随机轮换、冷却时间、打断和并发播放规则。</li>\n<li>明确预加载、缓存、音量和设备切换策略。</li>\n<li>评估预录语音与动态 LLM/TTS 的混合路由。</li>\n</ul>\n<h2 dir=\"auto\">验收方向</h2>\n<ul dir=\"auto\">\n<li>常见事件的首帧到声音延迟接近本地播放延迟。</li>\n<li>连续触发不会重叠轰炸或重复同一句。</li>\n<li>动作、表情和语音的时间轴自然一致。</li>\n</ul>\n<h2 dir=\"auto\">来源</h2>\n<ul dir=\"auto\">\n<li>原始想法日期：未注明</li>\n<li>参考视频：<a href=\"https://www.bilibili.com/video/BV1E73B6vEzc/\" target=\"_blank\" rel=\"noopener noreferrer\">https://www.bilibili.com/video/BV1E73B6vEzc/</a></li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/87",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786900976,
+          "name": "Live2D",
+          "color": "7057ff"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        },
+        {
+          "id": 11786901896,
+          "name": "voice",
+          "color": "d4c5f9"
+        },
+        {
+          "id": 11786900282,
+          "name": "XnneHangLab",
+          "color": "1d76db"
+        }
+      ],
+      "createdAt": "2026-08-10T02:20:49Z",
+      "updatedAt": "2026-08-13T11:26:27Z",
+      "closedAt": null
+    },
+    {
+      "number": 88,
+      "title": "设计桌宠点击穿透与拖动交互切换",
+      "descriptionHtml": "<h2 dir=\"auto\">构想</h2>\n<p dir=\"auto\">为 XnneHangLab frontend 的桌宠窗口研究“点击穿透”模式，同时保证拖动窗口和主动交互能够自然切换。</p>\n<h2 dir=\"auto\">需要解决</h2>\n<ul dir=\"auto\">\n<li>哪些区域和状态允许鼠标事件穿透到底层应用。</li>\n<li>用户如何可靠地进入拖动或交互模式，避免桌宠变得无法选中。</li>\n<li>Hover、按键修饰、长按或专用把手哪种切换逻辑最自然。</li>\n<li>Windows、macOS、Linux 的透明窗口与 hit-test 行为差异。</li>\n</ul>\n<h2 dir=\"auto\">交付物</h2>\n<ul dir=\"auto\">\n<li>交互状态机与异常恢复方式。</li>\n<li>跨平台技术可行性结论。</li>\n<li>一个不会锁死窗口的最小原型。</li>\n</ul>\n<h2 dir=\"auto\">来源</h2>\n<ul dir=\"auto\">\n<li>原始想法日期：2026-07-24</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/88",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786900976,
+          "name": "Live2D",
+          "color": "7057ff"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        },
+        {
+          "id": 11786900282,
+          "name": "XnneHangLab",
+          "color": "1d76db"
+        }
+      ],
+      "createdAt": "2026-08-10T02:21:13Z",
+      "updatedAt": "2026-08-13T11:26:20Z",
+      "closedAt": null
+    },
+    {
+      "number": 89,
+      "title": "调查 Launcher Live2D 页面频繁挂掉",
+      "descriptionHtml": "<h2 dir=\"auto\">问题</h2>\n<p dir=\"auto\">Launcher 中的 Live2D 页面经常挂掉，阻碍桌宠和实时表情预览继续开发。</p>\n<h2 dir=\"auto\">调查范围</h2>\n<ul dir=\"auto\">\n<li>收集崩溃、白屏、上下文丢失和资源加载失败的日志。</li>\n<li>区分 WebGL/context、模型资源、页面生命周期、内存和进程通信问题。</li>\n<li>建立稳定复现步骤；无法稳定复现时增加诊断数据。</li>\n<li>检查页面切换、窗口隐藏/恢复、设备睡眠和热重载场景。</li>\n</ul>\n<h2 dir=\"auto\">验收方向</h2>\n<ul dir=\"auto\">\n<li>得到可复现的根因或足够缩小的故障范围。</li>\n<li>Live2D 页面可以长时间运行并从可恢复错误中自行恢复。</li>\n<li>给实时表情预览提供明确的稳定性前置条件。</li>\n</ul>\n<h2 dir=\"auto\">来源</h2>\n<ul dir=\"auto\">\n<li>原始想法日期：2026-07-24</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/89",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786900976,
+          "name": "Live2D",
+          "color": "7057ff"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        },
+        {
+          "id": 11786903387,
+          "name": "research",
+          "color": "bfdadc"
+        },
+        {
+          "id": 11786900282,
+          "name": "XnneHangLab",
+          "color": "1d76db"
+        }
+      ],
+      "createdAt": "2026-08-10T02:21:26Z",
+      "updatedAt": "2026-08-13T11:26:10Z",
+      "closedAt": null
+    },
+    {
+      "number": 90,
+      "title": "实现 Live2D 表情实时预览",
+      "descriptionHtml": "<h2 dir=\"auto\">构想</h2>\n<p dir=\"auto\">在 XnneHangLab frontend 中实时预览桌宠表情，让表情控制和 Live2D 最终效果能够边调边看。</p>\n<h2 dir=\"auto\">前置条件</h2>\n<ul dir=\"auto\">\n<li>先完成 Launcher Live2D 页面稳定性调查；当前页面经常挂掉。</li>\n</ul>\n<h2 dir=\"auto\">设计范围</h2>\n<ul dir=\"auto\">\n<li>将表情参数、组合和当前模型状态即时同步到预览。</li>\n<li>提供基础表情列表与必要的参数调节。</li>\n<li>处理模型不支持某个参数、资源尚未加载和预览断连状态。</li>\n<li>避免预览工具影响真实桌宠运行状态。</li>\n</ul>\n<h2 dir=\"auto\">验收方向</h2>\n<ul dir=\"auto\">\n<li>修改表情后无需重载页面即可看到结果。</li>\n<li>预览与真实运行效果一致，失败时有明确诊断。</li>\n</ul>\n<h2 dir=\"auto\">来源</h2>\n<ul dir=\"auto\">\n<li>原始想法日期：2026-07-24</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/90",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786900976,
+          "name": "Live2D",
+          "color": "7057ff"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        },
+        {
+          "id": 11786900282,
+          "name": "XnneHangLab",
+          "color": "1d76db"
+        }
+      ],
+      "createdAt": "2026-08-10T02:21:43Z",
+      "updatedAt": "2026-08-13T11:26:05Z",
+      "closedAt": null
+    },
+    {
+      "number": 91,
+      "title": "重启 ASR 与多说话人分离实验",
+      "descriptionHtml": "<h2 dir=\"auto\">目标</h2>\n<p dir=\"auto\">重启 ASR 项目，基于 MOSS-Transcribe-Diarize 重新评估当前语音识别和多说话人分离能力。</p>\n<h2 dir=\"auto\">实验范围</h2>\n<ul dir=\"auto\">\n<li>跑通仓库当前推荐的最小示例。</li>\n<li>使用单说话人、交替说话和重叠说话样本比较转录与 diarization。</li>\n<li>记录硬件、依赖、模型体积、实时率和显存/内存占用。</li>\n<li>评估能否接入现有语音或 memU 工作流。</li>\n</ul>\n<h2 dir=\"auto\">交付物</h2>\n<ul dir=\"auto\">\n<li>可复现的安装与运行记录。</li>\n<li>样本级效果对比和主要失败模式。</li>\n<li>是否值得继续集成的结论，以及下一步最小范围。</li>\n</ul>\n<h2 dir=\"auto\">来源</h2>\n<ul dir=\"auto\">\n<li>原始想法日期：2026-07-23</li>\n<li>仓库：<a href=\"https://github.com/OpenMOSS/MOSS-Transcribe-Diarize\" target=\"_blank\" rel=\"noopener noreferrer\">https://github.com/OpenMOSS/MOSS-Transcribe-Diarize</a></li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/91",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786902580,
+          "name": "ASR",
+          "color": "0e8a16"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        },
+        {
+          "id": 11786903387,
+          "name": "research",
+          "color": "bfdadc"
+        }
+      ],
+      "createdAt": "2026-08-10T02:22:09Z",
+      "updatedAt": "2026-08-13T11:25:59Z",
+      "closedAt": null
+    },
+    {
+      "number": 92,
+      "title": "研究 Wiki mem 多跳关系链的有效性边界",
+      "descriptionHtml": "<h2 dir=\"auto\">研究问题</h2>\n<p dir=\"auto\">Wiki mem 中的超长关系链是否真的产生有效信息，还是在两跳之后就只剩错误联想和维护成本？</p>\n<h2 dir=\"auto\">核心观察</h2>\n<blockquote>\n<p dir=\"auto\">A 和 B 相关，B 和 C 相关，并不代表 A 和 C 相关。很多关系只要经过两跳，语义就可能完全撇清。</p>\n</blockquote>\n<h2 dir=\"auto\">需要研究</h2>\n<ul dir=\"auto\">\n<li>区分可传递关系与不可传递关系，而不是统一沿图扩散。</li>\n<li>测量 1 跳、2 跳和更长路径对检索准确率、召回率与解释性的影响。</li>\n<li>找出长链偶尔带来的隐藏信息收益，以及它成立所需的关系类型和证据。</li>\n<li>评估路径衰减、关系类型约束、证据聚合或最大 hop 限制。</li>\n<li>使用博客已有的 WikiLink 图构造真实案例，而不只做抽象推演。</li>\n</ul>\n<h2 dir=\"auto\">交付物</h2>\n<ul dir=\"auto\">\n<li>一组正例、反例和评估标准。</li>\n<li>长链是否保留、何时保留、最多保留几跳的结论。</li>\n<li>对 memU 检索与图结构的设计建议；不预设必须实现多跳。</li>\n</ul>\n<h2 dir=\"auto\">来源</h2>\n<ul dir=\"auto\">\n<li>原始想法日期：2026-07-15</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/92",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821082269,
+          "name": "human-driven",
+          "color": "fef90a"
+        },
+        {
+          "id": 11786606871,
+          "name": "Memorize",
+          "color": "5319e7"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        },
+        {
+          "id": 11786903387,
+          "name": "research",
+          "color": "bfdadc"
+        }
+      ],
+      "createdAt": "2026-08-10T02:22:23Z",
+      "updatedAt": "2026-08-13T11:25:53Z",
+      "closedAt": null
+    },
+    {
+      "number": 103,
+      "title": "研究 Hermes SOUL.md 的渐进式引用支持",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">简要研究 Hermes 的 <code class=\"notranslate\">SOUL.md</code> 为什么不支持渐进式引用，并明确可行的支持方向或限制。</p>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 记录当前限制的原因。</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 给出是否支持及下一步建议。</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/103",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786878091,
+          "name": "memU",
+          "color": "c65bea"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        }
+      ],
+      "createdAt": "2026-08-11T01:31:03Z",
+      "updatedAt": "2026-08-13T11:25:36Z",
+      "closedAt": null
+    },
+    {
+      "number": 104,
+      "title": "将 Memorize 设计为低成本响应式记忆 Skill",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">将 Memorize 设计为响应式记忆 Skill，并控制调用成本与步骤。输出详细度应随 session 输入规模变化，但必须有简洁、稳定的提示词约束。</p>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 明确低成本的触发与执行方式。</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 为记忆产物定义长度和复杂度约束。</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 提供可直接采用的提示词或规则草案。</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/104",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821082269,
+          "name": "human-driven",
+          "color": "fef90a"
+        },
+        {
+          "id": 11786878091,
+          "name": "memU",
+          "color": "c65bea"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        }
+      ],
+      "createdAt": "2026-08-11T01:31:18Z",
+      "updatedAt": "2026-08-13T11:25:22Z",
+      "closedAt": null
+    },
+    {
+      "number": 105,
+      "title": "移除各 Host INSTALL.md 中的 Issue 引用",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">检查各 Host 的 <code class=\"notranslate\">INSTALL.md</code>；如包含 Issue 相关说明则删除，避免安装流程需要了解或抓取 Issue。</p>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 找出包含 Issue 说明的 Host <code class=\"notranslate\">INSTALL.md</code>。</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 删除不必要的 Issue 引用或抓取指引。</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 确认安装说明仍可独立完成。</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/105",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786878091,
+          "name": "memU",
+          "color": "c65bea"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        }
+      ],
+      "createdAt": "2026-08-11T01:31:46Z",
+      "updatedAt": "2026-08-13T11:25:14Z",
+      "closedAt": null
+    },
+    {
+      "number": 107,
+      "title": "清理服务器磁盘空间并建立容量防护",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">清理服务器根分区中的可回收文件，优先处理占用最大的缓存与临时文件，并建立基础容量监控，避免磁盘再次写满后影响数据库、消息处理和系统日志。</p>\n<p dir=\"auto\">当前重点排查与清理：</p>\n<ul dir=\"auto\">\n<li><code class=\"notranslate\">/root/.cache/uv</code>（约 31G）：确认无活跃任务依赖后，清理重复的 Torch/CUDA 缓存。</li>\n<li><code class=\"notranslate\">/tmp</code>（约 7.5G）：按文件年龄和进程占用情况清理过期临时文件。</li>\n<li>systemd journal（约 848M）：设置合理的保留时长或容量上限。</li>\n<li><code class=\"notranslate\">/root/.openclaw</code>（约 1.1G）：只清理确认可删除的缓存、旧日志或无用数据，保留有效配置、会话和数据库。</li>\n</ul>\n<p dir=\"auto\">清理前先记录各目录明细，避免直接删除仍被运行中服务使用的数据；清理后验证 OpenClaw Gateway、NewAPI、PostgreSQL 和 Telegram 消息处理正常。</p>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 确认根分区及上述目录的实际占用，并记录主要大文件来源。</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 安全清理 <code class=\"notranslate\">/root/.cache/uv</code> 中不再需要的重复 Torch/CUDA 缓存。</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 清理 <code class=\"notranslate\">/tmp</code> 中过期且未被进程占用的文件。</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 为 systemd journal 配置合理的容量或保留策略。</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 审核 <code class=\"notranslate\">/root/.openclaw</code>，仅清理可确认无用的缓存和旧日志。</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 清理后根分区保留足够余量，目标占用率低于 80%。</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 验证 OpenClaw Gateway、NewAPI、PostgreSQL 与 Telegram 消息处理正常。</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 配置磁盘容量告警，至少覆盖 85% 和 95% 两个阈值。</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/107",
+      "state": "open",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        },
+        {
+          "id": 11798661496,
+          "name": "server",
+          "color": "6f42c1"
+        }
+      ],
+      "createdAt": "2026-08-11T07:21:22Z",
+      "updatedAt": "2026-08-13T11:25:02Z",
+      "closedAt": null
+    },
+    {
+      "number": 182,
+      "title": "收窄 memu memorize workspace：移除调用方自定义目录",
+      "descriptionHtml": "<h2 dir=\"auto\">Background</h2>\n<p dir=\"auto\"><code class=\"notranslate\">memu memorize</code> currently exposes <code class=\"notranslate\">--workspace</code>, allowing callers to choose the working directory. That makes lifecycle ownership and future concurrent runs ambiguous.</p>\n<p dir=\"auto\">This is deliberately the first, narrow PR in the follow-up to <a class=\"issue-link\" href=\"https://github.com/NevaMind-AI/memU/pull/686\" target=\"_blank\" rel=\"noopener noreferrer\">NevaMind-AI/memU#686</a>. It must land before automatic per-run workspace allocation.</p>\n<h2 dir=\"auto\">Scope</h2>\n<ul dir=\"auto\">\n<li>Remove the public <code class=\"notranslate\">--workspace</code> option from <code class=\"notranslate\">memu memorize prepare</code>, <code class=\"notranslate\">commit</code>, and <code class=\"notranslate\">verify-resources</code>.</li>\n<li>Use the single internal developer workspace <code class=\"notranslate\">~/.memu/developer</code> for now.</li>\n<li>Keep the existing one-active-run marker semantics: a second prepare is rejected while a prepared run exists; successful commit removes the active marker and ephemeral artifacts.</li>\n<li>Update CLI tests and developer documentation to describe the fixed workspace and serial lifecycle.</li>\n</ul>\n<h2 dir=\"auto\">Non-goals</h2>\n<ul dir=\"auto\">\n<li>No batch/multiple-session input.</li>\n<li>No automatic run directories or concurrent prepare support.</li>\n<li>No cleanup/discard command.</li>\n<li>No change to the canonical single-session JSON payload.</li>\n</ul>\n<h2 dir=\"auto\">Acceptance criteria</h2>\n<ul dir=\"auto\">\n<li>No documented or accepted <code class=\"notranslate\">--workspace</code> argument remains on memorize commands.</li>\n<li>Existing single-session prepare → executor → commit works in the fixed workspace.</li>\n<li>A prepared/failed-commit run remains protected by its marker and remains retryable.</li>\n<li>Tests cover the changed CLI contract.</li>\n</ul>\n<h2 dir=\"auto\">Follow-up</h2>\n<p dir=\"auto\">Automatic per-run allocation, concurrent prepares, bounded multi-file prepare, and successful-run cleanup are tracked separately.</p>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/182",
+      "state": "closed",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786878091,
+          "name": "memU",
+          "color": "c65bea"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        }
+      ],
+      "createdAt": "2026-09-03T07:59:20Z",
+      "updatedAt": "2026-09-03T08:35:31Z",
+      "closedAt": "2026-09-03T08:35:31Z"
+    },
+    {
+      "number": 165,
+      "title": "写博客：当双向 cherry-pick 成为架构",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">以 XnneHangLab、ASRLab、TTSLab 及其 Launcher 的真实维护经历为基础，完成一篇博客，讨论：为什么把专业能力拆成独立仓库后，相同 Core 会逐渐分叉；为什么双向 cherry-pick 会演变成长期维护成本；以及个人开发者和小团队应如何区分源码边界、仓库边界、依赖边界、制品边界和产品边界。</p>\n<p dir=\"auto\">这篇文章不以提出完整迁移计划为目标，而是诚实记录一次已经发生的架构困境，并提炼其他项目可以复用的判断方法。</p>\n<p dir=\"auto\">建议核心论点：</p>\n<blockquote>\n<p dir=\"auto\"><strong>产品可以不同，领域扩展可以不同，运行环境也可以不同；持续演进的 Core 不应拥有多个维护副本。</strong></p>\n</blockquote>\n<p dir=\"auto\">建议标题：</p>\n<blockquote>\n<p dir=\"auto\"><strong>当双向 cherry-pick 成为架构：为什么拆仓不一定是解耦</strong></p>\n</blockquote>\n<p dir=\"auto\">备选标题：</p>\n<ul dir=\"auto\">\n<li>拆仓不是解耦：XnneHangLab、ASRLab 与 TTSLab 的共享 Core 困境</li>\n<li>一份 Core，三个产品：如何避免卫星仓走向 Archive</li>\n<li>共享机制，隔离扩展：个人开发者的多产品源码治理</li>\n</ul>\n<h3 dir=\"auto\">1. 还原拆仓时的合理目标</h3>\n<p dir=\"auto\">说明最初拆出 ASRLab/TTSLab 的动机：</p>\n<ul dir=\"auto\">\n<li>隔离 ASR/TTS 重型依赖；</li>\n<li>避免 XnneHangLab 携带字幕、说话人区分、数据集、批处理和视频配音等专业复杂度；</li>\n<li>为语音研究和专业工具留下独立空间；</li>\n<li>允许不同产品拥有不同使用场景。</li>\n</ul>\n<p dir=\"auto\">文章不将早期选择描述为简单错误，而是说明实际维护过程如何暴露了新的约束。</p>\n<h3 dir=\"auto\">2. 收集真实三仓证据</h3>\n<p dir=\"auto\">对以下仓库做事实盘点：</p>\n<ul dir=\"auto\">\n<li><code class=\"notranslate\">XnneHangLab/XnneHangLab</code></li>\n<li><code class=\"notranslate\">XnneHangLab/ASRLab</code></li>\n<li><code class=\"notranslate\">XnneHangLab/TTSLab</code></li>\n<li><code class=\"notranslate\">XnneHangLab/XnneHangLabLauncher</code></li>\n<li><code class=\"notranslate\">XnneHangLab/ASRLauncher</code></li>\n<li><code class=\"notranslate\">XnneHangLab/TTSLauncher</code></li>\n</ul>\n<p dir=\"auto\">重点收集：</p>\n<ul dir=\"auto\">\n<li>Core/runtime/config/types 的重复与分化；</li>\n<li>模型下载、环境检测和 verify 的重复；</li>\n<li>Launcher 基础设施的重复；</li>\n<li>双向 cherry-pick 或手工移植的真实案例；</li>\n<li>同一修复在不同仓库中的传播路径；</li>\n<li>卫星仓停滞后对主仓继续演进的影响；</li>\n<li>XnneHangLab 产品集成与 Lab 专业扩展的真实差异。</li>\n</ul>\n<p dir=\"auto\">所有关键判断尽量使用源码、commit、PR、Issue 或 diff 作为证据。</p>\n<h3 dir=\"auto\">3. 解释双向 cherry-pick 为什么会失效</h3>\n<p dir=\"auto\">文章应具体说明：</p>\n<ul dir=\"auto\">\n<li>两份 Core 从复制时起就是两个 fork；</li>\n<li>配置、错误语义、输入输出类型和生命周期会逐步形成不同假设；</li>\n<li>cherry-pick 会受目录、上下文和产品接线差异影响；</li>\n<li>修复遗漏比合并冲突更难被发现；</li>\n<li>代码耦合会转化为版本耦合、同步耦合和维护者注意力耦合；</li>\n<li>缺少独立维护者时，独立仓库容易停止演进。</li>\n</ul>\n<h3 dir=\"auto\">4. 区分五种边界</h3>\n<p dir=\"auto\">用清晰案例区分：</p>\n<div class=\"notranslate\"><pre class=\"notranslate\"><code class=\"notranslate\">源码边界\nGit 仓库边界\n依赖/运行环境边界\n发布制品边界\n用户产品边界\n</code></pre></div>\n<p dir=\"auto\">说明这些边界可以分别选择：</p>\n<ul dir=\"auto\">\n<li>共享一份源码，不代表共享一个 Python 环境；</li>\n<li>同一仓库可以构建多个独立制品；</li>\n<li>产品功能不同，不要求复制 Core；</li>\n<li>专业扩展可以保持独立，不进入 XnneHangLab 轻量产品；</li>\n<li>仓库独立不自动带来维护独立。</li>\n</ul>\n<h3 dir=\"auto\">5. 提炼可复用的结构</h3>\n<p dir=\"auto\">介绍以下职责模型：</p>\n<div class=\"notranslate\"><pre class=\"notranslate\"><code class=\"notranslate\">Shared Core\n├── 公共类型\n├── 稳定机制\n└── contract tests\n\nProduct Adapter\n└── XnneHangLab 如何消费能力\n\nDomain Extension\n├── ASRLab：字幕 / 说话人区分 / 数据集 / 评测\n└── TTSLab：批处理 / 视频配音 / 流式分析 / 模型评测\n</code></pre></div>\n<p dir=\"auto\">这一模型作为文章中的思考工具，不在本文中承诺全量合仓或迁移。</p>\n<h3 dir=\"auto\">6. 给出拆仓判断清单</h3>\n<p dir=\"auto\">文章应帮助读者在拆出新 Core 仓库前判断：</p>\n<ul dir=\"auto\">\n<li>是否已有独立维护者？</li>\n<li>API 是否稳定？</li>\n<li>是否存在独立发布节奏？</li>\n<li>大多数修改是否无需跨产品同步？</li>\n<li>是否有独立用户群？</li>\n<li>是否有自动 contract tests？</li>\n<li>独立仓库实际减少了什么成本？</li>\n<li>是否仍需要频繁 cherry-pick？</li>\n<li>当卫星仓停止维护时，主产品能否继续演进？</li>\n</ul>\n<p dir=\"auto\">建议收束原则：</p>\n<blockquote>\n<p dir=\"auto\"><strong>先建立模块边界，再建立仓库边界；仓库拆分应跟随真实维护团队与发布节奏。</strong></p>\n</blockquote>\n<h3 dir=\"auto\">7. Mermaid 图示</h3>\n<p dir=\"auto\">至少完成以下图示：</p>\n<ol dir=\"auto\">\n<li>当前 XnneHangLab、ASRLab、TTSLab 的双向同步关系；</li>\n<li>Shared Core / Product Adapter / Domain Extension 的职责关系；</li>\n<li>一份源码如何组合成不同产品与制品；</li>\n<li>公共修复在理想状态下的测试与发布传播路径。</li>\n</ol>\n<p dir=\"auto\">图中应清楚标出：</p>\n<ul dir=\"auto\">\n<li>源码所有权；</li>\n<li>依赖方向；</li>\n<li>专业扩展边界；</li>\n<li>产品组合关系；</li>\n<li>变更传播方向。</li>\n</ul>\n<h3 dir=\"auto\">8. 对 <a class=\"issue-link\" href=\"https://github.com/MrXnneHang/xnnehang.top/issues/162\" target=\"_blank\" rel=\"noopener noreferrer\">#162</a> 与 <a class=\"issue-link\" href=\"https://github.com/MrXnneHang/xnnehang.top/issues/164\" target=\"_blank\" rel=\"noopener noreferrer\">#164</a> 的关系</h3>\n<p dir=\"auto\">文章可简要引用：</p>\n<ul dir=\"auto\">\n<li><a class=\"issue-link\" href=\"https://github.com/MrXnneHang/xnnehang.top/issues/162\" target=\"_blank\" rel=\"noopener noreferrer\">#162</a> 对运行依赖、插件化与分发成本的研究；</li>\n<li><a class=\"issue-link\" href=\"https://github.com/MrXnneHang/xnnehang.top/issues/164\" target=\"_blank\" rel=\"noopener noreferrer\">#164</a> 对角色与记忆脱离本地语音重依赖运行的短周期实践。</li>\n</ul>\n<p dir=\"auto\">本篇重点保持在“共享 Core 的源码治理与维护者注意力成本”，形成独立主线。</p>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 收集三仓 Core/runtime/config/types 的真实重复与分化证据</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 收集三个 Launcher 的基础设施重复证据</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 找到至少一个双向 cherry-pick、手工移植或修复遗漏的具体案例</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 说明 ASRLab/TTSLab 专业扩展为何不应进入 XnneHangLab 轻量产品</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 清楚区分源码、仓库、环境、制品和产品五种边界</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 完成 Shared Core / Product Adapter / Domain Extension 的解释</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 完成至少四张 Mermaid 架构图</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 提供适用于个人开发者和小团队的拆仓判断清单</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 文章包含真实证据、实际代价和仍未解决的问题</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 在 xnnehang.top 发布正式博客</li>\n</ul>\n<h2 dir=\"auto\">完成边界</h2>\n<p dir=\"auto\">本 Todo 的完成条件是博客发布。代码迁移、全量合仓、独立共享包、ADR 和现有仓库状态调整均由后续基于证据的执行项决定。</p>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/165",
+      "state": "closed",
+      "tags": [
+        {
+          "id": 11786902580,
+          "name": "ASR",
+          "color": "0e8a16"
+        },
+        {
+          "id": 11786957352,
+          "name": "blog",
+          "color": "3b82b6"
+        },
+        {
+          "id": 11786609240,
+          "name": "P2",
+          "color": "fbca04"
+        },
+        {
+          "id": 11786903387,
+          "name": "research",
+          "color": "bfdadc"
+        },
+        {
+          "id": 11786901896,
+          "name": "voice",
+          "color": "d4c5f9"
+        },
+        {
+          "id": 11786900282,
+          "name": "XnneHangLab",
+          "color": "1d76db"
+        }
+      ],
+      "createdAt": "2026-08-25T14:05:58Z",
+      "updatedAt": "2026-08-28T12:44:11Z",
+      "closedAt": "2026-08-28T12:44:11Z"
+    },
+    {
+      "number": 162,
+      "title": "调研 DeepSeek Harness 如何指导 XnneHangLab 解耦 ASR/TTS",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">调研 <a href=\"https://deepseek-harness.github.io/deepseek-harness/guide/quickstart\" target=\"_blank\" rel=\"noopener noreferrer\">DeepSeek Harness</a> 的插件与运行时机制，讨论它对 XnneHangLab <strong>Everything is Plugin</strong> 架构的启发，重点解决 ASR、TTS 长期作为 Core 组件所带来的环境、原生依赖、模型资源和应用打包问题。</p>\n<p dir=\"auto\">XnneHangLab 当时将 ASR、TTS 纳入 Core，并不是因为它们在概念上必须属于核心，而是因为这两类能力涉及大量环境初始化、系统依赖、模型下载、音频设备和平台差异；如果仅把接口称作“插件”，但安装、升级和运行环境仍由主应用承担，就无法真正解耦，也不会解除打包阻塞。</p>\n<p dir=\"auto\">本任务需要回答两个核心问题：</p>\n<ol dir=\"auto\">\n<li><strong>Everything is Plugin 应如何指导 ASR/TTS 解耦？</strong> Core 应保留协议、能力注册、事件和生命周期管理，还是仍需包含默认实现？</li>\n<li><strong>插件究竟如何被装上？</strong> 从发现、下载、依赖解析、环境创建、模型资源安装、权限确认，到启用、升级、回滚和卸载，应由谁负责、以什么边界执行？</li>\n</ol>\n<h2 dir=\"auto\">Research questions</h2>\n<ul dir=\"auto\">\n<li>DeepSeek Harness 如何定义插件、工具、能力和运行时边界？哪些机制可以复用，哪些只适用于 Agent 工具？</li>\n<li>它如何发现、安装、加载和更新扩展？插件代码运行在主进程、子进程、容器还是独立服务中？</li>\n<li>插件如何声明 Python/Node/原生库、GPU、模型文件、音频设备、网络和操作系统要求？</li>\n<li>XnneHangLab Core 对 ASR/TTS 最小应保留哪些稳定协议：流式音频、VAD、中断、部分结果、首音频、错误和健康状态？</li>\n<li>默认 ASR/TTS 是否应成为预装官方插件，而不是编译进 Core？</li>\n<li>如何允许本地模型、云 API 和远程服务实现使用同一个能力接口？</li>\n<li>如何隔离 CUDA、PyTorch、ONNX Runtime、FFmpeg、音频驱动和不同 Python 版本，避免污染主应用？</li>\n<li>首次安装如何呈现体积、许可证、硬件和权限要求，并支持失败恢复？</li>\n<li>打包时如何做到主程序轻量，同时让用户在安装后获得可用的默认语音体验？</li>\n</ul>\n<h2 dir=\"auto\">Candidate architecture to evaluate</h2>\n<ul dir=\"auto\">\n<li><strong>Core</strong>：能力协议、插件清单、注册表、事件总线、生命周期、权限、配置、路由和可观测性</li>\n<li><strong>Official plugins</strong>：默认 ASR/TTS 实现，可随产品推荐或引导安装，但不与主程序环境绑定</li>\n<li><strong>Isolated runtime</strong>：每个重依赖插件使用独立 Python 环境、sidecar 进程或服务，通过稳定 IPC/RPC 协议通信</li>\n<li><strong>Plugin installer</strong>：根据 manifest 处理平台检测、依赖、模型资源、校验、升级、回滚和卸载</li>\n<li><strong>Capability router</strong>：在本地、云端与备用实现之间按延迟、质量、硬件和可用性选择</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/162",
+      "state": "closed",
+      "tags": [
+        {
+          "id": 11821082269,
+          "name": "human-driven",
+          "color": "fef90a"
+        },
+        {
+          "id": 11786609240,
+          "name": "P2",
+          "color": "fbca04"
+        },
+        {
+          "id": 11786903387,
+          "name": "research",
+          "color": "bfdadc"
+        },
+        {
+          "id": 11786900282,
+          "name": "XnneHangLab",
+          "color": "1d76db"
+        }
+      ],
+      "createdAt": "2026-08-24T05:45:43Z",
+      "updatedAt": "2026-08-25T13:43:13Z",
+      "closedAt": "2026-08-25T13:43:13Z"
+    },
+    {
+      "number": 143,
+      "title": "重塑 Categories 分类命名与展示辨识度",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">重新设计 xnnehang.top 的 Categories 命名与展示方式，让分类更有个人风格和辨识度，不再只呈现通用的类别名称。</p>\n<p dir=\"auto\">可以考虑采用带有“文集”感的中文命名，并在分类旁展示文章数量，例如：</p>\n<ul dir=\"auto\">\n<li>岁时集 ·</li>\n<li>格物集 ·</li>\n<li>闲云集 ·</li>\n<li>星月集 ·</li>\n</ul>\n<p dir=\"auto\">以上名称用于记录当前灵感，不要求直接作为最终方案；实施前需要结合现有文章分类、各分类语义和整体站点气质确定最终命名与映射。</p>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 为现有 Categories 制定一套语义清晰、风格统一且有辨识度的新命名</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 明确旧分类到新分类的映射，避免文章归类含义丢失</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> Categories 页面或入口能够清晰展示分类名称和对应文章数量</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 分类数量为零或数字变化时，展示仍然自然且无需手工维护</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 最终命名与博客整体文案、视觉风格和多语言策略协调</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 更名不会无意破坏现有分类链接；如需调整 URL，应提供兼容或重定向方案</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/143",
+      "state": "closed",
+      "tags": [
+        {
+          "id": 11821082269,
+          "name": "human-driven",
+          "color": "fef90a"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        },
+        {
+          "id": 11849982832,
+          "name": "xnnehang.top",
+          "color": "1d76db"
+        }
+      ],
+      "createdAt": "2026-08-20T05:41:14Z",
+      "updatedAt": "2026-08-23T12:15:41Z",
+      "closedAt": "2026-08-23T12:15:41Z"
+    },
+    {
+      "number": 122,
+      "title": "修复 yutto-uiya 解析《灵笼》正片时混入预告的问题",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">修复 yutto-uiya 解析《灵笼》正片时将预告一并纳入结果的问题。初步线索指向 yutto 对 preview 的识别或过滤不够鲁棒；在合理范围内定位并修复即可，无需先做大范围溯源。</p>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 能稳定复现《灵笼》正片解析结果混入预告的问题</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 修复后正片解析结果不再包含预告</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 增加最小回归验证，覆盖该解析场景</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/122",
+      "state": "closed",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        },
+        {
+          "id": 11807757674,
+          "name": "yutto-uiya",
+          "color": "2acc2f"
+        }
+      ],
+      "createdAt": "2026-08-16T10:33:26Z",
+      "updatedAt": "2026-08-20T05:33:31Z",
+      "closedAt": "2026-08-20T05:33:31Z"
+    },
+    {
+      "number": 139,
+      "title": "展示 yutto-uiya 下载任务的实际画质、编码与回退结果",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">让 yutto-uiya 在 yutto 完成流选择后，通过结构化任务事件向前端报告每个下载条目最终采用的媒体参数，并在终端摘要和下载卡片详情中展示。这样用户可以确认实际画质、编码、分辨率和音质，以及请求参数是否发生自动回退。</p>\n<p dir=\"auto\">至少应包含实际视频画质、视频编码、宽高、音频音质/编码；后端已有可靠数据时可补充码率。发生回退时，应同时说明请求值与实际值。</p>\n<p dir=\"auto\">来源：<a href=\"https://github.com/XnneHangLab/yutto-uiya/issues/95\" target=\"_blank\" rel=\"noopener noreferrer\">XnneHangLab/yutto-uiya#95</a></p>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 下载开始后，终端显示该视频实际选择的媒体参数摘要</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 下载卡片详情显示相同的实际参数</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 请求画质或编码不可用时，准确展示自动回退后的结果，并明确回退信息</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 批量任务按每个实际下载条目分别记录和展示参数</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 数据来自后端结构化任务事件或任务快照，而非前端解析人类可读日志</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> <code class=\"notranslate\">task.subscribe</code> 可回放该信息，任务完成后的 <code class=\"notranslate\">task.get</code> 仍保留最终选择摘要</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 不在解析阶段提前获取易失播放流，也不暴露播放 URL、Cookie 或其他认证材料</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/139",
+      "state": "closed",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        },
+        {
+          "id": 11807757674,
+          "name": "yutto-uiya",
+          "color": "2acc2f"
+        }
+      ],
+      "createdAt": "2026-08-19T02:49:09Z",
+      "updatedAt": "2026-08-20T05:25:41Z",
+      "closedAt": "2026-08-20T05:25:41Z"
+    },
+    {
+      "number": 140,
+      "title": "限制首页卡片标题与简介高度并支持悬停展开",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">限制 xnnehang.top 首页文章卡片在桌面端展示的标题和简介高度，避免过长文字撑高卡片并导致右侧封面被纵向拉伸。</p>\n<ul dir=\"auto\">\n<li>标题区域预留两行高度，最多显示两行</li>\n<li>简介区域预留两行高度，最多显示两行</li>\n<li>超出部分以 <code class=\"notranslate\">...</code> 表示</li>\n<li>悬停被截断的标题或简介时，参考 About 页面现有的展开交互显示完整内容，但不额外展示 <code class=\"notranslate\">More</code> 文案</li>\n<li>展开和收起不应破坏封面尺寸与卡片整体布局</li>\n<li>右侧封面尽量按固定的 <code class=\"notranslate\">16:9</code> 展示框裁剪，保持统一比例</li>\n</ul>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 桌面端首页卡片标题区域预留两行高度，最多显示两行，超出时显示省略号</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 桌面端首页卡片简介区域预留两行高度，最多显示两行，超出时显示省略号</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 悬停被截断的标题或简介时，可以查看完整文本</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 交互中不出现额外的 <code class=\"notranslate\">More</code> 标签或按钮文案</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 无需截断的短文本不会触发多余的展开效果</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 同一桌面断点下，标题和简介的实际行数不会改变卡片与封面的整体尺寸</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 右侧封面使用 <code class=\"notranslate\">16:9</code> 展示框并通过裁剪适配，保持统一尺寸和比例，不被文字或展开状态拉伸</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 键盘操作和触屏设备仍有可用的完整内容查看方式，避免关键信息仅能通过鼠标悬停访问</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/140",
+      "state": "closed",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786609240,
+          "name": "P2",
+          "color": "fbca04"
+        },
+        {
+          "id": 11849982832,
+          "name": "xnnehang.top",
+          "color": "1d76db"
+        }
+      ],
+      "createdAt": "2026-08-19T11:11:13Z",
+      "updatedAt": "2026-08-19T12:03:11Z",
+      "closedAt": "2026-08-19T12:03:11Z"
+    },
+    {
+      "number": 83,
+      "title": "调研 Cowork Claude/Codex 与 Code session 的存储和分类边界",
+      "descriptionHtml": "<h2 dir=\"auto\">调研目标</h2>\n<p dir=\"auto\">对比 Cowork 中 Claude 与 Codex session 和 Code 模式 session 的差异。</p>\n<h2 dir=\"auto\">需要确认</h2>\n<ul dir=\"auto\">\n<li>Cowork Claude、Cowork Codex 与 Code 模式的 session 分别保存在哪里。</li>\n<li>它们是否都完整保存在本地，哪些数据可能由远端服务持有。</li>\n<li>session 的目录、元数据、生命周期和恢复方式是否一致。</li>\n<li>memU 在 classify 阶段是否需要显式区分 Cowork / Code、Claude / Codex。</li>\n</ul>\n<h2 dir=\"auto\">交付物</h2>\n<ul dir=\"auto\">\n<li>基于实际文件、配置和官方文档的对照表。</li>\n<li>对 classify schema 的明确建议；不需要区分时也说明依据。</li>\n<li>Windows 与 Unix 路径和行为差异。</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/83",
+      "state": "closed",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786878091,
+          "name": "memU",
+          "color": "c65bea"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        }
+      ],
+      "createdAt": "2026-08-10T02:15:10Z",
+      "updatedAt": "2026-08-19T11:11:20Z",
+      "closedAt": "2026-08-19T11:11:20Z"
+    },
+    {
+      "number": 114,
+      "title": "巨构情结：当我面对巨构时，心里在想什么？",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">围绕「巨构情结」完成一篇博客文章的选题研究与写作：探索为什么我对科幻语境中的巨构缺乏兴趣，却会在宏伟古城的城墙与城门、臆想中的昆仑仙宫、泰山封禅，以及直插云霄、云雾缭绕、紫气升腾的山岳与建筑面前，产生难以言说的强烈情绪。</p>\n<p dir=\"auto\">文章应从心理层面梳理这种体验可能的来源：对尺度、崇高感、历史感、神圣性与「人如萤火」般渺小感的回应；并辨析它与单纯偏好科幻设定或视觉奇观之间的差异。以个人体验为起点，避免把未经验证的心理学解释写成定论。</p>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 完成与「崇高感」、敬畏、尺度感、历史／神圣空间体验相关的可靠资料调研，并标注哪些结论仍属推测</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 梳理「科幻巨构无感」与「古城、仙宫、山岳及仪式性建筑触动」之间的具体差异</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 形成清晰文章提纲，以个人感受开篇、心理与文化视角展开，并保留不确定性</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 写成可发布的博客初稿，标题暂定为《巨构情结：当我面对巨构时，心里在想什么？》</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/114",
+      "state": "closed",
+      "tags": [
+        {
+          "id": 11786957352,
+          "name": "blog",
+          "color": "3b82b6"
+        },
+        {
+          "id": 11821082269,
+          "name": "human-driven",
+          "color": "fef90a"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        },
+        {
+          "id": 11786903387,
+          "name": "research",
+          "color": "bfdadc"
+        }
+      ],
+      "createdAt": "2026-08-13T07:02:53Z",
+      "updatedAt": "2026-08-19T11:03:37Z",
+      "closedAt": "2026-08-19T11:03:18Z"
+    },
+    {
+      "number": 134,
+      "title": "为 yutto-uiya 视频下载增加 AV1 格式选项",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">在 yutto-uiya 的视频下载选项中增加 AV1 格式，让用户能够直接选择并下载视频源中已有的 AV1 编码流。</p>\n<p dir=\"auto\">当前日志已经能够识别并加载 AV1 格式，但前端未将其加入可选下载格式。根据现有反馈，这一场景应优先复用原始 AV1 视频流，无需通过 FFmpeg 转码生成。</p>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 当解析结果包含 AV1 视频流时，前端下载选项会显示 AV1</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 用户可以选择 AV1，并以对应的视频流完成下载</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 下载流程不会无必要地将其他编码转码为 AV1</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 不包含 AV1 视频流时，不展示无效选项，也不影响现有格式选择</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 格式名称、清晰度、码率等信息足以让用户辨认 AV1 选项</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/134",
+      "state": "closed",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        },
+        {
+          "id": 11807757674,
+          "name": "yutto-uiya",
+          "color": "2acc2f"
+        }
+      ],
+      "createdAt": "2026-08-18T02:42:37Z",
+      "updatedAt": "2026-08-19T02:46:52Z",
+      "closedAt": "2026-08-19T02:46:52Z"
+    },
+    {
+      "number": 135,
+      "title": "清理 Yasumi Clock 的全部 Python 旧代码",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">清理 Yasumi Clock 仓库中已经废弃的全部 Python 旧代码，以及仅为这些旧实现保留的依赖、脚本、配置和文档引用。保留当前仍在使用的实现与必要资源，避免误删有效功能。</p>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 盘点并删除所有已废弃的 Python 源代码</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 移除仅由旧 Python 实现使用的依赖、脚本与配置</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 清理文档、CI 和开发命令中对旧 Python 实现的引用</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 确认仓库不再依赖 Python 才能完成当前应用的开发、构建与运行</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 现有核心功能与构建检查保持正常</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/135",
+      "state": "closed",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        },
+        {
+          "id": 11821769433,
+          "name": "Yasumi Clock",
+          "color": "29b7df"
+        }
+      ],
+      "createdAt": "2026-08-18T02:50:00Z",
+      "updatedAt": "2026-08-19T01:27:55Z",
+      "closedAt": "2026-08-19T01:27:55Z"
+    },
+    {
+      "number": 115,
+      "title": "调研开源人格对齐与实时语音数字人方案",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">开展一项 survey / research，聚焦开源范畴内的人格对齐方案：既包括虚拟角色，也包括实时语音数字人或真实人物驱动的交互助手。目标是了解前沿开源仓库的实际实现、已知困境，以及可接受的工程 trade-off；重点讨论 self-evolving 与 OOC（out-of-character）之间如何取得折衷。</p>\n<p dir=\"auto\">调研起点：</p>\n<ul dir=\"auto\">\n<li><a href=\"https://github.com/emwstudio/VoxEMW\" target=\"_blank\" rel=\"noopener noreferrer\">VoxEMW：数字人实时语音聊天助手</a></li>\n<li><a href=\"https://www.boson.ai/blog/higgs-avatar\" target=\"_blank\" rel=\"noopener noreferrer\">Higgs Avatar</a></li>\n</ul>\n<p dir=\"auto\">对实时语音数字人方向补充溯源：梳理公开可得的算力成本、端到端延迟与相关参数信息；保持对资料来源、开源可复现性与推测性结论的明确区分。调研的兴趣重点是人格与角色一致性，而非对真人数字人本身的偏好。</p>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 建立开源项目清单，按虚拟角色、实时语音助手、真人／数字人驱动等方向分类，并标明活跃度、许可证与可复现性</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 选取有代表性的项目，拆解人格对齐的具体技术方案：角色设定、记忆、提示词／微调、语音与视觉表现层，以及评测方式</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 记录实际困境，包括延迟、算力与成本、长期记忆漂移、角色稳定性、OOC、评测缺口及隐私／授权边界</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 对实时语音数字人整理公开的延迟、模型与硬件参数；区分项目实测、官方声明与推算</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 给出可容忍 trade-off 的比较框架，并讨论 self-evolving 与 OOC 风险之间的可行折衷</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 形成附来源链接的调研结论与后续实验建议，不将未经验证的资料写成定论</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/115",
+      "state": "closed",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786903387,
+          "name": "research",
+          "color": "bfdadc"
+        }
+      ],
+      "createdAt": "2026-08-13T07:54:13Z",
+      "updatedAt": "2026-08-18T02:40:58Z",
+      "closedAt": "2026-08-18T02:40:58Z"
+    },
+    {
+      "number": 93,
+      "title": "写博客：番茄钟、Agent 多线程与注意力稀缺",
+      "descriptionHtml": "<h2 dir=\"auto\">写作主题</h2>\n<p dir=\"auto\">番茄钟的设计哲学，以及 Agentic 工作方式下为什么不应该同时开启太多线程并频繁切换。</p>\n<h2 dir=\"auto\">核心问题</h2>\n<ul dir=\"auto\">\n<li>一次开启多个 Claude session 并频繁切换，真的提高了产出吗？</li>\n<li>多线程带来的焦虑感来自哪里：未完成任务、状态监控、失控感，还是持续做选择？</li>\n<li>注意力是否是一种比执行时间更稀缺的资源？</li>\n<li>当 AI 接手具体执行后，人不必把注意力放在“做事情本身”，那应该把注意力放在哪里？</li>\n<li>如果 Claude 完成一个任务需要五分钟，这五分钟应该怎样度过？</li>\n</ul>\n<h2 dir=\"auto\">可能的核心论点</h2>\n<blockquote>\n<p dir=\"auto\">AI 可以并行执行，但人的注意力不能等比例并行。任务并发量增加后，瓶颈会从执行能力转移到监督、切换、判断和收束。</p>\n</blockquote>\n<p dir=\"auto\">番茄钟的价值可能不只是计时，而是主动建立一个“这段时间只对一个上下文负责”的边界。Agent 在后台工作时，这个边界依然重要。</p>\n<h2 dir=\"auto\">可以讨论的方向</h2>\n<ul dir=\"auto\">\n<li>Context switching、attention residue 与工作记忆负担。</li>\n<li>多个 Agent session 带来的隐性队列：每个线程都在等待人的判断和验收。</li>\n<li>频繁检查进度如何形成类似刷新消息通知的间歇性强化。</li>\n<li>“等待五分钟”并不等于必须立即塞入另一项高认知任务。</li>\n<li>等待期间适合做的事：离屏休息、身体活动、记录下一步、整理验收标准、阅读当前任务相关资料。</li>\n<li>不适合做的事：开启一个同样复杂的新上下文，并在两个任务即将完成时同时承担验收。</li>\n<li>什么时候并行是合理的：任务独立、验收标准清楚、完成时间足够错开、无需持续监督。</li>\n</ul>\n<h2 dir=\"auto\">文章结构草案</h2>\n<ol dir=\"auto\">\n<li>AI 让执行变快之后，为什么人反而更焦虑。</li>\n<li>番茄钟真正保护的不是时间，而是上下文连续性。</li>\n<li>多 Claude 线程并不是多核人脑。</li>\n<li>五分钟等待期应该如何使用。</li>\n<li>一套适合 Agentic 工作的并发与切换原则。</li>\n</ol>\n<h2 dir=\"auto\">交付物</h2>\n<ul dir=\"auto\">\n<li>查找认知切换、注意力残留与等待焦虑相关资料。</li>\n<li>结合真实 Claude Code 多 session 使用经验写成博客文章。</li>\n<li>给出可实践的 Agentic Pomodoro 工作法，而不只是反对并行。</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/93",
+      "state": "closed",
+      "tags": [
+        {
+          "id": 11786957352,
+          "name": "blog",
+          "color": "3b82b6"
+        },
+        {
+          "id": 11821082269,
+          "name": "human-driven",
+          "color": "fef90a"
+        },
+        {
+          "id": 11786609240,
+          "name": "P2",
+          "color": "fbca04"
+        }
+      ],
+      "createdAt": "2026-08-10T02:29:49Z",
+      "updatedAt": "2026-08-18T02:39:44Z",
+      "closedAt": "2026-08-18T02:39:44Z"
+    },
+    {
+      "number": 119,
+      "title": "全站中英双语与博客全量英文迁移",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">以一个 agent-driven 的大型 PR 完成 nyakku.moe 全站中英双语化，并一次性迁移全部现有正式发布博客，避免留下需要以后逐篇补齐的存量。</p>\n<p dir=\"auto\">实现方向：</p>\n<ul dir=\"auto\">\n<li>保留所有现有 URL 作为默认简中版本，不迁移、不改 slug，保护既有链接与搜索权重。</li>\n<li>为整个英文站增加 <code class=\"notranslate\">/en/</code> 前缀，而不只区分博客：例如 <code class=\"notranslate\">/about/</code> ↔ <code class=\"notranslate\">/en/about/</code>、<code class=\"notranslate\">/posts/&lt;slug&gt;/</code> ↔ <code class=\"notranslate\">/en/posts/&lt;slug&gt;/</code>。</li>\n<li>右上角增加与明暗模式相邻但职责独立的 <code class=\"notranslate\">简中 / EN</code> 切换器；切换时进入当前页面的对应语言 URL，并记住用户选择，不根据浏览器语言强制跳转。</li>\n<li>所有现有正式发布文章提供完整英文译文；翻译可由 Haiku 分批起草，但必须保留 Markdown、代码、图片、链接和文章语气，并经过一致性与构建检查。</li>\n<li>全站 UI、静态页面、文章列表、归档、标签、分类、系列、搜索及相关元数据按 locale 隔离，避免中英文内容混排。</li>\n<li>同一分支、同一 PR 交付；可以在 PR 内按内部检查点推进，但不拆成多个阶段性 PR。</li>\n</ul>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 所有当前正式发布文章都有一一对应、可访问的英文版本，并使用稳定的 translation identity 关联</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 现有简中 URL 全部保持不变且继续自 canonical；英文对应页统一位于 <code class=\"notranslate\">/en/</code> 下</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 首页、文章、About、Friends、Archive、Shelf、Statistics、Todo、Privacy、Series 和 404 等公开页面具备对应英文体验</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 语言切换器能从当前页面直达对应译文，支持键盘与移动端，并持久化用户选择</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 未启用浏览器语言强制重定向；直接访问、刷新、复制链接、前进/后退均保持所选语言</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> <code class=\"notranslate\">&lt;html lang&gt;</code>、canonical、reciprocal hreflang、Open Graph locale、JSON-LD、sitemap 与 RSS 按语言正确生成</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 中英文文章列表、分类、标签、系列与搜索索引互不混排，站内链接无跨语言误跳</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> Markdown、代码块、图片、WikiLink、admonition、仓库卡片和视频嵌入在全部译文中保持有效</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 以单个大型 PR 交付，构建、类型检查、SEO 校验与相关测试全部通过</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/119",
+      "state": "closed",
+      "tags": [
+        {
+          "id": 11821064460,
+          "name": "agent-driven",
+          "color": "f373bf"
+        },
+        {
+          "id": 11786957352,
+          "name": "blog",
+          "color": "3b82b6"
+        },
+        {
+          "id": 11786609240,
+          "name": "P2",
+          "color": "fbca04"
+        }
+      ],
+      "createdAt": "2026-08-14T11:46:46Z",
+      "updatedAt": "2026-08-16T08:42:24Z",
+      "closedAt": "2026-08-16T08:42:24Z"
+    },
+    {
+      "number": 117,
+      "title": "发布 Yasumi-Clock",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">完成 Yasumi-Clock 的首次可用发布准备并发布版本。发布前确认应用在目标 Windows 环境可安装、可启动、可正常退出，并准备清晰的版本说明与获取方式。</p>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 确认发布范围、版本号与目标平台</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 生成可分发的安装包或可执行产物，并在干净环境完成安装、启动与退出验证</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 整理变更说明、已知限制与基本使用说明</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 创建对应的发布记录，并提供稳定的下载或获取入口</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 发布后确认用户可获取产物且核心流程正常</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/117",
+      "state": "closed",
+      "tags": [
+        {
+          "id": 11821082269,
+          "name": "human-driven",
+          "color": "fef90a"
+        },
+        {
+          "id": 11786609240,
+          "name": "P2",
+          "color": "fbca04"
+        },
+        {
+          "id": 11821769433,
+          "name": "Yasumi Clock",
+          "color": "29b7df"
+        }
+      ],
+      "createdAt": "2026-08-13T12:59:15Z",
+      "updatedAt": "2026-08-13T14:52:01Z",
+      "closedAt": "2026-08-13T14:52:01Z"
+    },
+    {
+      "number": 112,
+      "title": "memU：接入按需 Windows platform-smoke CI",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">为 memU 新增一个<strong>按需、非 required、无副作用</strong>的 Windows platform-smoke workflow，把目前依赖本地 Windows 手测的稳定平台契约 pin 到 CI，同时避免恢复曾提议过的“每个 PR 始终触发的全量 Windows/macOS 矩阵”。</p>\n<p dir=\"auto\">背景：此前决定暂缓跨平台 CI，因为风险主要集中在仍高频变化的 host scheduler、始终触发的 Windows/macOS workflow 会拖慢开发，而且真实 Task Scheduler / cron / launchd 注册仍需要手测。这个判断对全量 CI 仍成立；但 memU#632 / patch PR <a href=\"https://github.com/NevaMind-AI/memU/pull/636\" target=\"_blank\" rel=\"noopener noreferrer\">memU#636</a> 的 Windows 复核已经确认，稳定的平台差异也存在于 scheduler 之外：</p>\n<ul dir=\"auto\">\n<li>Windows 没有 POSIX mode-bit 语义；</li>\n<li>Python Windows 默认 SSL context 使用 pathless OS certificate store；</li>\n<li>PowerShell 5.1 / legacy writer 会产生 UTF-16 BOM 或 Windows ANSI 配置；</li>\n<li>Windows stdio、路径和 text-mode 行为无法完全由 Ubuntu mock 代替。</li>\n</ul>\n<p dir=\"auto\">阶段性方案：</p>\n<ol dir=\"auto\">\n<li>第一版只运行 <code class=\"notranslate\">windows-latest</code> + Python 3.13；</li>\n<li>支持维护者 <code class=\"notranslate\">workflow_dispatch</code> 测试上游分支；</li>\n<li>支持 fork PR 由维护者添加 <code class=\"notranslate\">ci:windows</code> 标签后按需运行，并在标签保留时随 <code class=\"notranslate\">synchronize</code> 重跑；</li>\n<li>使用 <code class=\"notranslate\">pull_request</code> 上下文、<code class=\"notranslate\">permissions: contents: read</code>、无 secrets；禁止 <code class=\"notranslate\">pull_request_target</code> checkout/执行 PR 代码；</li>\n<li>初期只跑稳定的 platform-smoke subset：config、env passthrough、trust、stdio、Windows scheduler builders/gates；</li>\n<li>不运行真实 Task Scheduler install/uninstall、S4U auth、host CLI 登录探测、cron 或 launchd 注册；</li>\n<li>workflow 非 required，不影响普通 PR；待稳定后再评估 Python 3.11、path filters 和 required；</li>\n<li>macOS 暂不加入：当前 cron/launchd 仍主要由文档驱动，没有稳定的 macOS-only backend/tests。等相关接口稳定后再接入。</li>\n</ol>\n<p dir=\"auto\">接入前先修正 memU#636 的 Windows ANSI 测试 fixture：当前中文文本只在 <code class=\"notranslate\">cp936</code> 等 CJK code page 可编码，GitHub <code class=\"notranslate\">windows-latest</code> 常见的英文 code page 会在准备 fixture 时失败。测试应固定模拟一个可移植的 ANSI codec/sample，而不是依赖 runner locale，也不应永久 deselect 该测试。</p>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> Windows ANSI migration test 不依赖 runner 的地区/code page，仍能证明严格 UTF-8 失败后走 Windows ANSI fallback 并迁移为 UTF-8</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 新增独立 Windows platform-smoke workflow，仅 Python 3.13，且默认不随所有 push/PR 运行</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> <code class=\"notranslate\">workflow_dispatch</code> 可由维护者手动运行上游分支</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> fork PR 可由维护者通过 <code class=\"notranslate\">ci:windows</code> 标签触发，并在后续 push 时自动重跑</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> workflow 明确 <code class=\"notranslate\">permissions: contents: read</code>，不使用 secrets，不使用 <code class=\"notranslate\">pull_request_target</code> 执行 PR 代码</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> smoke suite 覆盖 config/env/trust/stdio/scheduler builder，但不注册或修改真实 OS scheduler</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 在一个实际 fork PR 上完成一次绿灯验证</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> workflow 保持 non-required；文档记录真实 scheduler 和 macOS 集成仍需手测</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/112",
+      "state": "closed",
+      "tags": [
+        {
+          "id": 11786878091,
+          "name": "memU",
+          "color": "c65bea"
+        },
+        {
+          "id": 11786609240,
+          "name": "P2",
+          "color": "fbca04"
+        }
+      ],
+      "createdAt": "2026-08-12T08:33:16Z",
+      "updatedAt": "2026-08-13T02:57:34Z",
+      "closedAt": "2026-08-13T02:57:33Z"
+    },
+    {
+      "number": 113,
+      "title": "memU：防止 backend 切换跨越正在进行的 bridging cycle",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">memU 的所有 host 共用一个 local/cloud 配置。每个 memU 命令只在启动时读取一次配置。</p>\n<p dir=\"auto\">边界情况：</p>\n<div class=\"notranslate\"><pre class=\"notranslate\"><code class=\"notranslate\">prepare 使用 cloud\n→ 中途切换成 local\n→ commit 使用 local\n</code></pre></div>\n<p dir=\"auto\">这样一次 bridging cycle 会从 cloud 读取，却向 local 写入。</p>\n<p dir=\"auto\">普通 retrieval 也可能短暂出现：正在运行的旧命令继续使用 cloud，切换后启动的新命令使用 local。旧命令结束后就恢复一致，这部分可以接受。</p>\n<p dir=\"auto\">真正需要阻止的是 <code class=\"notranslate\">prepare</code> 和 <code class=\"notranslate\">commit</code> 使用不同 backend。</p>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> <code class=\"notranslate\">prepare</code> 记录本次使用的 backend</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> <code class=\"notranslate\">commit</code> 检查当前 backend 是否仍然相同</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 不相同时停止，不写入、不推进 cursor，也不删除待恢复的 jobs</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 添加测试覆盖 <code class=\"notranslate\">prepare(cloud) → switch → commit(local)</code></li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 切换提示说明 local/cloud 是所有 host 共用的 machine-wide 配置</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/113",
+      "state": "closed",
+      "tags": [
+        {
+          "id": 11786878091,
+          "name": "memU",
+          "color": "c65bea"
+        },
+        {
+          "id": 11786609240,
+          "name": "P2",
+          "color": "fbca04"
+        }
+      ],
+      "createdAt": "2026-08-12T09:38:26Z",
+      "updatedAt": "2026-08-12T10:13:09Z",
+      "closedAt": "2026-08-12T10:05:57Z"
+    },
+    {
+      "number": 111,
+      "title": "[memU] PR #632 的 Windows 端复核：config init 跨平台回归",
+      "descriptionHtml": "<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input checked type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Completed task\" /> I confirm that this is an issue rather than a question.</li>\n</ul>\n<h2 dir=\"auto\">Bug report</h2>\n<p dir=\"auto\">对 memU <a href=\"https://github.com/NevaMind-AI/memU/pull/632\" target=\"_blank\" rel=\"noopener noreferrer\">PR #632</a>（<code class=\"notranslate\">feat/config-env-command</code>）在 Windows 11 / Python 3.13 实机复核，发现 <code class=\"notranslate\">init</code> / <code class=\"notranslate\">config</code> 的跨平台回归与迁移缺口。PR 的 Linux CI 无法覆盖这些问题。</p>\n<h3 dir=\"auto\">1. Windows 上新增权限测试失败，但运行时刻意不支持 POSIX 权限位</h3>\n<p dir=\"auto\">复现：</p>\n<div class=\"highlight highlight-source-shell notranslate\" dir=\"auto\"><pre class=\"notranslate\">uv run pytest tests/test_config_cmd.py tests/test_trust.py</pre></div>\n<p dir=\"auto\">结果：<code class=\"notranslate\">47 passed, 2 failed</code>。</p>\n<p dir=\"auto\">失败项：</p>\n<ul dir=\"auto\">\n<li><code class=\"notranslate\">tests/test_config_cmd.py::test_file_is_owner_only</code></li>\n<li><code class=\"notranslate\">tests/test_config_cmd.py::test_nothing_to_set_still_restricts_an_existing_file</code></li>\n</ul>\n<p dir=\"auto\">测试无条件要求 <code class=\"notranslate\">config.env</code> 是 <code class=\"notranslate\">0600</code>、目录是 <code class=\"notranslate\">0700</code>。但 <code class=\"notranslate\">src/memu/config_file.py::_restrict()</code> 在非 POSIX 平台直接返回；<code class=\"notranslate\">permission_note()</code> 也明确说明 Windows 只会继承 ACL。Windows 的 <code class=\"notranslate\">Path.chmod()</code> 不能施加 Unix mode bits，因此测试与实现策略矛盾。</p>\n<p dir=\"auto\">CI 当前仅 <code class=\"notranslate\">ubuntu-latest</code>，因此会 Linux 绿、Windows 红。</p>\n<p dir=\"auto\"><strong>建议：</strong> POSIX mode-bit 断言按平台限定；加入 Windows CI。若产品目标是在 Windows 真正限制密钥文件访问，应另行设计、测试 <code class=\"notranslate\">icacls</code> / ACL 方案，不能用 <code class=\"notranslate\">chmod</code> 作为等价物。</p>\n<h3 dir=\"auto\">2. PR 内 <code class=\"notranslate\">trust.py</code> fallback 在 Windows 会替换掉系统证书库</h3>\n<p dir=\"auto\"><code class=\"notranslate\">src/memu/trust.py</code> 以 <code class=\"notranslate\">ssl.get_default_verify_paths().cafile/capath</code> 是否为空判断是否有 system trust store；为空就创建 certifi context。</p>\n<p dir=\"auto\">Windows 11 / Python 3.13 实测：</p>\n<div class=\"notranslate\"><pre class=\"notranslate\"><code class=\"notranslate\">cafile=None\ncapath=None\n</code></pre></div>\n<p dir=\"auto\">因此 fallback 会触发。但 Windows 根证书来自 OS certificate store，不是 OpenSSL CA file/path。把默认 context 换成 certifi-only context 可能丢掉企业通过 Windows 系统证书安装的 TLS-inspection 根证书，和模块注释“保留 OS-wide corporate CA”的目标相反。</p>\n<p dir=\"auto\"><strong>建议：</strong> Windows 不应以 <code class=\"notranslate\">get_default_verify_paths()</code> 的 cafile/capath 作为系统证书库存在性判断；根据真实 default SSL context 行为处理，并增加 Windows 测试。这一变更虽不是 <code class=\"notranslate\">init</code> 主逻辑，但包含在 #632 提交序列中。</p>\n<h3 dir=\"auto\">3. 既有 Windows 旧编码 <code class=\"notranslate\">config.env</code> 让 <code class=\"notranslate\">init</code> / <code class=\"notranslate\">config</code> 直接失败</h3>\n<p dir=\"auto\"><code class=\"notranslate\">config_file.read()</code> 和 <code class=\"notranslate\">write_values()</code> 用严格 UTF-8 读取，只捕获 <code class=\"notranslate\">OSError</code> / <code class=\"notranslate\">FileNotFoundError</code>。旧 PowerShell/cmd 产生的 UTF-16LE BOM 或本地代码页文件会抛 <code class=\"notranslate\">UnicodeDecodeError</code>。</p>\n<p dir=\"auto\">本机用 UTF-16LE <code class=\"notranslate\">config.env</code> 实测：</p>\n<div class=\"notranslate\"><pre class=\"notranslate\"><code class=\"notranslate\">UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte\n</code></pre></div>\n<p dir=\"auto\">结果是 <code class=\"notranslate\">memu-&lt;host&gt; init</code>、<code class=\"notranslate\">config</code>、<code class=\"notranslate\">config show</code> 不能接管既有配置，与“merge, never rewrite”的迁移预期不一致。</p>\n<p dir=\"auto\"><strong>建议：</strong> 明确迁移策略：支持 UTF-8 BOM/UTF-16LE 侦测转换，或至少报出可操作的编码修复指引；不应只落入 generic CLI error。</p>\n<h3 dir=\"auto\">4. “byte-identical merge” 在跨 OS 续写时不成立</h3>\n<p dir=\"auto\">读取使用 universal newlines、随后 text-mode 重写：Windows 会把 LF 文件整体写成 CRLF，Unix 会把 CRLF 写成 LF。功能值不受影响，但 <code class=\"notranslate\">config_file.py</code> 与 ADR 0017 对未管理行“byte-identical”的承诺不成立。</p>\n<p dir=\"auto\">本机实测：输入 <code class=\"notranslate\">b\\\"MEMU_DB=/old/path\\n...\\\"</code>，写入后为 <code class=\"notranslate\">b\\\"MEMU_DB=/old/path\\r\\n...\\\"</code>。</p>\n<p dir=\"auto\"><strong>建议：</strong> 保留原换行符，或将承诺改为逻辑内容/未管理字段不变。</p>\n<h3 dir=\"auto\">5. 安装指南仅给 POSIX 的 <code class=\"notranslate\">--db</code> 路径示例</h3>\n<p dir=\"auto\">所有 host 的 INSTALL.md 示例均是 <code class=\"notranslate\">/absolute/path/memu.sqlite3</code> / <code class=\"notranslate\">~/.memu/memu.sqlite3</code>，没有 Windows 路径示例。Windows 用户照抄前者会落到当前盘符根目录而不是 profile 目录。</p>\n<p dir=\"auto\"><strong>建议：</strong> 用跨平台 <code class=\"notranslate\">~/.memu/memu.sqlite3</code> 示例并明确会展开 <code class=\"notranslate\">~</code>，或按系统给出 <code class=\"notranslate\">C:/Users/&lt;user&gt;/.memu/memu.sqlite3</code> 示例。</p>\n<h4 dir=\"auto\">Other relevant information</h4>\n<ul dir=\"auto\">\n<li>Your OS: Windows 11 IoT Enterprise LTSC 2024 (10.0.26100)</li>\n<li>Python: 3.13.12</li>\n<li>memU branch: <code class=\"notranslate\">review/pr-632-config-env-command</code> tracking <code class=\"notranslate\">NevaMind-AI/memU:feat/config-env-command</code></li>\n<li>Validation: <code class=\"notranslate\">uv run pytest tests/test_config_cmd.py tests/test_trust.py</code></li>\n<li>CI observed: <code class=\"notranslate\">.github/workflows/build.yml</code> uses <code class=\"notranslate\">ubuntu-latest</code> only</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/111",
+      "state": "closed",
+      "tags": [
+        {
+          "id": 11119148671,
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "id": 11786878091,
+          "name": "memU",
+          "color": "c65bea"
+        },
+        {
+          "id": 11786607965,
+          "name": "P0",
+          "color": "b60205"
+        }
+      ],
+      "createdAt": "2026-08-12T06:55:53Z",
+      "updatedAt": "2026-08-12T08:45:56Z",
+      "closedAt": "2026-08-12T08:45:38Z"
+    },
+    {
+      "number": 109,
+      "title": "[P2] 明确 yutto-uiya 视频、音频与封面的下载行为",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">在 <a href=\"https://github.com/XnneHangLab/yutto-uiya\" target=\"_blank\" rel=\"noopener noreferrer\">XnneHangLab/yutto-uiya</a> 中梳理并修正资源组合说明及下载行为：</p>\n<ul dir=\"auto\">\n<li>选择 <strong>视频 + 音频</strong> 时，自动获取封面并混合/内嵌至最终媒体文件。</li>\n<li>在上述基础上额外选择 <strong>封面</strong> 时，除内嵌封面外，额外将封面图片单独保存至下载目录。</li>\n<li>更新 <strong>视频 + 音频</strong> 与 <strong>视频 + 音频 + 封面</strong> 的 description，使其准确传达上述区别。</li>\n</ul>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> <code class=\"notranslate\">视频 + 音频</code> 的 description 明确说明封面会自动内嵌，不会另存封面图片。</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> <code class=\"notranslate\">视频 + 音频 + 封面</code> 的 description 明确说明除内嵌外还会另存封面图片。</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 请求参数和服务端行为与说明一致。</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 不影响仅视频、仅音频及其他资源组合。</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/109",
+      "state": "closed",
+      "tags": [],
+      "createdAt": "2026-08-12T01:46:21Z",
+      "updatedAt": "2026-08-12T03:36:13Z",
+      "closedAt": "2026-08-12T03:36:13Z"
+    },
+    {
+      "number": 96,
+      "title": "改进 memU 安装脚本的已安装包更新路径",
+      "descriptionHtml": "<h2 dir=\"auto\">What should happen?</h2>\n<p dir=\"auto\">memU 的默认安装脚本在检测到相关 pip 包已经存在时，会直接输出：</p>\n<blockquote>\n<p dir=\"auto\">Package is already installed. Now printing the Codex install guide.</p>\n</blockquote>\n<p dir=\"auto\">这会把“已安装”误当成“无需更新”，使普通用户无法进入 CLI 更新路径。安装流程应在发现本地包后继续检查已安装版本与最新可用版本：版本落后时执行或明确引导更新；仅在已经是最新版时跳过更新并继续输出 Codex 安装指南。</p>\n<p dir=\"auto\">用于复现的安装对话大意如下（API Key 已移除）：</p>\n<blockquote>\n<p dir=\"auto\">Fetch <code class=\"notranslate\">https://memu.so/SKILL.md</code> using a Bearer token, then follow the retrieved instructions to install and configure memU, reusing the same key where required.</p>\n</blockquote>\n<h2 dir=\"auto\">Acceptance checks</h2>\n<ul class=\"contains-task-list\">\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 检测到 pip 包已安装后，读取当前 CLI 版本，而不是直接结束安装阶段。</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 查询并比较最新可用的 CLI 版本。</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 本地版本落后时，提供可正常执行的更新路径，并在更新后验证版本。</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 本地已是最新版时，明确提示无需更新，再继续输出 Codex 安装指南。</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 版本查询或更新失败时给出可操作的错误信息，不将失败误报为已安装完成。</li>\n<li class=\"task-list-item\"><input type=\"checkbox\" disabled class=\"task-list-item-checkbox\" aria-label=\"Incomplete task\" /> 覆盖首次安装、重复安装、旧版本升级和已是最新版四种流程。</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/96",
+      "state": "closed",
+      "tags": [
+        {
+          "id": 11788584994,
+          "name": "install",
+          "color": "d4c5f9"
+        },
+        {
+          "id": 11786878091,
+          "name": "memU",
+          "color": "c65bea"
+        },
+        {
+          "id": 11786609457,
+          "name": "P3",
+          "color": "0e8a16"
+        }
+      ],
+      "createdAt": "2026-08-10T07:06:53Z",
+      "updatedAt": "2026-08-11T03:56:09Z",
+      "closedAt": "2026-08-11T03:48:37Z"
+    },
+    {
+      "number": 86,
+      "title": "验证 non-sandbox Codex cron session 的跨平台启动方式",
+      "descriptionHtml": "<h2 dir=\"auto\">调研目标</h2>\n<p dir=\"auto\">验证如何启动不受默认 sandbox 限制的 Codex cron session，并形成跨 Windows / Unix 的启动方式。</p>\n<h2 dir=\"auto\">当前结论</h2>\n<p dir=\"auto\">对单次非交互 CLI run，<code class=\"notranslate\">codex exec --dangerously-bypass-approvals-and-sandbox ...</code> 是跨 Windows / Unix 的显式覆盖：它跳过 <strong>Codex</strong> 的 approval prompts 和 sandbox，以 OS scheduler 启动账户的主机权限运行。无企业策略拦截时，该 flag 本身不会每次要求 Codex 用户确认。</p>\n<p dir=\"auto\">这可以消除 Codex approval 在无人值守任务中无法处理、以及 Codex sandbox 对文件/网络造成的限制；但它不会提升为管理员/root，也不会绕过 OS 或 scheduler 层的限制。要接近直接从宿主机 shell 运行，scheduler 必须使用等价的 OS 账户、用户 profile、<code class=\"notranslate\">HOME</code>、<code class=\"notranslate\">PATH</code>、代理/CA/DNS 与网络身份。Windows S4U token、cron/systemd 的精简环境、macOS TCC/Keychain、企业策略和 CLI 登录仍可能导致不同结果。</p>\n<p dir=\"auto\"><code class=\"notranslate\">[windows] sandbox = \"elevated\"</code> 只选择 Windows sandbox 的实现，不等于关闭 sandbox。<code class=\"notranslate\">--sandbox danger-full-access</code> 是完整访问的 sandbox policy；若目标是显式不经过 Codex sandbox，应使用上述 bypass flag。</p>\n<h2 dir=\"auto\">最小 Hello World session</h2>\n<p dir=\"auto\">在 PowerShell：</p>\n<div class=\"highlight highlight-source-powershell notranslate\" dir=\"auto\"><pre class=\"notranslate\">codex exec <span class=\"pl-k\">--</span>dangerously<span class=\"pl-k\">-</span>bypass<span class=\"pl-k\">-</span>approvals<span class=\"pl-k\">-</span>and<span class=\"pl-k\">-</span>sandbox <span class=\"pl-k\">--</span>ephemeral <span class=\"pl-k\">--</span><span class=\"pl-c1\">skip-git</span><span class=\"pl-k\">-</span>repo<span class=\"pl-k\">-</span>check <span class=\"pl-s\"><span class=\"pl-pds\">\"</span>Use the shell once to run echo Hello, world! Then report the command output and exit.<span class=\"pl-pds\">\"</span></span></pre></div>\n<p dir=\"auto\">在 macOS/Linux shell：</p>\n<div class=\"highlight highlight-source-shell notranslate\" dir=\"auto\"><pre class=\"notranslate\">codex <span class=\"pl-c1\">exec</span> --dangerously-bypass-approvals-and-sandbox --ephemeral --skip-git-repo-check <span class=\"pl-s\"><span class=\"pl-pds\">\"</span>Use the shell once to run echo Hello, world! Then report the command output and exit.<span class=\"pl-pds\">\"</span></span></pre></div>\n<p dir=\"auto\"><code class=\"notranslate\">--ephemeral</code> 只是不保存本次 Codex session rollout；它仍会实际启动一个 non-interactive session 并执行该 shell command。去掉它即可保留 session 文件。</p>\n<p dir=\"auto\">希望保持逻辑一致和 memorize session 可回放就不加这个。</p>\n<h2 dir=\"auto\">需要确认</h2>\n<ul dir=\"auto\">\n<li><code class=\"notranslate\">sandbox = \"elevated\"</code> 是否是有效且充分的配置，实际作用域和安全边界是什么。</li>\n<li>是否还需要 approval、filesystem、network 或 working-directory 等参数。</li>\n<li>如何用 <code class=\"notranslate\">codex-cli</code> 命令行参数而不是只靠配置文件启动。</li>\n<li>Windows Task Scheduler、cron/systemd timer 等调度器如何安全传参。</li>\n<li>非交互环境中的认证、环境变量、日志、退出码和超时行为。</li>\n</ul>\n<h2 dir=\"auto\">交付物</h2>\n<ul dir=\"auto\">\n<li>Windows 与 Unix 各一套最小可复现命令。</li>\n<li>CLI 参数与配置文件字段对照表。</li>\n<li>失败模式、安全注意事项和最小权限建议。</li>\n<li>使用无破坏性的测试任务证明是否真的脱离 sandbox。</li>\n</ul>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/86",
+      "state": "closed",
+      "tags": [
+        {
+          "id": 11786878091,
+          "name": "memU",
+          "color": "c65bea"
+        },
+        {
+          "id": 11786609240,
+          "name": "P2",
+          "color": "fbca04"
+        }
+      ],
+      "createdAt": "2026-08-10T02:16:09Z",
+      "updatedAt": "2026-08-10T08:47:47Z",
+      "closedAt": "2026-08-10T08:47:47Z"
+    },
+    {
+      "number": 85,
+      "title": "制定 ChatGPT/Codex 旧原生定时任务的完整移除流程",
+      "descriptionHtml": "<h2 dir=\"auto\">调研目标</h2>\n<p dir=\"auto\">设计并验证 ChatGPT / Codex 旧原生定时任务的完整检查与干净移除流程。</p>\n<h2 dir=\"auto\">需要确认</h2>\n<ul dir=\"auto\">\n<li>如何列出 ChatGPT Work mode 和 Codex mode 的全部 native scheduled tasks。</li>\n<li>如果两种模式不共通，如何分别找到两侧任务、定义和运行残留。</li>\n<li>删除任务后是否仍有 SKILL、数据库记录、缓存、日志或 OS 调度项残留。</li>\n<li>如何避免误删当前仍在使用的任务。</li>\n</ul>\n<h2 dir=\"auto\">交付物</h2>\n<ul dir=\"auto\">\n<li>Windows 与 Unix 分开的只读审计命令。</li>\n<li>带备份、删除、复查和回滚步骤的安全操作手册。</li>\n<li>对每种存储层给出验证“已完整移除”的方法。</li>\n</ul>\n<blockquote>\n<p dir=\"auto\">不执行实际删除，除非后续得到明确确认。</p>\n</blockquote>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/85",
+      "state": "closed",
+      "tags": [
+        {
+          "id": 11786878091,
+          "name": "memU",
+          "color": "c65bea"
+        },
+        {
+          "id": 11786608096,
+          "name": "P1",
+          "color": "d93f0b"
+        }
+      ],
+      "createdAt": "2026-08-10T02:15:54Z",
+      "updatedAt": "2026-08-10T07:47:13Z",
+      "closedAt": "2026-08-10T07:47:13Z"
+    },
+    {
+      "number": 84,
+      "title": "调研 ChatGPT Work 与 Codex mode 定时任务是否共通",
+      "descriptionHtml": "<h2 dir=\"auto\">调研目标</h2>\n<p dir=\"auto\">对比 ChatGPT Work mode 与 Codex mode 下的原生定时任务，确认存储与执行是否共通。</p>\n<h2 dir=\"auto\">需要确认</h2>\n<ul dir=\"auto\">\n<li>两种模式分别把定时任务存在哪里。</li>\n<li>调度器、任务 ID、启用状态、运行历史与通知是否共享。</li>\n<li>在一个模式创建、暂停或删除的任务，另一个模式能否完整看见。</li>\n<li>ChatGPT 桌面端、Codex CLI 与云端账户各自承担什么职责。</li>\n</ul>\n<h2 dir=\"auto\">交付物</h2>\n<ul dir=\"auto\">\n<li>通过最小实验和文件证据绘制数据流。</li>\n<li>共通与不共通部分的清单。</li>\n<li>对 memU 读取、去重和同步边界的建议。</li>\n</ul>\n<h2 dir=\"auto\">结论</h2>\n<p dir=\"auto\"><strong>已确认：ChatGPT Work 与 Codex mode 共享同一个定时任务系统。</strong></p>\n<h3 dir=\"auto\">共通部分</h3>\n<p dir=\"auto\">Task 本体和运行历史在两个模式之间共通。</p>\n<p dir=\"auto\">在 Work 或 Codex 任一模式中创建 Task，都会同时出现在另一个模式的「已安排」列表中。</p>\n<h3 dir=\"auto\">安装限制</h3>\n<p dir=\"auto\">安装 native scheduler 的成功与否可能取决于当前模型的能力，而不只是 Work 或 Codex 模式本身。</p>\n<p dir=\"auto\">本次实验中，使用 DeepSeek 时，无论在 Codex 还是 Work 中都无法正确识别安装方式；切换到 Terra 后安装成功。</p>",
+      "issueUrl": "https://github.com/MrXnneHang/xnnehang.top/issues/84",
+      "state": "closed",
+      "tags": [
+        {
+          "id": 11786878091,
+          "name": "memU",
+          "color": "c65bea"
+        },
+        {
+          "id": 11786607965,
+          "name": "P0",
+          "color": "b60205"
+        }
+      ],
+      "createdAt": "2026-08-10T02:15:28Z",
+      "updatedAt": "2026-08-10T07:48:37Z",
+      "closedAt": "2026-08-10T07:19:47Z"
+    }
+  ]
+}

@@ -1,0 +1,6751 @@
+{
+  "version": 3,
+  "locale": "en",
+  "generatedAt": "2026-09-06T20:28:40.994Z",
+  "status": "live",
+  "source": "ga4",
+  "site": {
+    "activeUsers": 395,
+    "screenPageViews": 606,
+    "engagementSeconds": 4789,
+    "engagementSecondsPerUser": 12.12
+  },
+  "content": {
+    "postCount": 75,
+    "totalWords": 108142,
+    "publications": [
+      {
+        "month": "2022-10",
+        "count": 1
+      },
+      {
+        "month": "2024-01",
+        "count": 1
+      },
+      {
+        "month": "2024-03",
+        "count": 1
+      },
+      {
+        "month": "2024-04",
+        "count": 1
+      },
+      {
+        "month": "2024-06",
+        "count": 4
+      },
+      {
+        "month": "2024-07",
+        "count": 8
+      },
+      {
+        "month": "2024-08",
+        "count": 6
+      },
+      {
+        "month": "2024-09",
+        "count": 5
+      },
+      {
+        "month": "2024-10",
+        "count": 4
+      },
+      {
+        "month": "2025-01",
+        "count": 1
+      },
+      {
+        "month": "2025-02",
+        "count": 3
+      },
+      {
+        "month": "2025-03",
+        "count": 1
+      },
+      {
+        "month": "2025-05",
+        "count": 1
+      },
+      {
+        "month": "2025-06",
+        "count": 1
+      },
+      {
+        "month": "2025-07",
+        "count": 1
+      },
+      {
+        "month": "2025-09",
+        "count": 1
+      },
+      {
+        "month": "2025-11",
+        "count": 1
+      },
+      {
+        "month": "2025-12",
+        "count": 1
+      },
+      {
+        "month": "2026-02",
+        "count": 1
+      },
+      {
+        "month": "2026-06",
+        "count": 11
+      },
+      {
+        "month": "2026-07",
+        "count": 10
+      },
+      {
+        "month": "2026-08",
+        "count": 10
+      },
+      {
+        "month": "2026-09",
+        "count": 1
+      }
+    ],
+    "dailyPublications": [
+      {
+        "date": "2022-10-17",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Fengxin Is a Good Name",
+            "path": "/en/posts/fengxin-lou/",
+            "published": "2022-10-17",
+            "words": 336
+          }
+        ]
+      },
+      {
+        "date": "2024-01-30",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Using OBS with VTube Studio: Be a Vtuber",
+            "path": "/en/posts/obs-vtube-studio-vtuber-guide/",
+            "published": "2024-01-30",
+            "words": 114
+          }
+        ]
+      },
+      {
+        "date": "2024-03-26",
+        "count": 1,
+        "posts": [
+          {
+            "title": "The Girlfriend at the End of the World",
+            "path": "/en/posts/shijie-jintou-de-nvyou/",
+            "published": "2024-03-26",
+            "words": 125
+          }
+        ]
+      },
+      {
+        "date": "2024-04-01",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Demian",
+            "path": "/en/posts/demian/",
+            "published": "2024-04-01",
+            "words": 69
+          }
+        ]
+      },
+      {
+        "date": "2024-06-20",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Existentialist Reading Notes",
+            "path": "/en/posts/cunzai-zhuyi/",
+            "published": "2024-06-20",
+            "words": 1349
+          }
+        ]
+      },
+      {
+        "date": "2024-06-25",
+        "count": 2,
+        "posts": [
+          {
+            "title": "We Who Have No Tomorrow Fell in Love Yesterday",
+            "path": "/en/posts/meiyou-mingtian/",
+            "published": "2024-06-25",
+            "words": 1294
+          },
+          {
+            "title": "Flowers Yet to Bloom",
+            "path": "/en/posts/weijin-zhi-hua/",
+            "published": "2024-06-25",
+            "words": 282
+          }
+        ]
+      },
+      {
+        "date": "2024-06-29",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Near Being, Far Being",
+            "path": "/en/posts/cunzai-zhijin/",
+            "published": "2024-06-29",
+            "words": 1019
+          }
+        ]
+      },
+      {
+        "date": "2024-07-01",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Fuwari Blog Theme Guide",
+            "path": "/en/posts/fuwari-guide/",
+            "published": "2024-07-01",
+            "words": 261
+          }
+        ]
+      },
+      {
+        "date": "2024-07-08",
+        "count": 3,
+        "posts": [
+          {
+            "title": "Love in the Buff",
+            "path": "/en/posts/chunjiao-yu-zhiming/",
+            "published": "2024-07-08",
+            "words": 1176
+          },
+          {
+            "title": "Fanfic",
+            "path": "/en/posts/qingchun-tongrenzhi/",
+            "published": "2024-07-08",
+            "words": 571
+          },
+          {
+            "title": "After “A Year for Ten Thousand Yen”",
+            "path": "/en/posts/yi-nian-yiwan-yuan/",
+            "published": "2024-07-08",
+            "words": 854
+          }
+        ]
+      },
+      {
+        "date": "2024-07-10",
+        "count": 1,
+        "posts": [
+          {
+            "title": "The Deadline",
+            "path": "/en/posts/zuihou-qixian/",
+            "published": "2024-07-10",
+            "words": 2153
+          }
+        ]
+      },
+      {
+        "date": "2024-07-15",
+        "count": 2,
+        "posts": [
+          {
+            "title": "After Young Babylon",
+            "path": "/en/posts/shaonian-babilun/",
+            "published": "2024-07-15",
+            "words": 421
+          },
+          {
+            "title": "Love in Yushima",
+            "path": "/en/posts/tangdao-zhi-lian/",
+            "published": "2024-07-15",
+            "words": 518
+          }
+        ]
+      },
+      {
+        "date": "2024-07-17",
+        "count": 1,
+        "posts": [
+          {
+            "title": "After The Poppy",
+            "path": "/en/posts/yumei-cao/",
+            "published": "2024-07-17",
+            "words": 1658
+          }
+        ]
+      },
+      {
+        "date": "2024-08-04",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Pandora's Box",
+            "path": "/en/posts/panduola/",
+            "published": "2024-08-04",
+            "words": 161
+          }
+        ]
+      },
+      {
+        "date": "2024-08-13",
+        "count": 2,
+        "posts": [
+          {
+            "title": "After The God of Cookery",
+            "path": "/en/posts/shishen/",
+            "published": "2024-08-13",
+            "words": 505
+          },
+          {
+            "title": "After Gold or Shit",
+            "path": "/en/posts/zouzoutingting/",
+            "published": "2024-08-13",
+            "words": 699
+          }
+        ]
+      },
+      {
+        "date": "2024-08-17",
+        "count": 1,
+        "posts": [
+          {
+            "title": "I Come Alone, I Leave Alone",
+            "path": "/en/posts/wo-yigerenlai/",
+            "published": "2024-08-17",
+            "words": 1011
+          }
+        ]
+      },
+      {
+        "date": "2024-08-20",
+        "count": 1,
+        "posts": [
+          {
+            "title": "After Under Current: The Jianghu Brotherhood of the 1980s and 1990s",
+            "path": "/en/posts/nilin/",
+            "published": "2024-08-20",
+            "words": 596
+          }
+        ]
+      },
+      {
+        "date": "2024-08-29",
+        "count": 1,
+        "posts": [
+          {
+            "title": "After A Chinese Odyssey Part One: Pandora's Box",
+            "path": "/en/posts/yueguang-baohe/",
+            "published": "2024-08-29",
+            "words": 1401
+          }
+        ]
+      },
+      {
+        "date": "2024-09-01",
+        "count": 2,
+        "posts": [
+          {
+            "title": "After A Chinese Odyssey Part Two: Cinderella",
+            "path": "/en/posts/dasheng-quqin/",
+            "published": "2024-09-01",
+            "words": 1584
+          },
+          {
+            "title": "After Vampires' Melody",
+            "path": "/en/posts/vampires-melody/",
+            "published": "2024-09-01",
+            "words": 647
+          }
+        ]
+      },
+      {
+        "date": "2024-09-07",
+        "count": 1,
+        "posts": [
+          {
+            "title": "After Forbidden City Cop",
+            "path": "/en/posts/daneimitan-00fa/",
+            "published": "2024-09-07",
+            "words": 749
+          }
+        ]
+      },
+      {
+        "date": "2024-09-09",
+        "count": 1,
+        "posts": [
+          {
+            "title": "From Frieren: Beyond Journey's End to Psychological Compulsion",
+            "path": "/en/posts/frieren-ocd/",
+            "published": "2024-09-09",
+            "words": 431
+          }
+        ]
+      },
+      {
+        "date": "2024-09-26",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Reading Notes on Rashomon",
+            "path": "/en/posts/luoshengmen/",
+            "published": "2024-09-26",
+            "words": 1762
+          }
+        ]
+      },
+      {
+        "date": "2024-10-10",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Sahara Stories: Reading Notes",
+            "path": "/en/posts/sahara-stories/",
+            "published": "2024-10-10",
+            "words": 979
+          }
+        ]
+      },
+      {
+        "date": "2024-10-12",
+        "count": 1,
+        "posts": [
+          {
+            "title": "A Maverick Pig",
+            "path": "/en/posts/a-maverick-pig/",
+            "published": "2024-10-12",
+            "words": 880
+          }
+        ]
+      },
+      {
+        "date": "2024-10-15",
+        "count": 1,
+        "posts": [
+          {
+            "title": "What I Talk About When I Talk About Running: Reading Notes",
+            "path": "/en/posts/talking-about-running/",
+            "published": "2024-10-15",
+            "words": 1222
+          }
+        ]
+      },
+      {
+        "date": "2024-10-18",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Imouto Life",
+            "path": "/en/posts/imouto-jinsei/",
+            "published": "2024-10-18",
+            "words": 531
+          }
+        ]
+      },
+      {
+        "date": "2025-01-15",
+        "count": 1,
+        "posts": [
+          {
+            "title": "You Are My Glory",
+            "path": "/en/posts/you-are-my-glory/",
+            "published": "2025-01-15",
+            "words": 608
+          }
+        ]
+      },
+      {
+        "date": "2025-02-16",
+        "count": 2,
+        "posts": [
+          {
+            "title": "The Long Ballad: Even After a Thousand-Li Farewell, We Must Part at Last",
+            "path": "/en/posts/changge-xing/",
+            "published": "2025-02-16",
+            "words": 1228
+          },
+          {
+            "title": "A Snow Rabbit Twenty Centimeters from Spring and The Shawshank Redemption",
+            "path": "/en/posts/snow-rabbit-shawshank/",
+            "published": "2025-02-16",
+            "words": 952
+          }
+        ]
+      },
+      {
+        "date": "2025-02-18",
+        "count": 1,
+        "posts": [
+          {
+            "title": "On Mortal Lives in Renegade Immortal and A Record of a Mortal's Journey to Immortality",
+            "path": "/en/posts/xianni-huafan/",
+            "published": "2025-02-18",
+            "words": 1588
+          }
+        ]
+      },
+      {
+        "date": "2025-03-15",
+        "count": 1,
+        "posts": [
+          {
+            "title": "After Hua Jiang Hu: Tian Gang — Perhaps True Completion Does Not Exist",
+            "path": "/en/posts/huajianghu-tiangang/",
+            "published": "2025-03-15",
+            "words": 789
+          }
+        ]
+      },
+      {
+        "date": "2025-05-15",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Starting from a NEKOPARA Review",
+            "path": "/en/posts/nekopara-vol-1/",
+            "published": "2025-05-15",
+            "words": 1487
+          }
+        ]
+      },
+      {
+        "date": "2025-06-20",
+        "count": 1,
+        "posts": [
+          {
+            "title": "We Made a Beautiful Bouquet",
+            "path": "/en/posts/ruhuashuban-de-lianai/",
+            "published": "2025-06-20",
+            "words": 995
+          }
+        ]
+      },
+      {
+        "date": "2025-07-06",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Attention Is Limited — Lost in the Middle",
+            "path": "/en/posts/attention-is-limited/",
+            "published": "2025-07-06",
+            "words": 1215
+          }
+        ]
+      },
+      {
+        "date": "2025-09-07",
+        "count": 1,
+        "posts": [
+          {
+            "title": "What Bad Intentions Could I Possibly Have?",
+            "path": "/en/posts/wo-neng-you-shenme-huai-xinsi-ne/",
+            "published": "2025-09-07",
+            "words": 190
+          }
+        ]
+      },
+      {
+        "date": "2025-11-15",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Bringing AI Chat to Congyin in Chill with You: Lo-Fi Story",
+            "path": "/en/posts/cong-yin-ai-chat/",
+            "published": "2025-11-15",
+            "words": 449
+          }
+        ]
+      },
+      {
+        "date": "2025-12-29",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Termix: A Very Cool Web-Based SSH Client",
+            "path": "/en/posts/termix-web-ssh-guide/",
+            "published": "2025-12-29",
+            "words": 556
+          }
+        ]
+      },
+      {
+        "date": "2026-02-08",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Single Image Does Not Equal Multiple Images: Why VLMs Hallucinate More with Multiple Images, and a Two-Stage Fix",
+            "path": "/en/posts/multi-image-vlm/",
+            "published": "2026-02-08",
+            "words": 2061
+          }
+        ]
+      },
+      {
+        "date": "2026-06-01",
+        "count": 1,
+        "posts": [
+          {
+            "title": "When My Cloud Provider Disappeared: Rethinking the Shape of a Personal Blog and What Is Worth Recording",
+            "path": "/en/posts/cloud-service-provider/",
+            "published": "2026-06-01",
+            "words": 1695
+          }
+        ]
+      },
+      {
+        "date": "2026-06-06",
+        "count": 1,
+        "posts": [
+          {
+            "title": "After Building Long-Lived Systems: Is the RAG Monster Right for Constructing a Personal Blog Graph?",
+            "path": "/en/posts/rag-blog-graph/",
+            "published": "2026-06-06",
+            "words": 1508
+          }
+        ]
+      },
+      {
+        "date": "2026-06-07",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Rebuilding My Blog: Where My Inspirations Came From",
+            "path": "/en/posts/blog-rebuild-inspirations/",
+            "published": "2026-06-07",
+            "words": 2511
+          }
+        ]
+      },
+      {
+        "date": "2026-06-12",
+        "count": 1,
+        "posts": [
+          {
+            "title": "In the LLM Era, What Exactly Is My Ability?",
+            "path": "/en/posts/what-is-my-ability-in-llm-era/",
+            "published": "2026-06-12",
+            "words": 1399
+          }
+        ]
+      },
+      {
+        "date": "2026-06-13",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Things Pass Like Spring Dreams, Leaving No Trace; Yet Then, I Knew Only Joy.",
+            "path": "/en/posts/chongfu-zhi-le/",
+            "published": "2026-06-13",
+            "words": 798
+          }
+        ]
+      },
+      {
+        "date": "2026-06-14",
+        "count": 1,
+        "posts": [
+          {
+            "title": "How I Find Books",
+            "path": "/en/posts/my-book-finding-channels/",
+            "published": "2026-06-14",
+            "words": 180
+          }
+        ]
+      },
+      {
+        "date": "2026-06-18",
+        "count": 1,
+        "posts": [
+          {
+            "title": "First Impressions of Obsidian-YOLO",
+            "path": "/en/posts/obsidian-yolo/",
+            "published": "2026-06-18",
+            "words": 909
+          }
+        ]
+      },
+      {
+        "date": "2026-06-23",
+        "count": 1,
+        "posts": [
+          {
+            "title": "What We Built When Mainstream Agent Frameworks Could Not Fit Our Needs",
+            "path": "/en/posts/agent-framework-exploration/",
+            "published": "2026-06-23",
+            "words": 3328
+          }
+        ]
+      },
+      {
+        "date": "2026-06-28",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Go Build Long-Term Memory! A Review and Plan After Graduating with an AI Degree",
+            "path": "/en/posts/long-term-memory-graduation-review-and-plan/",
+            "published": "2026-06-28",
+            "words": 2371
+          }
+        ]
+      },
+      {
+        "date": "2026-06-29",
+        "count": 1,
+        "posts": [
+          {
+            "title": "What Is memU? Let's Break It Down (An Ongoing Series)",
+            "path": "/en/posts/memu-source-code-breakdown/",
+            "published": "2026-06-29",
+            "words": 7056
+          }
+        ]
+      },
+      {
+        "date": "2026-06-30",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Blending with the Dust — Starting with Han Li",
+            "path": "/en/posts/heguang-tongchen/",
+            "published": "2026-06-30",
+            "words": 2662
+          }
+        ]
+      },
+      {
+        "date": "2026-07-02",
+        "count": 1,
+        "posts": [
+          {
+            "title": "memU's Architectural Shift Through the Eyes of a Consumer-Facing Developer",
+            "path": "/en/posts/memu-adr0007-ce-duan-perspective/",
+            "published": "2026-07-02",
+            "words": 1308
+          }
+        ]
+      },
+      {
+        "date": "2026-07-03",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Starting with How We Use Skills: What Are Progressive Disclosure and Task Decomposition, and What Do I Want to Explore?",
+            "path": "/en/posts/progressive-disclosure-and-novel-agent/",
+            "published": "2026-07-03",
+            "words": 2899
+          }
+        ]
+      },
+      {
+        "date": "2026-07-07",
+        "count": 1,
+        "posts": [
+          {
+            "title": "gotcha.md: A Pitfall Handbook for Your Agent",
+            "path": "/en/posts/gotcha-agent-rules/",
+            "published": "2026-07-07",
+            "words": 1487
+          }
+        ]
+      },
+      {
+        "date": "2026-07-12",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Learning TF-IDF Again After Graduation",
+            "path": "/en/posts/tf-idf-and-bm25/",
+            "published": "2026-07-12",
+            "words": 1101
+          }
+        ]
+      },
+      {
+        "date": "2026-07-14",
+        "count": 2,
+        "posts": [
+          {
+            "title": "Sparse vs. Dense: From BPE to Hybrid Search",
+            "path": "/en/posts/sparsing-and-densing-embeddings/",
+            "published": "2026-07-14",
+            "words": 2487
+          },
+          {
+            "title": "Travellin' Cats in Germany: A Haven for Digital Cat Lovers",
+            "path": "/en/posts/travellin-cats-in-germany/",
+            "published": "2026-07-14",
+            "words": 183
+          }
+        ]
+      },
+      {
+        "date": "2026-07-15",
+        "count": 1,
+        "posts": [
+          {
+            "title": "MoeChat: How AI Characters Remember You and Feel Emotions",
+            "path": "/en/posts/moechat_ltm/",
+            "published": "2026-07-15",
+            "words": 3605
+          }
+        ]
+      },
+      {
+        "date": "2026-07-21",
+        "count": 1,
+        "posts": [
+          {
+            "title": "RRF vs. Hybrid Search: How Should Time-Based Retrieval Be Blended, and How Does It Fit Project and Companion Scenarios?",
+            "path": "/en/posts/RRF-vs-Hybrid-Search/",
+            "published": "2026-07-21",
+            "words": 5124
+          }
+        ]
+      },
+      {
+        "date": "2026-07-23",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Learning from Bad Architecture: What Claude Desktop's Five Scheduling Systems Reveal About Separating Cowork and Code",
+            "path": "/en/posts/claude-desktop-bridging-problem/",
+            "published": "2026-07-23",
+            "words": 2220
+          }
+        ]
+      },
+      {
+        "date": "2026-07-28",
+        "count": 1,
+        "posts": [
+          {
+            "title": "The Shape of a Protocol Determines Its Capabilities: Why Codex Removed chat_completion, and What Actually Blocks a Desktop Companion from Talking While It Works",
+            "path": "/en/posts/resposne-vs-chat_completion/",
+            "published": "2026-07-28",
+            "words": 5754
+          }
+        ]
+      },
+      {
+        "date": "2026-08-05",
+        "count": 1,
+        "posts": [
+          {
+            "title": "First Impressions of GitHub Stacked PRs",
+            "path": "/en/posts/github-stacked-prs/",
+            "published": "2026-08-05",
+            "words": 1975
+          }
+        ]
+      },
+      {
+        "date": "2026-08-08",
+        "count": 1,
+        "posts": [
+          {
+            "title": "The Lychee of Chang'an",
+            "path": "/en/posts/changan-de-lizhi/",
+            "published": "2026-08-08",
+            "words": 147
+          }
+        ]
+      },
+      {
+        "date": "2026-08-16",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Filled with Empty Things",
+            "path": "/en/posts/man-shi-kong-xu-zhi-wu/",
+            "published": "2026-08-16",
+            "words": 182
+          }
+        ]
+      },
+      {
+        "date": "2026-08-17",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Reconciling the Pomodoro Technique with Waiting on Agents: Task-Driven, Not Conversation-Driven",
+            "path": "/en/posts/pomodoro-agent-task-driven/",
+            "published": "2026-08-17",
+            "words": 1800
+          }
+        ]
+      },
+      {
+        "date": "2026-08-18",
+        "count": 1,
+        "posts": [
+          {
+            "title": "The Psychological Suggestion of Megastructures and Existential Relief",
+            "path": "/en/posts/megastructure-existential-relief/",
+            "published": "2026-08-18",
+            "words": 3567
+          }
+        ]
+      },
+      {
+        "date": "2026-08-21",
+        "count": 1,
+        "posts": [
+          {
+            "title": "A Fitting Room for Chinese Body Typefaces",
+            "path": "/en/posts/chinese-body-font-lab/",
+            "published": "2026-08-21",
+            "words": 946
+          }
+        ]
+      },
+      {
+        "date": "2026-08-23",
+        "count": 2,
+        "posts": [
+          {
+            "title": "Can an Article Belong in Only One Drawer? Rethinking Category, Kind, and Tags",
+            "path": "/en/posts/category-kind-tags/",
+            "published": "2026-08-23",
+            "words": 1951
+          },
+          {
+            "title": "What Does It Mean When Someone Looks Like a Yandere?",
+            "path": "/en/posts/yandere-appearance/",
+            "published": "2026-08-23",
+            "words": 606
+          }
+        ]
+      },
+      {
+        "date": "2026-08-25",
+        "count": 1,
+        "posts": [
+          {
+            "title": "From Single-Frame Vision to Real-Time Video Conversation: The Multimodal Architecture Paths of DeepSeek, MiniCPM, and MiniMax",
+            "path": "/en/posts/from-single-frame-to-real-time-video-conversation/",
+            "published": "2026-08-25",
+            "words": 3346
+          }
+        ]
+      },
+      {
+        "date": "2026-08-27",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Splitting Repositories Is Not Decoupling: How Copied Shared Code Turns Cross-Repo Cherry-Picks into Maintenance Debt",
+            "path": "/en/posts/repository-split-cherry-pick-debt/",
+            "published": "2026-08-27",
+            "words": 3278
+          }
+        ]
+      },
+      {
+        "date": "2026-09-01",
+        "count": 1,
+        "posts": [
+          {
+            "title": "Re-Reading memU: Multi-Host Worktrees, Run Isolation, and Proactive Memorization",
+            "path": "/en/posts/memu-multi-host-run-isolation/",
+            "published": "2026-09-01",
+            "words": 2283
+          }
+        ]
+      }
+    ],
+    "monthlyOutput": [
+      {
+        "month": "2022-10",
+        "postCount": 1,
+        "words": 336,
+        "estimatedMinutes": 2
+      },
+      {
+        "month": "2022-11",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2022-12",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2023-01",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2023-02",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2023-03",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2023-04",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2023-05",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2023-06",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2023-07",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2023-08",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2023-09",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2023-10",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2023-11",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2023-12",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2024-01",
+        "postCount": 1,
+        "words": 114,
+        "estimatedMinutes": 1
+      },
+      {
+        "month": "2024-02",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2024-03",
+        "postCount": 1,
+        "words": 125,
+        "estimatedMinutes": 1
+      },
+      {
+        "month": "2024-04",
+        "postCount": 1,
+        "words": 69,
+        "estimatedMinutes": 1
+      },
+      {
+        "month": "2024-05",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2024-06",
+        "postCount": 4,
+        "words": 3944,
+        "estimatedMinutes": 19
+      },
+      {
+        "month": "2024-07",
+        "postCount": 8,
+        "words": 7612,
+        "estimatedMinutes": 38
+      },
+      {
+        "month": "2024-08",
+        "postCount": 6,
+        "words": 4373,
+        "estimatedMinutes": 22
+      },
+      {
+        "month": "2024-09",
+        "postCount": 5,
+        "words": 5173,
+        "estimatedMinutes": 26
+      },
+      {
+        "month": "2024-10",
+        "postCount": 4,
+        "words": 3612,
+        "estimatedMinutes": 18
+      },
+      {
+        "month": "2024-11",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2024-12",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2025-01",
+        "postCount": 1,
+        "words": 608,
+        "estimatedMinutes": 3
+      },
+      {
+        "month": "2025-02",
+        "postCount": 3,
+        "words": 3768,
+        "estimatedMinutes": 19
+      },
+      {
+        "month": "2025-03",
+        "postCount": 1,
+        "words": 789,
+        "estimatedMinutes": 4
+      },
+      {
+        "month": "2025-04",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2025-05",
+        "postCount": 1,
+        "words": 1487,
+        "estimatedMinutes": 7
+      },
+      {
+        "month": "2025-06",
+        "postCount": 1,
+        "words": 995,
+        "estimatedMinutes": 5
+      },
+      {
+        "month": "2025-07",
+        "postCount": 1,
+        "words": 1215,
+        "estimatedMinutes": 6
+      },
+      {
+        "month": "2025-08",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2025-09",
+        "postCount": 1,
+        "words": 190,
+        "estimatedMinutes": 1
+      },
+      {
+        "month": "2025-10",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2025-11",
+        "postCount": 1,
+        "words": 449,
+        "estimatedMinutes": 2
+      },
+      {
+        "month": "2025-12",
+        "postCount": 1,
+        "words": 556,
+        "estimatedMinutes": 3
+      },
+      {
+        "month": "2026-01",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2026-02",
+        "postCount": 1,
+        "words": 2061,
+        "estimatedMinutes": 10
+      },
+      {
+        "month": "2026-03",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2026-04",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2026-05",
+        "postCount": 0,
+        "words": 0,
+        "estimatedMinutes": 0
+      },
+      {
+        "month": "2026-06",
+        "postCount": 11,
+        "words": 24417,
+        "estimatedMinutes": 123
+      },
+      {
+        "month": "2026-07",
+        "postCount": 10,
+        "words": 26168,
+        "estimatedMinutes": 131
+      },
+      {
+        "month": "2026-08",
+        "postCount": 10,
+        "words": 17798,
+        "estimatedMinutes": 90
+      },
+      {
+        "month": "2026-09",
+        "postCount": 1,
+        "words": 2283,
+        "estimatedMinutes": 11
+      }
+    ],
+    "categoryEvolution": {
+      "categories": [
+        "technology",
+        "culture",
+        "thought",
+        "life"
+      ],
+      "months": [
+        {
+          "month": "2022-10",
+          "total": 1,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 1,
+              "share": 100
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2022-11",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2022-12",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2023-01",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2023-02",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2023-03",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2023-04",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2023-05",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2023-06",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2023-07",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2023-08",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2023-09",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2023-10",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2023-11",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2023-12",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2024-01",
+          "total": 1,
+          "values": [
+            {
+              "category": "technology",
+              "count": 1,
+              "share": 100
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2024-02",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2024-03",
+          "total": 1,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 1,
+              "share": 100
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2024-04",
+          "total": 1,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 1,
+              "share": 100
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2024-05",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2024-06",
+          "total": 4,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 1,
+              "share": 25
+            },
+            {
+              "category": "thought",
+              "count": 3,
+              "share": 75
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2024-07",
+          "total": 8,
+          "values": [
+            {
+              "category": "technology",
+              "count": 1,
+              "share": 12.5
+            },
+            {
+              "category": "culture",
+              "count": 7,
+              "share": 87.5
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2024-08",
+          "total": 6,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 6,
+              "share": 100
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2024-09",
+          "total": 5,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 4,
+              "share": 80
+            },
+            {
+              "category": "thought",
+              "count": 1,
+              "share": 20
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2024-10",
+          "total": 4,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 4,
+              "share": 100
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2024-11",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2024-12",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2025-01",
+          "total": 1,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 1,
+              "share": 100
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2025-02",
+          "total": 3,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 3,
+              "share": 100
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2025-03",
+          "total": 1,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 1,
+              "share": 100
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2025-04",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2025-05",
+          "total": 1,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 1,
+              "share": 100
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2025-06",
+          "total": 1,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 1,
+              "share": 100
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2025-07",
+          "total": 1,
+          "values": [
+            {
+              "category": "technology",
+              "count": 1,
+              "share": 100
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2025-08",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2025-09",
+          "total": 1,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 1,
+              "share": 100
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2025-10",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2025-11",
+          "total": 1,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 1,
+              "share": 100
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2025-12",
+          "total": 1,
+          "values": [
+            {
+              "category": "technology",
+              "count": 1,
+              "share": 100
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2026-01",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2026-02",
+          "total": 1,
+          "values": [
+            {
+              "category": "technology",
+              "count": 1,
+              "share": 100
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2026-03",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2026-04",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2026-05",
+          "total": 0,
+          "values": [
+            {
+              "category": "technology",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2026-06",
+          "total": 11,
+          "values": [
+            {
+              "category": "technology",
+              "count": 5,
+              "share": 45.45
+            },
+            {
+              "category": "culture",
+              "count": 2,
+              "share": 18.18
+            },
+            {
+              "category": "thought",
+              "count": 3,
+              "share": 27.27
+            },
+            {
+              "category": "life",
+              "count": 1,
+              "share": 9.1
+            }
+          ]
+        },
+        {
+          "month": "2026-07",
+          "total": 10,
+          "values": [
+            {
+              "category": "technology",
+              "count": 9,
+              "share": 90
+            },
+            {
+              "category": "culture",
+              "count": 1,
+              "share": 10
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2026-08",
+          "total": 10,
+          "values": [
+            {
+              "category": "technology",
+              "count": 5,
+              "share": 50
+            },
+            {
+              "category": "culture",
+              "count": 3,
+              "share": 30
+            },
+            {
+              "category": "thought",
+              "count": 2,
+              "share": 20
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        },
+        {
+          "month": "2026-09",
+          "total": 1,
+          "values": [
+            {
+              "category": "technology",
+              "count": 1,
+              "share": 100
+            },
+            {
+              "category": "culture",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "thought",
+              "count": 0,
+              "share": 0
+            },
+            {
+              "category": "life",
+              "count": 0,
+              "share": 0
+            }
+          ]
+        }
+      ]
+    },
+    "seriesLifelines": [
+      {
+        "name": "Architecture Design",
+        "firstPublished": "2026-08-27",
+        "lastPublished": "2026-09-01",
+        "postCount": 2,
+        "totalWords": 5561,
+        "posts": [
+          {
+            "title": "Splitting Repositories Is Not Decoupling: How Copied Shared Code Turns Cross-Repo Cherry-Picks into Maintenance Debt",
+            "path": "/en/posts/repository-split-cherry-pick-debt/",
+            "published": "2026-08-27",
+            "words": 3278
+          },
+          {
+            "title": "Re-Reading memU: Multi-Host Worktrees, Run Isolation, and Proactive Memorization",
+            "path": "/en/posts/memu-multi-host-run-isolation/",
+            "published": "2026-09-01",
+            "words": 2283
+          }
+        ]
+      },
+      {
+        "name": "Long-Term Memory",
+        "firstPublished": "2026-06-29",
+        "lastPublished": "2026-09-01",
+        "postCount": 6,
+        "totalWords": 20863,
+        "posts": [
+          {
+            "title": "What Is memU? Let's Break It Down (An Ongoing Series)",
+            "path": "/en/posts/memu-source-code-breakdown/",
+            "published": "2026-06-29",
+            "words": 7056
+          },
+          {
+            "title": "memU's Architectural Shift Through the Eyes of a Consumer-Facing Developer",
+            "path": "/en/posts/memu-adr0007-ce-duan-perspective/",
+            "published": "2026-07-02",
+            "words": 1308
+          },
+          {
+            "title": "gotcha.md: A Pitfall Handbook for Your Agent",
+            "path": "/en/posts/gotcha-agent-rules/",
+            "published": "2026-07-07",
+            "words": 1487
+          },
+          {
+            "title": "MoeChat: How AI Characters Remember You and Feel Emotions",
+            "path": "/en/posts/moechat_ltm/",
+            "published": "2026-07-15",
+            "words": 3605
+          },
+          {
+            "title": "RRF vs. Hybrid Search: How Should Time-Based Retrieval Be Blended, and How Does It Fit Project and Companion Scenarios?",
+            "path": "/en/posts/RRF-vs-Hybrid-Search/",
+            "published": "2026-07-21",
+            "words": 5124
+          },
+          {
+            "title": "Re-Reading memU: Multi-Host Worktrees, Run Isolation, and Proactive Memorization",
+            "path": "/en/posts/memu-multi-host-run-isolation/",
+            "published": "2026-09-01",
+            "words": 2283
+          }
+        ]
+      },
+      {
+        "name": "LLM",
+        "firstPublished": "2025-07-06",
+        "lastPublished": "2026-08-25",
+        "postCount": 7,
+        "totalWords": 15732,
+        "posts": [
+          {
+            "title": "Attention Is Limited — Lost in the Middle",
+            "path": "/en/posts/attention-is-limited/",
+            "published": "2025-07-06",
+            "words": 1215
+          },
+          {
+            "title": "Bringing AI Chat to Congyin in Chill with You: Lo-Fi Story",
+            "path": "/en/posts/cong-yin-ai-chat/",
+            "published": "2025-11-15",
+            "words": 449
+          },
+          {
+            "title": "Single Image Does Not Equal Multiple Images: Why VLMs Hallucinate More with Multiple Images, and a Two-Stage Fix",
+            "path": "/en/posts/multi-image-vlm/",
+            "published": "2026-02-08",
+            "words": 2061
+          },
+          {
+            "title": "After Building Long-Lived Systems: Is the RAG Monster Right for Constructing a Personal Blog Graph?",
+            "path": "/en/posts/rag-blog-graph/",
+            "published": "2026-06-06",
+            "words": 1508
+          },
+          {
+            "title": "In the LLM Era, What Exactly Is My Ability?",
+            "path": "/en/posts/what-is-my-ability-in-llm-era/",
+            "published": "2026-06-12",
+            "words": 1399
+          },
+          {
+            "title": "The Shape of a Protocol Determines Its Capabilities: Why Codex Removed chat_completion, and What Actually Blocks a Desktop Companion from Talking While It Works",
+            "path": "/en/posts/resposne-vs-chat_completion/",
+            "published": "2026-07-28",
+            "words": 5754
+          },
+          {
+            "title": "From Single-Frame Vision to Real-Time Video Conversation: The Multimodal Architecture Paths of DeepSeek, MiniCPM, and MiniMax",
+            "path": "/en/posts/from-single-frame-to-real-time-video-conversation/",
+            "published": "2026-08-25",
+            "words": 3346
+          }
+        ]
+      },
+      {
+        "name": "Blogging",
+        "firstPublished": "2024-07-01",
+        "lastPublished": "2026-08-23",
+        "postCount": 7,
+        "totalWords": 9781,
+        "posts": [
+          {
+            "title": "Fuwari Blog Theme Guide",
+            "path": "/en/posts/fuwari-guide/",
+            "published": "2024-07-01",
+            "words": 261
+          },
+          {
+            "title": "When My Cloud Provider Disappeared: Rethinking the Shape of a Personal Blog and What Is Worth Recording",
+            "path": "/en/posts/cloud-service-provider/",
+            "published": "2026-06-01",
+            "words": 1695
+          },
+          {
+            "title": "After Building Long-Lived Systems: Is the RAG Monster Right for Constructing a Personal Blog Graph?",
+            "path": "/en/posts/rag-blog-graph/",
+            "published": "2026-06-06",
+            "words": 1508
+          },
+          {
+            "title": "Rebuilding My Blog: Where My Inspirations Came From",
+            "path": "/en/posts/blog-rebuild-inspirations/",
+            "published": "2026-06-07",
+            "words": 2511
+          },
+          {
+            "title": "First Impressions of Obsidian-YOLO",
+            "path": "/en/posts/obsidian-yolo/",
+            "published": "2026-06-18",
+            "words": 909
+          },
+          {
+            "title": "A Fitting Room for Chinese Body Typefaces",
+            "path": "/en/posts/chinese-body-font-lab/",
+            "published": "2026-08-21",
+            "words": 946
+          },
+          {
+            "title": "Can an Article Belong in Only One Drawer? Rethinking Category, Kind, and Tags",
+            "path": "/en/posts/category-kind-tags/",
+            "published": "2026-08-23",
+            "words": 1951
+          }
+        ]
+      },
+      {
+        "name": "Philosophical Reflections",
+        "firstPublished": "2024-06-20",
+        "lastPublished": "2026-08-18",
+        "postCount": 5,
+        "totalWords": 7107,
+        "posts": [
+          {
+            "title": "Existentialist Reading Notes",
+            "path": "/en/posts/cunzai-zhuyi/",
+            "published": "2024-06-20",
+            "words": 1349
+          },
+          {
+            "title": "Near Being, Far Being",
+            "path": "/en/posts/cunzai-zhijin/",
+            "published": "2024-06-29",
+            "words": 1019
+          },
+          {
+            "title": "Pandora's Box",
+            "path": "/en/posts/panduola/",
+            "published": "2024-08-04",
+            "words": 161
+          },
+          {
+            "title": "I Come Alone, I Leave Alone",
+            "path": "/en/posts/wo-yigerenlai/",
+            "published": "2024-08-17",
+            "words": 1011
+          },
+          {
+            "title": "The Psychological Suggestion of Megastructures and Existential Relief",
+            "path": "/en/posts/megastructure-existential-relief/",
+            "published": "2026-08-18",
+            "words": 3567
+          }
+        ]
+      },
+      {
+        "name": "Reading",
+        "firstPublished": "2024-03-26",
+        "lastPublished": "2026-08-16",
+        "postCount": 20,
+        "totalWords": 15729,
+        "posts": [
+          {
+            "title": "The Girlfriend at the End of the World",
+            "path": "/en/posts/shijie-jintou-de-nvyou/",
+            "published": "2024-03-26",
+            "words": 125
+          },
+          {
+            "title": "Demian",
+            "path": "/en/posts/demian/",
+            "published": "2024-04-01",
+            "words": 69
+          },
+          {
+            "title": "Existentialist Reading Notes",
+            "path": "/en/posts/cunzai-zhuyi/",
+            "published": "2024-06-20",
+            "words": 1349
+          },
+          {
+            "title": "We Who Have No Tomorrow Fell in Love Yesterday",
+            "path": "/en/posts/meiyou-mingtian/",
+            "published": "2024-06-25",
+            "words": 1294
+          },
+          {
+            "title": "Flowers Yet to Bloom",
+            "path": "/en/posts/weijin-zhi-hua/",
+            "published": "2024-06-25",
+            "words": 282
+          },
+          {
+            "title": "After “A Year for Ten Thousand Yen”",
+            "path": "/en/posts/yi-nian-yiwan-yuan/",
+            "published": "2024-07-08",
+            "words": 854
+          },
+          {
+            "title": "The Deadline",
+            "path": "/en/posts/zuihou-qixian/",
+            "published": "2024-07-10",
+            "words": 2153
+          },
+          {
+            "title": "After Young Babylon",
+            "path": "/en/posts/shaonian-babilun/",
+            "published": "2024-07-15",
+            "words": 421
+          },
+          {
+            "title": "Love in Yushima",
+            "path": "/en/posts/tangdao-zhi-lian/",
+            "published": "2024-07-15",
+            "words": 518
+          },
+          {
+            "title": "After The Poppy",
+            "path": "/en/posts/yumei-cao/",
+            "published": "2024-07-17",
+            "words": 1658
+          },
+          {
+            "title": "Pandora's Box",
+            "path": "/en/posts/panduola/",
+            "published": "2024-08-04",
+            "words": 161
+          },
+          {
+            "title": "Reading Notes on Rashomon",
+            "path": "/en/posts/luoshengmen/",
+            "published": "2024-09-26",
+            "words": 1762
+          },
+          {
+            "title": "Sahara Stories: Reading Notes",
+            "path": "/en/posts/sahara-stories/",
+            "published": "2024-10-10",
+            "words": 979
+          },
+          {
+            "title": "A Maverick Pig",
+            "path": "/en/posts/a-maverick-pig/",
+            "published": "2024-10-12",
+            "words": 880
+          },
+          {
+            "title": "What I Talk About When I Talk About Running: Reading Notes",
+            "path": "/en/posts/talking-about-running/",
+            "published": "2024-10-15",
+            "words": 1222
+          },
+          {
+            "title": "Imouto Life",
+            "path": "/en/posts/imouto-jinsei/",
+            "published": "2024-10-18",
+            "words": 531
+          },
+          {
+            "title": "A Snow Rabbit Twenty Centimeters from Spring and The Shawshank Redemption",
+            "path": "/en/posts/snow-rabbit-shawshank/",
+            "published": "2025-02-16",
+            "words": 952
+          },
+          {
+            "title": "What Bad Intentions Could I Possibly Have?",
+            "path": "/en/posts/wo-neng-you-shenme-huai-xinsi-ne/",
+            "published": "2025-09-07",
+            "words": 190
+          },
+          {
+            "title": "The Lychee of Chang'an",
+            "path": "/en/posts/changan-de-lizhi/",
+            "published": "2026-08-08",
+            "words": 147
+          },
+          {
+            "title": "Filled with Empty Things",
+            "path": "/en/posts/man-shi-kong-xu-zhi-wu/",
+            "published": "2026-08-16",
+            "words": 182
+          }
+        ]
+      },
+      {
+        "name": "NLP",
+        "firstPublished": "2026-07-12",
+        "lastPublished": "2026-07-21",
+        "postCount": 3,
+        "totalWords": 8712,
+        "posts": [
+          {
+            "title": "Learning TF-IDF Again After Graduation",
+            "path": "/en/posts/tf-idf-and-bm25/",
+            "published": "2026-07-12",
+            "words": 1101
+          },
+          {
+            "title": "Sparse vs. Dense: From BPE to Hybrid Search",
+            "path": "/en/posts/sparsing-and-densing-embeddings/",
+            "published": "2026-07-14",
+            "words": 2487
+          },
+          {
+            "title": "RRF vs. Hybrid Search: How Should Time-Based Retrieval Be Blended, and How Does It Fit Project and Companion Scenarios?",
+            "path": "/en/posts/RRF-vs-Hybrid-Search/",
+            "published": "2026-07-21",
+            "words": 5124
+          }
+        ]
+      },
+      {
+        "name": "Film and Television",
+        "firstPublished": "2024-07-08",
+        "lastPublished": "2026-06-30",
+        "postCount": 14,
+        "totalWords": 15576,
+        "posts": [
+          {
+            "title": "Love in the Buff",
+            "path": "/en/posts/chunjiao-yu-zhiming/",
+            "published": "2024-07-08",
+            "words": 1176
+          },
+          {
+            "title": "Fanfic",
+            "path": "/en/posts/qingchun-tongrenzhi/",
+            "published": "2024-07-08",
+            "words": 571
+          },
+          {
+            "title": "After The God of Cookery",
+            "path": "/en/posts/shishen/",
+            "published": "2024-08-13",
+            "words": 505
+          },
+          {
+            "title": "After Gold or Shit",
+            "path": "/en/posts/zouzoutingting/",
+            "published": "2024-08-13",
+            "words": 699
+          },
+          {
+            "title": "I Come Alone, I Leave Alone",
+            "path": "/en/posts/wo-yigerenlai/",
+            "published": "2024-08-17",
+            "words": 1011
+          },
+          {
+            "title": "After Under Current: The Jianghu Brotherhood of the 1980s and 1990s",
+            "path": "/en/posts/nilin/",
+            "published": "2024-08-20",
+            "words": 596
+          },
+          {
+            "title": "After A Chinese Odyssey Part One: Pandora's Box",
+            "path": "/en/posts/yueguang-baohe/",
+            "published": "2024-08-29",
+            "words": 1401
+          },
+          {
+            "title": "After A Chinese Odyssey Part Two: Cinderella",
+            "path": "/en/posts/dasheng-quqin/",
+            "published": "2024-09-01",
+            "words": 1584
+          },
+          {
+            "title": "You Are My Glory",
+            "path": "/en/posts/you-are-my-glory/",
+            "published": "2025-01-15",
+            "words": 608
+          },
+          {
+            "title": "The Long Ballad: Even After a Thousand-Li Farewell, We Must Part at Last",
+            "path": "/en/posts/changge-xing/",
+            "published": "2025-02-16",
+            "words": 1228
+          },
+          {
+            "title": "A Snow Rabbit Twenty Centimeters from Spring and The Shawshank Redemption",
+            "path": "/en/posts/snow-rabbit-shawshank/",
+            "published": "2025-02-16",
+            "words": 952
+          },
+          {
+            "title": "On Mortal Lives in Renegade Immortal and A Record of a Mortal's Journey to Immortality",
+            "path": "/en/posts/xianni-huafan/",
+            "published": "2025-02-18",
+            "words": 1588
+          },
+          {
+            "title": "We Made a Beautiful Bouquet",
+            "path": "/en/posts/ruhuashuban-de-lianai/",
+            "published": "2025-06-20",
+            "words": 995
+          },
+          {
+            "title": "Blending with the Dust — Starting with Han Li",
+            "path": "/en/posts/heguang-tongchen/",
+            "published": "2026-06-30",
+            "words": 2662
+          }
+        ]
+      },
+      {
+        "name": "Games",
+        "firstPublished": "2024-09-01",
+        "lastPublished": "2025-11-15",
+        "postCount": 2,
+        "totalWords": 1096,
+        "posts": [
+          {
+            "title": "After Vampires' Melody",
+            "path": "/en/posts/vampires-melody/",
+            "published": "2024-09-01",
+            "words": 647
+          },
+          {
+            "title": "Bringing AI Chat to Congyin in Chill with You: Lo-Fi Story",
+            "path": "/en/posts/cong-yin-ai-chat/",
+            "published": "2025-11-15",
+            "words": 449
+          }
+        ]
+      },
+      {
+        "name": "Film Watching",
+        "firstPublished": "2024-09-07",
+        "lastPublished": "2025-03-15",
+        "postCount": 3,
+        "totalWords": 1969,
+        "posts": [
+          {
+            "title": "After Forbidden City Cop",
+            "path": "/en/posts/daneimitan-00fa/",
+            "published": "2024-09-07",
+            "words": 749
+          },
+          {
+            "title": "From Frieren: Beyond Journey's End to Psychological Compulsion",
+            "path": "/en/posts/frieren-ocd/",
+            "published": "2024-09-09",
+            "words": 431
+          },
+          {
+            "title": "After Hua Jiang Hu: Tian Gang — Perhaps True Completion Does Not Exist",
+            "path": "/en/posts/huajianghu-tiangang/",
+            "published": "2025-03-15",
+            "words": 789
+          }
+        ]
+      },
+      {
+        "name": "Gaming",
+        "firstPublished": "2022-10-17",
+        "lastPublished": "2022-10-17",
+        "postCount": 1,
+        "totalWords": 336,
+        "posts": [
+          {
+            "title": "Fengxin Is a Good Name",
+            "path": "/en/posts/fengxin-lou/",
+            "published": "2022-10-17",
+            "words": 336
+          }
+        ]
+      }
+    ],
+    "rhythm": {
+      "firstPublished": "2022-10-17",
+      "lastPublished": "2026-09-01",
+      "spanDays": 1416,
+      "publishingDays": 66,
+      "medianIntervalDays": 5,
+      "densest30Days": {
+        "start": "2024-06-20",
+        "end": "2024-07-19",
+        "count": 12
+      },
+      "longestGapDays": 470
+    }
+  },
+  "ranges": {
+    "7d": [
+      {
+        "title": "From Single-Frame Vision to Real-Time Video Conversation: The Multimodal Architecture Paths of DeepSeek, MiniCPM, and MiniMax",
+        "path": "/en/posts/from-single-frame-to-real-time-video-conversation/",
+        "published": "2026-08-25",
+        "words": 3346,
+        "estimatedMinutes": 17,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "LLM"
+        ],
+        "editCount": 1,
+        "lastModified": "2026-08-25T03:45:10.000Z",
+        "activeUsers": 4,
+        "screenPageViews": 4,
+        "engagementSeconds": 33,
+        "engagementSecondsPerUser": 8.25
+      },
+      {
+        "title": "Reconciling the Pomodoro Technique with Waiting on Agents: Task-Driven, Not Conversation-Driven",
+        "path": "/en/posts/pomodoro-agent-task-driven/",
+        "published": "2026-08-17",
+        "words": 1800,
+        "estimatedMinutes": 9,
+        "category": "technology",
+        "kind": "reflection",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 4,
+        "screenPageViews": 4,
+        "engagementSeconds": 8,
+        "engagementSecondsPerUser": 2
+      },
+      {
+        "title": "Splitting Repositories Is Not Decoupling: How Copied Shared Code Turns Cross-Repo Cherry-Picks into Maintenance Debt",
+        "path": "/en/posts/repository-split-cherry-pick-debt/",
+        "published": "2026-08-27",
+        "words": 3278,
+        "estimatedMinutes": 16,
+        "category": "technology",
+        "kind": "reflection",
+        "series": [
+          "Architecture Design"
+        ],
+        "editCount": 1,
+        "lastModified": "2026-08-28T12:44:09.000Z",
+        "activeUsers": 3,
+        "screenPageViews": 4,
+        "engagementSeconds": 7,
+        "engagementSecondsPerUser": 2.33
+      },
+      {
+        "title": "Learning from Bad Architecture: What Claude Desktop's Five Scheduling Systems Reveal About Separating Cowork and Code",
+        "path": "/en/posts/claude-desktop-bridging-problem/",
+        "published": "2026-07-23",
+        "words": 2220,
+        "estimatedMinutes": 11,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 3,
+        "screenPageViews": 3,
+        "engagementSeconds": 10,
+        "engagementSecondsPerUser": 3.33
+      },
+      {
+        "title": "First Impressions of Obsidian-YOLO",
+        "path": "/en/posts/obsidian-yolo/",
+        "published": "2026-06-18",
+        "words": 909,
+        "estimatedMinutes": 5,
+        "category": "technology",
+        "kind": "tutorial",
+        "series": [
+          "Blogging"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 3,
+        "screenPageViews": 3,
+        "engagementSeconds": 2,
+        "engagementSecondsPerUser": 0.67
+      },
+      {
+        "title": "Attention Is Limited — Lost in the Middle",
+        "path": "/en/posts/attention-is-limited/",
+        "published": "2025-07-06",
+        "words": 1215,
+        "estimatedMinutes": 6,
+        "category": "technology",
+        "kind": "reflection",
+        "series": [
+          "LLM"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 2,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "Can an Article Belong in Only One Drawer? Rethinking Category, Kind, and Tags",
+        "path": "/en/posts/category-kind-tags/",
+        "published": "2026-08-23",
+        "words": 1951,
+        "estimatedMinutes": 10,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [
+          "Blogging"
+        ],
+        "editCount": 3,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 2,
+        "engagementSeconds": 2,
+        "engagementSecondsPerUser": 1
+      },
+      {
+        "title": "The Psychological Suggestion of Megastructures and Existential Relief",
+        "path": "/en/posts/megastructure-existential-relief/",
+        "published": "2026-08-18",
+        "words": 3567,
+        "estimatedMinutes": 18,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [
+          "Philosophical Reflections"
+        ],
+        "editCount": 3,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 2,
+        "engagementSeconds": 4,
+        "engagementSecondsPerUser": 2
+      },
+      {
+        "title": "RRF vs. Hybrid Search: How Should Time-Based Retrieval Be Blended, and How Does It Fit Project and Companion Scenarios?",
+        "path": "/en/posts/RRF-vs-Hybrid-Search/",
+        "published": "2026-07-21",
+        "words": 5124,
+        "estimatedMinutes": 26,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "Long-Term Memory",
+          "NLP"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "The Long Ballad: Even After a Thousand-Li Farewell, We Must Part at Last",
+        "path": "/en/posts/changge-xing/",
+        "published": "2025-02-16",
+        "words": 1228,
+        "estimatedMinutes": 6,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "A Fitting Room for Chinese Body Typefaces",
+        "path": "/en/posts/chinese-body-font-lab/",
+        "published": "2026-08-21",
+        "words": 946,
+        "estimatedMinutes": 5,
+        "category": "technology",
+        "kind": "note",
+        "series": [
+          "Blogging"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-25T03:45:10.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "Things Pass Like Spring Dreams, Leaving No Trace; Yet Then, I Knew Only Joy.",
+        "path": "/en/posts/chongfu-zhi-le/",
+        "published": "2026-06-13",
+        "words": 798,
+        "estimatedMinutes": 4,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "When My Cloud Provider Disappeared: Rethinking the Shape of a Personal Blog and What Is Worth Recording",
+        "path": "/en/posts/cloud-service-provider/",
+        "published": "2026-06-01",
+        "words": 1695,
+        "estimatedMinutes": 8,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [
+          "Blogging"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "Re-Reading memU: Multi-Host Worktrees, Run Isolation, and Proactive Memorization",
+        "path": "/en/posts/memu-multi-host-run-isolation/",
+        "published": "2026-09-01",
+        "words": 2283,
+        "estimatedMinutes": 11,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "Long-Term Memory",
+          "Architecture Design"
+        ],
+        "editCount": 1,
+        "lastModified": "2026-09-01T10:26:07.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "Single Image Does Not Equal Multiple Images: Why VLMs Hallucinate More with Multiple Images, and a Two-Stage Fix",
+        "path": "/en/posts/multi-image-vlm/",
+        "published": "2026-02-08",
+        "words": 2061,
+        "estimatedMinutes": 10,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "LLM"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "How I Find Books",
+        "path": "/en/posts/my-book-finding-channels/",
+        "published": "2026-06-14",
+        "words": 180,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "resource",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "First Impressions of GitHub Stacked PRs",
+        "path": "/en/posts/github-stacked-prs/",
+        "published": "2026-08-05",
+        "words": 1975,
+        "estimatedMinutes": 10,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 0,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      }
+    ],
+    "30d": [
+      {
+        "title": "MoeChat: How AI Characters Remember You and Feel Emotions",
+        "path": "/en/posts/moechat_ltm/",
+        "published": "2026-07-15",
+        "words": 3605,
+        "estimatedMinutes": 18,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "Long-Term Memory"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 8,
+        "screenPageViews": 10,
+        "engagementSeconds": 97,
+        "engagementSecondsPerUser": 12.13
+      },
+      {
+        "title": "Reconciling the Pomodoro Technique with Waiting on Agents: Task-Driven, Not Conversation-Driven",
+        "path": "/en/posts/pomodoro-agent-task-driven/",
+        "published": "2026-08-17",
+        "words": 1800,
+        "estimatedMinutes": 9,
+        "category": "technology",
+        "kind": "reflection",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 8,
+        "screenPageViews": 10,
+        "engagementSeconds": 15,
+        "engagementSecondsPerUser": 1.88
+      },
+      {
+        "title": "First Impressions of GitHub Stacked PRs",
+        "path": "/en/posts/github-stacked-prs/",
+        "published": "2026-08-05",
+        "words": 1975,
+        "estimatedMinutes": 10,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 5,
+        "screenPageViews": 9,
+        "engagementSeconds": 200,
+        "engagementSecondsPerUser": 40
+      },
+      {
+        "title": "First Impressions of Obsidian-YOLO",
+        "path": "/en/posts/obsidian-yolo/",
+        "published": "2026-06-18",
+        "words": 909,
+        "estimatedMinutes": 5,
+        "category": "technology",
+        "kind": "tutorial",
+        "series": [
+          "Blogging"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 7,
+        "screenPageViews": 7,
+        "engagementSeconds": 5,
+        "engagementSecondsPerUser": 0.71
+      },
+      {
+        "title": "From Single-Frame Vision to Real-Time Video Conversation: The Multimodal Architecture Paths of DeepSeek, MiniCPM, and MiniMax",
+        "path": "/en/posts/from-single-frame-to-real-time-video-conversation/",
+        "published": "2026-08-25",
+        "words": 3346,
+        "estimatedMinutes": 17,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "LLM"
+        ],
+        "editCount": 1,
+        "lastModified": "2026-08-25T03:45:10.000Z",
+        "activeUsers": 6,
+        "screenPageViews": 6,
+        "engagementSeconds": 33,
+        "engagementSecondsPerUser": 5.5
+      },
+      {
+        "title": "The Psychological Suggestion of Megastructures and Existential Relief",
+        "path": "/en/posts/megastructure-existential-relief/",
+        "published": "2026-08-18",
+        "words": 3567,
+        "estimatedMinutes": 18,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [
+          "Philosophical Reflections"
+        ],
+        "editCount": 3,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 4,
+        "screenPageViews": 6,
+        "engagementSeconds": 24,
+        "engagementSecondsPerUser": 6
+      },
+      {
+        "title": "Can an Article Belong in Only One Drawer? Rethinking Category, Kind, and Tags",
+        "path": "/en/posts/category-kind-tags/",
+        "published": "2026-08-23",
+        "words": 1951,
+        "estimatedMinutes": 10,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [
+          "Blogging"
+        ],
+        "editCount": 3,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 3,
+        "screenPageViews": 6,
+        "engagementSeconds": 7,
+        "engagementSecondsPerUser": 2.33
+      },
+      {
+        "title": "Splitting Repositories Is Not Decoupling: How Copied Shared Code Turns Cross-Repo Cherry-Picks into Maintenance Debt",
+        "path": "/en/posts/repository-split-cherry-pick-debt/",
+        "published": "2026-08-27",
+        "words": 3278,
+        "estimatedMinutes": 16,
+        "category": "technology",
+        "kind": "reflection",
+        "series": [
+          "Architecture Design"
+        ],
+        "editCount": 1,
+        "lastModified": "2026-08-28T12:44:09.000Z",
+        "activeUsers": 3,
+        "screenPageViews": 5,
+        "engagementSeconds": 8,
+        "engagementSecondsPerUser": 2.67
+      },
+      {
+        "title": "How I Find Books",
+        "path": "/en/posts/my-book-finding-channels/",
+        "published": "2026-06-14",
+        "words": 180,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "resource",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 5,
+        "screenPageViews": 4,
+        "engagementSeconds": 13,
+        "engagementSecondsPerUser": 2.6
+      },
+      {
+        "title": "Rebuilding My Blog: Where My Inspirations Came From",
+        "path": "/en/posts/blog-rebuild-inspirations/",
+        "published": "2026-06-07",
+        "words": 2511,
+        "estimatedMinutes": 13,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "Blogging"
+        ],
+        "editCount": 4,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 4,
+        "screenPageViews": 4,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "Learning from Bad Architecture: What Claude Desktop's Five Scheduling Systems Reveal About Separating Cowork and Code",
+        "path": "/en/posts/claude-desktop-bridging-problem/",
+        "published": "2026-07-23",
+        "words": 2220,
+        "estimatedMinutes": 11,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 4,
+        "screenPageViews": 4,
+        "engagementSeconds": 14,
+        "engagementSecondsPerUser": 3.5
+      },
+      {
+        "title": "What Does It Mean When Someone Looks Like a Yandere?",
+        "path": "/en/posts/yandere-appearance/",
+        "published": "2026-08-23",
+        "words": 606,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "note",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 4,
+        "screenPageViews": 4,
+        "engagementSeconds": 35,
+        "engagementSecondsPerUser": 8.75
+      },
+      {
+        "title": "The Lychee of Chang'an",
+        "path": "/en/posts/changan-de-lizhi/",
+        "published": "2026-08-08",
+        "words": 147,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 4,
+        "engagementSeconds": 18,
+        "engagementSecondsPerUser": 9
+      },
+      {
+        "title": "Near Being, Far Being",
+        "path": "/en/posts/cunzai-zhijin/",
+        "published": "2024-06-29",
+        "words": 1019,
+        "estimatedMinutes": 5,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [
+          "Philosophical Reflections"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 4,
+        "engagementSeconds": 42,
+        "engagementSecondsPerUser": 21
+      },
+      {
+        "title": "On Mortal Lives in Renegade Immortal and A Record of a Mortal's Journey to Immortality",
+        "path": "/en/posts/xianni-huafan/",
+        "published": "2025-02-18",
+        "words": 1588,
+        "estimatedMinutes": 8,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 4,
+        "engagementSeconds": 7,
+        "engagementSecondsPerUser": 3.5
+      },
+      {
+        "title": "Single Image Does Not Equal Multiple Images: Why VLMs Hallucinate More with Multiple Images, and a Two-Stage Fix",
+        "path": "/en/posts/multi-image-vlm/",
+        "published": "2026-02-08",
+        "words": 2061,
+        "estimatedMinutes": 10,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "LLM"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 4,
+        "screenPageViews": 3,
+        "engagementSeconds": 5,
+        "engagementSecondsPerUser": 1.25
+      },
+      {
+        "title": "Attention Is Limited — Lost in the Middle",
+        "path": "/en/posts/attention-is-limited/",
+        "published": "2025-07-06",
+        "words": 1215,
+        "estimatedMinutes": 6,
+        "category": "technology",
+        "kind": "reflection",
+        "series": [
+          "LLM"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 3,
+        "screenPageViews": 3,
+        "engagementSeconds": 7,
+        "engagementSecondsPerUser": 2.33
+      },
+      {
+        "title": "A Snow Rabbit Twenty Centimeters from Spring and The Shawshank Redemption",
+        "path": "/en/posts/snow-rabbit-shawshank/",
+        "published": "2025-02-16",
+        "words": 952,
+        "estimatedMinutes": 5,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading",
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 3,
+        "screenPageViews": 3,
+        "engagementSeconds": 4,
+        "engagementSecondsPerUser": 1.33
+      },
+      {
+        "title": "Existentialist Reading Notes",
+        "path": "/en/posts/cunzai-zhuyi/",
+        "published": "2024-06-20",
+        "words": 1349,
+        "estimatedMinutes": 7,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [
+          "Reading",
+          "Philosophical Reflections"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 3,
+        "engagementSeconds": 18,
+        "engagementSecondsPerUser": 9
+      },
+      {
+        "title": "Blending with the Dust — Starting with Han Li",
+        "path": "/en/posts/heguang-tongchen/",
+        "published": "2026-06-30",
+        "words": 2662,
+        "estimatedMinutes": 13,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 3,
+        "engagementSeconds": 15,
+        "engagementSecondsPerUser": 7.5
+      },
+      {
+        "title": "Filled with Empty Things",
+        "path": "/en/posts/man-shi-kong-xu-zhi-wu/",
+        "published": "2026-08-16",
+        "words": 182,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 3,
+        "engagementSeconds": 7,
+        "engagementSecondsPerUser": 3.5
+      },
+      {
+        "title": "RRF vs. Hybrid Search: How Should Time-Based Retrieval Be Blended, and How Does It Fit Project and Companion Scenarios?",
+        "path": "/en/posts/RRF-vs-Hybrid-Search/",
+        "published": "2026-07-21",
+        "words": 5124,
+        "estimatedMinutes": 26,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "Long-Term Memory",
+          "NLP"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 2,
+        "engagementSeconds": 10,
+        "engagementSecondsPerUser": 5
+      },
+      {
+        "title": "The Long Ballad: Even After a Thousand-Li Farewell, We Must Part at Last",
+        "path": "/en/posts/changge-xing/",
+        "published": "2025-02-16",
+        "words": 1228,
+        "estimatedMinutes": 6,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 2,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "When My Cloud Provider Disappeared: Rethinking the Shape of a Personal Blog and What Is Worth Recording",
+        "path": "/en/posts/cloud-service-provider/",
+        "published": "2026-06-01",
+        "words": 1695,
+        "estimatedMinutes": 8,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [
+          "Blogging"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 2,
+        "engagementSeconds": 9,
+        "engagementSecondsPerUser": 4.5
+      },
+      {
+        "title": "Starting from a NEKOPARA Review",
+        "path": "/en/posts/nekopara-vol-1/",
+        "published": "2025-05-15",
+        "words": 1487,
+        "estimatedMinutes": 7,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 2,
+        "engagementSeconds": 11,
+        "engagementSecondsPerUser": 11
+      },
+      {
+        "title": "What Bad Intentions Could I Possibly Have?",
+        "path": "/en/posts/wo-neng-you-shenme-huai-xinsi-ne/",
+        "published": "2025-09-07",
+        "words": 190,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 2,
+        "engagementSeconds": 1,
+        "engagementSecondsPerUser": 1
+      },
+      {
+        "title": "memU's Architectural Shift Through the Eyes of a Consumer-Facing Developer",
+        "path": "/en/posts/memu-adr0007-ce-duan-perspective/",
+        "published": "2026-07-02",
+        "words": 1308,
+        "estimatedMinutes": 7,
+        "category": "technology",
+        "kind": "reflection",
+        "series": [
+          "Long-Term Memory"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 1,
+        "engagementSeconds": 20,
+        "engagementSecondsPerUser": 10
+      },
+      {
+        "title": "A Maverick Pig",
+        "path": "/en/posts/a-maverick-pig/",
+        "published": "2024-10-12",
+        "words": 880,
+        "estimatedMinutes": 4,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 6,
+        "engagementSecondsPerUser": 6
+      },
+      {
+        "title": "What We Built When Mainstream Agent Frameworks Could Not Fit Our Needs",
+        "path": "/en/posts/agent-framework-exploration/",
+        "published": "2026-06-23",
+        "words": 3328,
+        "estimatedMinutes": 17,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 12,
+        "engagementSecondsPerUser": 12
+      },
+      {
+        "title": "A Fitting Room for Chinese Body Typefaces",
+        "path": "/en/posts/chinese-body-font-lab/",
+        "published": "2026-08-21",
+        "words": 946,
+        "estimatedMinutes": 5,
+        "category": "technology",
+        "kind": "note",
+        "series": [
+          "Blogging"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-25T03:45:10.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "Things Pass Like Spring Dreams, Leaving No Trace; Yet Then, I Knew Only Joy.",
+        "path": "/en/posts/chongfu-zhi-le/",
+        "published": "2026-06-13",
+        "words": 798,
+        "estimatedMinutes": 4,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "Love in the Buff",
+        "path": "/en/posts/chunjiao-yu-zhiming/",
+        "published": "2024-07-08",
+        "words": 1176,
+        "estimatedMinutes": 6,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 8,
+        "engagementSecondsPerUser": 8
+      },
+      {
+        "title": "Bringing AI Chat to Congyin in Chill with You: Lo-Fi Story",
+        "path": "/en/posts/cong-yin-ai-chat/",
+        "published": "2025-11-15",
+        "words": 449,
+        "estimatedMinutes": 2,
+        "category": "culture",
+        "kind": "resource",
+        "series": [
+          "LLM",
+          "Games"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 9,
+        "engagementSecondsPerUser": 9
+      },
+      {
+        "title": "After A Chinese Odyssey Part Two: Cinderella",
+        "path": "/en/posts/dasheng-quqin/",
+        "published": "2024-09-01",
+        "words": 1584,
+        "estimatedMinutes": 8,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 9,
+        "engagementSecondsPerUser": 9
+      },
+      {
+        "title": "Demian",
+        "path": "/en/posts/demian/",
+        "published": "2024-04-01",
+        "words": 69,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 7,
+        "engagementSecondsPerUser": 7
+      },
+      {
+        "title": "From Frieren: Beyond Journey's End to Psychological Compulsion",
+        "path": "/en/posts/frieren-ocd/",
+        "published": "2024-09-09",
+        "words": 431,
+        "estimatedMinutes": 2,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [
+          "Film Watching"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 9,
+        "engagementSecondsPerUser": 9
+      },
+      {
+        "title": "gotcha.md: A Pitfall Handbook for Your Agent",
+        "path": "/en/posts/gotcha-agent-rules/",
+        "published": "2026-07-07",
+        "words": 1487,
+        "estimatedMinutes": 7,
+        "category": "technology",
+        "kind": "reflection",
+        "series": [
+          "Long-Term Memory"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "After Hua Jiang Hu: Tian Gang — Perhaps True Completion Does Not Exist",
+        "path": "/en/posts/huajianghu-tiangang/",
+        "published": "2025-03-15",
+        "words": 789,
+        "estimatedMinutes": 4,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film Watching"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 20,
+        "engagementSecondsPerUser": 20
+      },
+      {
+        "title": "Imouto Life",
+        "path": "/en/posts/imouto-jinsei/",
+        "published": "2024-10-18",
+        "words": 531,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 10,
+        "engagementSecondsPerUser": 10
+      },
+      {
+        "title": "Reading Notes on Rashomon",
+        "path": "/en/posts/luoshengmen/",
+        "published": "2024-09-26",
+        "words": 1762,
+        "estimatedMinutes": 9,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 14,
+        "engagementSecondsPerUser": 14
+      },
+      {
+        "title": "We Who Have No Tomorrow Fell in Love Yesterday",
+        "path": "/en/posts/meiyou-mingtian/",
+        "published": "2024-06-25",
+        "words": 1294,
+        "estimatedMinutes": 6,
+        "category": "thought",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 4,
+        "engagementSecondsPerUser": 4
+      },
+      {
+        "title": "Re-Reading memU: Multi-Host Worktrees, Run Isolation, and Proactive Memorization",
+        "path": "/en/posts/memu-multi-host-run-isolation/",
+        "published": "2026-09-01",
+        "words": 2283,
+        "estimatedMinutes": 11,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "Long-Term Memory",
+          "Architecture Design"
+        ],
+        "editCount": 1,
+        "lastModified": "2026-09-01T10:26:07.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "After Under Current: The Jianghu Brotherhood of the 1980s and 1990s",
+        "path": "/en/posts/nilin/",
+        "published": "2024-08-20",
+        "words": 596,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 11,
+        "engagementSecondsPerUser": 11
+      },
+      {
+        "title": "Using OBS with VTube Studio: Be a Vtuber",
+        "path": "/en/posts/obs-vtube-studio-vtuber-guide/",
+        "published": "2024-01-30",
+        "words": 114,
+        "estimatedMinutes": 1,
+        "category": "technology",
+        "kind": "tutorial",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 9,
+        "engagementSecondsPerUser": 9
+      },
+      {
+        "title": "Starting with How We Use Skills: What Are Progressive Disclosure and Task Decomposition, and What Do I Want to Explore?",
+        "path": "/en/posts/progressive-disclosure-and-novel-agent/",
+        "published": "2026-07-03",
+        "words": 2899,
+        "estimatedMinutes": 14,
+        "category": "technology",
+        "kind": "reflection",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 4,
+        "engagementSecondsPerUser": 4
+      },
+      {
+        "title": "Fanfic",
+        "path": "/en/posts/qingchun-tongrenzhi/",
+        "published": "2024-07-08",
+        "words": 571,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 8,
+        "engagementSecondsPerUser": 8
+      },
+      {
+        "title": "After Building Long-Lived Systems: Is the RAG Monster Right for Constructing a Personal Blog Graph?",
+        "path": "/en/posts/rag-blog-graph/",
+        "published": "2026-06-06",
+        "words": 1508,
+        "estimatedMinutes": 8,
+        "category": "technology",
+        "kind": "reflection",
+        "series": [
+          "LLM",
+          "Blogging"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 6,
+        "engagementSecondsPerUser": 6
+      },
+      {
+        "title": "The Shape of a Protocol Determines Its Capabilities: Why Codex Removed chat_completion, and What Actually Blocks a Desktop Companion from Talking While It Works",
+        "path": "/en/posts/resposne-vs-chat_completion/",
+        "published": "2026-07-28",
+        "words": 5754,
+        "estimatedMinutes": 29,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "LLM"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "We Made a Beautiful Bouquet",
+        "path": "/en/posts/ruhuashuban-de-lianai/",
+        "published": "2025-06-20",
+        "words": 995,
+        "estimatedMinutes": 5,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 15,
+        "engagementSecondsPerUser": 15
+      },
+      {
+        "title": "The Girlfriend at the End of the World",
+        "path": "/en/posts/shijie-jintou-de-nvyou/",
+        "published": "2024-03-26",
+        "words": 125,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 8,
+        "engagementSecondsPerUser": 8
+      },
+      {
+        "title": "After The God of Cookery",
+        "path": "/en/posts/shishen/",
+        "published": "2024-08-13",
+        "words": 505,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 5,
+        "engagementSecondsPerUser": 5
+      },
+      {
+        "title": "Sparse vs. Dense: From BPE to Hybrid Search",
+        "path": "/en/posts/sparsing-and-densing-embeddings/",
+        "published": "2026-07-14",
+        "words": 2487,
+        "estimatedMinutes": 12,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "NLP"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 21,
+        "engagementSecondsPerUser": 21
+      },
+      {
+        "title": "What I Talk About When I Talk About Running: Reading Notes",
+        "path": "/en/posts/talking-about-running/",
+        "published": "2024-10-15",
+        "words": 1222,
+        "estimatedMinutes": 6,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 1,
+        "engagementSecondsPerUser": 1
+      },
+      {
+        "title": "Love in Yushima",
+        "path": "/en/posts/tangdao-zhi-lian/",
+        "published": "2024-07-15",
+        "words": 518,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 5,
+        "engagementSecondsPerUser": 5
+      },
+      {
+        "title": "Termix: A Very Cool Web-Based SSH Client",
+        "path": "/en/posts/termix-web-ssh-guide/",
+        "published": "2025-12-29",
+        "words": 556,
+        "estimatedMinutes": 3,
+        "category": "technology",
+        "kind": "tutorial",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 19,
+        "engagementSecondsPerUser": 19
+      },
+      {
+        "title": "Learning TF-IDF Again After Graduation",
+        "path": "/en/posts/tf-idf-and-bm25/",
+        "published": "2026-07-12",
+        "words": 1101,
+        "estimatedMinutes": 6,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "NLP"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 13,
+        "engagementSecondsPerUser": 13
+      },
+      {
+        "title": "Travellin' Cats in Germany: A Haven for Digital Cat Lovers",
+        "path": "/en/posts/travellin-cats-in-germany/",
+        "published": "2026-07-14",
+        "words": 183,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "review",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 12,
+        "engagementSecondsPerUser": 12
+      },
+      {
+        "title": "After Vampires' Melody",
+        "path": "/en/posts/vampires-melody/",
+        "published": "2024-09-01",
+        "words": 647,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Games"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 10,
+        "engagementSecondsPerUser": 10
+      },
+      {
+        "title": "Flowers Yet to Bloom",
+        "path": "/en/posts/weijin-zhi-hua/",
+        "published": "2024-06-25",
+        "words": 282,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "In the LLM Era, What Exactly Is My Ability?",
+        "path": "/en/posts/what-is-my-ability-in-llm-era/",
+        "published": "2026-06-12",
+        "words": 1399,
+        "estimatedMinutes": 7,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [
+          "LLM"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 4,
+        "engagementSecondsPerUser": 4
+      },
+      {
+        "title": "After “A Year for Ten Thousand Yen”",
+        "path": "/en/posts/yi-nian-yiwan-yuan/",
+        "published": "2024-07-08",
+        "words": 854,
+        "estimatedMinutes": 4,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 6,
+        "engagementSecondsPerUser": 6
+      },
+      {
+        "title": "You Are My Glory",
+        "path": "/en/posts/you-are-my-glory/",
+        "published": "2025-01-15",
+        "words": 608,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 8,
+        "engagementSecondsPerUser": 8
+      },
+      {
+        "title": "After A Chinese Odyssey Part One: Pandora's Box",
+        "path": "/en/posts/yueguang-baohe/",
+        "published": "2024-08-29",
+        "words": 1401,
+        "estimatedMinutes": 7,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 9,
+        "engagementSecondsPerUser": 9
+      },
+      {
+        "title": "After Gold or Shit",
+        "path": "/en/posts/zouzoutingting/",
+        "published": "2024-08-13",
+        "words": 699,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 11,
+        "engagementSecondsPerUser": 11
+      }
+    ],
+    "90d": [
+      {
+        "title": "MoeChat: How AI Characters Remember You and Feel Emotions",
+        "path": "/en/posts/moechat_ltm/",
+        "published": "2026-07-15",
+        "words": 3605,
+        "estimatedMinutes": 18,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "Long-Term Memory"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 8,
+        "screenPageViews": 10,
+        "engagementSeconds": 97,
+        "engagementSecondsPerUser": 12.13
+      },
+      {
+        "title": "Reconciling the Pomodoro Technique with Waiting on Agents: Task-Driven, Not Conversation-Driven",
+        "path": "/en/posts/pomodoro-agent-task-driven/",
+        "published": "2026-08-17",
+        "words": 1800,
+        "estimatedMinutes": 9,
+        "category": "technology",
+        "kind": "reflection",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 8,
+        "screenPageViews": 10,
+        "engagementSeconds": 15,
+        "engagementSecondsPerUser": 1.88
+      },
+      {
+        "title": "First Impressions of GitHub Stacked PRs",
+        "path": "/en/posts/github-stacked-prs/",
+        "published": "2026-08-05",
+        "words": 1975,
+        "estimatedMinutes": 10,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 5,
+        "screenPageViews": 9,
+        "engagementSeconds": 200,
+        "engagementSecondsPerUser": 40
+      },
+      {
+        "title": "First Impressions of Obsidian-YOLO",
+        "path": "/en/posts/obsidian-yolo/",
+        "published": "2026-06-18",
+        "words": 909,
+        "estimatedMinutes": 5,
+        "category": "technology",
+        "kind": "tutorial",
+        "series": [
+          "Blogging"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 7,
+        "screenPageViews": 7,
+        "engagementSeconds": 5,
+        "engagementSecondsPerUser": 0.71
+      },
+      {
+        "title": "From Single-Frame Vision to Real-Time Video Conversation: The Multimodal Architecture Paths of DeepSeek, MiniCPM, and MiniMax",
+        "path": "/en/posts/from-single-frame-to-real-time-video-conversation/",
+        "published": "2026-08-25",
+        "words": 3346,
+        "estimatedMinutes": 17,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "LLM"
+        ],
+        "editCount": 1,
+        "lastModified": "2026-08-25T03:45:10.000Z",
+        "activeUsers": 6,
+        "screenPageViews": 6,
+        "engagementSeconds": 33,
+        "engagementSecondsPerUser": 5.5
+      },
+      {
+        "title": "The Psychological Suggestion of Megastructures and Existential Relief",
+        "path": "/en/posts/megastructure-existential-relief/",
+        "published": "2026-08-18",
+        "words": 3567,
+        "estimatedMinutes": 18,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [
+          "Philosophical Reflections"
+        ],
+        "editCount": 3,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 4,
+        "screenPageViews": 6,
+        "engagementSeconds": 24,
+        "engagementSecondsPerUser": 6
+      },
+      {
+        "title": "Can an Article Belong in Only One Drawer? Rethinking Category, Kind, and Tags",
+        "path": "/en/posts/category-kind-tags/",
+        "published": "2026-08-23",
+        "words": 1951,
+        "estimatedMinutes": 10,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [
+          "Blogging"
+        ],
+        "editCount": 3,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 3,
+        "screenPageViews": 6,
+        "engagementSeconds": 7,
+        "engagementSecondsPerUser": 2.33
+      },
+      {
+        "title": "Splitting Repositories Is Not Decoupling: How Copied Shared Code Turns Cross-Repo Cherry-Picks into Maintenance Debt",
+        "path": "/en/posts/repository-split-cherry-pick-debt/",
+        "published": "2026-08-27",
+        "words": 3278,
+        "estimatedMinutes": 16,
+        "category": "technology",
+        "kind": "reflection",
+        "series": [
+          "Architecture Design"
+        ],
+        "editCount": 1,
+        "lastModified": "2026-08-28T12:44:09.000Z",
+        "activeUsers": 3,
+        "screenPageViews": 5,
+        "engagementSeconds": 8,
+        "engagementSecondsPerUser": 2.67
+      },
+      {
+        "title": "How I Find Books",
+        "path": "/en/posts/my-book-finding-channels/",
+        "published": "2026-06-14",
+        "words": 180,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "resource",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 5,
+        "screenPageViews": 4,
+        "engagementSeconds": 13,
+        "engagementSecondsPerUser": 2.6
+      },
+      {
+        "title": "Rebuilding My Blog: Where My Inspirations Came From",
+        "path": "/en/posts/blog-rebuild-inspirations/",
+        "published": "2026-06-07",
+        "words": 2511,
+        "estimatedMinutes": 13,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "Blogging"
+        ],
+        "editCount": 4,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 4,
+        "screenPageViews": 4,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "Learning from Bad Architecture: What Claude Desktop's Five Scheduling Systems Reveal About Separating Cowork and Code",
+        "path": "/en/posts/claude-desktop-bridging-problem/",
+        "published": "2026-07-23",
+        "words": 2220,
+        "estimatedMinutes": 11,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 4,
+        "screenPageViews": 4,
+        "engagementSeconds": 14,
+        "engagementSecondsPerUser": 3.5
+      },
+      {
+        "title": "What Does It Mean When Someone Looks Like a Yandere?",
+        "path": "/en/posts/yandere-appearance/",
+        "published": "2026-08-23",
+        "words": 606,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "note",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 4,
+        "screenPageViews": 4,
+        "engagementSeconds": 35,
+        "engagementSecondsPerUser": 8.75
+      },
+      {
+        "title": "The Lychee of Chang'an",
+        "path": "/en/posts/changan-de-lizhi/",
+        "published": "2026-08-08",
+        "words": 147,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 4,
+        "engagementSeconds": 18,
+        "engagementSecondsPerUser": 9
+      },
+      {
+        "title": "Near Being, Far Being",
+        "path": "/en/posts/cunzai-zhijin/",
+        "published": "2024-06-29",
+        "words": 1019,
+        "estimatedMinutes": 5,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [
+          "Philosophical Reflections"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 4,
+        "engagementSeconds": 42,
+        "engagementSecondsPerUser": 21
+      },
+      {
+        "title": "On Mortal Lives in Renegade Immortal and A Record of a Mortal's Journey to Immortality",
+        "path": "/en/posts/xianni-huafan/",
+        "published": "2025-02-18",
+        "words": 1588,
+        "estimatedMinutes": 8,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 4,
+        "engagementSeconds": 7,
+        "engagementSecondsPerUser": 3.5
+      },
+      {
+        "title": "Single Image Does Not Equal Multiple Images: Why VLMs Hallucinate More with Multiple Images, and a Two-Stage Fix",
+        "path": "/en/posts/multi-image-vlm/",
+        "published": "2026-02-08",
+        "words": 2061,
+        "estimatedMinutes": 10,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "LLM"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 4,
+        "screenPageViews": 3,
+        "engagementSeconds": 5,
+        "engagementSecondsPerUser": 1.25
+      },
+      {
+        "title": "Attention Is Limited — Lost in the Middle",
+        "path": "/en/posts/attention-is-limited/",
+        "published": "2025-07-06",
+        "words": 1215,
+        "estimatedMinutes": 6,
+        "category": "technology",
+        "kind": "reflection",
+        "series": [
+          "LLM"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 3,
+        "screenPageViews": 3,
+        "engagementSeconds": 7,
+        "engagementSecondsPerUser": 2.33
+      },
+      {
+        "title": "A Snow Rabbit Twenty Centimeters from Spring and The Shawshank Redemption",
+        "path": "/en/posts/snow-rabbit-shawshank/",
+        "published": "2025-02-16",
+        "words": 952,
+        "estimatedMinutes": 5,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading",
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 3,
+        "screenPageViews": 3,
+        "engagementSeconds": 4,
+        "engagementSecondsPerUser": 1.33
+      },
+      {
+        "title": "Existentialist Reading Notes",
+        "path": "/en/posts/cunzai-zhuyi/",
+        "published": "2024-06-20",
+        "words": 1349,
+        "estimatedMinutes": 7,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [
+          "Reading",
+          "Philosophical Reflections"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 3,
+        "engagementSeconds": 18,
+        "engagementSecondsPerUser": 9
+      },
+      {
+        "title": "Blending with the Dust — Starting with Han Li",
+        "path": "/en/posts/heguang-tongchen/",
+        "published": "2026-06-30",
+        "words": 2662,
+        "estimatedMinutes": 13,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 3,
+        "engagementSeconds": 15,
+        "engagementSecondsPerUser": 7.5
+      },
+      {
+        "title": "Filled with Empty Things",
+        "path": "/en/posts/man-shi-kong-xu-zhi-wu/",
+        "published": "2026-08-16",
+        "words": 182,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 3,
+        "engagementSeconds": 7,
+        "engagementSecondsPerUser": 3.5
+      },
+      {
+        "title": "RRF vs. Hybrid Search: How Should Time-Based Retrieval Be Blended, and How Does It Fit Project and Companion Scenarios?",
+        "path": "/en/posts/RRF-vs-Hybrid-Search/",
+        "published": "2026-07-21",
+        "words": 5124,
+        "estimatedMinutes": 26,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "Long-Term Memory",
+          "NLP"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 2,
+        "engagementSeconds": 10,
+        "engagementSecondsPerUser": 5
+      },
+      {
+        "title": "The Long Ballad: Even After a Thousand-Li Farewell, We Must Part at Last",
+        "path": "/en/posts/changge-xing/",
+        "published": "2025-02-16",
+        "words": 1228,
+        "estimatedMinutes": 6,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 2,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "When My Cloud Provider Disappeared: Rethinking the Shape of a Personal Blog and What Is Worth Recording",
+        "path": "/en/posts/cloud-service-provider/",
+        "published": "2026-06-01",
+        "words": 1695,
+        "estimatedMinutes": 8,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [
+          "Blogging"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 2,
+        "engagementSeconds": 9,
+        "engagementSecondsPerUser": 4.5
+      },
+      {
+        "title": "Starting from a NEKOPARA Review",
+        "path": "/en/posts/nekopara-vol-1/",
+        "published": "2025-05-15",
+        "words": 1487,
+        "estimatedMinutes": 7,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 2,
+        "engagementSeconds": 11,
+        "engagementSecondsPerUser": 11
+      },
+      {
+        "title": "What Bad Intentions Could I Possibly Have?",
+        "path": "/en/posts/wo-neng-you-shenme-huai-xinsi-ne/",
+        "published": "2025-09-07",
+        "words": 190,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 2,
+        "engagementSeconds": 1,
+        "engagementSecondsPerUser": 1
+      },
+      {
+        "title": "memU's Architectural Shift Through the Eyes of a Consumer-Facing Developer",
+        "path": "/en/posts/memu-adr0007-ce-duan-perspective/",
+        "published": "2026-07-02",
+        "words": 1308,
+        "estimatedMinutes": 7,
+        "category": "technology",
+        "kind": "reflection",
+        "series": [
+          "Long-Term Memory"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 1,
+        "engagementSeconds": 20,
+        "engagementSecondsPerUser": 10
+      },
+      {
+        "title": "A Maverick Pig",
+        "path": "/en/posts/a-maverick-pig/",
+        "published": "2024-10-12",
+        "words": 880,
+        "estimatedMinutes": 4,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 6,
+        "engagementSecondsPerUser": 6
+      },
+      {
+        "title": "What We Built When Mainstream Agent Frameworks Could Not Fit Our Needs",
+        "path": "/en/posts/agent-framework-exploration/",
+        "published": "2026-06-23",
+        "words": 3328,
+        "estimatedMinutes": 17,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 12,
+        "engagementSecondsPerUser": 12
+      },
+      {
+        "title": "A Fitting Room for Chinese Body Typefaces",
+        "path": "/en/posts/chinese-body-font-lab/",
+        "published": "2026-08-21",
+        "words": 946,
+        "estimatedMinutes": 5,
+        "category": "technology",
+        "kind": "note",
+        "series": [
+          "Blogging"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-25T03:45:10.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "Things Pass Like Spring Dreams, Leaving No Trace; Yet Then, I Knew Only Joy.",
+        "path": "/en/posts/chongfu-zhi-le/",
+        "published": "2026-06-13",
+        "words": 798,
+        "estimatedMinutes": 4,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "Love in the Buff",
+        "path": "/en/posts/chunjiao-yu-zhiming/",
+        "published": "2024-07-08",
+        "words": 1176,
+        "estimatedMinutes": 6,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 8,
+        "engagementSecondsPerUser": 8
+      },
+      {
+        "title": "Bringing AI Chat to Congyin in Chill with You: Lo-Fi Story",
+        "path": "/en/posts/cong-yin-ai-chat/",
+        "published": "2025-11-15",
+        "words": 449,
+        "estimatedMinutes": 2,
+        "category": "culture",
+        "kind": "resource",
+        "series": [
+          "LLM",
+          "Games"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 9,
+        "engagementSecondsPerUser": 9
+      },
+      {
+        "title": "After A Chinese Odyssey Part Two: Cinderella",
+        "path": "/en/posts/dasheng-quqin/",
+        "published": "2024-09-01",
+        "words": 1584,
+        "estimatedMinutes": 8,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 9,
+        "engagementSecondsPerUser": 9
+      },
+      {
+        "title": "Demian",
+        "path": "/en/posts/demian/",
+        "published": "2024-04-01",
+        "words": 69,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 7,
+        "engagementSecondsPerUser": 7
+      },
+      {
+        "title": "From Frieren: Beyond Journey's End to Psychological Compulsion",
+        "path": "/en/posts/frieren-ocd/",
+        "published": "2024-09-09",
+        "words": 431,
+        "estimatedMinutes": 2,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [
+          "Film Watching"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 9,
+        "engagementSecondsPerUser": 9
+      },
+      {
+        "title": "gotcha.md: A Pitfall Handbook for Your Agent",
+        "path": "/en/posts/gotcha-agent-rules/",
+        "published": "2026-07-07",
+        "words": 1487,
+        "estimatedMinutes": 7,
+        "category": "technology",
+        "kind": "reflection",
+        "series": [
+          "Long-Term Memory"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "After Hua Jiang Hu: Tian Gang — Perhaps True Completion Does Not Exist",
+        "path": "/en/posts/huajianghu-tiangang/",
+        "published": "2025-03-15",
+        "words": 789,
+        "estimatedMinutes": 4,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film Watching"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 20,
+        "engagementSecondsPerUser": 20
+      },
+      {
+        "title": "Imouto Life",
+        "path": "/en/posts/imouto-jinsei/",
+        "published": "2024-10-18",
+        "words": 531,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 10,
+        "engagementSecondsPerUser": 10
+      },
+      {
+        "title": "Reading Notes on Rashomon",
+        "path": "/en/posts/luoshengmen/",
+        "published": "2024-09-26",
+        "words": 1762,
+        "estimatedMinutes": 9,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 14,
+        "engagementSecondsPerUser": 14
+      },
+      {
+        "title": "We Who Have No Tomorrow Fell in Love Yesterday",
+        "path": "/en/posts/meiyou-mingtian/",
+        "published": "2024-06-25",
+        "words": 1294,
+        "estimatedMinutes": 6,
+        "category": "thought",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 4,
+        "engagementSecondsPerUser": 4
+      },
+      {
+        "title": "Re-Reading memU: Multi-Host Worktrees, Run Isolation, and Proactive Memorization",
+        "path": "/en/posts/memu-multi-host-run-isolation/",
+        "published": "2026-09-01",
+        "words": 2283,
+        "estimatedMinutes": 11,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "Long-Term Memory",
+          "Architecture Design"
+        ],
+        "editCount": 1,
+        "lastModified": "2026-09-01T10:26:07.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "After Under Current: The Jianghu Brotherhood of the 1980s and 1990s",
+        "path": "/en/posts/nilin/",
+        "published": "2024-08-20",
+        "words": 596,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 11,
+        "engagementSecondsPerUser": 11
+      },
+      {
+        "title": "Using OBS with VTube Studio: Be a Vtuber",
+        "path": "/en/posts/obs-vtube-studio-vtuber-guide/",
+        "published": "2024-01-30",
+        "words": 114,
+        "estimatedMinutes": 1,
+        "category": "technology",
+        "kind": "tutorial",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 9,
+        "engagementSecondsPerUser": 9
+      },
+      {
+        "title": "Starting with How We Use Skills: What Are Progressive Disclosure and Task Decomposition, and What Do I Want to Explore?",
+        "path": "/en/posts/progressive-disclosure-and-novel-agent/",
+        "published": "2026-07-03",
+        "words": 2899,
+        "estimatedMinutes": 14,
+        "category": "technology",
+        "kind": "reflection",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 4,
+        "engagementSecondsPerUser": 4
+      },
+      {
+        "title": "Fanfic",
+        "path": "/en/posts/qingchun-tongrenzhi/",
+        "published": "2024-07-08",
+        "words": 571,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 8,
+        "engagementSecondsPerUser": 8
+      },
+      {
+        "title": "After Building Long-Lived Systems: Is the RAG Monster Right for Constructing a Personal Blog Graph?",
+        "path": "/en/posts/rag-blog-graph/",
+        "published": "2026-06-06",
+        "words": 1508,
+        "estimatedMinutes": 8,
+        "category": "technology",
+        "kind": "reflection",
+        "series": [
+          "LLM",
+          "Blogging"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 6,
+        "engagementSecondsPerUser": 6
+      },
+      {
+        "title": "The Shape of a Protocol Determines Its Capabilities: Why Codex Removed chat_completion, and What Actually Blocks a Desktop Companion from Talking While It Works",
+        "path": "/en/posts/resposne-vs-chat_completion/",
+        "published": "2026-07-28",
+        "words": 5754,
+        "estimatedMinutes": 29,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "LLM"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "We Made a Beautiful Bouquet",
+        "path": "/en/posts/ruhuashuban-de-lianai/",
+        "published": "2025-06-20",
+        "words": 995,
+        "estimatedMinutes": 5,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 15,
+        "engagementSecondsPerUser": 15
+      },
+      {
+        "title": "The Girlfriend at the End of the World",
+        "path": "/en/posts/shijie-jintou-de-nvyou/",
+        "published": "2024-03-26",
+        "words": 125,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 8,
+        "engagementSecondsPerUser": 8
+      },
+      {
+        "title": "After The God of Cookery",
+        "path": "/en/posts/shishen/",
+        "published": "2024-08-13",
+        "words": 505,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 5,
+        "engagementSecondsPerUser": 5
+      },
+      {
+        "title": "Sparse vs. Dense: From BPE to Hybrid Search",
+        "path": "/en/posts/sparsing-and-densing-embeddings/",
+        "published": "2026-07-14",
+        "words": 2487,
+        "estimatedMinutes": 12,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "NLP"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 21,
+        "engagementSecondsPerUser": 21
+      },
+      {
+        "title": "What I Talk About When I Talk About Running: Reading Notes",
+        "path": "/en/posts/talking-about-running/",
+        "published": "2024-10-15",
+        "words": 1222,
+        "estimatedMinutes": 6,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 1,
+        "engagementSecondsPerUser": 1
+      },
+      {
+        "title": "Love in Yushima",
+        "path": "/en/posts/tangdao-zhi-lian/",
+        "published": "2024-07-15",
+        "words": 518,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 5,
+        "engagementSecondsPerUser": 5
+      },
+      {
+        "title": "Termix: A Very Cool Web-Based SSH Client",
+        "path": "/en/posts/termix-web-ssh-guide/",
+        "published": "2025-12-29",
+        "words": 556,
+        "estimatedMinutes": 3,
+        "category": "technology",
+        "kind": "tutorial",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 19,
+        "engagementSecondsPerUser": 19
+      },
+      {
+        "title": "Learning TF-IDF Again After Graduation",
+        "path": "/en/posts/tf-idf-and-bm25/",
+        "published": "2026-07-12",
+        "words": 1101,
+        "estimatedMinutes": 6,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "NLP"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 13,
+        "engagementSecondsPerUser": 13
+      },
+      {
+        "title": "Travellin' Cats in Germany: A Haven for Digital Cat Lovers",
+        "path": "/en/posts/travellin-cats-in-germany/",
+        "published": "2026-07-14",
+        "words": 183,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "review",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 12,
+        "engagementSecondsPerUser": 12
+      },
+      {
+        "title": "After Vampires' Melody",
+        "path": "/en/posts/vampires-melody/",
+        "published": "2024-09-01",
+        "words": 647,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Games"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 10,
+        "engagementSecondsPerUser": 10
+      },
+      {
+        "title": "Flowers Yet to Bloom",
+        "path": "/en/posts/weijin-zhi-hua/",
+        "published": "2024-06-25",
+        "words": 282,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "In the LLM Era, What Exactly Is My Ability?",
+        "path": "/en/posts/what-is-my-ability-in-llm-era/",
+        "published": "2026-06-12",
+        "words": 1399,
+        "estimatedMinutes": 7,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [
+          "LLM"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 4,
+        "engagementSecondsPerUser": 4
+      },
+      {
+        "title": "After “A Year for Ten Thousand Yen”",
+        "path": "/en/posts/yi-nian-yiwan-yuan/",
+        "published": "2024-07-08",
+        "words": 854,
+        "estimatedMinutes": 4,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 6,
+        "engagementSecondsPerUser": 6
+      },
+      {
+        "title": "You Are My Glory",
+        "path": "/en/posts/you-are-my-glory/",
+        "published": "2025-01-15",
+        "words": 608,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 8,
+        "engagementSecondsPerUser": 8
+      },
+      {
+        "title": "After A Chinese Odyssey Part One: Pandora's Box",
+        "path": "/en/posts/yueguang-baohe/",
+        "published": "2024-08-29",
+        "words": 1401,
+        "estimatedMinutes": 7,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 9,
+        "engagementSecondsPerUser": 9
+      },
+      {
+        "title": "After Gold or Shit",
+        "path": "/en/posts/zouzoutingting/",
+        "published": "2024-08-13",
+        "words": 699,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 11,
+        "engagementSecondsPerUser": 11
+      }
+    ],
+    "all": [
+      {
+        "title": "MoeChat: How AI Characters Remember You and Feel Emotions",
+        "path": "/en/posts/moechat_ltm/",
+        "published": "2026-07-15",
+        "words": 3605,
+        "estimatedMinutes": 18,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "Long-Term Memory"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 8,
+        "screenPageViews": 10,
+        "engagementSeconds": 97,
+        "engagementSecondsPerUser": 12.13
+      },
+      {
+        "title": "Reconciling the Pomodoro Technique with Waiting on Agents: Task-Driven, Not Conversation-Driven",
+        "path": "/en/posts/pomodoro-agent-task-driven/",
+        "published": "2026-08-17",
+        "words": 1800,
+        "estimatedMinutes": 9,
+        "category": "technology",
+        "kind": "reflection",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 8,
+        "screenPageViews": 10,
+        "engagementSeconds": 15,
+        "engagementSecondsPerUser": 1.88
+      },
+      {
+        "title": "First Impressions of GitHub Stacked PRs",
+        "path": "/en/posts/github-stacked-prs/",
+        "published": "2026-08-05",
+        "words": 1975,
+        "estimatedMinutes": 10,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 5,
+        "screenPageViews": 9,
+        "engagementSeconds": 200,
+        "engagementSecondsPerUser": 40
+      },
+      {
+        "title": "First Impressions of Obsidian-YOLO",
+        "path": "/en/posts/obsidian-yolo/",
+        "published": "2026-06-18",
+        "words": 909,
+        "estimatedMinutes": 5,
+        "category": "technology",
+        "kind": "tutorial",
+        "series": [
+          "Blogging"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 7,
+        "screenPageViews": 7,
+        "engagementSeconds": 5,
+        "engagementSecondsPerUser": 0.71
+      },
+      {
+        "title": "From Single-Frame Vision to Real-Time Video Conversation: The Multimodal Architecture Paths of DeepSeek, MiniCPM, and MiniMax",
+        "path": "/en/posts/from-single-frame-to-real-time-video-conversation/",
+        "published": "2026-08-25",
+        "words": 3346,
+        "estimatedMinutes": 17,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "LLM"
+        ],
+        "editCount": 1,
+        "lastModified": "2026-08-25T03:45:10.000Z",
+        "activeUsers": 6,
+        "screenPageViews": 6,
+        "engagementSeconds": 33,
+        "engagementSecondsPerUser": 5.5
+      },
+      {
+        "title": "The Psychological Suggestion of Megastructures and Existential Relief",
+        "path": "/en/posts/megastructure-existential-relief/",
+        "published": "2026-08-18",
+        "words": 3567,
+        "estimatedMinutes": 18,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [
+          "Philosophical Reflections"
+        ],
+        "editCount": 3,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 4,
+        "screenPageViews": 6,
+        "engagementSeconds": 24,
+        "engagementSecondsPerUser": 6
+      },
+      {
+        "title": "Can an Article Belong in Only One Drawer? Rethinking Category, Kind, and Tags",
+        "path": "/en/posts/category-kind-tags/",
+        "published": "2026-08-23",
+        "words": 1951,
+        "estimatedMinutes": 10,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [
+          "Blogging"
+        ],
+        "editCount": 3,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 3,
+        "screenPageViews": 6,
+        "engagementSeconds": 7,
+        "engagementSecondsPerUser": 2.33
+      },
+      {
+        "title": "Splitting Repositories Is Not Decoupling: How Copied Shared Code Turns Cross-Repo Cherry-Picks into Maintenance Debt",
+        "path": "/en/posts/repository-split-cherry-pick-debt/",
+        "published": "2026-08-27",
+        "words": 3278,
+        "estimatedMinutes": 16,
+        "category": "technology",
+        "kind": "reflection",
+        "series": [
+          "Architecture Design"
+        ],
+        "editCount": 1,
+        "lastModified": "2026-08-28T12:44:09.000Z",
+        "activeUsers": 3,
+        "screenPageViews": 5,
+        "engagementSeconds": 8,
+        "engagementSecondsPerUser": 2.67
+      },
+      {
+        "title": "How I Find Books",
+        "path": "/en/posts/my-book-finding-channels/",
+        "published": "2026-06-14",
+        "words": 180,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "resource",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 5,
+        "screenPageViews": 4,
+        "engagementSeconds": 13,
+        "engagementSecondsPerUser": 2.6
+      },
+      {
+        "title": "Rebuilding My Blog: Where My Inspirations Came From",
+        "path": "/en/posts/blog-rebuild-inspirations/",
+        "published": "2026-06-07",
+        "words": 2511,
+        "estimatedMinutes": 13,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "Blogging"
+        ],
+        "editCount": 4,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 4,
+        "screenPageViews": 4,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "Learning from Bad Architecture: What Claude Desktop's Five Scheduling Systems Reveal About Separating Cowork and Code",
+        "path": "/en/posts/claude-desktop-bridging-problem/",
+        "published": "2026-07-23",
+        "words": 2220,
+        "estimatedMinutes": 11,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 4,
+        "screenPageViews": 4,
+        "engagementSeconds": 14,
+        "engagementSecondsPerUser": 3.5
+      },
+      {
+        "title": "What Does It Mean When Someone Looks Like a Yandere?",
+        "path": "/en/posts/yandere-appearance/",
+        "published": "2026-08-23",
+        "words": 606,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "note",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 4,
+        "screenPageViews": 4,
+        "engagementSeconds": 35,
+        "engagementSecondsPerUser": 8.75
+      },
+      {
+        "title": "The Lychee of Chang'an",
+        "path": "/en/posts/changan-de-lizhi/",
+        "published": "2026-08-08",
+        "words": 147,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 4,
+        "engagementSeconds": 18,
+        "engagementSecondsPerUser": 9
+      },
+      {
+        "title": "Near Being, Far Being",
+        "path": "/en/posts/cunzai-zhijin/",
+        "published": "2024-06-29",
+        "words": 1019,
+        "estimatedMinutes": 5,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [
+          "Philosophical Reflections"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 4,
+        "engagementSeconds": 42,
+        "engagementSecondsPerUser": 21
+      },
+      {
+        "title": "On Mortal Lives in Renegade Immortal and A Record of a Mortal's Journey to Immortality",
+        "path": "/en/posts/xianni-huafan/",
+        "published": "2025-02-18",
+        "words": 1588,
+        "estimatedMinutes": 8,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 4,
+        "engagementSeconds": 7,
+        "engagementSecondsPerUser": 3.5
+      },
+      {
+        "title": "Single Image Does Not Equal Multiple Images: Why VLMs Hallucinate More with Multiple Images, and a Two-Stage Fix",
+        "path": "/en/posts/multi-image-vlm/",
+        "published": "2026-02-08",
+        "words": 2061,
+        "estimatedMinutes": 10,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "LLM"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 4,
+        "screenPageViews": 3,
+        "engagementSeconds": 5,
+        "engagementSecondsPerUser": 1.25
+      },
+      {
+        "title": "Attention Is Limited — Lost in the Middle",
+        "path": "/en/posts/attention-is-limited/",
+        "published": "2025-07-06",
+        "words": 1215,
+        "estimatedMinutes": 6,
+        "category": "technology",
+        "kind": "reflection",
+        "series": [
+          "LLM"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 3,
+        "screenPageViews": 3,
+        "engagementSeconds": 7,
+        "engagementSecondsPerUser": 2.33
+      },
+      {
+        "title": "A Snow Rabbit Twenty Centimeters from Spring and The Shawshank Redemption",
+        "path": "/en/posts/snow-rabbit-shawshank/",
+        "published": "2025-02-16",
+        "words": 952,
+        "estimatedMinutes": 5,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading",
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 3,
+        "screenPageViews": 3,
+        "engagementSeconds": 4,
+        "engagementSecondsPerUser": 1.33
+      },
+      {
+        "title": "Existentialist Reading Notes",
+        "path": "/en/posts/cunzai-zhuyi/",
+        "published": "2024-06-20",
+        "words": 1349,
+        "estimatedMinutes": 7,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [
+          "Reading",
+          "Philosophical Reflections"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 3,
+        "engagementSeconds": 18,
+        "engagementSecondsPerUser": 9
+      },
+      {
+        "title": "Blending with the Dust — Starting with Han Li",
+        "path": "/en/posts/heguang-tongchen/",
+        "published": "2026-06-30",
+        "words": 2662,
+        "estimatedMinutes": 13,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 3,
+        "engagementSeconds": 15,
+        "engagementSecondsPerUser": 7.5
+      },
+      {
+        "title": "Filled with Empty Things",
+        "path": "/en/posts/man-shi-kong-xu-zhi-wu/",
+        "published": "2026-08-16",
+        "words": 182,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 3,
+        "engagementSeconds": 7,
+        "engagementSecondsPerUser": 3.5
+      },
+      {
+        "title": "RRF vs. Hybrid Search: How Should Time-Based Retrieval Be Blended, and How Does It Fit Project and Companion Scenarios?",
+        "path": "/en/posts/RRF-vs-Hybrid-Search/",
+        "published": "2026-07-21",
+        "words": 5124,
+        "estimatedMinutes": 26,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "Long-Term Memory",
+          "NLP"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 2,
+        "engagementSeconds": 10,
+        "engagementSecondsPerUser": 5
+      },
+      {
+        "title": "The Long Ballad: Even After a Thousand-Li Farewell, We Must Part at Last",
+        "path": "/en/posts/changge-xing/",
+        "published": "2025-02-16",
+        "words": 1228,
+        "estimatedMinutes": 6,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 2,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "When My Cloud Provider Disappeared: Rethinking the Shape of a Personal Blog and What Is Worth Recording",
+        "path": "/en/posts/cloud-service-provider/",
+        "published": "2026-06-01",
+        "words": 1695,
+        "estimatedMinutes": 8,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [
+          "Blogging"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 2,
+        "engagementSeconds": 9,
+        "engagementSecondsPerUser": 4.5
+      },
+      {
+        "title": "Starting from a NEKOPARA Review",
+        "path": "/en/posts/nekopara-vol-1/",
+        "published": "2025-05-15",
+        "words": 1487,
+        "estimatedMinutes": 7,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 2,
+        "engagementSeconds": 11,
+        "engagementSecondsPerUser": 11
+      },
+      {
+        "title": "What Bad Intentions Could I Possibly Have?",
+        "path": "/en/posts/wo-neng-you-shenme-huai-xinsi-ne/",
+        "published": "2025-09-07",
+        "words": 190,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 2,
+        "engagementSeconds": 1,
+        "engagementSecondsPerUser": 1
+      },
+      {
+        "title": "memU's Architectural Shift Through the Eyes of a Consumer-Facing Developer",
+        "path": "/en/posts/memu-adr0007-ce-duan-perspective/",
+        "published": "2026-07-02",
+        "words": 1308,
+        "estimatedMinutes": 7,
+        "category": "technology",
+        "kind": "reflection",
+        "series": [
+          "Long-Term Memory"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 2,
+        "screenPageViews": 1,
+        "engagementSeconds": 20,
+        "engagementSecondsPerUser": 10
+      },
+      {
+        "title": "A Maverick Pig",
+        "path": "/en/posts/a-maverick-pig/",
+        "published": "2024-10-12",
+        "words": 880,
+        "estimatedMinutes": 4,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 6,
+        "engagementSecondsPerUser": 6
+      },
+      {
+        "title": "What We Built When Mainstream Agent Frameworks Could Not Fit Our Needs",
+        "path": "/en/posts/agent-framework-exploration/",
+        "published": "2026-06-23",
+        "words": 3328,
+        "estimatedMinutes": 17,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 12,
+        "engagementSecondsPerUser": 12
+      },
+      {
+        "title": "A Fitting Room for Chinese Body Typefaces",
+        "path": "/en/posts/chinese-body-font-lab/",
+        "published": "2026-08-21",
+        "words": 946,
+        "estimatedMinutes": 5,
+        "category": "technology",
+        "kind": "note",
+        "series": [
+          "Blogging"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-25T03:45:10.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "Things Pass Like Spring Dreams, Leaving No Trace; Yet Then, I Knew Only Joy.",
+        "path": "/en/posts/chongfu-zhi-le/",
+        "published": "2026-06-13",
+        "words": 798,
+        "estimatedMinutes": 4,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "Love in the Buff",
+        "path": "/en/posts/chunjiao-yu-zhiming/",
+        "published": "2024-07-08",
+        "words": 1176,
+        "estimatedMinutes": 6,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 8,
+        "engagementSecondsPerUser": 8
+      },
+      {
+        "title": "Bringing AI Chat to Congyin in Chill with You: Lo-Fi Story",
+        "path": "/en/posts/cong-yin-ai-chat/",
+        "published": "2025-11-15",
+        "words": 449,
+        "estimatedMinutes": 2,
+        "category": "culture",
+        "kind": "resource",
+        "series": [
+          "LLM",
+          "Games"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 9,
+        "engagementSecondsPerUser": 9
+      },
+      {
+        "title": "After A Chinese Odyssey Part Two: Cinderella",
+        "path": "/en/posts/dasheng-quqin/",
+        "published": "2024-09-01",
+        "words": 1584,
+        "estimatedMinutes": 8,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 9,
+        "engagementSecondsPerUser": 9
+      },
+      {
+        "title": "Demian",
+        "path": "/en/posts/demian/",
+        "published": "2024-04-01",
+        "words": 69,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 7,
+        "engagementSecondsPerUser": 7
+      },
+      {
+        "title": "From Frieren: Beyond Journey's End to Psychological Compulsion",
+        "path": "/en/posts/frieren-ocd/",
+        "published": "2024-09-09",
+        "words": 431,
+        "estimatedMinutes": 2,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [
+          "Film Watching"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 9,
+        "engagementSecondsPerUser": 9
+      },
+      {
+        "title": "gotcha.md: A Pitfall Handbook for Your Agent",
+        "path": "/en/posts/gotcha-agent-rules/",
+        "published": "2026-07-07",
+        "words": 1487,
+        "estimatedMinutes": 7,
+        "category": "technology",
+        "kind": "reflection",
+        "series": [
+          "Long-Term Memory"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "After Hua Jiang Hu: Tian Gang — Perhaps True Completion Does Not Exist",
+        "path": "/en/posts/huajianghu-tiangang/",
+        "published": "2025-03-15",
+        "words": 789,
+        "estimatedMinutes": 4,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film Watching"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 20,
+        "engagementSecondsPerUser": 20
+      },
+      {
+        "title": "Imouto Life",
+        "path": "/en/posts/imouto-jinsei/",
+        "published": "2024-10-18",
+        "words": 531,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 10,
+        "engagementSecondsPerUser": 10
+      },
+      {
+        "title": "Reading Notes on Rashomon",
+        "path": "/en/posts/luoshengmen/",
+        "published": "2024-09-26",
+        "words": 1762,
+        "estimatedMinutes": 9,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 14,
+        "engagementSecondsPerUser": 14
+      },
+      {
+        "title": "We Who Have No Tomorrow Fell in Love Yesterday",
+        "path": "/en/posts/meiyou-mingtian/",
+        "published": "2024-06-25",
+        "words": 1294,
+        "estimatedMinutes": 6,
+        "category": "thought",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 4,
+        "engagementSecondsPerUser": 4
+      },
+      {
+        "title": "Re-Reading memU: Multi-Host Worktrees, Run Isolation, and Proactive Memorization",
+        "path": "/en/posts/memu-multi-host-run-isolation/",
+        "published": "2026-09-01",
+        "words": 2283,
+        "estimatedMinutes": 11,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "Long-Term Memory",
+          "Architecture Design"
+        ],
+        "editCount": 1,
+        "lastModified": "2026-09-01T10:26:07.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "After Under Current: The Jianghu Brotherhood of the 1980s and 1990s",
+        "path": "/en/posts/nilin/",
+        "published": "2024-08-20",
+        "words": 596,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 11,
+        "engagementSecondsPerUser": 11
+      },
+      {
+        "title": "Using OBS with VTube Studio: Be a Vtuber",
+        "path": "/en/posts/obs-vtube-studio-vtuber-guide/",
+        "published": "2024-01-30",
+        "words": 114,
+        "estimatedMinutes": 1,
+        "category": "technology",
+        "kind": "tutorial",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 9,
+        "engagementSecondsPerUser": 9
+      },
+      {
+        "title": "Starting with How We Use Skills: What Are Progressive Disclosure and Task Decomposition, and What Do I Want to Explore?",
+        "path": "/en/posts/progressive-disclosure-and-novel-agent/",
+        "published": "2026-07-03",
+        "words": 2899,
+        "estimatedMinutes": 14,
+        "category": "technology",
+        "kind": "reflection",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 4,
+        "engagementSecondsPerUser": 4
+      },
+      {
+        "title": "Fanfic",
+        "path": "/en/posts/qingchun-tongrenzhi/",
+        "published": "2024-07-08",
+        "words": 571,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 8,
+        "engagementSecondsPerUser": 8
+      },
+      {
+        "title": "After Building Long-Lived Systems: Is the RAG Monster Right for Constructing a Personal Blog Graph?",
+        "path": "/en/posts/rag-blog-graph/",
+        "published": "2026-06-06",
+        "words": 1508,
+        "estimatedMinutes": 8,
+        "category": "technology",
+        "kind": "reflection",
+        "series": [
+          "LLM",
+          "Blogging"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 6,
+        "engagementSecondsPerUser": 6
+      },
+      {
+        "title": "The Shape of a Protocol Determines Its Capabilities: Why Codex Removed chat_completion, and What Actually Blocks a Desktop Companion from Talking While It Works",
+        "path": "/en/posts/resposne-vs-chat_completion/",
+        "published": "2026-07-28",
+        "words": 5754,
+        "estimatedMinutes": 29,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "LLM"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "We Made a Beautiful Bouquet",
+        "path": "/en/posts/ruhuashuban-de-lianai/",
+        "published": "2025-06-20",
+        "words": 995,
+        "estimatedMinutes": 5,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 15,
+        "engagementSecondsPerUser": 15
+      },
+      {
+        "title": "The Girlfriend at the End of the World",
+        "path": "/en/posts/shijie-jintou-de-nvyou/",
+        "published": "2024-03-26",
+        "words": 125,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 8,
+        "engagementSecondsPerUser": 8
+      },
+      {
+        "title": "After The God of Cookery",
+        "path": "/en/posts/shishen/",
+        "published": "2024-08-13",
+        "words": 505,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 5,
+        "engagementSecondsPerUser": 5
+      },
+      {
+        "title": "Sparse vs. Dense: From BPE to Hybrid Search",
+        "path": "/en/posts/sparsing-and-densing-embeddings/",
+        "published": "2026-07-14",
+        "words": 2487,
+        "estimatedMinutes": 12,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "NLP"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 21,
+        "engagementSecondsPerUser": 21
+      },
+      {
+        "title": "What I Talk About When I Talk About Running: Reading Notes",
+        "path": "/en/posts/talking-about-running/",
+        "published": "2024-10-15",
+        "words": 1222,
+        "estimatedMinutes": 6,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 1,
+        "engagementSecondsPerUser": 1
+      },
+      {
+        "title": "Love in Yushima",
+        "path": "/en/posts/tangdao-zhi-lian/",
+        "published": "2024-07-15",
+        "words": 518,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 5,
+        "engagementSecondsPerUser": 5
+      },
+      {
+        "title": "Termix: A Very Cool Web-Based SSH Client",
+        "path": "/en/posts/termix-web-ssh-guide/",
+        "published": "2025-12-29",
+        "words": 556,
+        "estimatedMinutes": 3,
+        "category": "technology",
+        "kind": "tutorial",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 19,
+        "engagementSecondsPerUser": 19
+      },
+      {
+        "title": "Learning TF-IDF Again After Graduation",
+        "path": "/en/posts/tf-idf-and-bm25/",
+        "published": "2026-07-12",
+        "words": 1101,
+        "estimatedMinutes": 6,
+        "category": "technology",
+        "kind": "learning-note",
+        "series": [
+          "NLP"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 13,
+        "engagementSecondsPerUser": 13
+      },
+      {
+        "title": "Travellin' Cats in Germany: A Haven for Digital Cat Lovers",
+        "path": "/en/posts/travellin-cats-in-germany/",
+        "published": "2026-07-14",
+        "words": 183,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "review",
+        "series": [],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 12,
+        "engagementSecondsPerUser": 12
+      },
+      {
+        "title": "After Vampires' Melody",
+        "path": "/en/posts/vampires-melody/",
+        "published": "2024-09-01",
+        "words": 647,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Games"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 10,
+        "engagementSecondsPerUser": 10
+      },
+      {
+        "title": "Flowers Yet to Bloom",
+        "path": "/en/posts/weijin-zhi-hua/",
+        "published": "2024-06-25",
+        "words": 282,
+        "estimatedMinutes": 1,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 0,
+        "engagementSecondsPerUser": 0
+      },
+      {
+        "title": "In the LLM Era, What Exactly Is My Ability?",
+        "path": "/en/posts/what-is-my-ability-in-llm-era/",
+        "published": "2026-06-12",
+        "words": 1399,
+        "estimatedMinutes": 7,
+        "category": "thought",
+        "kind": "reflection",
+        "series": [
+          "LLM"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 4,
+        "engagementSecondsPerUser": 4
+      },
+      {
+        "title": "After “A Year for Ten Thousand Yen”",
+        "path": "/en/posts/yi-nian-yiwan-yuan/",
+        "published": "2024-07-08",
+        "words": 854,
+        "estimatedMinutes": 4,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Reading"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 6,
+        "engagementSecondsPerUser": 6
+      },
+      {
+        "title": "You Are My Glory",
+        "path": "/en/posts/you-are-my-glory/",
+        "published": "2025-01-15",
+        "words": 608,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 8,
+        "engagementSecondsPerUser": 8
+      },
+      {
+        "title": "After A Chinese Odyssey Part One: Pandora's Box",
+        "path": "/en/posts/yueguang-baohe/",
+        "published": "2024-08-29",
+        "words": 1401,
+        "estimatedMinutes": 7,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 9,
+        "engagementSecondsPerUser": 9
+      },
+      {
+        "title": "After Gold or Shit",
+        "path": "/en/posts/zouzoutingting/",
+        "published": "2024-08-13",
+        "words": 699,
+        "estimatedMinutes": 3,
+        "category": "culture",
+        "kind": "review",
+        "series": [
+          "Film and Television"
+        ],
+        "editCount": 2,
+        "lastModified": "2026-08-23T12:15:40.000Z",
+        "activeUsers": 1,
+        "screenPageViews": 1,
+        "engagementSeconds": 11,
+        "engagementSecondsPerUser": 11
+      }
+    ]
+  }
+}
