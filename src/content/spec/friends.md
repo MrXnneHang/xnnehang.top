@@ -4,10 +4,11 @@
 
 ```json
 {
-  "name": "XnneHang",
-  "url": "https://xnnehang.top",
-  "desc": "写代码是因为爱。",
-  "avatar": "https://xnnehang.top/avatar.jpg"
+  "siteTitle": "XnneHang",
+  "siteUrl": "https://xnnehang.top",
+  "siteDesc": "写代码是因为爱。",
+  "siteDescEn": "I code because I love it.",
+  "siteIcon": "https://xnnehang.top/avatar.jpg"
 }
 ```
 
