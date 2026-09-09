@@ -71,5 +71,12 @@
     "siteDesc": "Noospic の 闲言碎语 - 虽然现实没有星露谷，但每一篇blog都可以看作我的耕作log",
     "siteDescEn": "Reality has no Stardew Valley — yet every blog is my tillage log.",
     "siteback": "https://noospic.github.io/link"
+  },
+  {
+    "siteTitle": "Wutong Yu",
+    "siteDesc": "折腾技术，也探索生活。",
+    "siteDescEn": "Exploring technology and life.",
+    "siteUrl": "https://www.wutongyu.site/",
+    "siteIcon": "https://www.wutongyu.site/avatar.webp"
   }
 ]
