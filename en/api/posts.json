@@ -1,0 +1,35 @@
+[
+  {
+    "title": "Splitting Repositories Is Not Decoupling: How Copied Shared Code Turns Cross-Repo Cherry-Picks into Maintenance Debt",
+    "description": "A maintenance retrospective across three Labs and three Launchers, and why copying shared code that still evolves turns cross-repository cherry-picks into long-term debt.",
+    "published": "2026-08-27",
+    "url": "https://xnnehang.top/en/posts/repository-split-cherry-pick-debt/",
+    "coverUrl": "https://raw.githubusercontent.com/MrXnneHang/image-hosting/main/repository-split-cherry-pick-debt/cover.jpg",
+    "lang": "en",
+    "translationKey": "repository-split-cherry-pick-debt",
+    "alternateUrl": "https://xnnehang.top/posts/repository-split-cherry-pick-debt/",
+    "alternateLang": "zh-CN"
+  },
+  {
+    "title": "From Single-Frame Vision to Real-Time Video Conversation: The Multimodal Architecture Paths of DeepSeek, MiniCPM, and MiniMax",
+    "description": "From DeepSeek visual primitives and MiniMax-M3 image TTFT to how MiniCPM-o sustains local video understanding and full-duplex speech interaction.",
+    "published": "2026-08-25",
+    "url": "https://xnnehang.top/en/posts/from-single-frame-to-real-time-video-conversation/",
+    "coverUrl": "https://raw.githubusercontent.com/MrXnneHang/image-hosting/main/from-single-frame-to-real-time-video-conversation/cover.jpg",
+    "lang": "en",
+    "translationKey": "from-single-frame-to-real-time-video-conversation",
+    "alternateUrl": "https://xnnehang.top/posts/from-single-frame-to-real-time-video-conversation/",
+    "alternateLang": "zh-CN"
+  },
+  {
+    "title": "Can an Article Belong in Only One Drawer? Rethinking Category, Kind, and Tags",
+    "description": "When technology, reviews, and reflection keep converging in the same post, I have to reconsider what a blog category is actually supposed to answer.",
+    "published": "2026-08-23",
+    "url": "https://xnnehang.top/en/posts/category-kind-tags/",
+    "coverUrl": "https://raw.githubusercontent.com/MrXnneHang/image-hosting/main/category-kind-tags/miku82300.jpg",
+    "lang": "en",
+    "translationKey": "category-kind-tags",
+    "alternateUrl": "https://xnnehang.top/posts/category-kind-tags/",
+    "alternateLang": "zh-CN"
+  }
+]
