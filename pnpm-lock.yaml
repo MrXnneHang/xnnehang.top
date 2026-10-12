@@ -324,8 +324,8 @@ importers:
         specifier: ^17.0.0
         version: 17.0.0(postcss@8.5.28)
       postcss-nesting:
-        specifier: ^14.0.2
-        version: 14.0.2(postcss@8.5.28)
+        specifier: ^14.0.3
+        version: 14.0.3(postcss@8.5.28)
       vite-plus:
         specifier: 0.3.3
         version: 0.3.3(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(stylus@0.64.0(supports-color@7.2.0))(svelte@5.57.1)(terser@5.46.0)(typescript@7.0.2)(yaml@2.9.0)
@@ -1102,8 +1102,8 @@ packages:
     peerDependencies:
       postcss-selector-parser: ^7.1.1
 
-  '@csstools/selector-specificity@6.0.0':
-    resolution: {integrity: sha512-4sSgl78OtOXEX/2d++8A83zHNTgwCJMaR24FvsYL7Uf/VS8HZk9PTwR51elTbGqMuwH3szLvvOXEaVnqn0Z3zA==}
+  '@csstools/selector-specificity@6.0.1':
+    resolution: {integrity: sha512-MBuqFIIvqk4S593MGAskTkPpEUUzZNvGzh8mMxEwl3oHwjQlXmqHEDxNbN3Y0Tsh+xjmem4GZjeg7I0qkwBivg==}
     engines: {node: '>=20.19.0'}
     peerDependencies:
       postcss-selector-parser: ^7.1.1
@@ -5177,8 +5177,8 @@ packages:
     peerDependencies:
       postcss: ^8.2.14
 
-  postcss-nesting@14.0.2:
-    resolution: {integrity: sha512-nMaYODQw0AkF2bE1Zo3KWCOYF94MgvVB5ftnZnZ7Ve0z5W20QtMMjOf5nOBVsnisNxIC8Ky04Y7GPckp/I5KlQ==}
+  postcss-nesting@14.0.3:
+    resolution: {integrity: sha512-S6NJP2WFinT50vIo7fu3Z8PrTgng3P0ky47a5wQSrQpsH3WS82ZpjkIdAs+2ltRkk0wU7vRBKLYM96qY0RvKjA==}
     engines: {node: '>=20.19.0'}
     peerDependencies:
       postcss: ^8.4
@@ -7390,7 +7390,7 @@ snapshots:
     dependencies:
       postcss-selector-parser: 7.1.4
 
-  '@csstools/selector-specificity@6.0.0(postcss-selector-parser@7.1.4)':
+  '@csstools/selector-specificity@6.0.1(postcss-selector-parser@7.1.4)':
     dependencies:
       postcss-selector-parser: 7.1.4
 
@@ -11336,10 +11336,10 @@ snapshots:
       postcss: 8.5.26
       postcss-selector-parser: 6.1.4
 
-  postcss-nesting@14.0.2(postcss@8.5.28):
+  postcss-nesting@14.0.3(postcss@8.5.28):
     dependencies:
       '@csstools/selector-resolve-nested': 4.0.2(postcss-selector-parser@7.1.4)
-      '@csstools/selector-specificity': 6.0.0(postcss-selector-parser@7.1.4)
+      '@csstools/selector-specificity': 6.0.1(postcss-selector-parser@7.1.4)
       postcss: 8.5.28
       postcss-selector-parser: 7.1.4
 
