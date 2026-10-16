@@ -2,7 +2,6 @@
 title: '为什么开了代理，localhost 反而访问不了？从 Codex、CC Switch 到 Python HTTPX'
 published: 2026-10-13
 description: '一次 Codex、CC Switch 和 Karing 的排障记录，也聊聊本地服务直连、上游 LLM 走代理时，Python HTTPX 应该怎么分流。'
-draft: true
 tags:
   - Codex
   - CC Switch
