@@ -2,7 +2,6 @@
 title: 'Why Does localhost Stop Working When a Proxy Is Enabled? Codex, CC Switch, and Python HTTPX'
 published: 2026-10-13
 description: 'A troubleshooting record from connecting Codex to CC Switch through Karing, followed by a look at how Python HTTPX should route local services directly while sending upstream LLM requests through a proxy.'
-draft: true
 tags:
   - Codex
   - CC Switch
@@ -68,14 +67,7 @@ CC Switch local service
 Third-party provider or gateway
 ```
 
-There is an important boundary here: **we did not check the CC Switch request logs at the time.** What we actually did was read #4773 and #3989, adjust the loopback bypass rules, and observe that the error changed.
-
-The following two cases are therefore branches for a later investigation, not results we verified in this troubleshooting session:
-
-- If CC Switch never received the request, investigate the connection from Codex to the local port.
-- If CC Switch received it and logged an upstream error, investigate the upstream proxy, provider, or protocol conversion.
-
-We had no evidence to determine whether the 502 happened in the first or second connection. The only thing we can say is that the error showed a `127.0.0.1` URL, which is not enough to locate the failure.
+#4773 and #3989 gave us something to try: let loopback addresses bypass the proxy. After adjustments in that direction, the 502 became a protocol error with `upstream_status: HTTP 400`. We still had not pinpointed the source of the original 502, but the new error gave us a lead to follow.
 
 ## What should Karing bypass?
 
