@@ -2,6 +2,7 @@
 title: '为什么开了代理，localhost 反而访问不了？从 Codex、CC Switch 到 Python HTTPX'
 published: 2026-10-13
 description: '一次 Codex、CC Switch 和 Karing 的排障记录，也聊聊本地服务直连、上游 LLM 走代理时，Python HTTPX 应该怎么分流。'
+draft: true
 tags:
   - Codex
   - CC Switch
@@ -63,12 +64,14 @@ CC Switch 本地服务
 第三方供应商或网关
 ```
 
-如果 Codex 已经成功找到 CC Switch，但是 CC Switch 访问上游失败，它也可以把一个 502 返回给 Codex。Codex 界面上显示的 URL 仍然是 `127.0.0.1`，但真正出错的地方可能已经在第二段了。
+不过这里需要说明一个事实边界：**我们当时没有查看 CC Switch 的请求日志。** 我们实际做的是翻看 #4773 和 #3989，然后调整本地地址的绕过规则，最后观察到错误发生了变化。
 
-所以排查时最有用的不是盯着报错 URL 猜，而是看 CC Switch 的日志：
+因此，下面这两种情况是后续排查时应该看的分支，不是这次已经验证过的结果：
 
-- CC Switch 完全没有收到请求，优先查 Codex 到本地端口这一段；
-- CC Switch 收到了请求，并且记录了上游错误，优先查上游代理、供应商和协议转换。
+- 如果 CC Switch 完全没有收到请求，优先查 Codex 到本地端口这一段；
+- 如果 CC Switch 收到了请求，并且记录了上游错误，优先查上游代理、供应商和协议转换。
+
+我们当时没有证据判断 502 究竟发生在第一段还是第二段。只能确认，错误显示的 URL 是 `127.0.0.1`，而这本身不足以定位故障位置。
 
 ## Karing 应该绕过什么
 
