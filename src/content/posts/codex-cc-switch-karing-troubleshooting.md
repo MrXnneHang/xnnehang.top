@@ -4,16 +4,16 @@ published: 2026-10-13
 description: "一次 Codex、CC Switch 和 Karing 的排障记录，也聊聊本地服务直连、上游 LLM 走代理时，Python HTTPX 应该怎么分流。"
 draft: true
 tags:
-  - Codex
-  - CC Switch
-  - Karing
-  - 代理
-  - Responses
-  - Python
-  - HTTPX
+   - Codex
+   - CC Switch
+   - Karing
+   - 代理
+   - Responses
+   - Python
+   - HTTPX
 category: 边写边学
 series:
-  - LLM
+   - LLM
 ---
 
 ![文章首图](../../assets/img/codex-cc-switch-karing-troubleshooting/PixPin_2026-10-14_19-51-37.jpg)
@@ -91,11 +91,11 @@ localhost
 
 如果使用 TUN，还要在分流规则里让下面这些目标走直连，并确认规则排在代理规则之前：
 
-| 匹配类型 | 匹配值 | 出站 |
-| --- | --- | --- |
-| 域名 | `localhost` | 直连 |
-| IP/CIDR | `127.0.0.0/8` | 直连 |
-| IP/CIDR | `::1/128` | 直连 |
+| 匹配类型 | 匹配值        | 出站 |
+| -------- | ------------- | ---- |
+| 域名     | `localhost`   | 直连 |
+| IP/CIDR  | `127.0.0.0/8` | 直连 |
+| IP/CIDR  | `::1/128`     | 直连 |
 
 具体菜单名称会随 Karing 版本变化。不要直接把 CC Switch issue 里的 Clash YAML 原样复制进去，应该在 Karing 里配置等价的绕过或分流规则。
 

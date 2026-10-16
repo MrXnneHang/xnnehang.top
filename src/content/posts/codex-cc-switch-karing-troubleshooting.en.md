@@ -4,16 +4,16 @@ published: 2026-10-13
 description: "A troubleshooting record from connecting Codex to CC Switch through Karing, followed by a look at how Python HTTPX should route local services directly while sending upstream LLM requests through a proxy."
 draft: true
 tags:
-  - Codex
-  - CC Switch
-  - Karing
-  - Proxy
-  - Responses
-  - Python
-  - HTTPX
+   - Codex
+   - CC Switch
+   - Karing
+   - Proxy
+   - Responses
+   - Python
+   - HTTPX
 category: Learning as I Build
 series:
-  - LLM
+   - LLM
 lang: en
 translationKey: codex-cc-switch-karing-troubleshooting
 ---
@@ -95,11 +95,11 @@ localhost
 
 With TUN mode, the same intent needs to be expressed as routing rules. The loopback targets should go direct, and these rules must be placed before any rule that would send them through the proxy:
 
-| Match type | Value | Outbound |
-| --- | --- | --- |
-| Domain | `localhost` | Direct |
-| IP/CIDR | `127.0.0.0/8` | Direct |
-| IP/CIDR | `::1/128` | Direct |
+| Match type | Value         | Outbound |
+| ---------- | ------------- | -------- |
+| Domain     | `localhost`   | Direct   |
+| IP/CIDR    | `127.0.0.0/8` | Direct   |
+| IP/CIDR    | `::1/128`     | Direct   |
 
 The exact menu names vary between Karing versions. Do not paste the Clash YAML from a CC Switch issue directly into Karing; configure the equivalent bypass or routing rules in Karing itself.
 
