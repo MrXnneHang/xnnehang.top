@@ -11,7 +11,8 @@ tags:
   - Responses
   - Python
   - HTTPX
-category: 边写边学
+category: technology
+kind: learning-note
 series:
   - LLM
 ---
