@@ -2,7 +2,6 @@
 title: 'Why Does localhost Stop Working When a Proxy Is Enabled? Codex, CC Switch, and Python HTTPX'
 published: 2026-10-13
 description: 'A troubleshooting record from connecting Codex to CC Switch through Karing, followed by a look at how Python HTTPX should route local services directly while sending upstream LLM requests through a proxy.'
-draft: true
 tags:
   - Codex
   - CC Switch
