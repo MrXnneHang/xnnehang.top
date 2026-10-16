@@ -11,7 +11,8 @@ tags:
   - Responses
   - Python
   - HTTPX
-category: Learning as I Build
+category: technology
+kind: learning-note
 series:
   - LLM
 lang: en
