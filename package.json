@@ -82,6 +82,6 @@
     "case-police": "^2.2.1",
     "postcss-import": "^17.0.1",
     "postcss-nesting": "^14.0.3",
-    "vite-plus": "0.3.3"
+    "vite-plus": "1.4.0"
   }
 }
