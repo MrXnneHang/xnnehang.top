@@ -1,0 +1,1 @@
+import{a as e,t}from"./locales.BW3NVZvy.js";function n(...e){return e.join(`/`).replace(/\/+/g,`/`)}function r(e,n=t){return o(`/posts/${e}/`,n)}function i(e,n=t){return o(e?`/tags/${encodeURIComponent(e.trim())}/`:`/tags/`,n)}function a(e,n=t){return o(`/series/${encodeURIComponent(e.trim())}/`,n)}function o(r,i=t){return n(``,`/`,e(r,i))}export{o as i,a as n,i as r,r as t};

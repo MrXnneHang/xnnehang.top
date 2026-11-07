@@ -1,0 +1,35 @@
+[
+  {
+    "title": "拆仓不等于解耦：复制公共代码会让跨仓 cherry-pick 成为维护债务",
+    "description": "从三个 Lab 与三个 Launcher 的真实维护经历出发，讨论为什么复制仍在演进的公共代码，会把跨仓 cherry-pick 变成长期维护债务。",
+    "published": "2026-08-27",
+    "url": "https://xnnehang.top/posts/repository-split-cherry-pick-debt/",
+    "coverUrl": "https://raw.githubusercontent.com/MrXnneHang/image-hosting/main/repository-split-cherry-pick-debt/cover.jpg",
+    "lang": "zh-CN",
+    "translationKey": "repository-split-cherry-pick-debt",
+    "alternateUrl": "https://xnnehang.top/en/posts/repository-split-cherry-pick-debt/",
+    "alternateLang": "en"
+  },
+  {
+    "title": "从单帧识图到实时视频对话：DeepSeek、MiniCPM 与 MiniMax 的多模态架构路线",
+    "description": "从 DeepSeek 的视觉原语、MiniMax-M3 的图片首字延迟，一路追到 MiniCPM-o 如何在本地实现持续视频理解与全双工语音交互。",
+    "published": "2026-08-25",
+    "url": "https://xnnehang.top/posts/from-single-frame-to-real-time-video-conversation/",
+    "coverUrl": "https://raw.githubusercontent.com/MrXnneHang/image-hosting/main/from-single-frame-to-real-time-video-conversation/cover.jpg",
+    "lang": "zh-CN",
+    "translationKey": "from-single-frame-to-real-time-video-conversation",
+    "alternateUrl": "https://xnnehang.top/en/posts/from-single-frame-to-real-time-video-conversation/",
+    "alternateLang": "en"
+  },
+  {
+    "title": "一篇文章只能住进一个抽屉吗？——重新拆开 Category、Kind 与 Tags",
+    "description": "当技术、观后与思考不断混在同一篇文章里，我开始重新审视博客分类究竟应该回答什么。",
+    "published": "2026-08-23",
+    "url": "https://xnnehang.top/posts/category-kind-tags/",
+    "coverUrl": "https://raw.githubusercontent.com/MrXnneHang/image-hosting/main/category-kind-tags/miku82300.jpg",
+    "lang": "zh-CN",
+    "translationKey": "category-kind-tags",
+    "alternateUrl": "https://xnnehang.top/en/posts/category-kind-tags/",
+    "alternateLang": "en"
+  }
+]
