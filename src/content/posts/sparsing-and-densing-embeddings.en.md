@@ -305,7 +305,7 @@ From this perspective, memU and mem0 are both hybrid scenarios.
 
 They need dense embeddings and BM25 as a supplement. But how BM25 should be used has much to discuss. Is it simply the hybrid-search use shown above, or can it do something more interesting?
 
-When breaking down memU, we can capture how it uses BM25: simple hybrid search, or its own extension—[[What Is memU? Let's Break It Down (An Ongoing Series)|What Is memU? Let's Break It Down]].
+When breaking down memU, we can capture how it uses BM25: simple hybrid search, or its own extension—[[What Is memU? Let's Break It Down (Archived)|What Is memU? Let's Break It Down]].
 
 ## Claude's Additions
 

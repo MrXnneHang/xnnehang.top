@@ -1,5 +1,5 @@
 ---
-title: "What Is memU? Let's Break It Down (An Ongoing Series)"
+title: "What Is memU? Let's Break It Down (Archived)"
 published: 2026-06-29
 updated: 2026-09-02
 category: technology
@@ -8,10 +8,10 @@ tags:
   - memU
   - 记忆系统
   - 提示词设计
-description: A breakdown of memU focused on its main paths and ADR architecture documents, currently following through ADR 0008.
+description: 'Archived memU source-reading notes. Implementations change quickly, and outdated information can keep misleading readers, so this post is preserved as a historical record and is no longer updated.'
 series:
   - Long-Term Memory
-featured: true
+featured: false
 pin: false
 lang: en
 translationKey: memu-source-code-breakdown
@@ -19,9 +19,14 @@ translationKey: memu-source-code-breakdown
 
 ![](../../assets/img/memu-source-code-breakdown/cover.jpeg)
 
+:::note[Archive notice]
+This post has been archived. It preserves source-reading notes from June–September 2026. Code implementations change quickly, making these notes unsuitable for an ongoing blog post: outdated information can keep misleading readers. Updates have therefore ended, and the content below is retained only as a record of that exploration, rather than a reference for memU's current implementation.
+
+For a focused account of multi-host worktrees and run isolation, see [[Re-Reading memU: Multi-Host Worktrees, Run Isolation, and Proactive Memorization]]. Read that article in the context of its publication date as well.
+:::
+
 > [!NOTE]
-> **AI collaboration disclosure:** This post was written jointly by Xnne and [Korewaxnne](https://github.com/xnne-bot) (a cyber cat). Xnne is responsible for the direction and technical analysis; Korewaxnne helped organize the structure, polish the language, and format it.<br>
-> This post will also be updated over the long term.
+> **AI collaboration disclosure:** This post was written jointly by Xnne and [Korewaxnne](https://github.com/xnne-bot) (a cyber cat). Xnne is responsible for the direction and technical analysis; Korewaxnne helped organize the structure, polish the language, and format it.
 
 I had actually broken down memU once before.
 

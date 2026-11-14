@@ -20,7 +20,7 @@ translationKey: memu-adr0007-ce-duan-perspective
 
 ## memU ADR 0007 Through the Eyes of a Consumer-Facing Developer
 
-The reason for this started yesterday, while I was breaking down memU's source code in [[What Is memU? Let's Break It Down (An Ongoing Series)|What Is memU? Let's Break It Down]]. I found that memU's newly released ADR 0007 architecture document had almost completely overturned what I had broken down and understood =-=.
+The reason for this started yesterday, while I was breaking down memU's source code in [[What Is memU? Let's Break It Down (Archived)|What Is memU? Let's Break It Down]]. I found that memU's newly released ADR 0007 architecture document had almost completely overturned what I had broken down and understood =-=.
 
 So I stopped.
 

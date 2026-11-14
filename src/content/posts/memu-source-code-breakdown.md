@@ -1,5 +1,5 @@
 ---
-title: memU 是啥？我们来拆开看看（长期更新）
+title: 'memU 是啥？我们来拆开看看（已归档）'
 published: 2026-06-29
 updated: 2026-09-02
 category: technology
@@ -8,18 +8,23 @@ tags:
   - memU
   - 记忆系统
   - 提示词设计
-description: 拆解 memU，专注拆分主线路，以及分析 ADR 架构文档，当前跟进至 ADR 0008。
+description: '已归档的 memU 阶段性源码阅读笔记。实现容易变化，过时的信息会持续误导读者，因此本文停止长期更新，仅保留为历史记录。'
 series:
   - Long-Term Memory
-featured: true
+featured: false
 pin: false
 ---
 
 ![](../../assets/img/memu-source-code-breakdown/cover.jpeg)
 
+:::note[归档说明]
+本文已归档，保留的是 2026 年 6—9 月的阶段性源码阅读记录。代码实现容易变化，这类阅读笔记不适合作为博客长期更新：过时的信息会不断误导读者。因此，本文停止更新，以下内容仅供回顾当时的探索过程，不宜作为 memU 当前实现的依据。
+
+多 Host 工作树与运行隔离的专题整理见 [[重读 memU：多 Host 工作树、运行隔离与主动 Memorize]]；该文也需结合其写作时间阅读。
+:::
+
 > [!NOTE]
-> **AI 协作声明：** 本文由 Xnne 与 [Korewaxnne](https://github.com/xnne-bot)（赛博猫猫）共同撰写。Xnne 负责内容方向和技术分析，Korewaxnne 协助了结构组织、语法润色和格式整理。<br>
-> 并且，这个博客会长期更新。
+> **AI 协作声明：** 本文由 Xnne 与 [Korewaxnne](https://github.com/xnne-bot)（赛博猫猫）共同撰写。Xnne 负责内容方向和技术分析，Korewaxnne 协助了结构组织、语法润色和格式整理。
 
 上次其实已经拆过一次 memU 了。
 
