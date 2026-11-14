@@ -27,7 +27,7 @@ Returning to memU after some time away, I found that parts of my earlier underst
 
 That is not unusual. memU has been evolving rapidly, and I have worked on its multi-host adapters, bridging pipeline, scheduled tasks, and Recall Files. Once a system keeps growing new capabilities, the easiest mistake is not failing to understand the code. It is continuing to carry an old architecture diagram in your head and unconsciously using it to explain today's behavior.
 
-This article continues [[What Is memU? Let's Break It Down (An Ongoing Series)]] and [[memU's Architectural Shift Through the Eyes of a Consumer-Facing Developer]]. This time, however, I will not follow an ADR line by line. I will begin with one concrete scheduling question and use it to clarify memU's current concurrency boundaries, filesystem responsibilities, and next design for proactive memorization.
+This article continues [[What Is memU? Let's Break It Down (Archived)]] and [[memU's Architectural Shift Through the Eyes of a Consumer-Facing Developer]]. This time, however, I will not follow an ADR line by line. I will begin with one concrete scheduling question and use it to clarify memU's current concurrency boundaries, filesystem responsibilities, and next design for proactive memorization.
 
 ::github{repo="NevaMind-AI/memU"}
 

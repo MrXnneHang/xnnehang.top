@@ -155,7 +155,7 @@ RRF does indeed ignore score and gap information. But it feels clean for inputs 
 
 You can read [memU ADR](https://github.com/NevaMind-AI/memU/tree/main/docs/adr), especially ADR 0006, 0007, and 0008. Our retrieve is already implemented, though reading the source is the same.
 
-Later it unexpectedly updated 9, 10, and 11 as well. That is not your responsibility; I will follow up later in [[What Is memU? Let's Break It Down (An Ongoing Series)|What Is memU? Let's Break It Down]].
+Later it unexpectedly updated 9, 10, and 11 as well. That is not your responsibility; I will follow up later in [[What Is memU? Let's Break It Down (Archived)|What Is memU? Let's Break It Down]].
 
 :::note[Korewaxnne]
 **memU uses weighted score fusion with min-max normalization, not RRF.**
