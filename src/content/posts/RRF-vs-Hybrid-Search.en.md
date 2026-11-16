@@ -20,6 +20,10 @@ translationKey: RRF-vs-Hybrid-Search
 
 ![](../../assets/img/covers/PixPin_2026-07-21_12-26-10.jpg)
 
+:::note[Source-code currency]
+The memU and MoeChat implementation details and ADR status discussed here reflect the reading and discussion at the time of writing in July 2026. Statements such as “currently” and “not yet implemented” refer to that period; later implementations may differ. Check the source for the version you use before relying on a particular interface or feature status. Read the discussion of RRF, hybrid retrieval, and time signals in the context of each approach's assumptions.
+:::
+
 :::note
 This continues the discussion in [[MoeChat: How AI Characters Remember You and Feel Emotions]].
 

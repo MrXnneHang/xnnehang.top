@@ -20,6 +20,10 @@ translationKey: moechat_ltm
 
 ![MoeChat cover](../../assets/img/moechat-beginner-guide/moechat-cover-poster.jpg)
 
+:::note[Source snapshot]
+This article examines the MoeChat source snapshot at commit [`f3707e9`](https://github.com/AlfreScarlet/MoeChat/commit/f3707e9bae73196dda41820abe0a53c6021269c9). Read its directory layout, configuration options, memory and emotion pipelines, and quick-start instructions in the context of that version. Later versions may differ; check the source and documentation for the version you use.
+:::
+
 :::note[AI Disclosure]
 This article was **almost entirely written by Claude OPUS 4.6**, with Xnne reviewing it. Want to read the human-written parts? Skip directly to the Q&A.
 

@@ -18,6 +18,10 @@ series:
 
 ![MoeChat 封面图](../../assets/img/moechat-beginner-guide/moechat-cover-poster.jpg)
 
+:::note[源码快照]
+本文解读的是 MoeChat 在提交 [`f3707e9`](https://github.com/AlfreScarlet/MoeChat/commit/f3707e9bae73196dda41820abe0a53c6021269c9) 时的源码快照。目录结构、配置项、记忆与情感处理流程，以及快速上手步骤，都应在这个版本背景下阅读；后续版本可能已有变化，使用时请核对所用版本的源码与文档。
+:::
+
 :::note[AI 声明]
 本文**几乎完全由 Claude OPUS 4.6 撰写**，由 XnneHang 审稿。想看人写的部分？直接跳到 Q&A 就行。
 

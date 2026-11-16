@@ -18,6 +18,10 @@ lang: en
 translationKey: memu-adr0007-ce-duan-perspective
 ---
 
+:::note[Discussion context and currency]
+This post records a consumer-facing developer's reflections on memU's architectural shift around the publication of ADR 0007 in July 2026. Its descriptions of LLM mode, workspace, and retrieval routes reflect the design context and understanding at that time; later designs and implementations may differ. Read these trade-offs in their original context, and consult the source and documentation for the version you use to establish memU's current behavior.
+:::
+
 ## memU ADR 0007 Through the Eyes of a Consumer-Facing Developer
 
 The reason for this started yesterday, while I was breaking down memU's source code in [[What Is memU? Let's Break It Down (Archived)|What Is memU? Let's Break It Down]]. I found that memU's newly released ADR 0007 architecture document had almost completely overturned what I had broken down and understood =-=.
