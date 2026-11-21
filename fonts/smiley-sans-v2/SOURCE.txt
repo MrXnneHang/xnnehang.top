@@ -1,0 +1,16 @@
+Smiley Sans / 得意黑 v2.0.1
+
+Official project:
+https://github.com/atelier-anchor/smiley-sans
+
+Source package used for generation:
+@fontpkg/smiley-sans@2.0.4 (font metadata version 2.0.1)
+SmileySans-Oblique.ttf
+
+Webfont output:
+Generated with cn-font-split WASI 7.6.8 on 2026-08-24.
+Target chunk size: 70 KiB; WOFF2 output with unicode-range declarations.
+The generated family is named "Smiley Sans Lab" to comply with the OFL Reserved Font Name requirement for modified versions.
+
+Copyright (c) 2022–2024 atelierAnchor.
+See LICENSE.txt in this directory for the SIL Open Font License 1.1.
