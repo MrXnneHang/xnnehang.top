@@ -1,0 +1,1 @@
+import{nt as e}from"./client.Cre3BJ5L.js";e();
